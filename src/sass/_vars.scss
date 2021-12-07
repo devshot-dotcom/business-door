@@ -1,0 +1,76 @@
+$font: -apple-system, BlinkMacSystemFont, "Work Sans", "Segoe UI", Roboto,
+  Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+
+:root {
+  /* Sizing System */
+  --spacer-smallest: 0.125rem; /* 2px */
+  --spacer-smaller: 0.5rem; /* 8px */
+  --spacer-default: 1rem; /* 16px */
+  --spacer-medium: 1.5rem; /* 24px */
+  --spacer-large: 2rem; /* 32px */
+  --spacer-larger: 2.5rem; /* 40px */
+  --spacer-largest: 3rem; /* 48px */
+  --spacer-huge: 3.5rem; /* 56px */
+  --spacer-humungous: 4rem; /* 64px */
+}
+
+$spacerSmallest: var(--spacer-smallest);
+$spacerSmaller: var(--spacer-smaller);
+$spacerDefault: var(--spacer-default);
+$spacerMedium: var(--spacer-medium);
+$spacerLarge: var(--spacer-large);
+$spacerLarger: var(--spacer-larger);
+$spacerLargest: var(--spacer-largest);
+$spacerHuge: var(--spacer-huge);
+$spacerHumongous: var(--spacer-humungous);
+
+/* Color System */
+$colorBrand: (
+  "100": #f9d5d3,
+  "200": #f3aca8,
+  "300": #ed837c,
+  "400": #e75950,
+);
+
+$colorLink: (
+  "100": #efeffd,
+  "200": #a5a6f6,
+  "300": #787af2,
+  "400": #4b4ded,
+);
+
+$colorSecondary: (
+  "100": #f5efe8,
+  "200": #ebe1d2,
+  "300": #e1d1bb,
+  "400": #d7c2a4,
+);
+
+$colorTertiary: (
+  "100": #e2e2e1,
+  "200": #c6c6c4,
+  "300": #bfbebc,
+  "400": #8d8c88,
+);
+
+$colorValid: #31d0aa;
+$colorInvalid: #ed4b9e;
+
+$colorTransparent: (
+  "opacity-10": hsla(0, 0%, 100%, 10%),
+  "opacity-25": hsla(0, 0%, 100%, 25%),
+  "opacity-50": hsla(0, 0%, 100%, 50%),
+  "opacity-75": hsla(0, 0%, 100%, 75%),
+);
+
+$lightTheme: (
+  "colorText": #4a4a68,
+  "colorTextSubtle": #8c8ca1,
+  "colorBackground": #e9e7db,
+);
+
+$darkTheme: (
+  "colorText": white,
+  "colorTextSubtle": #ecf1f4,
+  "colorBackground": #383838,
+);
