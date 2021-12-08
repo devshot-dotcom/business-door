@@ -5,43 +5,66 @@ import Input from "../components/Input";
 import "../sass/Auth.scss";
 
 export default function Register() {
-  const [emailValue, setEmailValue] = useState("");
-  const [passwordValue, setPasswordValue] = useState("");
-  const [rePasswordValue, setRePasswordValue] = useState("");
+  const [emailState, setEmailState] = useState({
+    value: "",
+    style: "Default",
+  });
+  const [passwordState, setPasswordState] = useState({
+    value: "",
+    style: "Default",
+  });
+  const [rePasswordState, setRePasswordState] = useState({
+    value: "",
+    style: "Default",
+  });
   const [isCreationDisabled, setIsCreationDisabled] = useState(true);
-  const [emailStyle, setEmailStyle] = useState("Default");
-  const [passwordStyle, setPasswordStyle] = useState("Default");
-  const [rePasswordStyle, setRePasswordStyle] = useState("Default");
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
     // If passwords don't match.
-    if (passwordValue !== rePasswordValue) {
-      setPasswordStyle("Invalid");
-      setRePasswordStyle("Invalid");
+    if (passwordState.value !== rePasswordState.value) {
+      setPasswordState({
+        value: passwordState.value,
+        style: "Invalid",
+      });
+      setRePasswordState({
+        value: rePasswordState.value,
+        style: "Invalid",
+      });
     }
   };
 
   const handleIsCreationDisabled = () => {
     // Enable iff all the fields are filled.
     setIsCreationDisabled(
-      emailValue === "" || passwordValue === "" || rePasswordValue === ""
+      emailState.value === "" ||
+        passwordState.value === "" ||
+        rePasswordState.value === ""
     );
   };
 
   const handleEmailChange = (email) => {
-    setEmailValue(email);
+    setEmailState({
+      value: email,
+      style: emailState.style,
+    });
     handleIsCreationDisabled();
   };
 
   const handlePasswordChange = (password) => {
-    setPasswordValue(password);
+    setPasswordState({
+      value: password,
+      style: passwordState.style,
+    });
     handleIsCreationDisabled();
   };
 
   const handleRePasswordChange = (rePassword) => {
-    setRePasswordValue(rePassword);
+    setRePasswordState({
+      value: rePassword,
+      style: rePasswordState.style,
+    });
     handleIsCreationDisabled();
   };
 
@@ -60,18 +83,16 @@ export default function Register() {
             <h3>Create Your Account</h3>
             <Input
               type="email"
-              style={emailStyle}
-              setStyle={setEmailStyle}
-              value={emailValue}
+              state={emailState}
+              setState={setEmailState}
               onChange={handleEmailChange}
               placeholder="Your Email Address"
             />
             <Input
               size="15"
               type="password"
-              style={passwordStyle}
-              setStyle={setPasswordStyle}
-              value={passwordValue}
+              state={passwordState}
+              setState={setPasswordState}
               onChange={handlePasswordChange}
               placeholder="Your Password"
               hasTypeSwapper={true}
@@ -79,11 +100,10 @@ export default function Register() {
             <Input
               size="15"
               type="password"
-              style={rePasswordStyle}
-              setStyle={setRePasswordStyle}
-              placeholder="Re-enter Password"
-              value={rePasswordValue}
+              state={rePasswordState}
+              setState={setRePasswordState}
               onChange={handleRePasswordChange}
+              placeholder="Re-enter Password"
               hasTypeSwapper={true}
             />
             <button

@@ -14,12 +14,12 @@ export default function Input(props) {
 
   // Just to get the disabled attribute.
   const getInput = () => {
-    if (props.style === "Disabled") {
+    if (props.state.style === "Disabled") {
       return (
         <input
           type={type}
           placeholder={props.placeholder}
-          value={props.value}
+          value={props.state.value}
           disabled
         />
       );
@@ -32,10 +32,20 @@ export default function Input(props) {
         ref={inputRef}
         type={type}
         placeholder={props.placeholder}
-        value={props.value}
+        value={props.state.value}
         onChange={(event) => props.onChange(event.target.value)}
-        onFocus={() => props.setStyle("Active")}
-        onBlur={() => props.setStyle("Default")}
+        onFocus={() =>
+          props.setState({
+            value: props.state.value,
+            style: "Active",
+          })
+        }
+        onBlur={() =>
+          props.setState({
+            value: props.state.value,
+            style: "Default",
+          })
+        }
       />
     );
   };
@@ -46,8 +56,8 @@ export default function Input(props) {
     if (
       props.hasTypeSwapper === false ||
       props.hasTypeSwapper === undefined ||
-      props.style === "Valid" ||
-      props.style === "Invalid"
+      props.state.style === "Valid" ||
+      props.state.style === "Invalid"
     )
       return;
 
@@ -65,7 +75,7 @@ export default function Input(props) {
       Valid: faCheck,
       Invalid: faExclamation,
       Disabled: faBan,
-    }[props.style];
+    }[props.state.style];
 
     if (icon !== undefined) {
       return <FontAwesomeIcon className="icon" icon={icon} />;
@@ -75,7 +85,7 @@ export default function Input(props) {
   return (
     <div
       onClick={() => inputRef.current.focus()}
-      className={`inputContainer input${props.style ?? "Default"}`}
+      className={`inputContainer input${props.state.style ?? "Default"}`}
     >
       {getInput()}
       {getSwapper()}

@@ -5,11 +5,15 @@ import Input from "../components/Input";
 import "../sass/Auth.scss";
 
 export default function Login() {
-  const [emailValue, setEmailValue] = useState("");
-  const [passwordValue, setPasswordValue] = useState("");
+  const [emailState, setEmailState] = useState({
+    value: "",
+    style: "Default",
+  });
+  const [passwordState, setPasswordState] = useState({
+    value: "",
+    style: "Default",
+  });
   const [isLoginDisabled, setIsLoginDisabled] = useState(true);
-  const [emailStyle, setEmailStyle] = useState("Default");
-  const [passwordStyle, setPasswordStyle] = useState("Default");
 
   // Handle form submission.
   const handleSubmit = (e) => {
@@ -18,14 +22,20 @@ export default function Login() {
 
   // Passed onto the Input[email] component.
   const handleEmailChange = (email) => {
-    setEmailValue(email);
-    setIsLoginDisabled(email === "" || passwordValue === "");
+    setEmailState({
+      value: email,
+      style: emailState.style,
+    });
+    setIsLoginDisabled(email === "" || passwordState.value === "");
   };
 
   // Passed onto the Input[password] component.
   const handlePasswordChange = (password) => {
-    setPasswordValue(password);
-    setIsLoginDisabled(emailValue === "" || password === "");
+    setPasswordState({
+      value: password,
+      style: passwordState.style,
+    });
+    setIsLoginDisabled(emailState.value === "" || password === "");
   };
 
   return (
@@ -43,18 +53,16 @@ export default function Login() {
             <h3>Log In</h3>
             <Input
               type="email"
-              style={emailStyle}
-              setStyle={setEmailStyle}
-              value={emailValue}
+              state={emailState}
+              setState={setEmailState}
               onChange={handleEmailChange}
               placeholder="Your Email Address"
             />
             <Input
               size="15"
               type="password"
-              style={passwordStyle}
-              setStyle={setPasswordStyle}
-              value={passwordValue}
+              state={passwordState}
+              setState={setPasswordState}
               onChange={handlePasswordChange}
               placeholder="Your Password"
               hasTypeSwapper={true}
