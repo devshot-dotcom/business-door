@@ -1,0 +1,75 @@
+@import "./vars";
+@import "./typography";
+
+@mixin inputContainer {
+  background-color: map-get($map: $lightTheme, $key: "colorBackground");
+  display: inline-flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: $spacerDefault;
+  padding: calc(#{$spacerMedium} / 2) $spacerDefault;
+  border-radius: $spacerSmaller;
+  box-shadow: 0 0 1px map-get($map: $colorSecondary, $key: "400") inset;
+  transition: outline $transitionShort linear;
+  cursor: text;
+}
+
+@mixin InputState($accentColor) {
+  border: 1px solid $accentColor;
+  outline: calc(#{$spacerSmaller} / 2) solid
+    scale-color($color: $accentColor, $lightness: 80%);
+
+  .icon {
+    cursor: pointer;
+    color: $accentColor;
+    > path {
+      color: $accentColor;
+    }
+  }
+}
+
+.inputContainer {
+  @include inputContainer;
+
+  input {
+    background-color: transparent;
+    border: 0;
+
+    &:focus {
+      outline: 0;
+    }
+
+    &::placeholder {
+      color: map-get($map: $lightTheme, $key: "colorTextSubtle");
+    }
+  }
+
+  &.inputActive {
+    @include InputState(map-get($colorLink, "400"));
+  }
+
+  &.inputValid {
+    @include InputState($colorValid);
+  }
+
+  &.inputInvalid {
+    @include InputState($colorInvalid);
+  }
+
+  &.inputDisabled {
+    cursor: no-drop;
+
+    input {
+      cursor: no-drop;
+      color: map-get($map: $lightTheme, $key: "colorTextSubtle");
+    }
+
+    .icon {
+      cursor: pointer;
+      color: map-get($map: $colorTertiary, $key: "400");
+      > path {
+        color: map-get($map: $colorTertiary, $key: "400");
+      }
+    }
+  }
+}

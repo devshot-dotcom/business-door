@@ -2,9 +2,63 @@
   $colorBackground: map-get($map: $colorBrand, $key: "400"),
   $colorText: map-get($map: $darkTheme, $key: "colorText")
 ) {
+  transition: background-color $transitionShort linear;
   padding: $spacerDefault $spacerMedium;
   background-color: $colorBackground;
   border-radius: $spacerSmaller;
   color: $colorText;
+  cursor: pointer;
   border: 0;
+}
+
+$buttonTypes: (
+  "Primary": (
+    "colorBackgroundMap": $colorBrand,
+    "colorTextMap": $darkTheme,
+  ),
+  "Secondary": (
+    "colorBackgroundMap": $colorSecondary,
+    "colorTextMap": $darkTheme,
+  ),
+  "Tertiary": (
+    "colorBackgroundMap": $colorTertiary,
+    "colorTextMap": $darkTheme,
+  ),
+);
+
+// Iterate over the type map.
+@each $typeName, $typeMap in $buttonTypes {
+  // Generate a class for each type (button-primary, etc).
+  .button#{$typeName} {
+    //We're using map-get(map-get()) twice to get the value from the sub-map that's inside the $typeMap of the $buttonTypes map.
+    @include button(
+      map-get(map-get($typeMap, "colorBackgroundMap"), "400"),
+      map-get(map-get($typeMap, "colorTextMap"), "colorText")
+    );
+
+    &:hover,
+    &:focus-within {
+      background-color: scale-color(
+        $color: map-get(map-get($typeMap, "colorBackgroundMap"), "400"),
+        $blackness: 10%
+      );
+    }
+
+    &[disabled] {
+      @include button(
+        map-get(map-get($typeMap, "colorBackgroundMap"), "200"),
+        map-get(map-get($typeMap, "colorTextMap"), "colorText")
+      );
+
+      cursor: no-drop;
+    }
+  }
+}
+
+.buttonGroup {
+  background-color: map-get($map: $lightTheme, $key: "colorBackground");
+  display: inline-flex;
+  padding: $spacerDefault;
+  gap: $spacerSmaller;
+  border-radius: $spacerSmaller;
 }

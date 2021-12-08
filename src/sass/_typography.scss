@@ -1,35 +1,35 @@
 @mixin h1 {
   margin: 0;
   font-weight: 700;
-  letter-spacing: -2%;
-  font-size: 4rem;
+  letter-spacing: -2;
+  font-size: 3.75rem;
 }
 
 @mixin h2 {
   margin: 0;
   font-weight: 700;
-  letter-spacing: -2%;
-  font-size: 2.5rem;
+  letter-spacing: -2;
+  font-size: 2.25rem;
 }
 
 @mixin h3 {
   margin: 0;
   font-weight: 700;
-  letter-spacing: -2%;
-  font-size: 1.5rem;
+  letter-spacing: -2;
+  font-size: 1.25rem;
 }
 
 @mixin subtitle {
   margin: 0;
   font-weight: 500;
-  font-size: 1.5rem;
+  font-size: 1.25rem;
 }
 
 @mixin paragraph {
   margin: 0;
   font-weight: 500;
   line-height: 140%;
-  font-size: 1rem;
+  font-size: 0.85rem;
 }
 
 @mixin boldText {
@@ -39,27 +39,27 @@
 @mixin smallText {
   font-weight: 500;
   line-height: 140%;
-  font-size: 0.875rem;
+  font-size: 0.75rem;
 }
 
 @mixin preTitle {
   margin: 0;
   font-weight: 700;
-  letter-spacing: 3%;
-  font-size: 0.625rem;
+  letter-spacing: 1px;
+  font-size: 0.5rem;
   text-transform: uppercase;
 }
 
 @mixin buttonText {
   font-weight: 700;
-  letter-spacing: 3%;
-  font-size: 1rem;
+  letter-spacing: 1px;
+  font-size: 0.95rem;
   text-transform: uppercase;
 }
 
 @mixin link {
   font-weight: 700;
-  font-size: 1rem;
+  font-size: 0.95rem;
   text-decoration: underline;
   color: map-get($map: $colorLink, $key: "400");
 }

@@ -1,0 +1,20 @@
+@import "./vars";
+@import "./typography";
+
+.container {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: $spacerMedium;
+  background-color: map-get($lightTheme, "colorBackground");
+  overflow: auto;
+}
+
+.background {
+  width: 100%;
+  min-width: 340px;
+  max-width: 360px;
+  padding: $spacerLarge;
+  background-color: map-get($darkTheme, "colorText");
+  border-radius: $spacerSmaller;
+}
