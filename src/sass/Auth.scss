@@ -17,4 +17,5 @@
   padding: $spacerLarge;
   background-color: map-get($darkTheme, "colorText");
   border-radius: $spacerSmaller;
+  box-shadow: $shadowMinimal;
 }

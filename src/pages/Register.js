@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import brandLogo from "../assets/brand-plain-lightTheme.svg";
-import Input from "../components/Input";
+import Input from "../components/Input/Input";
 import "../sass/Auth.scss";
 
 export default function Register() {
@@ -19,6 +19,11 @@ export default function Register() {
   });
   const [isCreationDisabled, setIsCreationDisabled] = useState(true);
 
+  const isInvalid = (password) => {
+    const pattern = /^(?=.*d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/;
+    return !pattern.test(password);
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -27,10 +32,41 @@ export default function Register() {
       setPasswordState({
         value: passwordState.value,
         style: "Invalid",
+        tooltip: {
+          text: "Passwords don't match",
+          position: "top-left",
+        },
       });
       setRePasswordState({
         value: rePasswordState.value,
         style: "Invalid",
+        tooltip: {
+          text: "Passwords don't match",
+          position: "top-left",
+        },
+      });
+    }
+
+    // If passwords are invalid.
+    if (isInvalid(passwordState.value)) {
+      setPasswordState({
+        value: passwordState.value,
+        style: "Invalid",
+        tooltip: {
+          text: "Invalid Password, criteria mismatch",
+          position: "top-left",
+        },
+      });
+    }
+
+    if (isInvalid(rePasswordState.value)) {
+      setRePasswordState({
+        value: rePasswordState.value,
+        style: "Invalid",
+        tooltip: {
+          text: "Invalid Password, criteria mismatch",
+          position: "top-left",
+        },
       });
     }
   };
@@ -95,7 +131,6 @@ export default function Register() {
               setState={setPasswordState}
               onChange={handlePasswordChange}
               placeholder="Your Password"
-              hasTypeSwapper={true}
             />
             <Input
               size="15"
@@ -104,7 +139,6 @@ export default function Register() {
               setState={setRePasswordState}
               onChange={handleRePasswordChange}
               placeholder="Re-enter Password"
-              hasTypeSwapper={true}
             />
             <button
               type="submit"

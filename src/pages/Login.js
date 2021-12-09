@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import brandLogo from "../assets/brand-plain-lightTheme.svg";
-import Input from "../components/Input";
+import Input from "../components/Input/Input";
 import "../sass/Auth.scss";
+import "microtip/microtip.css";
 
 export default function Login() {
   const [emailState, setEmailState] = useState({
@@ -65,7 +66,6 @@ export default function Login() {
               setState={setPasswordState}
               onChange={handlePasswordChange}
               placeholder="Your Password"
-              hasTypeSwapper={true}
             />
             <Link to="/auth/recover-password">Forgot Password</Link>
             <button

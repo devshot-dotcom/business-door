@@ -60,10 +60,14 @@ $colorValid: #31d0aa;
 $colorInvalid: #ed4b9e;
 
 $colorTransparent: (
-  "opacity-10": hsla(0, 0%, 100%, 10%),
-  "opacity-25": hsla(0, 0%, 100%, 25%),
-  "opacity-50": hsla(0, 0%, 100%, 50%),
-  "opacity-75": hsla(0, 0%, 100%, 75%),
+  "white-10": hsla(0, 0%, 100%, 10%),
+  "white-25": hsla(0, 0%, 100%, 25%),
+  "white-50": hsla(0, 0%, 100%, 50%),
+  "white-75": hsla(0, 0%, 100%, 75%),
+  "black-10": hsla(0, 0%, 0%, 10%),
+  "black-25": hsla(0, 0%, 0%, 25%),
+  "black-50": hsla(0, 0%, 0%, 50%),
+  "black-75": hsla(0, 0%, 0%, 75%),
 );
 
 $lightTheme: (
@@ -77,3 +81,10 @@ $darkTheme: (
   "colorTextSubtle": #ecf1f4,
   "colorBackground": #383838,
 );
+
+/* Shadow System. */
+$shadowMinimal: 0 4px 20px
+  map-get(
+    $map: $colorTransparent,
+    $key: "black-10",
+  );

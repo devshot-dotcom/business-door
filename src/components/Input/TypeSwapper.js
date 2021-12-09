@@ -5,10 +5,14 @@ export default function TypeSwapper(props) {
     <span
       tabIndex="0"
       className="link"
-      onClick={props.onClick}
+      onClick={
+        props.type === "password"
+          ? () => props.setType("text")
+          : () => props.setType("password")
+      }
       style={{ width: "2.5rem", cursor: "pointer", textAlign: "right" }}
     >
-      {props.text}
+      {props.type === "password" ? "show" : "hide"}
     </span>
   );
 }
