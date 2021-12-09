@@ -26,9 +26,7 @@ export default function Input(props) {
       {/* Returns the TypeSwapper iff style isn't valid or invalid, and hasTypeSwapper is true. */}
       {props.state?.style !== "Invalid" &&
         props.state?.style !== "Valid" &&
-        hasTypeSwapper && (
-          <TypeSwapper type={type} setType={setType} setState={props.state} />
-        )}
+        hasTypeSwapper && <TypeSwapper type={type} setType={setType} />}
       <RightIcon style={props.state?.style} tooltip={props.state?.tooltip} />
     </div>
   );

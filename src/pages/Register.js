@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import brandLogo from "../assets/brand-plain-lightTheme.svg";
 import Input from "../components/Input/Input";
+import { isValid } from "../utils";
 import "../sass/Auth.scss";
 
 export default function Register() {
@@ -19,21 +20,28 @@ export default function Register() {
   });
   const [isCreationDisabled, setIsCreationDisabled] = useState(true);
 
-  const isInvalid = (password) => {
-    const pattern = /^(?=.*d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/;
-    return !pattern.test(password);
+  const testEmail = () => {
+    if (!isValid(emailState.value, "EMAIL")) {
+      setEmailState({
+        value: emailState.value,
+        style: "Invalid",
+        tooltip: {
+          text: "Invalid Email. Be better than this 🥱",
+          position: "top-left",
+          showAlways: true,
+        },
+      });
+    }
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
+  const testPasswords = () => {
     // If passwords don't match.
     if (passwordState.value !== rePasswordState.value) {
       setPasswordState({
         value: passwordState.value,
         style: "Invalid",
         tooltip: {
-          text: "Passwords don't match",
+          text: "Same here, they don't match 💔",
           position: "top-left",
         },
       });
@@ -41,43 +49,46 @@ export default function Register() {
         value: rePasswordState.value,
         style: "Invalid",
         tooltip: {
-          text: "Passwords don't match",
+          text: "Passwords don't match ❌",
           position: "top-left",
+          showAlways: true,
         },
       });
+
+      return;
     }
 
-    // If passwords are invalid.
-    if (isInvalid(passwordState.value)) {
+    // If password is invalid.
+    if (!isValid(passwordState.value, "PASSWORD")) {
       setPasswordState({
         value: passwordState.value,
         style: "Invalid",
         tooltip: {
-          text: "Invalid Password, criteria mismatch",
+          text: "Invalid Password, criteria mismatch 🤷‍♂️",
           position: "top-left",
+          showAlways: true,
         },
       });
     }
 
-    if (isInvalid(rePasswordState.value)) {
+    // If password is invalid.
+    if (!isValid(rePasswordState.value, "PASSWORD")) {
       setRePasswordState({
         value: rePasswordState.value,
         style: "Invalid",
         tooltip: {
-          text: "Invalid Password, criteria mismatch",
+          text: "Invalid Password, criteria mismatch 🤷‍♀️",
           position: "top-left",
+          showAlways: true,
         },
       });
     }
   };
 
-  const handleIsCreationDisabled = () => {
-    // Enable iff all the fields are filled.
-    setIsCreationDisabled(
-      emailState.value === "" ||
-        passwordState.value === "" ||
-        rePasswordState.value === ""
-    );
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    testEmail();
+    testPasswords();
   };
 
   const handleEmailChange = (email) => {
@@ -85,7 +96,11 @@ export default function Register() {
       value: email,
       style: emailState.style,
     });
-    handleIsCreationDisabled();
+
+    // Enable iff all the fields are filled.
+    setIsCreationDisabled(
+      email === "" || passwordState.value === "" || rePasswordState.value === ""
+    );
   };
 
   const handlePasswordChange = (password) => {
@@ -93,7 +108,11 @@ export default function Register() {
       value: password,
       style: passwordState.style,
     });
-    handleIsCreationDisabled();
+
+    // Enable iff all the fields are filled.
+    setIsCreationDisabled(
+      emailState.value === "" || password === "" || rePasswordState.value === ""
+    );
   };
 
   const handleRePasswordChange = (rePassword) => {
@@ -101,7 +120,11 @@ export default function Register() {
       value: rePassword,
       style: rePasswordState.style,
     });
-    handleIsCreationDisabled();
+
+    // Enable iff all the fields are filled.
+    setIsCreationDisabled(
+      emailState.value === "" || passwordState.value === "" || rePassword === ""
+    );
   };
 
   return (

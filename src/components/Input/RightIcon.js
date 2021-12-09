@@ -5,6 +5,7 @@ import {
   faCheck,
   faExclamation,
 } from "@fortawesome/free-solid-svg-icons";
+import "../../sass/microtip-fork.scss";
 
 function RightIcon(props) {
   const icon = {
@@ -16,10 +17,12 @@ function RightIcon(props) {
   if (icon === undefined) return null;
 
   const tooltip = props.tooltip;
+
   return (
     <span
       tabIndex={tooltip && "0"}
       aria-label={tooltip?.text}
+      className={tooltip?.showAlways && "showAlways"}
       data-microtip-position={tooltip?.position}
       role={tooltip && "tooltip"}
     >
