@@ -149,14 +149,12 @@ export default function Register() {
               placeholder="Your Email Address"
             />
             <PasswordCriteria
-              size="16"
               state={passwordState}
               setState={setPasswordState}
               onChange={handlePasswordChange}
               placeholder="Your Password"
             />
             <PasswordCriteria
-              size="16"
               state={rePasswordState}
               setState={setRePasswordState}
               onChange={handleRePasswordChange}

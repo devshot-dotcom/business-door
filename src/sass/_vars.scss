@@ -28,6 +28,15 @@ $spacerHumongous: var(--spacer-humungous);
 $transitionShort: 100ms;
 $transitionLong: 1s;
 
+/* Breakpoint System. */
+$smallestTablet: 34.8em; //557px
+$halfTablet: 48em; //768px
+$smallestLaptop: 62em; //992px
+$halfLaptop: 73em; //1168px
+$smallestDesktop: 85.5em; //1368px;
+$halfDesktop: 90em; //1440px
+$smallestHDR: 120em; //1920px
+
 /* Color System */
 $colorBrand: (
   "100": #f9d5d3,

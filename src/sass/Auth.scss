@@ -1,21 +1,29 @@
 @import "./vars";
-@import "./typography";
 
 .container {
-  min-height: 100vh;
-  display: grid;
-  place-items: center;
-  padding: $spacerMedium;
-  background-color: map-get($lightTheme, "colorBackground");
   overflow: auto;
+
+  @media (min-width: $smallestTablet) {
+    height: 100vh;
+    padding: $spacerLarge;
+    display: grid;
+    place-items: center;
+    background-color: map-get($map: $lightTheme, $key: "colorBackground");
+  }
 }
 
 .background {
   width: 100%;
-  min-width: 340px;
-  max-width: 360px;
+  height: 100vh;
   padding: $spacerLarge;
+  display: grid;
+  align-items: center;
   background-color: map-get($darkTheme, "colorText");
   border-radius: $spacerSmaller;
-  box-shadow: $shadowMinimal;
+
+  @media (min-width: $smallestTablet) {
+    width: 23.75rem; //380px
+    height: auto;
+    box-shadow: $shadowMinimal;
+  }
 }

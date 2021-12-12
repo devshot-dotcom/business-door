@@ -16,7 +16,6 @@ export default function Input(props) {
     >
       <InputField
         type={type}
-        size={props.size}
         useRef={inputRef}
         state={props.state}
         setState={props.setState}
