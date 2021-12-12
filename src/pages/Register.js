@@ -5,6 +5,7 @@ import Input from "../components/Input/Input";
 import PasswordCriteria from "../components/PasswordCriteria";
 import { patterns } from "../utils";
 import "../sass/Auth.scss";
+import ThemeSwitcher from "../components/ThemeSwitcher";
 
 export default function Register() {
   const [emailState, setEmailState] = useState({
@@ -174,6 +175,8 @@ export default function Register() {
           </div>
         </form>
       </div>
+
+      <ThemeSwitcher />
     </main>
   );
 }

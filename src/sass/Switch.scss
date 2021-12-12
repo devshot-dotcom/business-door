@@ -1,0 +1,38 @@
+@import "./vars";
+
+.SwitchContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: $spacerSmaller;
+
+  .Switch {
+    width: 4.5rem;
+    height: 2.5rem;
+    border-radius: $spacerMedium;
+    border: 0;
+    background-color: map-get($map: $colorTertiary, $key: "200");
+    position: relative;
+
+    &.isChecked {
+      background-color: map-get($map: $colorBrand, $key: "400");
+
+      .Thumb {
+        left: auto;
+        right: calc(#{$spacerSmaller} / 2);
+      }
+    }
+
+    .Thumb {
+      width: 2rem;
+      height: 2rem;
+      display: inline-block;
+      background-color: white;
+      border-radius: 50%;
+      position: absolute;
+      left: calc(#{$spacerSmaller} / 2);
+      top: 50%;
+      transform: translateY(-50%) !important;
+    }
+  }
+}
