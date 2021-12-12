@@ -2,7 +2,7 @@
 @import "./typography";
 
 @mixin inputContainer {
-  background-color: map-get($map: $lightTheme, $key: "colorBackground");
+  background-color: var(--appTheme-colorBackground);
   display: inline-flex;
   justify-content: space-between;
   align-items: center;
@@ -42,7 +42,7 @@
     }
 
     &::placeholder {
-      color: map-get($map: $lightTheme, $key: "colorTextSubtle");
+      color: var(--appTheme-colorTextSubtle);
     }
   }
 
@@ -63,7 +63,7 @@
 
     input {
       cursor: no-drop;
-      color: map-get($map: $lightTheme, $key: "colorTextSubtle");
+      color: var(--appTheme-colorTextSubtle);
     }
 
     .icon {

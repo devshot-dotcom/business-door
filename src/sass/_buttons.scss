@@ -1,6 +1,6 @@
 @mixin button(
   $colorBackground: map-get($map: $colorBrand, $key: "400"),
-  $colorText: map-get($map: $darkTheme, $key: "colorText")
+  $colorText: var(--appTheme-colorText)
 ) {
   transition: background-color $transitionShort linear;
   padding: $spacerDefault $spacerMedium;
@@ -56,7 +56,7 @@ $buttonTypes: (
 }
 
 .buttonGroup {
-  background-color: map-get($map: $lightTheme, $key: "colorBackground");
+  background-color: var(--appTheme-colorBackground);
   display: inline-flex;
   padding: $spacerDefault;
   gap: $spacerSmaller;

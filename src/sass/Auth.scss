@@ -8,7 +8,7 @@
     padding: $spacerLarge;
     display: grid;
     place-items: center;
-    background-color: map-get($map: $lightTheme, $key: "colorBackground");
+    background-color: var(--appTheme-colorBackground);
   }
 }
 
@@ -18,7 +18,7 @@
   padding: $spacerLarge;
   display: grid;
   align-items: center;
-  background-color: map-get($darkTheme, "colorText");
+  background-color: var(--appTheme-altColorBackground);
   border-radius: $spacerSmaller;
 
   @media (min-width: $smallestTablet) {

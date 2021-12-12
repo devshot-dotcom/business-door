@@ -12,6 +12,12 @@ $font: -apple-system, BlinkMacSystemFont, "Work Sans", "Segoe UI", Roboto,
   --spacer-largest: 3rem; /* 48px */
   --spacer-huge: 3.5rem; /* 56px */
   --spacer-humungous: 4rem; /* 64px */
+
+  /* Color Theme (Default - Light) */
+  --appTheme-colorText: #4a4a68;
+  --appTheme-colorTextSubtle: #8c8ca1;
+  --appTheme-colorBackground: #e9e7db;
+  --appTheme-altColorBackground: white;
 }
 
 $spacerSmallest: var(--spacer-smallest);
