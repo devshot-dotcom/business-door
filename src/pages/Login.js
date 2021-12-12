@@ -27,6 +27,7 @@ export default function Login() {
       style: emailState.style,
     });
     setIsLoginDisabled(email === "" || passwordState.value === "");
+    console.log(email);
   };
 
   // Passed onto the Input[password] component.
@@ -59,7 +60,6 @@ export default function Login() {
               placeholder="Your Email Address"
             />
             <Input
-              size="15"
               type="password"
               state={passwordState}
               setState={setPasswordState}
