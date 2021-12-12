@@ -2,7 +2,8 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import brandLogo from "../assets/brand-plain-lightTheme.svg";
 import Input from "../components/Input/Input";
-import { isValid } from "../utils";
+import PasswordCriteria from "../components/PasswordCriteria";
+import { patterns } from "../utils";
 import "../sass/Auth.scss";
 
 export default function Register() {
@@ -21,7 +22,7 @@ export default function Register() {
   const [isCreationDisabled, setIsCreationDisabled] = useState(true);
 
   const testEmail = () => {
-    if (!isValid(emailState.value, "EMAIL")) {
+    if (!patterns.EMAIL.test(emailState.value)) {
       setEmailState({
         value: emailState.value,
         style: "Invalid",
@@ -59,7 +60,7 @@ export default function Register() {
     }
 
     // If password is invalid.
-    if (!isValid(passwordState.value, "PASSWORD")) {
+    if (!patterns.PASSWORD.test(passwordState.value)) {
       setPasswordState({
         value: passwordState.value,
         style: "Invalid",
@@ -72,7 +73,7 @@ export default function Register() {
     }
 
     // If password is invalid.
-    if (!isValid(rePasswordState.value, "PASSWORD")) {
+    if (!patterns.PASSWORD.test(rePasswordState.value)) {
       setRePasswordState({
         value: rePasswordState.value,
         style: "Invalid",
@@ -147,17 +148,15 @@ export default function Register() {
               onChange={handleEmailChange}
               placeholder="Your Email Address"
             />
-            <Input
-              size="15"
-              type="password"
+            <PasswordCriteria
+              size="16"
               state={passwordState}
               setState={setPasswordState}
               onChange={handlePasswordChange}
               placeholder="Your Password"
             />
-            <Input
-              size="15"
-              type="password"
+            <PasswordCriteria
+              size="16"
               state={rePasswordState}
               setState={setRePasswordState}
               onChange={handleRePasswordChange}

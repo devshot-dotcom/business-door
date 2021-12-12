@@ -11,7 +11,7 @@ export default function Input(props) {
 
   return (
     <div
-      onClick={() => inputRef.current.focus()}
+      onClick={() => inputRef.current?.focus()}
       className={`inputContainer input${props.state?.style ?? "Default"}`}
     >
       <InputField

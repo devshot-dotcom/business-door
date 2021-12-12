@@ -6,8 +6,8 @@
   display: inline-flex;
   justify-content: space-between;
   align-items: center;
+  padding-right: $spacerDefault;
   gap: $spacerDefault;
-  padding: calc(#{$spacerMedium} / 2) $spacerDefault;
   border-radius: $spacerSmaller;
   box-shadow: 0 0 1px map-get($map: $colorSecondary, $key: "400") inset;
   transition: outline $transitionShort linear;
@@ -32,6 +32,8 @@
   @include inputContainer;
 
   input {
+    padding: calc(#{$spacerMedium} / 2) $spacerDefault;
+    padding-right: 0;
     background-color: transparent;
     border: 0;
 
