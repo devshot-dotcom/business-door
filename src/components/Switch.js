@@ -9,7 +9,10 @@ function Switch(props) {
       <label htmlFor={props.id} className="preTitle">
         {props.label}
       </label>
-      <button className="Switch" onClick={() => switchRef.current?.click()}>
+      <button
+        className={`Switch ${props.checked && "isChecked"}`}
+        onClick={() => switchRef.current?.click()}
+      >
         <span className="Thumb" />
       </button>
       <input

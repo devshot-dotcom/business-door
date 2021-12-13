@@ -61,5 +61,5 @@
   font-weight: 700;
   font-size: 0.95rem;
   text-decoration: underline;
-  color: map-get($map: $colorLink, $key: "400");
+  color: var(--appTheme-colorLink);
 }

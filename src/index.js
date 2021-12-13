@@ -7,6 +7,13 @@ import Recover from "./pages/Recover";
 import "normalize.css";
 import "./sass/index.scss";
 
+// Set default theme if not already set.
+localStorage.getItem("doorTheme") || localStorage.setItem("doorTheme", "light");
+
+// Apply the set theme.
+localStorage.getItem("doorTheme") === "dark" &&
+  document.body.setAttribute("data-theme", "dark");
+
 ReactDOM.render(
   <BrowserRouter>
     <Routes>

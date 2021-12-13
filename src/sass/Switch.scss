@@ -13,13 +13,14 @@
     border: 0;
     background-color: map-get($map: $colorTertiary, $key: "200");
     position: relative;
+    cursor: pointer;
 
     &.isChecked {
       background-color: map-get($map: $colorBrand, $key: "400");
 
       .Thumb {
         left: auto;
-        right: calc(#{$spacerSmaller} / 2);
+        transform: translate(0) scale(1.5);
       }
     }
 
@@ -30,9 +31,13 @@
       background-color: white;
       border-radius: 50%;
       position: absolute;
-      left: calc(#{$spacerSmaller} / 2);
-      top: 50%;
-      transform: translateY(-50%) !important;
+      top: calc(#{$spacerSmaller} / 2);
+      transform: translate(-100%);
+
+      // Transitions suck at mobiles and smaller tablets.
+      @media (min-width: $halfTablet) {
+        transition: transform $transitionShort ease-out;
+      }
     }
   }
 }

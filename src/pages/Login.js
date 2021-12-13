@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import brandLogo from "../assets/brand-plain-lightTheme.svg";
+import HeaderLogo from "../components/HeaderLogo";
 import Input from "../components/Input/Input";
 import "../sass/Auth.scss";
 
@@ -45,11 +45,7 @@ export default function Login() {
         <form onSubmit={(e) => handleSubmit(e)}>
           <div className="flex column gapMedium">
             <div className="textAlignCenter">
-              <img
-                src={brandLogo}
-                alt="Business Door"
-                className="brand header"
-              />
+              <HeaderLogo />
             </div>
             <h3>Log In</h3>
             <Input
