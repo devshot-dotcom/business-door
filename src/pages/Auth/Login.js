@@ -1,10 +1,9 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import Form from "../components/Auth/Form";
-import HeaderLogo from "../components/HeaderLogo";
-import Footer from "../components/Auth/Footer";
-import Input from "../components/Input/Input";
-import "../sass/Auth.scss";
+import Form from "../../components/Auth/Form";
+import HeaderLogo from "../../components/HeaderLogo";
+import Footer from "../../components/Auth/Footer";
+import Input from "../../components/Input/Input";
 
 export default function Login() {
   const [emailState, setEmailState] = useState({
@@ -59,7 +58,7 @@ export default function Login() {
         onChange={handlePasswordChange}
         placeholder="Your Password"
       />
-      <Link to="/auth/recover-password">Forgot Password</Link>
+      <Link to="/reset-password">Forgot Password</Link>
       <button
         type="submit"
         className="buttonPrimary"
@@ -69,7 +68,7 @@ export default function Login() {
       </button>
       <Footer
         text="Don't have an account?"
-        link={{ to: "/auth/account-creation", label: "Create" }}
+        link={{ to: "/account-creation", label: "Create" }}
       />
     </Form>
   );

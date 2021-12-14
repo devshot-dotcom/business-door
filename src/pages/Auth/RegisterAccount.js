@@ -1,12 +1,12 @@
 import React, { useState } from "react";
-import Form from "../components/Auth/Form";
-import HeaderLogo from "../components/HeaderLogo";
-import Footer from "../components/Auth/Footer";
-import Input from "../components/Input/Input";
-import PasswordCriteria from "../components/PasswordCriteria";
-import { patterns } from "../utils";
+import Form from "../../components/Auth/Form";
+import HeaderLogo from "../../components/HeaderLogo";
+import Footer from "../../components/Auth/Footer";
+import Input from "../../components/Input/Input";
+import PasswordCriteria from "../../components/PasswordCriteria";
+import { patterns } from "../../utils";
 
-export default function Register() {
+export default function RegisterAccount() {
   const [emailState, setEmailState] = useState({
     value: "",
     style: "Default",
