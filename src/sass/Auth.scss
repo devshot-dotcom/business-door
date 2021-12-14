@@ -19,11 +19,11 @@
   display: grid;
   align-items: center;
   background-color: var(--appTheme-altColorBackground);
-  border-radius: $spacerSmaller;
 
   @media (min-width: $smallestTablet) {
     width: 23.75rem; //380px
     height: auto;
     box-shadow: $shadowMinimal;
+    border-radius: $spacerSmaller;
   }
 }

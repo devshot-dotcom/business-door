@@ -110,3 +110,7 @@ a,
     width: calc(#{$spacerHumongous} * 1.5);
   }
 }
+
+.paddingMedium {
+  padding: $spacerMedium;
+}
