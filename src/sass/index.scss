@@ -13,16 +13,14 @@ body {
   --appTheme-colorBackground: #e9e7db;
   --appTheme-altColorBackground: white;
   --appTheme-colorLink: #4b4ded;
-  --appTheme-headerLogo: "../assets/brand-plain-lightTheme.svg";
 }
 
 body[data-theme="dark"] {
   --appTheme-colorText: white;
-  --appTheme-colorTextSubtle: #ecf1f4;
+  --appTheme-colorTextSubtle: #8c8ca1;
   --appTheme-colorBackground: #383838;
   --appTheme-altColorBackground: #454545;
   --appTheme-colorLink: #a5a6f6;
-  --appTheme-headerLogo: "../assets/brand-plain-darkTheme.svg";
 }
 
 *,

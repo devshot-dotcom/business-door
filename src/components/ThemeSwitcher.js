@@ -1,22 +1,28 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import Switch from "./Switch";
+import { ThemeContext } from "../index";
 
 function ThemeSwitcher() {
-  const [checked, setChecked] = useState(
-    localStorage.getItem("doorTheme") === "dark"
-  );
+  // import the Theme Context.
+  const { theme, setTheme } = useContext(ThemeContext);
 
-  const handleChange = (checked) => {
-    setChecked(checked);
+  // State for the Switch.
+  const [isDarkMode, setIsDarkMode] = useState(theme === "dark");
+
+  /** Handle the change in switch state. */
+  const handleChange = (isDarkMode) => {
+    setIsDarkMode(isDarkMode);
 
     // In case of dark theme.
-    if (checked) {
+    if (isDarkMode) {
+      setTheme("dark");
       localStorage.setItem("doorTheme", "dark");
       document.body.setAttribute("data-theme", "dark");
       return;
     }
 
     // Otherwise.
+    setTheme("light");
     localStorage.setItem("doorTheme", "light");
     document.body.removeAttribute("data-theme");
   };
@@ -24,8 +30,8 @@ function ThemeSwitcher() {
   return (
     <Switch
       label="Dark Mode"
-      checked={checked}
-      onChange={(checked) => handleChange(checked)}
+      checked={isDarkMode}
+      onChange={(isDarkMode) => handleChange(isDarkMode)}
     />
   );
 }
