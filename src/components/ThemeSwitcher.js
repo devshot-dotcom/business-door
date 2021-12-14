@@ -32,6 +32,8 @@ function ThemeSwitcher() {
       label="Dark Mode"
       checked={isDarkMode}
       onChange={(isDarkMode) => handleChange(isDarkMode)}
+      style={{ position: "absolute", bottom: 0, right: 0 }}
+      className="paddingMedium"
     />
   );
 }

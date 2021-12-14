@@ -5,7 +5,7 @@ function Switch(props) {
   const switchRef = useRef();
 
   return (
-    <span className="SwitchContainer">
+    <span className={`SwitchContainer ${props.className}`} style={props.style}>
       <label htmlFor={props.id} className="preTitle">
         {props.label}
       </label>
