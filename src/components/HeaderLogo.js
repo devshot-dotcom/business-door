@@ -7,11 +7,13 @@ function HeaderLogo() {
   const { theme } = useContext(ThemeContext);
 
   return (
-    <img
-      src={theme === "light" ? lightLogo : darkLogo}
-      alt="Business Door"
-      className="brand header"
-    />
+    <div className="textAlignCenter">
+      <img
+        src={theme === "light" ? lightLogo : darkLogo}
+        alt="Business Door"
+        className="brand header"
+      />
+    </div>
   );
 }
 
