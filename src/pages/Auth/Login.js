@@ -19,6 +19,7 @@ export default function Login() {
   // Handle form submission.
   const handleSubmit = (e) => {
     e.preventDefault();
+    // TODO: Login
   };
 
   // Passed onto the Input[email] component.

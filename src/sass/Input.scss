@@ -9,7 +9,6 @@
   padding-right: $spacerDefault;
   gap: $spacerDefault;
   border-radius: $spacerSmaller;
-  box-shadow: 0 0 1px map-get($map: $colorSecondary, $key: "400") inset;
   transition: outline $transitionShort linear;
   cursor: text;
 }

@@ -5,6 +5,9 @@ const patterns = {
   LOWERCASE: /(?=.*[a-z])/,
   UPPERCASE: /(?=.*[A-Z])/,
   NUMBERS: /(?=.*\d)/,
+  NUMBERS_ONLY: /^\d+$/,
 };
 
-export { patterns };
+const email = process.env.REACT_APP_EMAIL;
+
+export { patterns, email };
