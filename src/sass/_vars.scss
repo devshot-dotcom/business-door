@@ -26,7 +26,18 @@ $spacerHumongous: var(--spacer-humungous);
 
 /* Transitioning System. */
 $transitionShort: 100ms;
+$transitionDefault: 250ms;
+$transitionMedium: 0.5s;
 $transitionLong: 1s;
+
+/* Breakpoint System. */
+$smallestTablet: 34.8em; //557px
+$halfTablet: 48em; //768px
+$smallestLaptop: 62em; //992px
+$halfLaptop: 73em; //1168px
+$smallestDesktop: 85.5em; //1368px;
+$halfDesktop: 90em; //1440px
+$smallestHDR: 120em; //1920px
 
 /* Color System */
 $colorBrand: (
@@ -41,6 +52,10 @@ $colorLink: (
   "200": #a5a6f6,
   "300": #787af2,
   "400": #4b4ded,
+  "10%": hsla(239, 82%, 61%, 0.1),
+  "25%": hsla(239, 82%, 61%, 0.25),
+  "50%": hsla(239, 82%, 61%, 0.5),
+  "75%": hsla(239, 82%, 61%, 0.75),
 );
 
 $colorSecondary: (
@@ -57,8 +72,17 @@ $colorTertiary: (
   "400": #8d8c88,
 );
 
-$colorValid: #31d0aa;
-$colorInvalid: #ed4b9e;
+$colorValid: (
+  "400": #31d0aa,
+  "25%": hsla(166, 63%, 50%, 0.25),
+  "50%": hsla(166, 63%, 50%, 0.5),
+);
+
+$colorInvalid: (
+  "400": #ed4b9e,
+  "25%": hsla(329, 82%, 61%, 0.25),
+  "50%": hsla(329, 82%, 61%, 0.5),
+);
 
 $colorTransparent: (
   "white-10": hsla(0, 0%, 100%, 10%),

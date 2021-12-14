@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import brandLogo from "../assets/brand-plain-lightTheme.svg";
+import HeaderLogo from "../components/HeaderLogo";
 import Input from "../components/Input/Input";
 import PasswordCriteria from "../components/PasswordCriteria";
 import { patterns } from "../utils";
 import "../sass/Auth.scss";
+import ThemeSwitcher from "../components/ThemeSwitcher";
 
 export default function Register() {
   const [emailState, setEmailState] = useState({
@@ -134,11 +135,7 @@ export default function Register() {
         <form onSubmit={(e) => handleSubmit(e)}>
           <div className="flex column gapMedium">
             <div className="textAlignCenter">
-              <img
-                src={brandLogo}
-                alt="Business Door"
-                className="brand header"
-              />
+              <HeaderLogo />
             </div>
             <h3>Create Your Account</h3>
             <Input
@@ -149,14 +146,12 @@ export default function Register() {
               placeholder="Your Email Address"
             />
             <PasswordCriteria
-              size="16"
               state={passwordState}
               setState={setPasswordState}
               onChange={handlePasswordChange}
               placeholder="Your Password"
             />
             <PasswordCriteria
-              size="16"
               state={rePasswordState}
               setState={setRePasswordState}
               onChange={handleRePasswordChange}
@@ -176,6 +171,8 @@ export default function Register() {
           </div>
         </form>
       </div>
+
+      <ThemeSwitcher />
     </main>
   );
 }

@@ -15,7 +15,6 @@ function InputField(props) {
   // Otherwise
   return (
     <input
-      size={props.size}
       ref={props.useRef}
       type={props.type}
       placeholder={props.placeholder}

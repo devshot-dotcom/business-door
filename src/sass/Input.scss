@@ -2,7 +2,7 @@
 @import "./typography";
 
 @mixin inputContainer {
-  background-color: map-get($map: $lightTheme, $key: "colorBackground");
+  background-color: var(--appTheme-colorBackground);
   display: inline-flex;
   justify-content: space-between;
   align-items: center;
@@ -14,16 +14,15 @@
   cursor: text;
 }
 
-@mixin InputState($accentColor) {
-  border: 1px solid $accentColor;
-  outline: calc(#{$spacerSmaller} / 2) solid
-    scale-color($color: $accentColor, $lightness: 80%);
+@mixin InputState($color, $lightColor) {
+  border: 1px solid $color;
+  outline: calc(#{$spacerSmaller} / 2) solid $lightColor;
 
   .icon {
     cursor: pointer;
-    color: $accentColor;
+    color: $color;
     > path {
-      color: $accentColor;
+      color: $color;
     }
   }
 }
@@ -36,26 +35,33 @@
     padding-right: 0;
     background-color: transparent;
     border: 0;
+    border-radius: $spacerSmaller;
 
     &:focus {
       outline: 0;
     }
 
     &::placeholder {
-      color: map-get($map: $lightTheme, $key: "colorTextSubtle");
+      color: var(--appTheme-colorTextSubtle);
     }
   }
 
   &.inputActive {
-    @include InputState(map-get($colorLink, "400"));
+    @include InputState(map-get($colorLink, "400"), map-get($colorLink, "25%"));
   }
 
   &.inputValid {
-    @include InputState($colorValid);
+    @include InputState(
+      map-get($colorValid, "400"),
+      map-get($colorValid, "25%")
+    );
   }
 
   &.inputInvalid {
-    @include InputState($colorInvalid);
+    @include InputState(
+      map-get($colorInvalid, "400"),
+      map-get($colorInvalid, "25%")
+    );
   }
 
   &.inputDisabled {
@@ -63,7 +69,7 @@
 
     input {
       cursor: no-drop;
-      color: map-get($map: $lightTheme, $key: "colorTextSubtle");
+      color: var(--appTheme-colorTextSubtle);
     }
 
     .icon {

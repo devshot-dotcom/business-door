@@ -26,7 +26,6 @@ function PasswordCriteria(props) {
     <section className="flex column PasswordCriteria">
       <Input
         type="password"
-        size={props.size}
         state={props.state}
         setState={props.setState}
         onChange={(password) => {

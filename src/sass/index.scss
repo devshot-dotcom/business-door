@@ -7,13 +7,29 @@
   font-size: 16px;
 }
 
+body {
+  --appTheme-colorText: #4a4a68;
+  --appTheme-colorTextSubtle: #8c8ca1;
+  --appTheme-colorBackground: #e9e7db;
+  --appTheme-altColorBackground: white;
+  --appTheme-colorLink: #4b4ded;
+}
+
+body[data-theme="dark"] {
+  --appTheme-colorText: white;
+  --appTheme-colorTextSubtle: #8c8ca1;
+  --appTheme-colorBackground: #383838;
+  --appTheme-altColorBackground: #454545;
+  --appTheme-colorLink: #a5a6f6;
+}
+
 *,
 *::before,
 *::after {
   font-size: 1rem;
   font-family: $font;
   box-sizing: border-box;
-  color: map-get($map: $lightTheme, $key: "colorText");
+  color: var(--appTheme-colorText);
 }
 
 h1 {
