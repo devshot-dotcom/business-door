@@ -1,11 +1,10 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import Form from "../components/Auth/Form";
 import HeaderLogo from "../components/HeaderLogo";
+import Footer from "../components/Auth/Footer";
 import Input from "../components/Input/Input";
 import PasswordCriteria from "../components/PasswordCriteria";
 import { patterns } from "../utils";
-import "../sass/Auth.scss";
-import ThemeSwitcher from "../components/ThemeSwitcher";
 
 export default function Register() {
   const [emailState, setEmailState] = useState({
@@ -130,49 +129,39 @@ export default function Register() {
   };
 
   return (
-    <main className="container">
-      <div className="background">
-        <form onSubmit={(e) => handleSubmit(e)}>
-          <div className="flex column gapMedium">
-            <div className="textAlignCenter">
-              <HeaderLogo />
-            </div>
-            <h3>Create Your Account</h3>
-            <Input
-              type="email"
-              state={emailState}
-              setState={setEmailState}
-              onChange={handleEmailChange}
-              placeholder="Your Email Address"
-            />
-            <PasswordCriteria
-              state={passwordState}
-              setState={setPasswordState}
-              onChange={handlePasswordChange}
-              placeholder="Your Password"
-            />
-            <PasswordCriteria
-              state={rePasswordState}
-              setState={setRePasswordState}
-              onChange={handleRePasswordChange}
-              placeholder="Re-enter Password"
-            />
-            <button
-              type="submit"
-              className="buttonPrimary"
-              disabled={isCreationDisabled}
-            >
-              Create Account
-            </button>
-            <footer className="flex gapSmaller">
-              <div className="smallText">Already have an account?</div>
-              <Link to="/">Login</Link>
-            </footer>
-          </div>
-        </form>
-      </div>
-
-      <ThemeSwitcher />
-    </main>
+    <Form onSubmit={(e) => handleSubmit(e)}>
+      <HeaderLogo />
+      <h3>Create Your Account</h3>
+      <Input
+        type="email"
+        state={emailState}
+        setState={setEmailState}
+        onChange={handleEmailChange}
+        placeholder="Your Email Address"
+      />
+      <PasswordCriteria
+        state={passwordState}
+        setState={setPasswordState}
+        onChange={handlePasswordChange}
+        placeholder="Your Password"
+      />
+      <PasswordCriteria
+        state={rePasswordState}
+        setState={setRePasswordState}
+        onChange={handleRePasswordChange}
+        placeholder="Re-enter Password"
+      />
+      <button
+        type="submit"
+        className="buttonPrimary"
+        disabled={isCreationDisabled}
+      >
+        Create Account
+      </button>
+      <Footer
+        text="Already have an account?"
+        link={{ to: "/", label: "Login" }}
+      />
+    </Form>
   );
 }

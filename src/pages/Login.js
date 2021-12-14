@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import Form from "../components/Auth/Form";
 import HeaderLogo from "../components/HeaderLogo";
+import Footer from "../components/Auth/Footer";
 import Input from "../components/Input/Input";
 import "../sass/Auth.scss";
 
@@ -40,43 +42,35 @@ export default function Login() {
   };
 
   return (
-    <main className="container">
-      <div className="background">
-        <form onSubmit={(e) => handleSubmit(e)}>
-          <div className="flex column gapMedium">
-            <div className="textAlignCenter">
-              <HeaderLogo />
-            </div>
-            <h3>Log In</h3>
-            <Input
-              type="email"
-              state={emailState}
-              setState={setEmailState}
-              onChange={handleEmailChange}
-              placeholder="Your Email Address"
-            />
-            <Input
-              type="password"
-              state={passwordState}
-              setState={setPasswordState}
-              onChange={handlePasswordChange}
-              placeholder="Your Password"
-            />
-            <Link to="/auth/recover-password">Forgot Password</Link>
-            <button
-              type="submit"
-              className="buttonPrimary"
-              disabled={isLoginDisabled}
-            >
-              Log In
-            </button>
-            <footer className="flex gapSmaller">
-              <div className="smallText">Don't have an account?</div>
-              <Link to="/auth/account-creation">Create</Link>
-            </footer>
-          </div>
-        </form>
-      </div>
-    </main>
+    <Form onSubmit={(e) => handleSubmit(e)}>
+      <HeaderLogo />
+      <h3>Log In</h3>
+      <Input
+        type="email"
+        state={emailState}
+        setState={setEmailState}
+        onChange={handleEmailChange}
+        placeholder="Your Email Address"
+      />
+      <Input
+        type="password"
+        state={passwordState}
+        setState={setPasswordState}
+        onChange={handlePasswordChange}
+        placeholder="Your Password"
+      />
+      <Link to="/auth/recover-password">Forgot Password</Link>
+      <button
+        type="submit"
+        className="buttonPrimary"
+        disabled={isLoginDisabled}
+      >
+        Log In
+      </button>
+      <Footer
+        text="Don't have an account?"
+        link={{ to: "/auth/account-creation", label: "Create" }}
+      />
+    </Form>
   );
 }
