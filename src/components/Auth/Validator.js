@@ -9,10 +9,13 @@ function testPasswords(
   passwordState,
   setPasswordState,
   rePasswordState,
-  setRePasswordState
+  setRePasswordState,
+  noErrors
 ) {
   // If passwords don't match.
   if (passwordState.value !== rePasswordState.value) {
+    noErrors = false;
+
     setPasswordState({
       value: passwordState.value,
       style: "Invalid",
@@ -36,6 +39,8 @@ function testPasswords(
 
   // If password is invalid.
   if (patterns.PASSWORD.test(passwordState.value)) {
+    noErrors = false;
+
     setPasswordState({
       value: passwordState.value,
       style: "Invalid",
@@ -49,6 +54,8 @@ function testPasswords(
 
   // If password is invalid.
   if (patterns.PASSWORD.test(rePasswordState.value)) {
+    noErrors = false;
+
     setRePasswordState({
       value: rePasswordState.value,
       style: "Invalid",
