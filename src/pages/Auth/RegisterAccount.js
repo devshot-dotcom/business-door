@@ -5,6 +5,7 @@ import Footer from "../../components/Auth/Footer";
 import Input from "../../components/Input/Input";
 import PasswordCriteria from "../../components/PasswordCriteria";
 import { patterns } from "../../utils";
+import { testPasswords } from "../../components/Auth/Validator";
 
 export default function RegisterAccount() {
   const [emailState, setEmailState] = useState({
@@ -19,7 +20,6 @@ export default function RegisterAccount() {
     value: "",
     style: "Default",
   });
-  const [isCreationDisabled, setIsCreationDisabled] = useState(true);
 
   const testEmail = () => {
     if (!patterns.EMAIL.test(emailState.value)) {
@@ -35,61 +35,16 @@ export default function RegisterAccount() {
     }
   };
 
-  const testPasswords = () => {
-    // If passwords don't match.
-    if (passwordState.value !== rePasswordState.value) {
-      setPasswordState({
-        value: passwordState.value,
-        style: "Invalid",
-        tooltip: {
-          text: "Same here, they don't match 💔",
-          position: "top-left",
-        },
-      });
-      setRePasswordState({
-        value: rePasswordState.value,
-        style: "Invalid",
-        tooltip: {
-          text: "Passwords don't match ❌",
-          position: "top-left",
-          showAlways: true,
-        },
-      });
-
-      return;
-    }
-
-    // If password is invalid.
-    if (!patterns.PASSWORD.test(passwordState.value)) {
-      setPasswordState({
-        value: passwordState.value,
-        style: "Invalid",
-        tooltip: {
-          text: "Invalid Password, criteria mismatch 🤷‍♂️",
-          position: "top-left",
-          showAlways: true,
-        },
-      });
-    }
-
-    // If password is invalid.
-    if (!patterns.PASSWORD.test(rePasswordState.value)) {
-      setRePasswordState({
-        value: rePasswordState.value,
-        style: "Invalid",
-        tooltip: {
-          text: "Invalid Password, criteria mismatch 🤷‍♀️",
-          position: "top-left",
-          showAlways: true,
-        },
-      });
-    }
-  };
-
   const handleSubmit = (e) => {
     e.preventDefault();
     testEmail();
-    testPasswords();
+    testPasswords(
+      passwordState,
+      setPasswordState,
+      rePasswordState,
+      setRePasswordState
+    );
+    console.log("Time to Register 😎");
   };
 
   const handleEmailChange = (email) => {
@@ -97,11 +52,6 @@ export default function RegisterAccount() {
       value: email,
       style: emailState.style,
     });
-
-    // Enable iff all the fields are filled.
-    setIsCreationDisabled(
-      email === "" || passwordState.value === "" || rePasswordState.value === ""
-    );
   };
 
   const handlePasswordChange = (password) => {
@@ -109,11 +59,6 @@ export default function RegisterAccount() {
       value: password,
       style: passwordState.style,
     });
-
-    // Enable iff all the fields are filled.
-    setIsCreationDisabled(
-      emailState.value === "" || password === "" || rePasswordState.value === ""
-    );
   };
 
   const handleRePasswordChange = (rePassword) => {
@@ -121,11 +66,6 @@ export default function RegisterAccount() {
       value: rePassword,
       style: rePasswordState.style,
     });
-
-    // Enable iff all the fields are filled.
-    setIsCreationDisabled(
-      emailState.value === "" || passwordState.value === "" || rePassword === ""
-    );
   };
 
   return (
@@ -154,7 +94,11 @@ export default function RegisterAccount() {
       <button
         type="submit"
         className="buttonPrimary"
-        disabled={isCreationDisabled}
+        disabled={
+          emailState.value === "" ||
+          passwordState.value === "" ||
+          rePasswordState.value === ""
+        }
       >
         Create Account
       </button>

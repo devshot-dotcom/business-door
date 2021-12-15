@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { Context } from "../index";
+import { Context } from "../config/Context";
 import lightLogo from "../assets/brand-plain-lightTheme.svg";
 import darkLogo from "../assets/brand-plain-darkTheme.svg";
 

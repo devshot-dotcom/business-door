@@ -14,12 +14,11 @@ export default function Login() {
     value: "",
     style: "Default",
   });
-  const [isLoginDisabled, setIsLoginDisabled] = useState(true);
 
   // Handle form submission.
   const handleSubmit = (e) => {
     e.preventDefault();
-    // TODO: Login
+    console.log("Time to Login 😍");
   };
 
   // Passed onto the Input[email] component.
@@ -28,8 +27,6 @@ export default function Login() {
       value: email,
       style: emailState.style,
     });
-    setIsLoginDisabled(email === "" || passwordState.value === "");
-    console.log(email);
   };
 
   // Passed onto the Input[password] component.
@@ -38,7 +35,6 @@ export default function Login() {
       value: password,
       style: passwordState.style,
     });
-    setIsLoginDisabled(emailState.value === "" || password === "");
   };
 
   return (
@@ -63,7 +59,7 @@ export default function Login() {
       <button
         type="submit"
         className="buttonPrimary"
-        disabled={isLoginDisabled}
+        disabled={emailState.value === "" || passwordState.value === ""}
       >
         Log In
       </button>

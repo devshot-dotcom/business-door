@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { Context } from "../index";
+import { Context } from "../config/Context";
 import { Navigate } from "react-router-dom";
 
 function AuthorizedRoute(props) {

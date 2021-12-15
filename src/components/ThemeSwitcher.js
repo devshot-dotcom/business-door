@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react";
+import { Context } from "../config/Context";
 import Switch from "./Switch";
-import { Context } from "../index";
 
 function ThemeSwitcher() {
   // import the Theme Context.
