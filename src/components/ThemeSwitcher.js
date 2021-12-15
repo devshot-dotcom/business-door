@@ -1,10 +1,10 @@
 import React, { useState, useContext } from "react";
-import { Context } from "../config/Context";
+import { ThemeContext } from "../config/Context";
 import Switch from "./Switch";
 
 function ThemeSwitcher() {
   // import the Theme Context.
-  const { theme, setTheme } = useContext(Context).themeContext;
+  const { theme, setTheme } = useContext(ThemeContext);
 
   // State for the Switch.
   const [isDarkMode, setIsDarkMode] = useState(theme === "dark");

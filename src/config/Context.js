@@ -1,13 +1,11 @@
 import React from "react";
 
-// Create the context.
-export const Context = React.createContext({
-  themeContext: {
-    theme: "",
-    setTheme: () => {},
-  },
-  authContext: {
-    user: {},
-    setUser: () => {},
-  },
+export const ThemeContext = React.createContext({
+  theme: "",
+  setTheme: () => {},
+});
+
+export const AuthContext = React.createContext({
+  user: {},
+  setUser: () => {},
 });

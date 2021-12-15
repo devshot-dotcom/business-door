@@ -6,8 +6,11 @@ import Input from "../../components/Input/Input";
 import PasswordCriteria from "../../components/PasswordCriteria";
 import { patterns } from "../../utils";
 import { testPasswords } from "../../components/Auth/Validator";
+import { supabase } from "../../config/Database";
 
 export default function RegisterAccount() {
+  let noErrors = true;
+
   const [emailState, setEmailState] = useState({
     value: "",
     style: "Default",
@@ -23,6 +26,8 @@ export default function RegisterAccount() {
 
   const testEmail = () => {
     if (!patterns.EMAIL.test(emailState.value)) {
+      noErrors = false;
+
       setEmailState({
         value: emailState.value,
         style: "Invalid",
@@ -35,16 +40,25 @@ export default function RegisterAccount() {
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     testEmail();
     testPasswords(
       passwordState,
       setPasswordState,
       rePasswordState,
-      setRePasswordState
+      setRePasswordState,
+      noErrors
     );
-    console.log("Time to Register 😎");
+
+    if (noErrors) {
+      let { user, error } = await supabase.auth.signUp({
+        email: emailState.value,
+        password: passwordState.value,
+      });
+
+      console.log({ user }, { error });
+    }
   };
 
   const handleEmailChange = (email) => {

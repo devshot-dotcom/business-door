@@ -1,5 +1,7 @@
 // ENV variables.
 const email = process.env.REACT_APP_EMAIL;
+const databaseUrl = process.env.REACT_APP_SUPABASE_URL;
+const databasePublicKey = process.env.REACT_APP_SUPABASE_ANON;
 
 // Props.
 const patterns = {
@@ -12,4 +14,4 @@ const patterns = {
   NUMBERS_ONLY: /^\d+$/,
 };
 
-export { patterns, email };
+export { patterns, email, databaseUrl, databasePublicKey };

@@ -5,6 +5,8 @@ import PasswordCriteria from "../../../components/PasswordCriteria";
 import { testPasswords } from "../../../components/Auth/Validator";
 
 function RenewPassword() {
+  let noErrors = true;
+
   const [passwordState, setPasswordState] = useState({
     value: "",
     style: "Default",
@@ -21,10 +23,13 @@ function RenewPassword() {
       passwordState,
       setPasswordState,
       rePasswordState,
-      setRePasswordState
+      setRePasswordState,
+      noErrors
     );
 
-    console.log("Time to Reset 🤗");
+    if (noErrors) {
+      console.log("Time to Reset 🤗");
+    }
   };
 
   const handlePasswordChange = (value) => {

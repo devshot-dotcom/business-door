@@ -4,8 +4,14 @@ import Form from "../../components/Auth/Form";
 import HeaderLogo from "../../components/HeaderLogo";
 import Footer from "../../components/Auth/Footer";
 import Input from "../../components/Input/Input";
+import { supabase } from "../../config/Database";
+import { AuthContext } from "../../config/Context";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export default function Login() {
+  const context = React.useContext(AuthContext);
+
   const [emailState, setEmailState] = useState({
     value: "",
     style: "Default",
@@ -15,10 +21,27 @@ export default function Login() {
     style: "Default",
   });
 
+  const login = async () => {
+    let { user, error } = await supabase.auth.signIn({
+      email: emailState.value,
+      password: passwordState.value,
+    });
+
+    if (error !== null) {
+      toast.error(error.message);
+      return;
+    }
+
+    if (user !== null) {
+      toast.success("Wow, logged in successfully");
+      context.setUser(user);
+    }
+  };
+
   // Handle form submission.
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Time to Login 😍");
+    login();
   };
 
   // Passed onto the Input[email] component.
@@ -38,35 +61,38 @@ export default function Login() {
   };
 
   return (
-    <Form onSubmit={(e) => handleSubmit(e)}>
-      <HeaderLogo />
-      <h3>Log In</h3>
-      <Input
-        type="email"
-        state={emailState}
-        setState={setEmailState}
-        onChange={handleEmailChange}
-        placeholder="Your Email Address"
-      />
-      <Input
-        type="password"
-        state={passwordState}
-        setState={setPasswordState}
-        onChange={handlePasswordChange}
-        placeholder="Your Password"
-      />
-      <Link to="/reset-password">Forgot Password</Link>
-      <button
-        type="submit"
-        className="buttonPrimary"
-        disabled={emailState.value === "" || passwordState.value === ""}
-      >
-        Log In
-      </button>
-      <Footer
-        text="Don't have an account?"
-        link={{ to: "/account-creation", label: "Create" }}
-      />
-    </Form>
+    <>
+      <Form onSubmit={(e) => handleSubmit(e)}>
+        <HeaderLogo />
+        <h3>Log In</h3>
+        <Input
+          type="email"
+          state={emailState}
+          setState={setEmailState}
+          onChange={handleEmailChange}
+          placeholder="Your Email Address"
+        />
+        <Input
+          type="password"
+          state={passwordState}
+          setState={setPasswordState}
+          onChange={handlePasswordChange}
+          placeholder="Your Password"
+        />
+        <Link to="/reset-password">Forgot Password</Link>
+        <button
+          type="submit"
+          className="buttonPrimary"
+          disabled={emailState.value === "" || passwordState.value === ""}
+        >
+          Log In
+        </button>
+        <Footer
+          text="Don't have an account?"
+          link={{ to: "/account-creation", label: "Create" }}
+        />
+      </Form>
+      <ToastContainer />
+    </>
   );
 }
