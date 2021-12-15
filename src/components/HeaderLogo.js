@@ -1,10 +1,10 @@
 import React, { useContext } from "react";
-import { ThemeContext } from "../index";
+import { Context } from "../config/Context";
 import lightLogo from "../assets/brand-plain-lightTheme.svg";
 import darkLogo from "../assets/brand-plain-darkTheme.svg";
 
 function HeaderLogo() {
-  const { theme } = useContext(ThemeContext);
+  const { theme } = useContext(Context).themeContext;
 
   return (
     <div className="textAlignCenter">

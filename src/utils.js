@@ -1,3 +1,7 @@
+// ENV variables.
+const email = process.env.REACT_APP_EMAIL;
+
+// Props.
 const patterns = {
   EMAIL:
     /[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?/,
@@ -5,6 +9,7 @@ const patterns = {
   LOWERCASE: /(?=.*[a-z])/,
   UPPERCASE: /(?=.*[A-Z])/,
   NUMBERS: /(?=.*\d)/,
+  NUMBERS_ONLY: /^\d+$/,
 };
 
-export { patterns };
+export { patterns, email };

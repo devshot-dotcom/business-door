@@ -36,10 +36,11 @@
   font-weight: 700;
 }
 
-@mixin smallText {
+@mixin smallText($color: var(--appTheme-colorText)) {
   font-weight: 500;
   line-height: 140%;
   font-size: 0.75rem;
+  color: $color;
 }
 
 @mixin preTitle {
@@ -58,8 +59,14 @@
 }
 
 @mixin link {
+  letter-spacing: 0;
   font-weight: 700;
   font-size: 0.95rem;
   text-decoration: underline;
   color: var(--appTheme-colorLink);
+  text-transform: none;
+  padding: 0;
+  background-color: transparent;
+  border: 0;
+  cursor: pointer;
 }

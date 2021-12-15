@@ -22,7 +22,7 @@ function RightIcon(props) {
     <span
       tabIndex={tooltip && "0"}
       aria-label={tooltip?.text}
-      className={tooltip?.showAlways && "showAlways"}
+      className={tooltip?.showAlways ? "showAlways" : ""}
       data-microtip-position={tooltip?.position}
       role={tooltip && "tooltip"}
     >
