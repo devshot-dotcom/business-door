@@ -1,7 +1,11 @@
 import React, { useContext } from "react";
 import { ThemeContext } from "../config/Context";
-import lightLogo from "../assets/brand-plain-lightTheme.svg";
-import darkLogo from "../assets/brand-plain-darkTheme.svg";
+const lightLogo = React.lazy(() =>
+  import("../assets/brand-plain-lightTheme.svg")
+);
+const darkLogo = React.lazy(() =>
+  import("../assets/brand-plain-darkTheme.svg")
+);
 
 function HeaderLogo() {
   const { theme } = useContext(ThemeContext);

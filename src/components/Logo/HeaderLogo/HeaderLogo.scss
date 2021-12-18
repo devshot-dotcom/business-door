@@ -1,0 +1,11 @@
+@import "../../../sass/vars";
+
+.container {
+  width: 100%;
+  padding: $spacerDefault;
+  text-align: center;
+
+  .logo {
+    width: calc(#{$spacerHumongous} * 1.75);
+  }
+}

@@ -1,0 +1,10 @@
+@import "./vars";
+
+$spacers: smallest, smaller, default, medium, large, larger, largest, huge,
+  humongous;
+
+@each $spacer in $spacers {
+  .padding-#{$spacer} {
+    padding: var(--spacer-#{$spacer});
+  }
+}
