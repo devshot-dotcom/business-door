@@ -1,0 +1,19 @@
+@mixin transition($prop) {
+  @media (min-width: $halfTablet) {
+    transition: $prop;
+  }
+
+  @media (prefers-reduced-motion) {
+    transition: none;
+  }
+}
+
+@mixin animation($prop) {
+  @media (min-width: $halfTablet) {
+    transition: $prop;
+  }
+
+  @media (prefers-reduced-motion) {
+    transition: none;
+  }
+}

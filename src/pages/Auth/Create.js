@@ -1,15 +1,19 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import Form from "../../components/Auth/Form";
 import HeaderLogo from "../../components/HeaderLogo";
 import Footer from "../../components/Auth/Footer";
 import Input from "../../components/Input/Input";
 import PasswordCriteria from "../../components/PasswordCriteria";
+import { ToastContext } from "../../config/Context";
 import { patterns } from "../../utils";
 import { testPasswords } from "../../components/Auth/Validator";
-import { supabase } from "../../config/Database";
+import { useNavigate } from "react-router-dom";
+import { createAccount } from "../../components/Auth/api";
 
-export default function RegisterAccount() {
-  let noErrors = true;
+function Create() {
+  const navigate = useNavigate();
+
+  const { toasts, setToasts } = useContext(ToastContext);
 
   const [emailState, setEmailState] = useState({
     value: "",
@@ -24,10 +28,10 @@ export default function RegisterAccount() {
     style: "Default",
   });
 
-  const testEmail = () => {
-    if (!patterns.EMAIL.test(emailState.value)) {
-      noErrors = false;
+  function testEmail() {
+    const valid = patterns.EMAIL.test(emailState.value);
 
+    if (!valid) {
       setEmailState({
         value: emailState.value,
         style: "Invalid",
@@ -38,49 +42,51 @@ export default function RegisterAccount() {
         },
       });
     }
-  };
 
-  const handleSubmit = async (e) => {
+    return valid;
+  }
+
+  function handleSubmit(e) {
     e.preventDefault();
-    testEmail();
-    testPasswords(
+
+    let isFormValid = testEmail();
+    isFormValid = testPasswords(
       passwordState,
       setPasswordState,
       rePasswordState,
-      setRePasswordState,
-      noErrors
+      setRePasswordState
     );
 
-    if (noErrors) {
-      let { user, error } = await supabase.auth.signUp({
+    if (isFormValid)
+      createAccount({
         email: emailState.value,
         password: passwordState.value,
+        toasts: toasts,
+        setToasts: setToasts,
+        onSuccess: () => navigate("/"),
       });
+  }
 
-      console.log({ user }, { error });
-    }
-  };
-
-  const handleEmailChange = (email) => {
+  function handleEmailChange(email) {
     setEmailState({
       value: email,
       style: emailState.style,
     });
-  };
+  }
 
-  const handlePasswordChange = (password) => {
+  function handlePasswordChange(password) {
     setPasswordState({
       value: password,
       style: passwordState.style,
     });
-  };
+  }
 
-  const handleRePasswordChange = (rePassword) => {
+  function handleRePasswordChange(rePassword) {
     setRePasswordState({
       value: rePassword,
       style: rePasswordState.style,
     });
-  };
+  }
 
   return (
     <Form onSubmit={(e) => handleSubmit(e)}>
@@ -123,3 +129,5 @@ export default function RegisterAccount() {
     </Form>
   );
 }
+
+export { Create };

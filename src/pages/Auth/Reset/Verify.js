@@ -1,17 +1,21 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import Header from "../../../components/Auth/Header";
 import Form from "../../../components/Auth/Form";
 import Input from "../../../components/Input/Input";
 import Footer from "../../../components/Auth/Footer";
 import { email, patterns } from "../../../utils";
+import { supabase } from "../../../config/Database";
+import { ToastContext } from "../../../config/Context";
+import { makeToast } from "../../../components/Toast/ToastWrapper";
 
-function VerifyAccount() {
+function Verify() {
+  const { toasts, setToasts } = useContext(ToastContext);
   const [emailState, setEmailState] = useState({
     value: "",
     style: "Default",
   });
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     // If email is invalid.
@@ -20,14 +24,40 @@ function VerifyAccount() {
         value: emailState.value,
         style: "Invalid",
         tooltip: {
-          text: "Seriously? We're trying to help 😑",
+          text: "Invalid email, seriously? 😑",
           position: "top-left",
           showAlways: true,
         },
       });
+
+      return;
     }
 
-    // TODO: Email an OTP.
+    makeToast(toasts, setToasts, {
+      title: "Looking up your account",
+      state: "loading",
+    });
+
+    // Send recovery email.
+    let { data, error } = await supabase.auth.api.resetPasswordForEmail(
+      emailState.value
+    );
+
+    if (error !== null) {
+      makeToast(toasts, setToasts, {
+        title: error.message,
+        state: "invalid",
+      });
+      return;
+    }
+
+    if (data !== null) {
+      makeToast(toasts, setToasts, {
+        title: "Password reset guide mailed",
+        subtitle: `Check your email at ${emailState.value}`,
+        state: "loading",
+      });
+    }
   };
 
   const handleChange = (email) => {
@@ -73,4 +103,4 @@ function VerifyAccount() {
   );
 }
 
-export default VerifyAccount;
+export { Verify };

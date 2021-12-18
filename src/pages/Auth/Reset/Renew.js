@@ -1,11 +1,16 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import Form from "../../../components/Auth/Form";
 import Header from "../../../components/Auth/Header";
 import PasswordCriteria from "../../../components/PasswordCriteria";
 import { testPasswords } from "../../../components/Auth/Validator";
+import { AuthContext, ToastContext } from "../../../config/Context";
+import { updateAccount } from "../../../components/Auth/api";
+import { useNavigate } from "react-router-dom";
 
-function RenewPassword() {
-  let noErrors = true;
+function Renew() {
+  const navigate = useNavigate();
+  const { setUser } = useContext(AuthContext);
+  const { toasts, setToasts } = useContext(ToastContext);
 
   const [passwordState, setPasswordState] = useState({
     value: "",
@@ -17,34 +22,42 @@ function RenewPassword() {
     style: "Default",
   });
 
-  const handleSubmit = (e) => {
+  function handleSubmit(e) {
     e.preventDefault();
-    testPasswords(
+    const isFormValid = testPasswords(
       passwordState,
       setPasswordState,
       rePasswordState,
-      setRePasswordState,
-      noErrors
+      setRePasswordState
     );
 
-    if (noErrors) {
-      console.log("Time to Reset 🤗");
+    if (isFormValid) {
+      updateAccount({
+        password: passwordState.value,
+        toasts: toasts,
+        setToasts: setToasts,
+        onSuccess: (user) => {
+          setUser(user);
+          sessionStorage.setItem("doorUser", JSON.stringify(user));
+          navigate("/dashboard", { replace: true });
+        },
+      });
     }
-  };
+  }
 
-  const handlePasswordChange = (value) => {
+  function handlePasswordChange(value) {
     setPasswordState({
       value: value,
       style: passwordState.style,
     });
-  };
+  }
 
-  const handleRePasswordChange = (value) => {
+  function handleRePasswordChange(value) {
     setRePasswordState({
       value: value,
       style: rePasswordState.style,
     });
-  };
+  }
 
   return (
     <Form onSubmit={handleSubmit}>
@@ -75,4 +88,4 @@ function RenewPassword() {
   );
 }
 
-export default RenewPassword;
+export { Renew };

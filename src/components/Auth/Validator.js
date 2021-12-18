@@ -9,13 +9,10 @@ function testPasswords(
   passwordState,
   setPasswordState,
   rePasswordState,
-  setRePasswordState,
-  noErrors
+  setRePasswordState
 ) {
   // If passwords don't match.
   if (passwordState.value !== rePasswordState.value) {
-    noErrors = false;
-
     setPasswordState({
       value: passwordState.value,
       style: "Invalid",
@@ -24,6 +21,7 @@ function testPasswords(
         position: "top-left",
       },
     });
+
     setRePasswordState({
       value: rePasswordState.value,
       style: "Invalid",
@@ -34,27 +32,28 @@ function testPasswords(
       },
     });
 
-    return;
+    return false;
   }
 
+  let isFormValid = true;
   // If password is invalid.
-  if (patterns.PASSWORD.test(passwordState.value)) {
-    noErrors = false;
+  if (!patterns.PASSWORD.test(passwordState.value)) {
+    isFormValid = false;
 
     setPasswordState({
       value: passwordState.value,
       style: "Invalid",
       tooltip: {
-        text: "Invalid Password, criteria mismatch 🤷‍♂️",
+        text: "Invalid Password. Why, just why? 😔",
         position: "top-left",
         showAlways: true,
       },
     });
   }
 
-  // If password is invalid.
-  if (patterns.PASSWORD.test(rePasswordState.value)) {
-    noErrors = false;
+  // If re-entered password is invalid.
+  if (!patterns.PASSWORD.test(rePasswordState.value)) {
+    isFormValid = false;
 
     setRePasswordState({
       value: rePasswordState.value,
@@ -66,6 +65,8 @@ function testPasswords(
       },
     });
   }
+
+  return isFormValid;
 }
 
 export { testPasswords };

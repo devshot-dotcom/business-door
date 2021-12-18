@@ -1,0 +1,118 @@
+@import "./vars";
+@import "./helper";
+
+/* Toast List. */
+.ToastSandwich {
+  position: fixed;
+  width: 100vw;
+  padding: $spacerLarge;
+  padding-top: $spacerDefault;
+  margin: 0;
+  list-style: none;
+
+  @media (min-width: $smallestTablet) {
+    width: 25rem;
+  }
+
+  &.top-left {
+    top: 0;
+    left: 0;
+  }
+
+  &.top-right {
+    top: 0;
+    right: 0;
+  }
+
+  &.bottom-right {
+    bottom: 0;
+    right: 0;
+  }
+
+  &.bottom-left {
+    bottom: 0;
+    left: 0;
+  }
+}
+
+/* Toast (List Item). */
+body[data-theme="dark"] .toast {
+  background-color: black;
+}
+
+.toast {
+  background-color: white;
+  padding: $spacerSmaller;
+  padding-left: $spacerDefault;
+  margin-top: $spacerDefault;
+  border-radius: $spacerSmaller;
+  display: flex;
+  justify-content: space-between;
+  gap: $spacerDefault;
+  cursor: pointer;
+  @include transition(all $transitionShort);
+
+  &:hover,
+  &:focus-within {
+    box-shadow: $shadowMinimal;
+    transform: $translateYMinimal;
+  }
+
+  $states: (
+    "valid": map-get($colorValid, "400"),
+    "invalid": map-get($colorInvalid, "400"),
+    "loading": var(--appTheme-colorTextSubtle),
+  );
+
+  @each $state, $color in $states {
+    &.toast-#{$state} {
+      border-bottom: calc(#{$spacerSmaller} / 2) solid $color;
+
+      .content__icon * {
+        color: $color;
+      }
+    }
+  }
+}
+
+/* Content inside toast. */
+.toast__content {
+  display: flex;
+  align-items: center;
+  gap: $spacerDefault;
+
+  .content__icon {
+    font-size: $spacerDefault;
+
+    * {
+      color: var(--appTheme-colorText);
+    }
+  }
+
+  .content__titles {
+    .smallText {
+      margin-top: $spacerSmallest;
+      color: var(--appTheme-colorTextSubtle);
+    }
+  }
+}
+
+/* Remove button of toast */
+.toast__button {
+  background-color: transparent;
+  border: 0;
+  border-radius: $spacerSmaller;
+  font-size: $spacerDefault;
+  padding: $spacerSmaller;
+  cursor: pointer;
+  @include transition(background-color $transitionShort);
+
+  * {
+    color: var(--appTheme-colorText);
+  }
+
+  &:hover,
+  &:focus {
+    background-color: map-get($colorInvalid, "400");
+  }
+}
