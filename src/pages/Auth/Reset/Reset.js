@@ -1,7 +1,8 @@
 import React from "react";
+import { Outlet } from "react-router";
 
 function Reset() {
-  return <div>Hello Reset</div>;
+  return <Outlet />;
 }
 
 export default Reset;

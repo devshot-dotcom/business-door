@@ -1,132 +1,49 @@
-import React, { useState, useContext } from "react";
-import Form from "../../components/Auth/Form";
-import HeaderLogo from "../../components/HeaderLogo";
-import Footer from "../../components/Auth/Footer";
-import Input from "../../components/Input/Input";
-import PasswordCriteria from "../../components/PasswordCriteria";
-import { ToastContext } from "../../config/Context";
-import { patterns } from "../../utils";
-import { testPasswords } from "../../components/Auth/Validator";
-import { useNavigate } from "react-router-dom";
-import { createAccount } from "../../components/Auth/api";
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import { Input, Button, Flexbox } from "../../components/components";
 
 function Create() {
-  const navigate = useNavigate();
-
-  const { toasts, setToasts } = useContext(ToastContext);
-
-  const [emailState, setEmailState] = useState({
-    value: "",
-    style: "Default",
-  });
-  const [passwordState, setPasswordState] = useState({
-    value: "",
-    style: "Default",
-  });
-  const [rePasswordState, setRePasswordState] = useState({
-    value: "",
-    style: "Default",
-  });
-
-  function testEmail() {
-    const valid = patterns.EMAIL.test(emailState.value);
-
-    if (!valid) {
-      setEmailState({
-        value: emailState.value,
-        style: "Invalid",
-        tooltip: {
-          text: "Invalid Email. Be better than this 🥱",
-          position: "top-left",
-          showAlways: true,
-        },
-      });
-    }
-
-    return valid;
-  }
-
-  function handleSubmit(e) {
-    e.preventDefault();
-
-    let isFormValid = testEmail();
-    isFormValid = testPasswords(
-      passwordState,
-      setPasswordState,
-      rePasswordState,
-      setRePasswordState
-    );
-
-    if (isFormValid)
-      createAccount({
-        email: emailState.value,
-        password: passwordState.value,
-        toasts: toasts,
-        setToasts: setToasts,
-        onSuccess: () => navigate("/"),
-      });
-  }
-
-  function handleEmailChange(email) {
-    setEmailState({
-      value: email,
-      style: emailState.style,
-    });
-  }
-
-  function handlePasswordChange(password) {
-    setPasswordState({
-      value: password,
-      style: passwordState.style,
-    });
-  }
-
-  function handleRePasswordChange(rePassword) {
-    setRePasswordState({
-      value: rePassword,
-      style: rePasswordState.style,
-    });
-  }
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [rePassword, setRePassword] = useState("");
 
   return (
-    <Form onSubmit={(e) => handleSubmit(e)}>
-      <HeaderLogo />
-      <h3>Create Your Account</h3>
+    <>
+      <h3 className="h3">Create Your Account</h3>
       <Input
         type="email"
-        state={emailState}
-        setState={setEmailState}
-        onChange={handleEmailChange}
+        state={email}
+        onChange={(value) => setEmail(value)}
         placeholder="Your Email Address"
       />
-      <PasswordCriteria
-        state={passwordState}
-        setState={setPasswordState}
-        onChange={handlePasswordChange}
+      <Input
+        type="password"
+        state={password}
+        onChange={(value) => setPassword(value)}
         placeholder="Your Password"
+        controlType={true}
       />
-      <PasswordCriteria
-        state={rePasswordState}
-        setState={setRePasswordState}
-        onChange={handleRePasswordChange}
+      <Input
+        type="password"
+        state={rePassword}
+        onChange={(value) => setRePassword(value)}
         placeholder="Re-enter Password"
+        controlType={true}
       />
-      <button
+      <Button
         type="submit"
-        className="buttonPrimary"
-        disabled={
-          emailState.value === "" ||
-          passwordState.value === "" ||
-          rePasswordState.value === ""
-        }
+        variant="primary"
+        disabled={email === "" || password === "" || rePassword === ""}
       >
         Create Account
-      </button>
-      <Footer
-        text="Already have an account?"
-        link={{ to: "/", label: "Login" }}
-      />
-    </Form>
+      </Button>
+      <Flexbox align="row" gap="smaller">
+        <div className="paragraph">Already have an account?</div>
+        <Link to="/auth/login" className="link">
+          Login
+        </Link>
+      </Flexbox>
+    </>
   );
 }
 
