@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Input from "./Input/Input";
 import Menu from "./Menu/Menu";
 import MenuItem from "./Menu/MenuItem";
-import { patterns } from "../utils";
+import { patterns } from "../helpers/regex";
 import "../sass/PasswordCriteria.scss";
 
 function PasswordCriteria(props) {

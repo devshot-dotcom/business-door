@@ -1,5 +1,5 @@
 import React, { useRef } from "react";
-import "../sass/Switch.scss";
+import "./Switch.scss";
 
 function Switch(props) {
   const switchRef = useRef();
@@ -26,4 +26,4 @@ function Switch(props) {
   );
 }
 
-export default Switch;
+export { Switch };

@@ -1,21 +1,22 @@
 import React, { useContext } from "react";
-import { ThemeContext } from "../../../config/config";
-import "./HeaderLogo.scss";
+import { ThemeContext } from "../../../config/context";
+import "./Logo.scss";
 import lightLogo from "../../../assets/brand-plain-lightTheme.svg";
 import darkLogo from "../../../assets/brand-plain-darkTheme.svg";
 
-function HeaderLogo() {
+/* Configurable logo. Provide a size [`small`, `default`, `large`] */
+function Logo({ className, style, size }) {
   const { theme } = useContext(ThemeContext);
 
   return (
-    <div className="container">
+    <div className={`logo-container ${className}`} style={style}>
       <img
         src={theme === "light" ? lightLogo : darkLogo}
         alt="Business Door Logo"
-        className="logo"
+        className={`logo-${size || "default"}`}
       />
     </div>
   );
 }
 
-export { HeaderLogo };
+export { Logo };

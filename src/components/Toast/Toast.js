@@ -4,6 +4,7 @@ import ToastWrapper from "./ToastWrapper";
 import ToastIcon from "./ToastIcon";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import "../../sass/Toast.scss";
 
 function Toast({ index, toast, upTime, onRemove }) {
   const { state, title, subtitle, icon } = toast;

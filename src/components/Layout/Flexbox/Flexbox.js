@@ -6,13 +6,23 @@ import "./Flexbox.scss";
  * JustifyContent,
  * & AlignItems.
  */
-function Flexbox({ children, styles, direction, justify, align }) {
+function Flexbox({
+  children,
+  style,
+  className,
+  direction,
+  justify,
+  align,
+  gap,
+}) {
   return (
     <div
-      style={styles}
+      style={style}
       className={`flexbox-${direction || "row"} 
       justify-${justify || "start"} 
-      align-${align || "start"}`}
+      align-${align || "start"}
+      gap-${gap || "default"}
+      ${className}`}
     >
       {children}
     </div>

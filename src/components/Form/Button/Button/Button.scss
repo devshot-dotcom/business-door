@@ -1,0 +1,39 @@
+@use "../../../../sass/vars";
+@use "../../../../sass/helper";
+
+@mixin button($colorBackground) {
+  @include helper.transition(background-color vars.$transitionFast linear);
+  padding: vars.$spacerDefault vars.$spacerMedium;
+  background-color: $colorBackground;
+  border-radius: vars.$spacerSmaller;
+  color: map-get(vars.$darkTheme, "colorText");
+  cursor: pointer;
+  border: 0;
+}
+
+$buttonTypes: (
+  "primary": vars.$colorBrand,
+  "secondary": vars.$colorSecondary,
+  "tertiary": vars.$colorTertiary,
+);
+
+// Iterate over the type map.
+@each $typeName, $typeMap in $buttonTypes {
+  // Generate a class for each type (button-primary, etc).
+  .button-#{$typeName} {
+    @include button(map-get($typeMap, "400"));
+
+    &:hover,
+    &:focus-within {
+      background-color: scale-color(
+        $color: map-get($typeMap, "400"),
+        $blackness: 25%
+      );
+    }
+
+    &:disabled {
+      @include button(map-get($typeMap, "200"));
+      cursor: no-drop;
+    }
+  }
+}
