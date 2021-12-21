@@ -1,49 +1,50 @@
-@mixin h1 {
+.h1 {
   margin: 0;
   font-weight: 700;
   letter-spacing: -2;
   font-size: 3.75rem;
 }
 
-@mixin h2 {
+.h2 {
   margin: 0;
   font-weight: 700;
   letter-spacing: -2;
   font-size: 2.25rem;
 }
 
-@mixin h3 {
+.h3 {
   margin: 0;
   font-weight: 700;
   letter-spacing: -2;
   font-size: 1.25rem;
 }
 
-@mixin subtitle {
+.subTitle {
   margin: 0;
   font-weight: 500;
   font-size: 1.25rem;
 }
 
-@mixin paragraph {
+.paragraph {
   margin: 0;
   font-weight: 500;
   line-height: 140%;
   font-size: 0.85rem;
 }
 
-@mixin boldText {
+b,
+strong,
+.boldText {
   font-weight: 700;
 }
 
-@mixin smallText($color: var(--appTheme-colorText)) {
+.smallText {
   font-weight: 500;
   line-height: 140%;
   font-size: 0.75rem;
-  color: $color;
 }
 
-@mixin preTitle {
+.preTitle {
   margin: 0;
   font-weight: 700;
   letter-spacing: 1px;
@@ -51,14 +52,14 @@
   text-transform: uppercase;
 }
 
-@mixin buttonText {
+.buttonText {
   font-weight: 700;
   letter-spacing: 1px;
   font-size: 0.95rem;
   text-transform: uppercase;
 }
 
-@mixin link {
+.link {
   letter-spacing: 0;
   font-weight: 700;
   font-size: 0.95rem;

@@ -50,7 +50,7 @@ body[data-theme="dark"] .toast {
   justify-content: space-between;
   gap: $spacerDefault;
   cursor: pointer;
-  @include transition(all $transitionShort);
+  @include transition(all $transitionFast);
 
   &:hover,
   &:focus-within {
@@ -105,7 +105,7 @@ body[data-theme="dark"] .toast {
   font-size: $spacerDefault;
   padding: $spacerSmaller;
   cursor: pointer;
-  @include transition(background-color $transitionShort);
+  @include transition(background-color $transitionFast);
 
   * {
     color: var(--appTheme-colorText);

@@ -1,0 +1,14 @@
+// Elements not worth defining as individual components.
+.viewport {
+  width: 100vw;
+  height: 100vh;
+  overflow-x: hidden;
+}
+
+.buttonGroup {
+  background-color: var(--appTheme-colorBackground);
+  display: inline-flex;
+  padding: var(--spacer-default);
+  gap: var(--spacer-smaller);
+  border-radius: var(--spacer-smaller);
+}
