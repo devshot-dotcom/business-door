@@ -1,27 +1,13 @@
-@use "./vars";
+$breakpoint: 48em !default; //768px
 
 // We're using transitions only on screens larger than small tablets, only if the user doesn't dislike animations. Cuz web apps suck on mobiles, let alone transitions and animations.
 
-/** @see https://stackoverflow.com/a/20122503/14716989 */
-@function listToString($list) {
-  $string: ();
-
-  // Join the properties into a single string.
-  @each $item in $list {
-    $string: append($string, $item, "comma");
-  }
-
-  @return $string;
-}
-
-@mixin transition($properties) {
-  $props: listToString($properties);
-
-  @media (min-width: vars.$halfTablet) {
-    -moz-transition: $props;
-    -webkit-transition: $props;
-    -o-transition: $props;
-    transition: $props;
+@mixin transition($prop) {
+  @media (min-width: $breakpoint) {
+    -moz-transition: $prop;
+    -webkit-transition: $prop;
+    -o-transition: $prop;
+    transition: $prop;
   }
 
   @media (prefers-reduced-motion) {
@@ -29,14 +15,12 @@
   }
 }
 
-@mixin animation($properties) {
-  $props: listToString($properties);
-
-  @media (min-width: vars.$halfTablet) {
-    -moz-animation: $props;
-    -webkit-animation: $props;
-    -o-animation: $props;
-    animation: $props;
+@mixin animation($prop) {
+  @media (min-width: $breakpoint) {
+    -moz-animation: $prop;
+    -webkit-animation: $prop;
+    -o-animation: $prop;
+    animation: $prop;
   }
 
   @media (prefers-reduced-motion) {
