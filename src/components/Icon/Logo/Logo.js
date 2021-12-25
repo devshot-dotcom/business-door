@@ -1,4 +1,5 @@
 import React, { useContext } from "react";
+import { Link } from "react-router-dom";
 import { ThemeContext } from "../../../config/context";
 import "./Logo.scss";
 import lightLogo from "../../../assets/brand-plain-lightTheme.svg";
@@ -10,11 +11,13 @@ function Logo({ className, style, size }) {
 
   return (
     <div className={`logo-container ${className}`} style={style}>
-      <img
-        src={theme === "light" ? lightLogo : darkLogo}
-        alt="Business Door Logo"
-        className={`logo-${size || "default"}`}
-      />
+      <Link to="/">
+        <img
+          src={theme === "light" ? lightLogo : darkLogo}
+          alt="Business Door Logo"
+          className={`logo-${size || "default"}`}
+        />
+      </Link>
     </div>
   );
 }
