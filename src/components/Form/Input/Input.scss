@@ -1,5 +1,5 @@
 @use "../../../sass/vars";
-@use "../../../sass/helper";
+@use "../../../sass/helper" with ($breakpoint: vars.$halfTablet);
 
 @mixin input-variant($color, $lightColor) {
   border: 1px solid $color;

@@ -37,3 +37,11 @@ $buttonTypes: (
     }
   }
 }
+
+.button-blank {
+  background-color: transparent;
+  border: 0;
+  outline: 0;
+  padding: 0;
+  cursor: pointer;
+}
