@@ -6,4 +6,5 @@ export { Logo } from "./Icon/Logo/Logo";
 export { Absolute } from "./Position/Absolute/Absolute";
 export { Spinner } from "./Icon/Spinner/Spinner";
 export { Card, CardBody } from "./Layout/Card/Card";
-export { Input, Switch, Button } from "./Form/Form";
+export { Input, PasswordCriteria, Switch, Button } from "./Form/Form";
+export { Menu, MenuItem } from "./Menu/Menu";

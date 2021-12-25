@@ -1,6 +1,4 @@
 import React from "react";
-import PropTypes from "prop-types";
-import ToastWrapper from "./ToastWrapper";
 import { Toast } from "./Toast";
 
 function ToastSandwich({ toasts, setToasts, position }) {
@@ -30,21 +28,5 @@ function ToastSandwich({ toasts, setToasts, position }) {
     </>
   );
 }
-
-ToastSandwich.propTypes = {
-  /** @param toasts The array of toasts to be displayed in the sandwich stack. */
-  toasts: PropTypes.arrayOf(PropTypes.instanceOf(ToastWrapper)).isRequired,
-
-  /** @param setToasts The method that sets the toasts array, more likely a stateful setter. */
-  setToasts: PropTypes.instanceOf(Function).isRequired,
-
-  /** @param position The position where the sandwich appears on the screen. */
-  position: PropTypes.oneOf([
-    "top-left",
-    "top-right",
-    "bottom-right",
-    "bottom-left",
-  ]),
-};
 
 export { ToastSandwich };

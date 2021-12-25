@@ -1,22 +1,21 @@
 import React from "react";
 import {
-  faCircleNotch,
   faCheckCircle,
   faExclamationCircle,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import PropTypes from "prop-types";
+import { Spinner } from "../components";
 
-function ToastIcon({ state, icon }) {
-  /** Return an icon or an emoji based on the state.*/
+function ToastIcon({ variant, icon }) {
+  /** Return an icon or an emoji based on the variant.*/
   function stateBasedIcon() {
     return (
       {
         default: "🚀",
         valid: <FontAwesomeIcon icon={faCheckCircle} />,
         invalid: <FontAwesomeIcon icon={faExclamationCircle} />,
-        loading: <FontAwesomeIcon icon={faCircleNotch} className="spinner" />,
-      }[state] || "🚀"
+        loading: <Spinner size="small" speed="slow" />,
+      }[variant] || "🚀"
     );
   }
 
@@ -30,12 +29,4 @@ function ToastIcon({ state, icon }) {
   return <img src={icon} alt="🚀" />;
 }
 
-ToastIcon.propTypes = {
-  /** @param state The state of toast. */
-  state: PropTypes.oneOf(["default", "valid", "invalid", "loading"]),
-
-  /** @param icon The icon for the toast, can be an emoji, a url, or an element. */
-  icon: PropTypes.oneOfType([PropTypes.string, PropTypes.instanceOf(Element)]),
-};
-
-export default ToastIcon;
+export { ToastIcon };

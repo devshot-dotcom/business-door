@@ -3,8 +3,8 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import SplashScreen from "../pages/SplashScreen";
 import Auth, { Login, Create } from "../pages/Auth/Auth";
 import Reset, { Verify, Renew } from "../pages/Auth/Reset/Reset";
-import Dashboard from "../pages/Dashboard";
-import AuthorizedRoute from "./AuthorizedRoute";
+import Home from "../pages/Home";
+import { UnAuthorizedRoute, AuthorizedRoute } from "../modules/modules";
 import { ThemeContext, ToastContext } from "../config/context";
 import { defaultTheme } from "../config/theme";
 import { ToastSandwich } from "./Toast/ToastSandwich";
@@ -23,16 +23,16 @@ export function App() {
             <Routes>
               <Route path="/" element={<SplashScreen />} />
               <Route path="auth" element={<Auth />}>
-                <Route path="login" element={<Login />} />
-                <Route path="create" element={<Create />} />
+                <Route element={<UnAuthorizedRoute />}>
+                  <Route index={true} element={<Login />} />
+                  <Route path="create" element={<Create />} />
+                </Route>
                 <Route path="reset" element={<Reset />}>
-                  <Route index element={<Verify />} />
-                  <Route element={<AuthorizedRoute />}>
-                    <Route path="renew" element={<Renew />} />
-                  </Route>
+                  <Route index={true} element={<Verify />} />
+                  <Route path="renew" element={<Renew />} />
                 </Route>
               </Route>
-              <Route path="dashboard" element={<Dashboard />} />
+              <Route path="home" element={<Home />} />
             </Routes>
           </BrowserRouter>
           <ToastSandwich toasts={toasts} setToasts={setToasts} />
