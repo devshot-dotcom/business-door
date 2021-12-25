@@ -19,7 +19,7 @@ function SplashScreen() {
 
       // For now, redirecting to login as the homepage isn't ready.
       // TODO: Redirect to homepage.
-      navigate("/auth/login", { replace: true });
+      navigate("/auth", { replace: true });
     }, durationLong);
 
     return () => clearTimeout(timeout);

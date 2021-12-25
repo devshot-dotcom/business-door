@@ -1,43 +1,65 @@
-import React, { useState } from "react";
-import { Flexbox, Input, Button } from "../../../components/components";
+import React from "react";
+import {
+  Flexbox,
+  Input,
+  Button,
+  PasswordCriteria,
+  CardBody,
+} from "../../../components/components";
+import { useInput } from "../../../hooks/hooks";
 
 function Renew() {
-  const [password, setPassword] = useState("");
-  const [rePassword, setRePassword] = useState("");
+  const [pswdState, dispatchPswd] = useInput();
+  const [rePswdState, dispatchRePswd] = useInput();
+
+  function handleSubmit(e) {
+    e.preventDefault();
+    console.log(e.target);
+  }
 
   return (
-    <>
-      <Flexbox direction="column" gap="smaller">
-        <h3 className="h3">Reset Password</h3>
-        <div className="smallText color-primary-subtle">
-          Finally, time to get you a new one, don’t forget it this time
-        </div>
-      </Flexbox>
+    <form onSubmit={handleSubmit}>
+      <CardBody>
+        <Flexbox direction="column" gap="smaller">
+          <h3 className="h3">Reset Password</h3>
+          <div className="smallText color-primary-subtle">
+            Finally, time to get you a new one, don’t forget it this time
+          </div>
+        </Flexbox>
 
-      <Input
-        type="password"
-        state={password}
-        onChange={(value) => setPassword(value)}
-        placeholder="Enter New Password"
-        controlType={true}
-      />
+        <PasswordCriteria password={pswdState.value}>
+          <Input
+            type="password"
+            state={pswdState}
+            onChange={(value) => dispatchPswd({ type: "update", value: value })}
+            onFocus={() => dispatchPswd({ type: "default" })}
+            placeholder="Your Password"
+            controlType={true}
+          />
+        </PasswordCriteria>
 
-      <Input
-        type="password"
-        state={rePassword}
-        onChange={(value) => setRePassword(value)}
-        placeholder="Re-enter Password"
-        controlType={true}
-      />
+        <PasswordCriteria password={rePswdState.value}>
+          <Input
+            type="password"
+            state={rePswdState}
+            onChange={(value) =>
+              dispatchRePswd({ type: "update", value: value })
+            }
+            onFocus={() => dispatchRePswd({ type: "default" })}
+            placeholder="Re-enter Password"
+            controlType={true}
+          />
+        </PasswordCriteria>
 
-      <Button
-        type="submit"
-        variant="primary"
-        disabled={password === "" || rePassword === ""}
-      >
-        Reset Password
-      </Button>
-    </>
+        <Button
+          type="submit"
+          variant="primary"
+          disabled={pswdState.value === "" || rePswdState.value === ""}
+        >
+          Reset Password
+        </Button>
+      </CardBody>
+    </form>
   );
 }
 
