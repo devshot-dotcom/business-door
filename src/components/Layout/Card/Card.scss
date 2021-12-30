@@ -1,0 +1,28 @@
+@use "../../../sass/vars";
+
+.card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow-y: auto;
+
+  > *,
+  .card-body > * {
+    align-self: stretch;
+  }
+
+  &.singular {
+    flex-basis: 100%;
+    align-self: stretch;
+    padding: vars.$spacerLarge;
+    background-color: var(--appTheme-altColorBackground);
+
+    @media (min-width: vars.$smallestTablet) {
+      flex-basis: 23.75rem; //380px
+      align-self: center;
+      box-shadow: vars.$shadowMinimal;
+      border-radius: vars.$spacerSmaller;
+    }
+  }
+}

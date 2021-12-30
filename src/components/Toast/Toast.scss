@@ -1,0 +1,118 @@
+@use "../../sass/vars";
+@use "../../sass/helper" with ($breakpoint: vars.$halfTablet);
+
+/* Toast List. */
+.ToastSandwich {
+  position: fixed;
+  width: 100vw;
+  padding: vars.$spacerDefault;
+  padding-top: 0;
+  margin: 0;
+  list-style: none;
+
+  @media (min-width: vars.$smallestTablet) {
+    width: 25rem;
+  }
+
+  &.top-left {
+    top: 0;
+    left: 0;
+  }
+
+  &.top-right {
+    top: 0;
+    right: 0;
+  }
+
+  &.bottom-right {
+    bottom: 0;
+    right: 0;
+  }
+
+  &.bottom-left {
+    bottom: 0;
+    left: 0;
+  }
+}
+
+/* Toast (List Item). */
+body[data-theme="dark"] .toast {
+  background-color: black;
+}
+
+.toast {
+  background-color: white;
+  padding: vars.$spacerSmaller;
+  padding-left: vars.$spacerDefault;
+  margin-top: vars.$spacerDefault;
+  border-radius: vars.$spacerSmaller;
+  display: flex;
+  justify-content: space-between;
+  gap: vars.$spacerDefault;
+  cursor: pointer;
+  @include helper.transition(all vars.$transitionFast);
+
+  &:hover,
+  &:focus-within {
+    box-shadow: vars.$shadowMinimal;
+    transform: vars.$translateYMinimal;
+  }
+
+  $states: (
+    "valid": map-get(vars.$colorValid, "400"),
+    "invalid": map-get(vars.$colorInvalid, "400"),
+    "loading": var(--appTheme-colorTextSubtle),
+  );
+
+  @each $state, $color in $states {
+    &.toast-#{$state} {
+      border-bottom: calc(#{vars.$spacerSmaller} / 2) solid $color;
+
+      .content__icon * {
+        color: $color;
+      }
+    }
+  }
+}
+
+/* Content inside toast. */
+.toast__content {
+  display: flex;
+  align-items: center;
+  gap: vars.$spacerDefault;
+
+  .content__icon {
+    font-size: vars.$spacerDefault;
+
+    * {
+      color: var(--appTheme-colorText);
+    }
+  }
+
+  .content__titles {
+    .smallText {
+      margin-top: vars.$spacerSmallest;
+      color: var(--appTheme-colorTextSubtle);
+    }
+  }
+}
+
+/* Remove button of toast */
+.toast__button {
+  background-color: transparent;
+  border: 0;
+  border-radius: vars.$spacerSmaller;
+  font-size: vars.$spacerDefault;
+  padding: vars.$spacerSmaller;
+  cursor: pointer;
+  @include helper.transition(background-color vars.$transitionFast);
+
+  * {
+    color: var(--appTheme-colorText);
+  }
+
+  &:hover,
+  &:focus {
+    background-color: map-get(vars.$colorInvalid, "400");
+  }
+}

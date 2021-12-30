@@ -1,0 +1,18 @@
+@use "../../../sass/vars";
+
+.logo-container {
+  width: 100%;
+  text-align: center;
+
+  .logo-small {
+    width: calc(#{vars.$spacerDefault} * 2);
+  }
+
+  .logo-default {
+    width: calc(#{vars.$spacerLargest} * 2);
+  }
+
+  .logo-large {
+    width: calc(#{vars.$spacerHumongous} * 2);
+  }
+}

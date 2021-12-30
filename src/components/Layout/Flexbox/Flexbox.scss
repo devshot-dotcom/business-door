@@ -1,0 +1,36 @@
+@use "../../../sass/vars";
+
+.flexbox {
+  &-row {
+    flex-direction: row;
+  }
+
+  &-column {
+    flex-direction: column;
+  }
+
+  &-row,
+  &-column {
+    display: flex;
+
+    &.justify-start {
+      justify-content: start;
+    }
+
+    &.justify-center {
+      justify-content: center;
+    }
+
+    &.justify-space-between {
+      justify-content: space-between;
+    }
+
+    &.align-start {
+      align-items: flex-start;
+    }
+
+    &.align-center {
+      align-items: center;
+    }
+  }
+}

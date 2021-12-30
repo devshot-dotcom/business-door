@@ -1,19 +1,3 @@
-$font: -apple-system, BlinkMacSystemFont, "Work Sans", "Segoe UI", Roboto,
-  Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
-
-:root {
-  /* Sizing System */
-  --spacer-smallest: 0.125rem; /* 2px */
-  --spacer-smaller: 0.5rem; /* 8px */
-  --spacer-default: 1rem; /* 16px */
-  --spacer-medium: 1.5rem; /* 24px */
-  --spacer-large: 2rem; /* 32px */
-  --spacer-larger: 2.5rem; /* 40px */
-  --spacer-largest: 3rem; /* 48px */
-  --spacer-huge: 3.5rem; /* 56px */
-  --spacer-humungous: 4rem; /* 64px */
-}
-
 $spacerSmallest: var(--spacer-smallest);
 $spacerSmaller: var(--spacer-smaller);
 $spacerDefault: var(--spacer-default);
@@ -23,6 +7,20 @@ $spacerLarger: var(--spacer-larger);
 $spacerLargest: var(--spacer-largest);
 $spacerHuge: var(--spacer-huge);
 $spacerHumongous: var(--spacer-humungous);
+
+/* Transitioning System. */
+$transitionFast: 100ms;
+$transitionDefault: 250ms;
+$transitionSlow: 1s;
+
+/* Breakpoint System. */
+$smallestTablet: 34.8em; //557px
+$halfTablet: 48em; //768px
+$smallestLaptop: 62em; //992px
+$halfLaptop: 73em; //1168px
+$smallestDesktop: 85.5em; //1368px;
+$halfDesktop: 90em; //1440px
+$smallestHDR: 120em; //1920px
 
 /* Color System */
 $colorBrand: (
@@ -37,6 +35,10 @@ $colorLink: (
   "200": #a5a6f6,
   "300": #787af2,
   "400": #4b4ded,
+  "10%": hsla(239, 82%, 61%, 0.1),
+  "25%": hsla(239, 82%, 61%, 0.25),
+  "50%": hsla(239, 82%, 61%, 0.5),
+  "75%": hsla(239, 82%, 61%, 0.75),
 );
 
 $colorSecondary: (
@@ -53,14 +55,27 @@ $colorTertiary: (
   "400": #8d8c88,
 );
 
-$colorValid: #31d0aa;
-$colorInvalid: #ed4b9e;
+$colorValid: (
+  "400": #31d0aa,
+  "25%": hsla(166, 63%, 50%, 0.25),
+  "50%": hsla(166, 63%, 50%, 0.5),
+);
+
+$colorInvalid: (
+  "400": #ed4b9e,
+  "25%": hsla(329, 82%, 61%, 0.25),
+  "50%": hsla(329, 82%, 61%, 0.5),
+);
 
 $colorTransparent: (
-  "opacity-10": hsla(0, 0%, 100%, 10%),
-  "opacity-25": hsla(0, 0%, 100%, 25%),
-  "opacity-50": hsla(0, 0%, 100%, 50%),
-  "opacity-75": hsla(0, 0%, 100%, 75%),
+  "white-10": hsla(0, 0%, 100%, 10%),
+  "white-25": hsla(0, 0%, 100%, 25%),
+  "white-50": hsla(0, 0%, 100%, 50%),
+  "white-75": hsla(0, 0%, 100%, 75%),
+  "black-10": hsla(0, 0%, 0%, 10%),
+  "black-25": hsla(0, 0%, 0%, 25%),
+  "black-50": hsla(0, 0%, 0%, 50%),
+  "black-75": hsla(0, 0%, 0%, 75%),
 );
 
 $lightTheme: (
@@ -74,3 +89,24 @@ $darkTheme: (
   "colorTextSubtle": #ecf1f4,
   "colorBackground": #383838,
 );
+
+/* Shadow System. */
+$shadowMinimal: 0 4px 20px
+  map-get(
+    $map: $colorTransparent,
+    $key: "black-10",
+  );
+
+/* Translation System. */
+$translateYMinimal: translateY(-10%);
+
+/* Keyframe System. */
+@keyframes rotate360 {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
