@@ -1,98 +1,67 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
-import Form from "../../components/Auth/Form";
-import HeaderLogo from "../../components/HeaderLogo";
-import Footer from "../../components/Auth/Footer";
-import Input from "../../components/Input/Input";
-import { supabase } from "../../config/Database";
-import { AuthContext } from "../../config/Context";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { Flexbox, Input, Button, CardBody } from "../../components/components";
+import { useInput, useToast } from "../../hooks/hooks";
+import { Authenticator } from "../../helpers/Authenticator";
 
-export default function Login() {
-  const context = React.useContext(AuthContext);
+function Login() {
+  const [emailState, dispatchEmail] = useInput();
+  const [pswdState, dispatchPswd] = useInput();
+  const makeToast = useToast();
 
-  const [emailState, setEmailState] = useState({
-    value: "",
-    style: "Default",
-  });
-  const [passwordState, setPasswordState] = useState({
-    value: "",
-    style: "Default",
-  });
-
-  const login = async () => {
-    let { user, error } = await supabase.auth.signIn({
-      email: emailState.value,
-      password: passwordState.value,
-    });
-
-    if (error !== null) {
-      toast.error(error.message);
-      return;
-    }
-
-    if (user !== null) {
-      toast.success("Wow, logged in successfully");
-      context.setUser(user);
-    }
-  };
-
-  // Handle form submission.
-  const handleSubmit = (e) => {
+  function handleSubmit(e) {
     e.preventDefault();
-    login();
-  };
-
-  // Passed onto the Input[email] component.
-  const handleEmailChange = (email) => {
-    setEmailState({
-      value: email,
-      style: emailState.style,
-    });
-  };
-
-  // Passed onto the Input[password] component.
-  const handlePasswordChange = (password) => {
-    setPasswordState({
-      value: password,
-      style: passwordState.style,
-    });
-  };
+    Authenticator({
+      makeToast: makeToast,
+      data: {
+        email: emailState.value,
+        password: pswdState.value,
+      },
+    }).login();
+  }
 
   return (
-    <>
-      <Form onSubmit={(e) => handleSubmit(e)}>
-        <HeaderLogo />
-        <h3>Log In</h3>
+    <form onSubmit={handleSubmit}>
+      <CardBody>
+        <h3 className="h3">Log In</h3>
+
         <Input
           type="email"
           state={emailState}
-          setState={setEmailState}
-          onChange={handleEmailChange}
           placeholder="Your Email Address"
+          onChange={(value) => dispatchEmail({ type: "update", value: value })}
+          onFocus={() => dispatchEmail({ type: "default" })}
         />
+
         <Input
           type="password"
-          state={passwordState}
-          setState={setPasswordState}
-          onChange={handlePasswordChange}
+          state={pswdState}
           placeholder="Your Password"
+          onChange={(value) => dispatchPswd({ type: "update", value: value })}
+          onFocus={() => dispatchPswd({ type: "default" })}
+          controlType={true}
         />
-        <Link to="/reset-password">Forgot Password</Link>
-        <button
+
+        <Link to="/auth/reset" className="link">
+          Forgot Password
+        </Link>
+
+        <Button
           type="submit"
-          className="buttonPrimary"
-          disabled={emailState.value === "" || passwordState.value === ""}
+          disabled={emailState.value === "" || pswdState.value === ""}
         >
           Log In
-        </button>
-        <Footer
-          text="Don't have an account?"
-          link={{ to: "/account-creation", label: "Create" }}
-        />
-      </Form>
-      <ToastContainer />
-    </>
+        </Button>
+
+        <Flexbox align="center" gap="smaller">
+          <div className="paragraph">Don't have an account?</div>
+          <Link to="/auth/create" className="link">
+            Create
+          </Link>
+        </Flexbox>
+      </CardBody>
+    </form>
   );
 }
+
+export { Login };

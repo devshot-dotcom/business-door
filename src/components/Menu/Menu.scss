@@ -1,0 +1,33 @@
+@use "../../sass/vars";
+
+.menu {
+  margin: 0;
+  margin-top: vars.$spacerMedium;
+  padding: vars.$spacerDefault;
+  background-color: var(--appTheme-colorBackground);
+  display: flex;
+  flex-direction: column;
+  gap: vars.$spacerSmaller;
+  border-radius: vars.$spacerSmaller;
+
+  .menu-item {
+    padding: calc(#{vars.$spacerDefault} / 1.5) vars.$spacerDefault;
+    background-color: map-get($map: vars.$colorTransparent, $key: "black-10");
+    display: flex;
+    align-items: center;
+    gap: vars.$spacerSmaller;
+    border-radius: vars.$spacerSmaller;
+    list-style: none;
+
+    .menu-icon {
+      width: vars.$spacerMedium;
+      height: vars.$spacerMedium;
+    }
+
+    &.valid {
+      .menu-label {
+        color: var(--appTheme-colorTextSubtle);
+      }
+    }
+  }
+}

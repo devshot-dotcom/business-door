@@ -1,8 +1,9 @@
 import React from "react";
-import "../../sass/Menu.scss";
+import "./Menu.scss";
 
 function Menu(props) {
-  return <ul className="Menu">{props.children}</ul>;
+  return <ul className="menu">{props.children}</ul>;
 }
 
-export default Menu;
+export { Menu };
+export { MenuItem } from "./MenuItem";

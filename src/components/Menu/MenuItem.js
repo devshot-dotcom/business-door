@@ -2,17 +2,19 @@ import React from "react";
 import iconValid from "../../assets/valid.svg";
 import iconInvalid from "../../assets/invalid-lightTheme.svg";
 
-function MenuItem(props) {
+function MenuItem({ style, className, focusable, isValid, label }) {
+  const classes = ["menu-item", isValid && "valid", className ?? ""];
+
   return (
-    <li className={`MenuItem ${props.isValid && "isValid"}`} tabIndex="0">
+    <li className={classes.join(" ")} tabIndex={focusable && "0"} style={style}>
       <img
-        src={props.isValid ? iconValid : iconInvalid}
-        alt={props.isValid ? "Valid" : "Invalid"}
-        className="MenuIcon"
+        src={isValid ? iconValid : iconInvalid}
+        alt={isValid ? "Valid" : "Invalid"}
+        className="menu-icon"
       />
-      <p className="MenuLabel">{props.label}</p>
+      <p className="menu-label paragraph">{label}</p>
     </li>
   );
 }
 
-export default MenuItem;
+export { MenuItem };

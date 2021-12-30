@@ -1,6 +1,6 @@
 /* -------------------------------------------------------------------
   Microtip (Forked)
-  Has the ability to permanently display a tooltip. Simple assign `.showAlways` class to the HTML element that needs such a tooltip.
+  Has the ability to permanently display a tooltip. Simple assign `.show` class to the HTML element that needs such a tooltip.
 
   Modern, lightweight css-only tooltips
   Just 1kb minified and gzipped
@@ -36,8 +36,8 @@
     transform-origin: top;
   }
 
-  &:not(.showAlways)::before,
-  &:not(.showAlways)::after {
+  &:not(.show)::before,
+  &:not(.show)::after {
     opacity: 0;
     pointer-events: none;
   }

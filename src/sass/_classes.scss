@@ -1,0 +1,64 @@
+// Margin / Padding / Gap Classes.
+$spacers: "smallest", "smaller", "default", "medium", "large", "larger",
+  "largest", "huge", "humongous";
+
+@each $spacer in $spacers {
+  .padding-#{$spacer} {
+    padding: var(--spacer-#{$spacer});
+  }
+
+  .margin-#{$spacer} {
+    margin: var(--spacer-#{$spacer});
+  }
+
+  .gap-#{$spacer} {
+    gap: var(--spacer-#{$spacer});
+  }
+}
+
+// Color Classes.
+$classNames: (
+  "primary": var(--appTheme-colorText),
+  "primary-subtle": var(--appTheme-colorTextSubtle),
+  "secondary": var(--appTheme-colorBackground),
+  "secondary-subtle": var(--appTheme-altColorBackground),
+  "link": var(--appTheme-colorLink),
+);
+
+@each $name, $color in $classNames {
+  .color-#{$name} {
+    color: $color;
+  }
+
+  .bg-#{$name} {
+    background-color: $color;
+  }
+}
+
+// Width / Height Classes.
+$minMax: 0, 100;
+@each $num in $minMax {
+  .width-#{$num} {
+    width: percentage($num / 100);
+  }
+
+  .height-#{$num} {
+    height: percentage($num / 100);
+  }
+
+  .minWidth-#{$num} {
+    min-width: percentage($num / 100);
+  }
+
+  .minHeight-#{$num} {
+    min-height: percentage($num / 100);
+  }
+
+  .maxWidth-#{$num} {
+    max-width: percentage($num / 100);
+  }
+
+  .maxHeight-#{$num} {
+    max-height: percentage($num / 100);
+  }
+}

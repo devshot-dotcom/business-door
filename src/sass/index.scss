@@ -1,9 +1,19 @@
-@import "./vars";
+@import "./classes";
 @import "./typography";
-@import "./buttons";
+@import "./elements";
 @import url("https://fonts.googleapis.com/css2?family=Work+Sans:wght@500;700&display=swap");
 
 :root {
+  /* Sizing System */
+  --spacer-smallest: 0.125rem; /* 2px */
+  --spacer-smaller: 0.5rem; /* 8px */
+  --spacer-default: 1rem; /* 16px */
+  --spacer-medium: 1.5rem; /* 24px */
+  --spacer-large: 2rem; /* 32px */
+  --spacer-larger: 2.5rem; /* 40px */
+  --spacer-largest: 3rem; /* 48px */
+  --spacer-huge: 3.5rem; /* 56px */
+  --spacer-humungous: 4rem; /* 64px */
   font-size: 16px;
 }
 
@@ -27,98 +37,8 @@ body[data-theme="dark"] {
 *::before,
 *::after {
   font-size: 1rem;
-  font-family: $font;
+  font-family: -apple-system, BlinkMacSystemFont, "Work Sans", "Segoe UI",
+    Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   box-sizing: border-box;
   color: var(--appTheme-colorText);
-}
-
-h1 {
-  @include h1;
-}
-
-h2 {
-  @include h2;
-}
-
-h3 {
-  @include h3;
-}
-
-.subtitle {
-  @include subtitle;
-}
-
-p,
-.paragraph {
-  @include paragraph;
-}
-
-b,
-strong,
-.boldText {
-  @include boldText;
-}
-
-.smallText {
-  @include smallText;
-}
-
-.smallTextSubtle {
-  @include smallText(var(--appTheme-colorTextSubtle));
-}
-
-.preTitle {
-  @include preTitle;
-}
-
-button,
-.buttonText {
-  @include buttonText;
-}
-
-a,
-.link {
-  @include link;
-}
-
-.textAlignCenter {
-  text-align: center;
-}
-
-.flex {
-  display: flex;
-
-  &.column {
-    flex-direction: column;
-  }
-
-  &.alignCenter {
-    align-items: center;
-  }
-
-  &.gapSmaller {
-    gap: $spacerSmaller;
-  }
-
-  &.gapDefault {
-    gap: $spacerDefault;
-  }
-
-  &.gapMedium {
-    gap: $spacerMedium;
-  }
-}
-
-.brand {
-  &.header {
-    width: calc(#{$spacerHumongous} * 1.5);
-  }
-}
-
-.paddingMedium {
-  padding: $spacerMedium;
-}
-
-.marginTopSmaller {
-  margin-top: $spacerSmaller;
 }
