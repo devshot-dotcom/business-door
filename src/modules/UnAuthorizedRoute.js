@@ -5,14 +5,12 @@ import { isObjectValid } from "../helpers/functions";
 
 /** Only unauthorized users can access the child of this route. */
 function UnAuthorizedRoute() {
-  /* // If user is logged in.
-  return isObjectValid(supabase.auth.user()) ? (
-    <Navigate to="/home" replace={true} />
-  ) : (
-    // Otherwise.
-    <Outlet />
-  ); */
+  // If user is logged in.
+  if (isObjectValid(supabase.auth.user())) {
+    return <Navigate to="/home" />;
+  }
 
+  // Otherwise.
   return <Outlet />;
 }
 
