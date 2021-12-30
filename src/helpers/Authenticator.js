@@ -1,5 +1,4 @@
-import { supabase } from "../config/database";
-import { isObjectValid } from "../helpers/functions";
+import { supabase } from "../config/Database";
 
 /**
  * Class-like entity that handles the database functionalities through a REST based api.

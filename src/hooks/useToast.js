@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { ToastContext } from "../config/context";
+import { ToastContext } from "../config/Context";
 import { isString } from "../helpers/functions";
 
 /** The toast data class. */

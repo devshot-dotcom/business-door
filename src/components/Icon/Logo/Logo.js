@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
-import { ThemeContext } from "../../../config/context";
+import { ThemeContext } from "../../../config/Context";
 import "./Logo.scss";
 import lightLogo from "../../../assets/brand-plain-lightTheme.svg";
 import darkLogo from "../../../assets/brand-plain-darkTheme.svg";

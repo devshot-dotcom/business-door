@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react";
-import { ThemeContext } from "../config/context";
+import { ThemeContext } from "../config/Context";
 import { Switch } from "../components/components";
 
 function ThemeSwitcher() {

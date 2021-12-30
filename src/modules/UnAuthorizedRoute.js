@@ -1,5 +1,5 @@
 import React from "react";
-import { supabase } from "../config/database";
+import { supabase } from "../config/Database";
 import { Navigate, Outlet } from "react-router-dom";
 import { isObjectValid } from "../helpers/functions";
 
