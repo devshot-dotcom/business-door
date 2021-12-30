@@ -1,7 +1,13 @@
 import { supabase } from "../config/Database";
+import { strings } from "../helpers/strings";
 
 /**
- * Class-like entity that handles the database functionalities through a REST based api.
+ * Class-like entity that handles the database functionalities through a REST based api. Read the whole jsDoc to understand the what's, why's and how's.
+ *
+ * Every single method that's returned i.e `login`, `createAccount`, etc, automatically requests the API & sends relevant toasts.
+ *
+ * - Why is `makeToast` not retrieved from `useToast` and retrived as a param?
+ * Answer: Cuz hooks are allowed at the top-level of React Components. This ain't a react component, hence, hooks can't be used here.
  *
  * @since v1.0
  * @author https://devshot-dotcom.github.io/
@@ -17,11 +23,15 @@ import { supabase } from "../config/Database";
  * Authenticator({
  *    data: data,
  *    onSuccess: () => {// Do something},
- *    onFailure: null (// Or omit if you don't need a callback)
+ *    onFailure: null (// Omit if you don't need a callback)
  * }).login()
  * </code></pre>
  */
 function Authenticator({ makeToast, data, onSuccess, onFailure }) {
+  /**
+   * @param toastOptions An object that contains the metadeta of a toast.
+   * Refer to `Toast` data class (located in useToast.js) for complete information.
+   */
   function handleResponse({ user, error }, toastOptions) {
     if (error !== null) {
       makeToast({
@@ -57,71 +67,87 @@ function Authenticator({ makeToast, data, onSuccess, onFailure }) {
     makeToast({
       variant: "loading",
       title: "Trying to log you in",
-      upTime: "show-till-push",
+      upTime: strings.REMOVE_ON_PUSH,
     });
 
     try {
-      const response = await supabase.auth.signIn({
-        email: data.email,
-        password: data.password,
-      });
-
-      handleResponse(response, {
-        title: "Successfully logged in",
-        subtitle: "Immediately redirecting to homepage.",
-      });
+      handleResponse(
+        await supabase.auth.signIn({
+          email: data.email,
+          password: data.password,
+        }),
+        {
+          title: "Successfully logged in",
+          subtitle: "Welcome to business door, redirecting to homepage.",
+        }
+      );
     } catch (e) {
       handleException(e);
     }
   };
 
   const createAccount = async () => {
-    makeToast({ variant: "loading", title: "Creating your account" });
+    makeToast({
+      variant: "loading",
+      title: "Creating your account",
+      upTime: strings.REMOVE_ON_PUSH,
+    });
 
     try {
-      const response = await supabase.auth.signUp({
-        email: data.email,
-        password: data.password,
-      });
-
-      handleResponse(response, {
-        title: "Account created successfully",
-        subtitle: `A verification link has been mailed to ${data.email}, please verify and log in.`,
-      });
+      handleResponse(
+        await supabase.auth.api.signUpWithEmail(data.email, data.password, {
+          redirectTo: `${window.location.origin}/auth`,
+        }),
+        {
+          title: "Account created successfully",
+          subtitle: `A verification link has been mailed to ${data.email}, please verify and log in.`,
+        }
+      );
     } catch (e) {
       handleException(e);
     }
   };
 
   const verifyEmail = async () => {
-    makeToast({ variant: "loading", title: "Mailing you a verification link" });
+    makeToast({
+      variant: "loading",
+      title: "Mailing you a verification link",
+      upTime: strings.REMOVE_ON_PUSH,
+    });
 
     try {
-      const response = await supabase.auth.api.resetPasswordForEmail(
-        data.email
+      handleResponse(
+        await supabase.auth.api.resetPasswordForEmail(data.email, {
+          redirectTo: `${window.location.origin}/auth/reset/renew`,
+        }),
+        {
+          title: "Ready to reset!",
+          subtitle: `A password reset link has been mailed to ${data.email}.`,
+        }
       );
-
-      handleResponse(response, {
-        title: "Reset link sent successfully",
-        subtitle: `Follow the reset link sent to ${data.email}.`,
-      });
     } catch (e) {
       handleException(e);
     }
   };
 
   const renewPassword = async () => {
-    makeToast({ variant: "loading", title: "Resetting your password" });
+    makeToast({
+      variant: "loading",
+      title: "Resetting your password",
+      upTime: strings.REMOVE_ON_PUSH,
+    });
 
     try {
-      const response = await supabase.auth.update({
-        password: data.password,
-      });
-
-      handleResponse(response, {
-        title: "Password updated successfully",
-        subtitle: "You've been logged in with the new password, save it.",
-      });
+      handleResponse(
+        await supabase.auth.update({
+          password: data.password,
+        }),
+        {
+          title: "Password updated successfully",
+          subtitle:
+            "You've been logged in with the new password, redirecting to homepage.",
+        }
+      );
     } catch (e) {
       handleException(e);
     }

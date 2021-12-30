@@ -19,12 +19,6 @@ function Create() {
   const navigate = useNavigate();
   const makeToast = useToast();
 
-  function onCreated() {
-    setTimeout(() => {
-      navigate("/auth");
-    }, redirectTime);
-  }
-
   /**
    * Match the passwords and alter their variants with `invalid`
    * if they don't match.
@@ -77,7 +71,7 @@ function Create() {
           email: emailState.value,
           password: pswdState.value,
         },
-        onSuccess: onCreated,
+        onSuccess: () => navigate("/auth", { replace: true }),
       }).createAccount();
     }
   }
