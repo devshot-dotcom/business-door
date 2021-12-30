@@ -4,6 +4,8 @@ import { strings } from "../helpers/strings";
 /**
  * Class-like entity that handles the database functionalities through a REST based api. Read the whole jsDoc to understand the what's, why's and how's.
  *
+ * Every single method that's returned i.e `login`, `createAccount`, etc, automatically requests the API & sends relevant toasts.
+ *
  * - Why is `makeToast` not retrieved from `useToast` and retrived as a param?
  * Answer: Cuz hooks are allowed at the top-level of React Components. This ain't a react component, hence, hooks can't be used here.
  *
@@ -26,6 +28,10 @@ import { strings } from "../helpers/strings";
  * </code></pre>
  */
 function Authenticator({ makeToast, data, onSuccess, onFailure }) {
+  /**
+   * @param toastOptions An object that contains the metadeta of a toast.
+   * Refer to `Toast` data class (located in useToast.js) for complete information.
+   */
   function handleResponse({ user, error }, toastOptions) {
     if (error !== null) {
       makeToast({
