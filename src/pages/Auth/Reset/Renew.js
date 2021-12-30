@@ -6,15 +6,65 @@ import {
   PasswordCriteria,
   CardBody,
 } from "../../../components/components";
-import { useInput } from "../../../hooks/hooks";
+import { usePassword, useToast } from "../../../hooks/hooks";
+import { Authenticator } from "../../../helpers/Authenticator";
+import { useNavigate } from "react-router-dom";
 
 function Renew() {
-  const [pswdState, dispatchPswd] = useInput();
-  const [rePswdState, dispatchRePswd] = useInput();
+  const [pswdState, dispatchPswd, isPswdValid] = usePassword();
+  const [rePswdState, dispatchRePswd, isRePswdValid] = usePassword();
+  const navigate = useNavigate();
+  const makeToast = useToast();
+
+  /**
+   * Match the passwords and alter their variants with `invalid`
+   * if they don't match.
+   *
+   * @return {Boolean} `true` if the passwords match and `false` otherwise.
+   */
+  function doPswdsMatch() {
+    // The match between the values.
+    const result = pswdState.value === rePswdState.value;
+
+    // In case the match doesn't happen.
+    if (!result) {
+      dispatchPswd({
+        type: "invalid",
+        tooltip: {
+          label: "Passwords don't match 😥",
+          isShownForever: true,
+        },
+      });
+
+      dispatchRePswd({
+        type: "invalid",
+        tooltip: {
+          label: "Passwords don't match 🤧",
+          isShownForever: true,
+        },
+      });
+    }
+
+    return result;
+  }
 
   function handleSubmit(e) {
     e.preventDefault();
-    console.log(e.target);
+    let errors = 0;
+
+    isPswdValid() || ++errors;
+    isRePswdValid() || ++errors;
+    doPswdsMatch() || ++errors;
+
+    if (errors === 0) {
+      Authenticator({
+        makeToast: makeToast,
+        data: {
+          password: pswdState.value,
+        },
+        onSuccess: () => navigate("/home", { replace: true }),
+      }).renewPassword();
+    }
   }
 
   return (

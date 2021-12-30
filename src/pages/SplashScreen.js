@@ -11,11 +11,16 @@ function SplashScreen() {
   useEffect(() => {
     const timeout = setTimeout(() => {
       // If the app is launched in response to email verification.
-      if (isAccessToken("signup")) navigate("auth/login", { replace: true });
+      if (isAccessToken("signup")) {
+        navigate("auth", { replace: true });
+        return;
+      }
 
       // If the app is launched in response to password reset email.
-      if (isAccessToken("signup"))
-        navigate("auth/reset-password/renew", { replace: true });
+      if (isAccessToken("recovery")) {
+        navigate("auth/reset/renew", { replace: true });
+        return;
+      }
 
       // For now, redirecting to login as the homepage isn't ready.
       // TODO: Redirect to homepage.
