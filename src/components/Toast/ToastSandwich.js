@@ -1,5 +1,6 @@
 import React from "react";
 import { Toast } from "./Toast";
+import "./Toast.scss";
 
 function ToastSandwich({ toasts, setToasts, position }) {
   function removeToast(i) {
@@ -21,7 +22,7 @@ function ToastSandwich({ toasts, setToasts, position }) {
             key={index}
             index={index}
             toast={toast}
-            onRemove={removeToast}
+            removeToast={removeToast}
           />
         ))}
       </ul>

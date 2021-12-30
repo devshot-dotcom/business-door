@@ -34,4 +34,15 @@ function isPasswordValid(password) {
   return patterns.PASSWORD.test(password);
 }
 
-export { isObjectValid, isAccessToken, isEmailValid, isPasswordValid };
+/** @see https://stackoverflow.com/a/9436948/14716989 */
+function isString(value) {
+  return typeof value === "string" || value instanceof String;
+}
+
+export {
+  isObjectValid,
+  isAccessToken,
+  isEmailValid,
+  isPasswordValid,
+  isString,
+};

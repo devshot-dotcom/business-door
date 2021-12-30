@@ -1,19 +1,23 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Flexbox, Input, Button, CardBody } from "../../components/components";
-import { useInput, useAuth } from "../../hooks/hooks";
+import { useInput, useToast } from "../../hooks/hooks";
+import { Authenticator } from "../../helpers/Authenticator";
 
 function Login() {
   const [emailState, dispatchEmail] = useInput();
   const [pswdState, dispatchPswd] = useInput();
-  const login = useAuth("login");
+  const makeToast = useToast();
 
   function handleSubmit(e) {
     e.preventDefault();
-    login({
-      email: emailState.value,
-      password: pswdState.value,
-    });
+    Authenticator({
+      makeToast: makeToast,
+      data: {
+        email: emailState.value,
+        password: pswdState.value,
+      },
+    }).login();
   }
 
   return (

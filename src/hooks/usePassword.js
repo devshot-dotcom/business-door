@@ -4,10 +4,10 @@ import { patterns } from "../helpers/regex";
 function usePassword() {
   const [pswdState, dispatchPswd] = useInput();
 
-  const validatePswd = () => {
-    const condition = patterns.PASSWORD.test(pswdState.value);
+  const isPasswordValid = () => {
+    const isValid = patterns.PASSWORD.test(pswdState.value);
 
-    if (!condition) {
+    if (!isValid) {
       dispatchPswd({
         type: "invalid",
         tooltip: {
@@ -17,10 +17,10 @@ function usePassword() {
       });
     }
 
-    return condition;
+    return isValid;
   };
 
-  return [pswdState, dispatchPswd, validatePswd];
+  return [pswdState, dispatchPswd, isPasswordValid];
 }
 
 export { usePassword };

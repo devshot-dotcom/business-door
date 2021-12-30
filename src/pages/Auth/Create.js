@@ -7,16 +7,17 @@ import {
   PasswordCriteria,
   CardBody,
 } from "../../components/components";
-import { useEmail, usePassword, useAuth } from "../../hooks/hooks";
+import { useEmail, usePassword, useToast } from "../../hooks/hooks";
 import { redirectTime } from "../../helpers/integers";
 import { useNavigate } from "react-router-dom";
+import { Authenticator } from "../../helpers/Authenticator";
 
 function Create() {
-  const [emailState, dispatchEmail, validateEmail] = useEmail();
-  const [pswdState, dispatchPswd, validatePswd] = usePassword();
-  const [rePswdState, dispatchRePswd, validateRePswd] = usePassword();
-  const createAccount = useAuth("create");
+  const [emailState, dispatchEmail, isEmailValid] = useEmail();
+  const [pswdState, dispatchPswd, isPswdValid] = usePassword();
+  const [rePswdState, dispatchRePswd, isRePswdValid] = usePassword();
   const navigate = useNavigate();
+  const makeToast = useToast();
 
   function onCreated() {
     setTimeout(() => {
@@ -30,7 +31,7 @@ function Create() {
    *
    * @return {Boolean} `true` if the passwords match and `false` otherwise.
    */
-  function matchPasswords() {
+  function doPswdsMatch() {
     // The match between the values.
     const result = pswdState.value === rePswdState.value;
 
@@ -63,18 +64,21 @@ function Create() {
     let errors = 0;
 
     // Counter is increased by `1` at each validation error.
-    if (!validateEmail()) ++errors;
-    if (!validatePswd()) ++errors;
-    if (!validateRePswd()) ++errors;
-    if (!matchPasswords()) ++errors;
+    if (!isEmailValid()) ++errors;
+    if (!isPswdValid()) ++errors;
+    if (!isRePswdValid()) ++errors;
+    if (!doPswdsMatch()) ++errors;
 
     // In case counter stays at 0 (No errors)
     if (errors === 0) {
-      createAccount({
-        email: emailState.value,
-        password: pswdState.value,
+      Authenticator({
+        makeToast: makeToast,
+        data: {
+          email: emailState.value,
+          password: pswdState.value,
+        },
         onSuccess: onCreated,
-      });
+      }).createAccount();
     }
   }
 

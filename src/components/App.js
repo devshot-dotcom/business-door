@@ -29,7 +29,9 @@ export function App() {
                 </Route>
                 <Route path="reset" element={<Reset />}>
                   <Route index={true} element={<Verify />} />
-                  <Route path="renew" element={<Renew />} />
+                  <Route element={<AuthorizedRoute />}>
+                    <Route path="renew" element={<Renew />} />
+                  </Route>
                 </Route>
               </Route>
               <Route path="home" element={<Home />} />

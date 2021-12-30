@@ -4,10 +4,10 @@ import { patterns } from "../helpers/regex";
 function useEmail() {
   const [emailState, dispatchEmail] = useInput();
 
-  const validateEmail = () => {
-    const condition = patterns.EMAIL.test(emailState.value);
+  const isEmailValid = () => {
+    const isValid = patterns.EMAIL.test(emailState.value);
 
-    if (!condition) {
+    if (!isValid) {
       dispatchEmail({
         type: "invalid",
         tooltip: {
@@ -17,10 +17,10 @@ function useEmail() {
       });
     }
 
-    return condition;
+    return isValid;
   };
 
-  return [emailState, dispatchEmail, validateEmail];
+  return [emailState, dispatchEmail, isEmailValid];
 }
 
 export { useEmail };

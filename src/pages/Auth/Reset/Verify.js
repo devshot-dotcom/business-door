@@ -6,14 +6,33 @@ import {
   Flexbox,
   CardBody,
 } from "../../../components/components";
-import { useInput } from "../../../hooks/hooks";
+import { useEmail, useToast } from "../../../hooks/hooks";
+import { Authenticator } from "../../../helpers/Authenticator";
 
 function Verify() {
-  const [emailState, dispatchEmail] = useInput();
+  const [emailState, dispatchEmail, isEmailValid] = useEmail();
+  const makeToast = useToast();
+
+  function onMailSent() {
+    makeToast({
+      variant: "default",
+      subtitle:
+        'Mail us by clicking the "serious help" below for additional support.',
+    });
+  }
 
   function handleSubmit(e) {
     e.preventDefault();
-    console.log(e.target);
+
+    if (isEmailValid()) {
+      Authenticator({
+        makeToast: makeToast,
+        data: {
+          email: emailState.value,
+        },
+        onSuccess: onMailSent,
+      }).verifyEmail();
+    }
   }
 
   return (

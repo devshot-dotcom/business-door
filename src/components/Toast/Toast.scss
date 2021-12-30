@@ -1,16 +1,16 @@
-@import "./vars";
-@import "./helper";
+@use "../../sass/vars";
+@use "../../sass/helper" with ($breakpoint: vars.$halfTablet);
 
 /* Toast List. */
 .ToastSandwich {
   position: fixed;
   width: 100vw;
-  padding: $spacerLarge;
-  padding-top: $spacerDefault;
+  padding: vars.$spacerDefault;
+  padding-top: 0;
   margin: 0;
   list-style: none;
 
-  @media (min-width: $smallestTablet) {
+  @media (min-width: vars.$smallestTablet) {
     width: 25rem;
   }
 
@@ -42,31 +42,31 @@ body[data-theme="dark"] .toast {
 
 .toast {
   background-color: white;
-  padding: $spacerSmaller;
-  padding-left: $spacerDefault;
-  margin-top: $spacerDefault;
-  border-radius: $spacerSmaller;
+  padding: vars.$spacerSmaller;
+  padding-left: vars.$spacerDefault;
+  margin-top: vars.$spacerDefault;
+  border-radius: vars.$spacerSmaller;
   display: flex;
   justify-content: space-between;
-  gap: $spacerDefault;
+  gap: vars.$spacerDefault;
   cursor: pointer;
-  @include transition(all $transitionFast);
+  @include helper.transition(all vars.$transitionFast);
 
   &:hover,
   &:focus-within {
-    box-shadow: $shadowMinimal;
-    transform: $translateYMinimal;
+    box-shadow: vars.$shadowMinimal;
+    transform: vars.$translateYMinimal;
   }
 
   $states: (
-    "valid": map-get($colorValid, "400"),
-    "invalid": map-get($colorInvalid, "400"),
+    "valid": map-get(vars.$colorValid, "400"),
+    "invalid": map-get(vars.$colorInvalid, "400"),
     "loading": var(--appTheme-colorTextSubtle),
   );
 
   @each $state, $color in $states {
     &.toast-#{$state} {
-      border-bottom: calc(#{$spacerSmaller} / 2) solid $color;
+      border-bottom: calc(#{vars.$spacerSmaller} / 2) solid $color;
 
       .content__icon * {
         color: $color;
@@ -79,10 +79,10 @@ body[data-theme="dark"] .toast {
 .toast__content {
   display: flex;
   align-items: center;
-  gap: $spacerDefault;
+  gap: vars.$spacerDefault;
 
   .content__icon {
-    font-size: $spacerDefault;
+    font-size: vars.$spacerDefault;
 
     * {
       color: var(--appTheme-colorText);
@@ -91,7 +91,7 @@ body[data-theme="dark"] .toast {
 
   .content__titles {
     .smallText {
-      margin-top: $spacerSmallest;
+      margin-top: vars.$spacerSmallest;
       color: var(--appTheme-colorTextSubtle);
     }
   }
@@ -101,11 +101,11 @@ body[data-theme="dark"] .toast {
 .toast__button {
   background-color: transparent;
   border: 0;
-  border-radius: $spacerSmaller;
-  font-size: $spacerDefault;
-  padding: $spacerSmaller;
+  border-radius: vars.$spacerSmaller;
+  font-size: vars.$spacerDefault;
+  padding: vars.$spacerSmaller;
   cursor: pointer;
-  @include transition(background-color $transitionFast);
+  @include helper.transition(background-color vars.$transitionFast);
 
   * {
     color: var(--appTheme-colorText);
@@ -113,6 +113,6 @@ body[data-theme="dark"] .toast {
 
   &:hover,
   &:focus {
-    background-color: map-get($colorInvalid, "400");
+    background-color: map-get(vars.$colorInvalid, "400");
   }
 }
