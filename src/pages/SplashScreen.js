@@ -1,7 +1,6 @@
 import React, { useEffect } from "react";
 import { useNavigate } from "react-router";
 import { Gradient, Logo, Absolute, Flexbox } from "../components/components";
-import { isAccessToken } from "../helpers/functions";
 import { durationLong } from "../helpers/integers";
 
 function SplashScreen() {
@@ -10,21 +9,8 @@ function SplashScreen() {
   // Navigate away from splash screen.
   useEffect(() => {
     const timeout = setTimeout(() => {
-      // If the app is launched in response to email verification.
-      if (isAccessToken("signup")) {
-        navigate("auth", { replace: true });
-        return;
-      }
-
-      // If the app is launched in response to password reset email.
-      if (isAccessToken("recovery")) {
-        navigate("auth/reset/renew", { replace: true });
-        return;
-      }
-
-      // For now, redirecting to login as the homepage isn't ready.
-      // TODO: Redirect to homepage.
-      navigate("/auth", { replace: true });
+      // Redirect to homepage.
+      navigate("/home", { replace: true });
     }, durationLong);
 
     return () => clearTimeout(timeout);
