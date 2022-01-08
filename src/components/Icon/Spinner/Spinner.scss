@@ -1,4 +1,4 @@
-@import "../../../sass/vars";
+@use "../../../sass/vars";
 
 @mixin spinner($size, $speed) {
   font-size: calc(#{$size} * 2);
@@ -7,23 +7,26 @@
 
 .spinner {
   $sizes: (
-    "small": $spacerSmaller,
-    "default": $spacerDefault,
-    "large": $spacerLarge,
+    "smallest": vars.$spacerSmallest,
+    "smaller": vars.$spacerSmaller,
+    "default": vars.$spacerDefault,
+    "medium": vars.$spacerMedium,
+    "larger": vars.$spacerLarger,
+    "largest": vars.$spacerLargest,
   );
 
   @each $size, $value in $sizes {
     &.size-#{$size} {
       &.speed-slow {
-        @include spinner($value, $transitionSlow);
+        @include spinner($value, vars.$transitionSlow);
       }
 
       &.speed-default {
-        @include spinner($value, $transitionDefault);
+        @include spinner($value, vars.$transitionDefault);
       }
 
       &.speed-fast {
-        @include spinner($value, $transitionFast);
+        @include spinner($value, vars.$transitionFast);
       }
     }
   }

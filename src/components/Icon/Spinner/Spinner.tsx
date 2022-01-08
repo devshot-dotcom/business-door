@@ -1,13 +1,13 @@
-import React from "react";
 import { faCircleNotch } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import "./Spinner.scss";
 
-/** Configurable spinner.
- * Provide a size [`small`, `default`, `large`]
- * Provide rotation speed [`slow`, `default`, `fast`]
- */
-function Spinner({ size, speed }) {
+interface SpinnerProps {
+  size?: "smallest" | "smaller" | "default" | "medium" | "larger" | "largest";
+  speed?: "slow" | "default" | "fast";
+}
+
+function Spinner({ size = "default", speed = "default" }: SpinnerProps) {
   return (
     <FontAwesomeIcon
       icon={faCircleNotch}
