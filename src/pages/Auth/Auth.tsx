@@ -1,4 +1,3 @@
-import React from "react";
 import { Flexbox, Card, Logo, Absolute } from "../../components/components";
 import { Outlet } from "react-router-dom";
 import { ThemeSwitcher } from "../../modules/modules";
