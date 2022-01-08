@@ -1,9 +1,18 @@
-import React from "react";
+import * as React from "react";
 import { Flexbox, Menu, MenuItem } from "../../../components";
 import { patterns } from "../../../../helpers/regex";
 import "./PasswordCriteria.scss";
 
-function PasswordCriteria({ style, className, password, children }) {
+interface CriteriaProps extends React.ComponentPropsWithoutRef<"div"> {
+  password: string;
+}
+
+const PasswordCriteria: React.FC<CriteriaProps> = ({
+  password,
+  style,
+  className,
+  children,
+}) => {
   const leastChars = password.length >= 8;
   const lowerCase = patterns.LOWERCASE.test(password);
   const upperCase = patterns.UPPERCASE.test(password);
@@ -13,7 +22,7 @@ function PasswordCriteria({ style, className, password, children }) {
     <Flexbox
       direction="column"
       align="stretch"
-      gap="0"
+      gap="none"
       className={`criteria-wrapper ${className}`}
       style={style}
     >
@@ -28,6 +37,6 @@ function PasswordCriteria({ style, className, password, children }) {
       </div>
     </Flexbox>
   );
-}
+};
 
 export { PasswordCriteria };
