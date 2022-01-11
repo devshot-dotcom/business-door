@@ -29,7 +29,7 @@ function doPasswordsMatch(
     if (passwords[i + 1] && passwords[i + 1] !== password) matches = false;
   });
 
-  if (dispatchers) {
+  if (dispatchers && !matches) {
     if (dispatchers.length !== passwordCount)
       throw new Error(
         "Can't dispatch password states. Dispatchers are more or less than the passwords."

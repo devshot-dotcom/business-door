@@ -32,7 +32,6 @@ function ThemeSwitcher() {
       label="Dark Mode"
       checked={isDarkMode}
       checkHandler={(isDarkMode) => handleChange(isDarkMode)}
-      className="paddingMedium"
     />
   );
 }

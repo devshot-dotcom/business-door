@@ -7,11 +7,11 @@ function Auth() {
     <div className="viewport bg-secondary">
       <Flexbox justify="center" align="center" className="minHeight-100">
         <Card singular={true}>
-          <Logo />
+          <Logo size="medium" />
           <Outlet />
         </Card>
       </Flexbox>
-      <Absolute placement="bottom-right" className="padding-medium">
+      <Absolute placement="bottom-right" className="margin-medium">
         <ThemeSwitcher />
       </Absolute>
     </div>

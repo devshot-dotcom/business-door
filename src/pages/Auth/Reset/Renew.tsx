@@ -42,10 +42,10 @@ function Renew() {
   return (
     <form onSubmit={handleSubmit}>
       <CardBody>
-        <Flexbox direction="column" gap="smaller">
+        <Flexbox align="start" direction="column" gap="smaller">
           <h3 className="h3">Reset Password</h3>
-          <div className="smallText color-primary-subtle">
-            Finally, time to get you a new one, don't forget it this time
+          <div className="small-text color-primary-subtle">
+            Finally, time to get you a new one, don't forget it this time.
           </div>
         </Flexbox>
 

@@ -44,9 +44,10 @@ interface ToastDataset {
 
   /** For how long the toast will be displayed.
    * Number must be in milliseconds (1s = 1000ms).
-   * Provide a string from `strings.ts` under the
-   * label of `toasts` for advanced effects. */
-  upTime?: number | string;
+   * - REMOVE_ON_PUSH removes the toast when a
+   * newer toast is cooked.
+   */
+  upTime?: number | "REMOVE_ON_PUSH";
 
   /** Callback that's called when a toast is removed */
   onRemove?: () => void;

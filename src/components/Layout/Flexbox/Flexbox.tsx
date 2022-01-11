@@ -26,7 +26,7 @@ const Flexbox: React.FC<FlexboxProps> = ({
   align = "center",
   gap = "default",
   children,
-  className,
+  className = "",
   ...rest
 }) => {
   return (

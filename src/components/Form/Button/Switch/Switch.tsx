@@ -13,14 +13,19 @@ const Switch: React.FC<SwitchProps> = ({
   label,
   checked,
   checkHandler,
-  className,
+  className = "",
   ...rest
 }) => {
   const switchRef = React.createRef<HTMLInputElement>();
 
   return (
-    <span className={`switch ${className}`} {...rest}>
-      <label htmlFor={id} className="preTitle">
+    <span
+      role="switch"
+      aria-checked={checked}
+      className={`switch ${className}`}
+      {...rest}
+    >
+      <label htmlFor={id} className="pre-title">
         {label}
       </label>
       <button

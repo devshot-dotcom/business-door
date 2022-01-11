@@ -1,3 +1,4 @@
+/* Sizing System. */
 $spacerSmallest: var(--spacer-smallest);
 $spacerSmaller: var(--spacer-smaller);
 $spacerDefault: var(--spacer-default);
@@ -7,6 +8,14 @@ $spacerLarger: var(--spacer-larger);
 $spacerLargest: var(--spacer-largest);
 $spacerHuge: var(--spacer-huge);
 $spacerHumongous: var(--spacer-humungous);
+$sizes: (
+  "smallest": $spacerSmallest,
+  "smaller": $spacerSmaller,
+  "default": $spacerDefault,
+  "medium": $spacerMedium,
+  "larger": $spacerLarger,
+  "largest": $spacerLargest,
+);
 
 /* Transitioning System. */
 $transitionFast: 100ms;
@@ -101,12 +110,16 @@ $shadowMinimal: 0 4px 20px
 $translateYMinimal: translateY(-10%);
 
 /* Keyframe System. */
-@keyframes rotate360 {
-  0% {
-    transform: rotate(0deg);
-  }
+@mixin rotate360($speed: $transitionDefault, $iterationCount: infinite) {
+  animation: rotate360 $speed $iterationCount;
 
-  100% {
-    transform: rotate(360deg);
+  @keyframes rotate360 {
+    0% {
+      transform: rotate(0deg);
+    }
+
+    100% {
+      transform: rotate(360deg);
+    }
   }
 }

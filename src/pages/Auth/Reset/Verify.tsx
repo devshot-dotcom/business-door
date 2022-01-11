@@ -37,10 +37,10 @@ function Verify() {
   return (
     <form onSubmit={handleSubmit}>
       <CardBody>
-        <Flexbox direction="column" gap="smaller">
+        <Flexbox align="start" direction="column" gap="smaller">
           <h3 className="h3">Reset Password</h3>
-          <div className="smallText color-primary-subtle">
-            Don't worry, happens to the best of us
+          <div className="small-text color-primary-subtle">
+            Don't worry, happens to the best of us.
           </div>
         </Flexbox>
 
@@ -62,8 +62,8 @@ function Verify() {
           Mail me a reset link
         </Button>
 
-        <Flexbox align="center" gap="smaller">
-          <div className="smallText">Forgot the email as well?</div> 😅
+        <Flexbox justify="start" align="center" gap="smaller">
+          <div className="small-text">Forgot the email as well?</div> 😅
           <a
             href={`mailto:${authorEmail}`}
             className="link"

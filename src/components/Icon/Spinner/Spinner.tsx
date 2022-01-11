@@ -11,8 +11,7 @@ function Spinner({ size = "default", speed = "default" }: SpinnerProps) {
   return (
     <FontAwesomeIcon
       icon={faCircleNotch}
-      className={`spinner size-${size || "default"} 
-      speed-${speed || "default"}`}
+      className={`spinner size-${size} speed-${speed}`}
     />
   );
 }

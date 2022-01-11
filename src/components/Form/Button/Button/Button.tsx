@@ -7,7 +7,7 @@ interface ButtonProps extends React.ComponentPropsWithoutRef<"button"> {
 
 const Button: React.FC<ButtonProps> = ({
   children,
-  className,
+  className = "",
   variant = "primary",
   ...rest
 }) => {

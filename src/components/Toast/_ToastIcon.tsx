@@ -9,7 +9,7 @@ import { Spinner } from "../components";
 
 interface ToastIconProps {
   variant: string;
-  icon: string | IconProp;
+  icon?: string | IconProp;
 }
 
 function ToastIcon({ variant, icon }: ToastIconProps): JSX.Element {

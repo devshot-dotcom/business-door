@@ -6,6 +6,7 @@ import {
   Absolute,
   Flexbox,
 } from "../components/components";
+import { ThemeContext } from "../config/context/ThemeContext";
 import { durationLong } from "../helpers/integers";
 
 function SplashScreen() {
@@ -23,11 +24,11 @@ function SplashScreen() {
 
   return (
     <div className="viewport">
-      <LinearGradient angle="to-bottom">
+      <LinearGradient>
         <Absolute placement="center">
           <Flexbox direction="column" align="center" gap="none">
             <Logo size="larger" />
-            <div className="preTitle">Loading ...</div>
+            <div className="pre-title">Loading ...</div>
           </Flexbox>
         </Absolute>
         <Absolute placement="bottom-right" className="padding-medium">

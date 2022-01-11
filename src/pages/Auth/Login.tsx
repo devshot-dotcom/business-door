@@ -59,7 +59,7 @@ function Login() {
           Log In
         </Button>
 
-        <Flexbox align="center" gap="smaller">
+        <Flexbox justify="start" align="center" gap="smaller">
           <div className="paragraph">Don't have an account?</div>
           <Link to="/auth/create" className="link">
             Create

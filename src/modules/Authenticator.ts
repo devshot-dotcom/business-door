@@ -1,7 +1,6 @@
 /* Module that serves as a bridge between the database & the Auth components. See the tsdocs for the class Authenticator below. */
 
 import { supabase } from "../config/database";
-import { strings } from "../helpers/strings";
 import { ToastDataset } from "../helpers/types";
 
 interface Response {
@@ -106,7 +105,7 @@ class Authenticator implements AuthenticatorProps {
     this.makeToast({
       variant: "loading",
       title: "Trying to log you in",
-      upTime: strings.REMOVE_ON_PUSH,
+      upTime: "REMOVE_ON_PUSH",
     });
 
     try {
@@ -129,7 +128,7 @@ class Authenticator implements AuthenticatorProps {
     this.makeToast({
       variant: "loading",
       title: "Creating your account",
-      upTime: strings.REMOVE_ON_PUSH,
+      upTime: "REMOVE_ON_PUSH",
     });
 
     try {
@@ -155,7 +154,7 @@ class Authenticator implements AuthenticatorProps {
     this.makeToast({
       variant: "loading",
       title: "Mailing you a verification link",
-      upTime: strings.REMOVE_ON_PUSH,
+      upTime: "REMOVE_ON_PUSH",
     });
 
     try {
@@ -177,7 +176,7 @@ class Authenticator implements AuthenticatorProps {
     this.makeToast({
       variant: "loading",
       title: "Resetting your password",
-      upTime: strings.REMOVE_ON_PUSH,
+      upTime: "REMOVE_ON_PUSH",
     });
 
     try {
@@ -187,8 +186,7 @@ class Authenticator implements AuthenticatorProps {
         }),
         {
           title: "Password updated successfully",
-          subTitle:
-            "You've been logged in with the new password, redirecting to homepage.",
+          subTitle: "You've been logged in with the new password.",
         }
       );
     } catch (e: any) {

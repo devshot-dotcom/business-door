@@ -13,13 +13,7 @@ interface ToastProps {
 }
 
 function Toast({ index, toastDataset, removeToast }: ToastProps) {
-  const {
-    variant = "default",
-    title,
-    subTitle,
-    icon = "🚀",
-    upTime,
-  } = toastDataset;
+  const { variant = "default", title, subTitle, icon, upTime } = toastDataset;
 
   // Remove the toast after set upTime.
   useEffect(() => {
@@ -50,12 +44,12 @@ function Toast({ index, toastDataset, removeToast }: ToastProps) {
       role="alertdialog"
     >
       <div className="toast__content">
-        <div className="content__icon">
+        <div className="toast__icon">
           <ToastIcon variant={variant} icon={icon} />
         </div>
-        <div className="content__titles">
+        <div className="toast__titles">
           <div className="paragraph">{title}</div>
-          <div className="smallText">{subTitle}</div>
+          <div className="small-text">{subTitle}</div>
         </div>
       </div>
       <button className="toast__button" onClick={() => removeToast(index)}>

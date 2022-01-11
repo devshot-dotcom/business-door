@@ -1,21 +1,13 @@
 @use "../../../sass/vars";
 
 @mixin spinner($size, $speed) {
-  font-size: calc(#{$size} * 2);
-  animation: rotate360 $speed infinite;
+  font-size: $size;
+  height: $size;
+  @include vars.rotate360($speed);
 }
 
 .spinner {
-  $sizes: (
-    "smallest": vars.$spacerSmallest,
-    "smaller": vars.$spacerSmaller,
-    "default": vars.$spacerDefault,
-    "medium": vars.$spacerMedium,
-    "larger": vars.$spacerLarger,
-    "largest": vars.$spacerLargest,
-  );
-
-  @each $size, $value in $sizes {
+  @each $size, $value in vars.$sizes {
     &.size-#{$size} {
       &.speed-slow {
         @include spinner($value, vars.$transitionSlow);

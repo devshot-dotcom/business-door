@@ -43,7 +43,7 @@ function Create() {
           password: pswdState.value,
         },
         onSuccess: () => navigate("/auth"),
-      });
+      }).createAccount();
     }
   }
 
@@ -100,7 +100,7 @@ function Create() {
           Create Account
         </Button>
 
-        <Flexbox align="center" gap="smaller">
+        <Flexbox justify="start" align="center" gap="smaller">
           <div className="paragraph">Already have an account?</div>
           <Link to="/auth" className="link">
             Login
