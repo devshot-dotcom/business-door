@@ -1,5 +1,7 @@
 @use "../../sass/vars";
-@use "../../sass/helper" with ($breakpoint: vars.$halfTablet);
+@use "../../sass/helper" with (
+  $breakpoint: vars.$halfTablet
+);
 
 /* Toast List. */
 .ToastSandwich {
@@ -68,7 +70,7 @@ body[data-theme="dark"] .toast {
     &.toast-#{$state} {
       border-bottom: calc(#{vars.$spacerSmaller} / 2) solid $color;
 
-      .content__icon * {
+      .toast__icon * {
         color: $color;
       }
     }
@@ -81,7 +83,7 @@ body[data-theme="dark"] .toast {
   align-items: center;
   gap: vars.$spacerDefault;
 
-  .content__icon {
+  .toast__icon {
     font-size: vars.$spacerDefault;
 
     * {
@@ -89,8 +91,8 @@ body[data-theme="dark"] .toast {
     }
   }
 
-  .content__titles {
-    .smallText {
+  .toast__titles {
+    .small-text {
       margin-top: vars.$spacerSmallest;
       color: var(--appTheme-colorTextSubtle);
     }

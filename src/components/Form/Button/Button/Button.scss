@@ -6,7 +6,6 @@
   padding: vars.$spacerDefault vars.$spacerMedium;
   background-color: $colorBackground;
   border-radius: vars.$spacerSmaller;
-  color: map-get(vars.$darkTheme, "colorText");
   cursor: pointer;
   border: 0;
 }
