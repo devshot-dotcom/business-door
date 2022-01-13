@@ -28,7 +28,7 @@ interface AuthenticatorData {
  * @returns {Object} An object containing the supported auth functionalities.
  */
 interface AuthenticatorProps {
-  makeToast: (toast: ToastDataset) => void;
+  makeToast?: (toast: ToastDataset) => void;
   data?: AuthenticatorData;
   onSuccess?: () => void;
   onFailure?: () => void;
@@ -55,7 +55,7 @@ interface AuthenticatorProps {
  * </code></pre>
  */
 class Authenticator implements AuthenticatorProps {
-  readonly makeToast: (toast: ToastDataset) => void;
+  readonly makeToast?: (toast: ToastDataset) => void;
   readonly data: AuthenticatorData | undefined;
   readonly onSuccess: (() => void) | undefined;
   readonly onFailure: (() => void) | undefined;
@@ -72,41 +72,64 @@ class Authenticator implements AuthenticatorProps {
     toastDataset: ToastDataset
   ) {
     if (error !== null) {
-      this.makeToast({
-        variant: "invalid",
-        title: error?.message,
-      });
+      if (!this.makeToast) {
+        alert(`❌ ${error?.message}`);
+      } else {
+        this.makeToast({
+          variant: "invalid",
+          title: error?.message,
+        });
+      }
+
       this.onFailure && this.onFailure();
       return;
     }
 
     if (user !== null) {
-      this.makeToast({
-        variant: toastDataset.variant || "valid",
-        title: toastDataset.title,
-        subTitle: toastDataset.subTitle,
-        icon: toastDataset.icon,
-        onRemove: toastDataset.onRemove,
-      });
+      if (!this.makeToast) {
+        alert(`✅ ${toastDataset.title} - ${toastDataset.subTitle}`);
+      } else {
+        this.makeToast({
+          variant: toastDataset.variant || "valid",
+          title: toastDataset.title,
+          subTitle: toastDataset.subTitle,
+          icon: toastDataset.icon,
+          onRemove: toastDataset.onRemove,
+        });
+      }
+
       this.onSuccess && this.onSuccess();
     }
   }
 
   private handleException(e: Error) {
     console.error(e.message);
+
+    const title = "Internal server error";
+    const subTitle = "An error occured on our side, please try again.";
+
+    if (!this.makeToast) {
+      alert(`❌ ${title} - ${subTitle}`);
+      return;
+    }
+
     this.makeToast({
       variant: "invalid",
-      title: "Internal server error",
-      subTitle: "An error occured on our side, please try again.",
+      title: title,
+      subTitle: subTitle,
     });
   }
 
   login = async () => {
-    this.makeToast({
-      variant: "loading",
-      title: "Trying to log you in",
-      upTime: "REMOVE_ON_PUSH",
-    });
+    if (!this.makeToast) {
+      alert("🚀 Trying to log you in");
+    } else {
+      this.makeToast({
+        variant: "loading",
+        title: "Trying to log you in",
+        upTime: "REMOVE_ON_PUSH",
+      });
+    }
 
     try {
       this.handleResponse(
@@ -125,11 +148,15 @@ class Authenticator implements AuthenticatorProps {
   };
 
   createAccount = async () => {
-    this.makeToast({
-      variant: "loading",
-      title: "Creating your account",
-      upTime: "REMOVE_ON_PUSH",
-    });
+    if (!this.makeToast) {
+      alert("🚀 Creating your account");
+    } else {
+      this.makeToast({
+        variant: "loading",
+        title: "Creating your account",
+        upTime: "REMOVE_ON_PUSH",
+      });
+    }
 
     try {
       this.handleResponse(
@@ -152,11 +179,15 @@ class Authenticator implements AuthenticatorProps {
   };
 
   verifyEmail = async () => {
-    this.makeToast({
-      variant: "loading",
-      title: "Mailing you a verification link",
-      upTime: "REMOVE_ON_PUSH",
-    });
+    if (!this.makeToast) {
+      alert("🚀 Mailing you a verification link");
+    } else {
+      this.makeToast({
+        variant: "loading",
+        title: "Mailing you a verification link",
+        upTime: "REMOVE_ON_PUSH",
+      });
+    }
 
     try {
       this.handleResponse(
@@ -175,11 +206,15 @@ class Authenticator implements AuthenticatorProps {
   };
 
   renewPassword = async () => {
-    this.makeToast({
-      variant: "loading",
-      title: "Resetting your password",
-      upTime: "REMOVE_ON_PUSH",
-    });
+    if (!this.makeToast) {
+      alert("🚀 Resetting your password");
+    } else {
+      this.makeToast({
+        variant: "loading",
+        title: "Resetting your password",
+        upTime: "REMOVE_ON_PUSH",
+      });
+    }
 
     try {
       this.handleResponse(
@@ -196,12 +231,21 @@ class Authenticator implements AuthenticatorProps {
     }
   };
 
+  /**
+   * Logs out a user.
+   * informs the status of the request using alerts
+   * in case the `makeToast` function is absent.
+   */
   logout = async () => {
-    this.makeToast({
-      variant: "loading",
-      title: "Logging you out",
-      upTime: "REMOVE_ON_PUSH",
-    });
+    if (!this.makeToast) {
+      alert("🚀 Logging you out");
+    } else {
+      this.makeToast({
+        variant: "loading",
+        title: "Logging you out",
+        upTime: "REMOVE_ON_PUSH",
+      });
+    }
 
     try {
       this.handleResponse(await supabase.auth.signOut(), {
