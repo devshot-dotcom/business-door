@@ -29,7 +29,7 @@ interface AuthenticatorData {
  */
 interface AuthenticatorProps {
   makeToast: (toast: ToastDataset) => void;
-  data: AuthenticatorData;
+  data?: AuthenticatorData;
   onSuccess?: () => void;
   onFailure?: () => void;
 }
@@ -56,7 +56,7 @@ interface AuthenticatorProps {
  */
 class Authenticator implements AuthenticatorProps {
   readonly makeToast: (toast: ToastDataset) => void;
-  readonly data: AuthenticatorData;
+  readonly data: AuthenticatorData | undefined;
   readonly onSuccess: (() => void) | undefined;
   readonly onFailure: (() => void) | undefined;
 
@@ -111,8 +111,8 @@ class Authenticator implements AuthenticatorProps {
     try {
       this.handleResponse(
         await supabase.auth.signIn({
-          email: this.data.email,
-          password: this.data.password,
+          email: this.data?.email!,
+          password: this.data?.password!,
         }),
         {
           title: "Successfully logged in",
@@ -134,15 +134,16 @@ class Authenticator implements AuthenticatorProps {
     try {
       this.handleResponse(
         await supabase.auth.api.signUpWithEmail(
-          this.data.email!,
-          this.data.password!,
+          this.data?.email!,
+          this.data?.password!,
           {
             redirectTo: `${window.location.origin}/auth`,
           }
         ),
         {
           title: "Account created successfully",
-          subTitle: `A verification link has been mailed to ${this.data.email}, please verify and log in.`,
+          subTitle: `A verification link has been mailed to ${this.data
+            ?.email!}, please verify and log in.`,
         }
       );
     } catch (e: any) {
@@ -159,12 +160,13 @@ class Authenticator implements AuthenticatorProps {
 
     try {
       this.handleResponse(
-        await supabase.auth.api.resetPasswordForEmail(this.data.email!, {
+        await supabase.auth.api.resetPasswordForEmail(this.data?.email!, {
           redirectTo: `${window.location.origin}/auth/reset/renew`,
         }),
         {
           title: "Ready to reset!",
-          subTitle: `A password reset link has been mailed to ${this.data.email}.`,
+          subTitle: `A password reset link has been mailed to ${this.data
+            ?.email!}.`,
         }
       );
     } catch (e: any) {
@@ -182,13 +184,29 @@ class Authenticator implements AuthenticatorProps {
     try {
       this.handleResponse(
         await supabase.auth.update({
-          password: this.data.password,
+          password: this.data?.password!,
         }),
         {
           title: "Password updated successfully",
           subTitle: "You've been logged in with the new password.",
         }
       );
+    } catch (e: any) {
+      this.handleException(e);
+    }
+  };
+
+  logout = async () => {
+    this.makeToast({
+      variant: "loading",
+      title: "Logging you out",
+      upTime: "REMOVE_ON_PUSH",
+    });
+
+    try {
+      this.handleResponse(await supabase.auth.signOut(), {
+        title: "Successfully logged out",
+      });
     } catch (e: any) {
       this.handleException(e);
     }

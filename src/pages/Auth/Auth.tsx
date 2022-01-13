@@ -5,7 +5,7 @@ import { ThemeSwitcher } from "../../modules/modules";
 function Auth() {
   return (
     <div className="viewport bg-secondary">
-      <Flexbox justify="center" align="center" className="minHeight-100">
+      <Flexbox className="min-height-100">
         <Card singular={true}>
           <Logo size="medium" />
           <Outlet />
@@ -21,3 +21,4 @@ function Auth() {
 export default Auth;
 export { Login } from "./Login";
 export { Create } from "./Create";
+export { Logout } from "./Logout";

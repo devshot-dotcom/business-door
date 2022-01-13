@@ -2,6 +2,7 @@ import * as React from "react";
 import "./Flexbox.scss";
 
 interface FlexboxProps extends React.ComponentPropsWithoutRef<"div"> {
+  inline?: boolean;
   direction?: "row" | "column";
   justify?: "center" | "space-between" | "start" | "end";
   align?: "center" | "space-between" | "start" | "end" | "stretch";
@@ -21,6 +22,7 @@ interface FlexboxProps extends React.ComponentPropsWithoutRef<"div"> {
  * & AlignItems.
  */
 const Flexbox: React.FC<FlexboxProps> = ({
+  inline = false,
   direction = "row",
   justify = "center",
   align = "center",
@@ -32,6 +34,7 @@ const Flexbox: React.FC<FlexboxProps> = ({
   return (
     <div
       className={`flexbox-${direction} 
+      flexbox-${inline ? "inline" : "block"}
       justify-${justify} 
       align-${align}
       gap-${gap}

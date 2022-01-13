@@ -1,5 +1,5 @@
-import iconValid from "../../assets/valid.svg";
-import iconInvalid from "../../assets/invalid-lightTheme.svg";
+import iconValid from "../../assets/vectors/state/check-valid.svg";
+import iconInvalid from "../../assets/vectors/state/check-invalid.svg";
 
 interface MenuItemProps extends React.ComponentPropsWithoutRef<"li"> {
   tabIndex?: number;

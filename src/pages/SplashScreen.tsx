@@ -6,7 +6,6 @@ import {
   Absolute,
   Flexbox,
 } from "../components/components";
-import { ThemeContext } from "../config/context/ThemeContext";
 import { durationLong } from "../helpers/integers";
 
 function SplashScreen() {
