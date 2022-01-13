@@ -1,7 +1,7 @@
 import { useState, useContext } from "react";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 import SplashScreen from "../pages/SplashScreen";
-import Auth, { Login, Create, Logout } from "../pages/Auth/Auth";
+import Auth, { Login, Create } from "../pages/Auth/Auth";
 import Reset, { Verify, Renew } from "../pages/Auth/Reset/Reset";
 import { Error, Error403, Error404, Error419 } from "../pages/Error/Error";
 import Home from "../pages/Home";
@@ -28,9 +28,6 @@ export function App(): JSX.Element {
                   <Route element={<UnAuthorizedRoute />}>
                     <Route index={true} element={<Login />} />
                     <Route path="create" element={<Create />} />
-                  </Route>
-                  <Route element={<AuthorizedRoute />}>
-                    <Route path="logout" element={<Logout />} />
                   </Route>
                   <Route path="reset" element={<Reset />}>
                     <Route index={true} element={<Verify />} />

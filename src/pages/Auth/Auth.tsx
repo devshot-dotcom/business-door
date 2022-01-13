@@ -21,4 +21,3 @@ function Auth() {
 export default Auth;
 export { Login } from "./Login";
 export { Create } from "./Create";
-export { Logout } from "./Logout";
