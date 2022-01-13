@@ -1,0 +1,21 @@
+<svg
+  width="99"
+  height="14"
+  viewBox="0 0 99 14"
+  fill="none"
+  xmlns="http://www.w3.org/2000/svg"
+>
+  <path
+    d="M1 2L9.1647 11.6465L17.3294 2L25.4941 11.6465L33.6588 2L41.8294 11.6465L50 2"
+    stroke="#4A4A68"
+    stroke-width="2.36145"
+    stroke-miterlimit="10"
+  />
+  <path
+    d="M49 2L57.1647 11.6465L65.3294 2L73.4941 11.6465L81.6588 2L89.8294 11.6465L98 2"
+    stroke="#4A4A68"
+    stroke-width="2.36145"
+    stroke-miterlimit="10"
+  />
+  <path d="M49.5 1L49.9102 1.25L49.5 2L49.1016 1.25L49.5 1Z" fill="#4A4A68" />
+</svg>
