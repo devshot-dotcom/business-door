@@ -22,6 +22,7 @@ $classNames: (
   "primary-subtle": var(--appTheme-colorTextSubtle),
   "secondary": var(--appTheme-colorBackground),
   "secondary-subtle": var(--appTheme-altColorBackground),
+  "brand": var(--appTheme-colorBrand),
   "link": var(--appTheme-colorLink),
 );
 
@@ -36,8 +37,7 @@ $classNames: (
 }
 
 // Width / Height Classes.
-$minMax: 0, 100;
-@each $num in $minMax {
+@each $num in 0, 100 {
   .width-#{$num} {
     width: percentage($num / 100);
   }
@@ -46,19 +46,27 @@ $minMax: 0, 100;
     height: percentage($num / 100);
   }
 
-  .minWidth-#{$num} {
+  .min-width-#{$num} {
     min-width: percentage($num / 100);
   }
 
-  .minHeight-#{$num} {
+  .min-height-#{$num} {
     min-height: percentage($num / 100);
   }
 
-  .maxWidth-#{$num} {
+  .max-width-#{$num} {
     max-width: percentage($num / 100);
   }
 
-  .maxHeight-#{$num} {
+  .max-height-#{$num} {
     max-height: percentage($num / 100);
   }
+}
+
+[data-theme="dark"] .invert-on-dark {
+  filter: invert(1);
+}
+
+[data-theme="dark"] .invert-on-light {
+  filter: invert(1);
 }
