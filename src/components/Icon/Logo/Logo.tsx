@@ -1,8 +1,8 @@
 import * as React from "react";
 import { Link } from "react-router-dom";
 import { ThemeContext } from "../../../config/context/context";
-import lightLogo from "../../../assets/brand-plain-lightTheme.svg";
-import darkLogo from "../../../assets/brand-plain-darkTheme.svg";
+import lightLogo from "../../../assets/logo/@light/logo-plain.svg";
+import darkLogo from "../../../assets/logo/@dark/logo-plain.svg";
 import "./Logo.scss";
 
 interface LogoProps extends React.ComponentPropsWithoutRef<"div"> {
