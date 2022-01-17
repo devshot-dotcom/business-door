@@ -18,6 +18,6 @@ function Auth() {
   );
 }
 
-export default Auth;
+export { Auth };
 export { Login } from "./Login";
 export { Create } from "./Create";

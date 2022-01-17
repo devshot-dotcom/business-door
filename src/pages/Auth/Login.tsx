@@ -1,25 +1,23 @@
 import * as React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Flexbox, Input, Button, CardBody } from "../../components/components";
-import { useInput, useToast } from "../../hooks/hooks";
-import { Authenticator } from "../../modules/Authenticator";
+import { useInput, useAuthenticator } from "../../hooks/hooks";
 
 function Login() {
   const [emailState, dispatchEmail] = useInput();
   const [pswdState, dispatchPswd] = useInput();
-  const makeToast = useToast();
   const navigate = useNavigate();
+  const authenticator = useAuthenticator();
 
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    new Authenticator({
-      makeToast: makeToast,
-      data: {
-        email: emailState.value,
-        password: pswdState.value,
+    authenticator.login({
+      email: emailState.value,
+      password: pswdState.value,
+      boolBacks: {
+        onSuccess: () => navigate(-1),
       },
-      onSuccess: () => navigate("/home"),
-    }).login();
+    });
   }
 
   return (

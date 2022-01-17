@@ -1,10 +1,10 @@
-import { ToastDataset } from "../../helpers/types";
+import { ToastOptions } from "../../helpers/types";
 import { Toast } from "./Toast";
 import "./Toast.scss";
 
 interface SandwichProps {
-  toasts: ToastDataset[];
-  setToasts: (toasts: ToastDataset[]) => void;
+  toasts: ToastOptions[];
+  setToasts: (toasts: ToastOptions[]) => void;
   position?: string;
 }
 
@@ -25,12 +25,12 @@ function ToastSandwich({
 
   return (
     <>
-      <ul className={`ToastSandwich ${position}`} hidden={toasts.length === 0}>
+      <ul className={`toast-sandwich ${position}`} hidden={toasts.length === 0}>
         {toasts.map((toast, index) => (
           <Toast
             key={index}
             index={index}
-            toastDataset={toast}
+            toastOptions={toast}
             removeToast={removeToast}
           />
         ))}

@@ -6,8 +6,7 @@ import {
   PasswordCriteria,
   CardBody,
 } from "../../../components/components";
-import { usePassword, useToast } from "../../../hooks/hooks";
-import { Authenticator } from "../../../modules/Authenticator";
+import { usePassword, useAuthenticator } from "../../../hooks/hooks";
 import { useNavigate } from "react-router-dom";
 import { doPasswordsMatch } from "../../../modules/MatchPasswords";
 
@@ -15,7 +14,7 @@ function Renew() {
   const [pswdState, dispatchPswd, isPswdValid] = usePassword();
   const [rePswdState, dispatchRePswd, isRePswdValid] = usePassword();
   const navigate = useNavigate();
-  const makeToast = useToast();
+  const authenticator = useAuthenticator();
 
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -29,13 +28,12 @@ function Renew() {
     ) || ++errors;
 
     if (errors === 0) {
-      new Authenticator({
-        makeToast: makeToast,
-        data: {
-          password: pswdState.value,
+      authenticator.renewPassword({
+        password: pswdState.value,
+        boolBacks: {
+          onSuccess: () => navigate("/home", { replace: true }),
         },
-        onSuccess: () => navigate("/home", { replace: true }),
-      }).renewPassword();
+      });
     }
   }
 

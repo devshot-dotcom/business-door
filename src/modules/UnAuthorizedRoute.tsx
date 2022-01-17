@@ -4,13 +4,13 @@ import { isObjectValid } from "../helpers/functions";
 
 /** Only unauthorized users can access the child of this route. */
 function UnAuthorizedRoute() {
-  // If user is logged in.
-  if (isObjectValid(supabase.auth.user())) {
-    return <Navigate to="/home" />;
+  // If user isn't logged in.
+  if (!isObjectValid(supabase.auth.user())) {
+    return <Outlet />;
   }
 
   // Otherwise.
-  return <Outlet />;
+  return <Navigate to="/419" />;
 }
 
 export { UnAuthorizedRoute };

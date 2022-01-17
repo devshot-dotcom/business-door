@@ -4,16 +4,16 @@ import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { toastUptime } from "../../helpers/integers";
 import { isString } from "../../helpers/functions";
-import { ToastDataset } from "../../helpers/types";
+import { ToastOptions } from "../../helpers/types";
 
 interface ToastProps {
   index: number;
-  toastDataset: ToastDataset;
+  toastOptions: ToastOptions;
   removeToast: (index: number) => void;
 }
 
-function Toast({ index, toastDataset, removeToast }: ToastProps) {
-  const { variant = "default", title, subTitle, icon, upTime } = toastDataset;
+function Toast({ index, toastOptions, removeToast }: ToastProps) {
+  const { variant = "default", title, subTitle, icon, upTime } = toastOptions;
 
   // Remove the toast after set upTime.
   useEffect(() => {

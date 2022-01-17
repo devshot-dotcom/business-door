@@ -1,12 +1,12 @@
 import React from "react";
-import { ToastDataset } from "../../helpers/types";
+import { ToastOptions } from "../../helpers/types";
 
 interface ToastContextProps {
-  toasts: ToastDataset[];
-  setToasts: React.Dispatch<React.SetStateAction<ToastDataset[]>>;
+  toasts: ToastOptions[];
+  setToasts: React.Dispatch<React.SetStateAction<ToastOptions[]>>;
 }
 
 export const ToastContext = React.createContext<ToastContextProps>({
-  toasts: [] as ToastDataset[],
+  toasts: [] as ToastOptions[],
   setToasts: () => {},
 });

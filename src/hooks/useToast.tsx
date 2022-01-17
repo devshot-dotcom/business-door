@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { ToastContext } from "../config/context/context";
 import { isString } from "../helpers/functions";
-import { ToastDataset } from "../helpers/types";
+import { ToastOptions } from "../helpers/types";
 
 function useToast() {
   const { setToasts } = useContext(ToastContext);
@@ -16,7 +16,7 @@ function useToast() {
    * makes it stay as long as a new toast is pushed.
    * We're just removing that toast since a newer
    * one is pushed. */
-  function getToastsFreeOfBurns(toasts: ToastDataset[]): ToastDataset[] {
+  function getToastsFreeOfBurns(toasts: ToastOptions[]): ToastOptions[] {
     // The 2nd last toast.
     const lastToast = toasts[toasts.length - 2];
 
@@ -36,8 +36,8 @@ function useToast() {
     icon,
     upTime,
     onRemove,
-  }: ToastDataset) {
-    setToasts((toasts: ToastDataset[]) =>
+  }: ToastOptions) {
+    setToasts((toasts: ToastOptions[]) =>
       getToastsFreeOfBurns([
         ...toasts,
         {

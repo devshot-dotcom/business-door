@@ -4,6 +4,6 @@ function Reset() {
   return <Outlet />;
 }
 
-export default Reset;
+export { Reset };
 export { Verify } from "./Verify";
 export { Renew } from "./Renew";

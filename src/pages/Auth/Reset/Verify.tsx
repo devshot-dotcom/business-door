@@ -6,31 +6,27 @@ import {
   Flexbox,
   CardBody,
 } from "../../../components/components";
-import { useEmail, useToast } from "../../../hooks/hooks";
-import { Authenticator } from "../../../modules/Authenticator";
+import { useEmail, useToast, useAuthenticator } from "../../../hooks/hooks";
 
 function Verify() {
   const [emailState, dispatchEmail, isEmailValid] = useEmail();
   const makeToast = useToast();
-
-  function onMailSent() {
-    makeToast({
-      subTitle:
-        'Mail us by clicking the "serious help" below for additional support.',
-    });
-  }
+  const authenticator = useAuthenticator();
 
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
 
     if (isEmailValid()) {
-      new Authenticator({
-        makeToast: makeToast,
-        data: {
-          email: emailState.value,
+      authenticator.verifyEmail({
+        email: emailState.value,
+        boolBacks: {
+          onSuccess: () =>
+            makeToast({
+              subTitle:
+                'Mail us by clicking the "contact us" below for additional support.',
+            }),
         },
-        onSuccess: onMailSent,
-      }).verifyEmail();
+      });
     }
   }
 
@@ -63,13 +59,13 @@ function Verify() {
         </Button>
 
         <Flexbox justify="start" align="center" gap="smaller">
-          <div className="small-text">Forgot the email as well?</div> 😅
+          <div className="small-text">Forgot the email as well?</div>
           <a
             href={`mailto:${authorEmail}`}
             className="link"
             title="Mail us all you remember about your account."
           >
-            Serious Help!
+            Contact us
           </a>
         </Flexbox>
       </CardBody>

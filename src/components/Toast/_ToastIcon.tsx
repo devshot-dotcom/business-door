@@ -33,6 +33,9 @@ function ToastIcon({ variant, icon }: ToastIconProps): JSX.Element {
   // If the provided icon is an element.
   if (!isString(icon)) return <FontAwesomeIcon icon={icon as IconProp} />;
 
+  // It must be an emoji.
+  if ((icon as string).length <= 3) return <span>{icon}</span>;
+
   // Otherwise, it must be the source of an image.
   return <img src={icon as string} alt="🚀" />;
 }

@@ -29,9 +29,9 @@ export type { InputVariants, InputStateType };
 //* INTERFACES.
 
 /**
- * The set of data required by a toast.
+ * The set of data required to initialize a toast.
  */
-interface ToastDataset {
+interface ToastOptions {
   /** Visual state of the toast. */
   variant?: "default" | "valid" | "invalid" | "loading";
 
@@ -115,4 +115,13 @@ interface InputActions {
   type: "default" | "update" | "valid" | "invalid";
 }
 
-export type { ToastDataset, TooltipProps, InputState, InputActions };
+/**
+ * Callback functions for a boolean response.
+ * Mimicked as `BoolBacks` as in Boolean Callbacks.
+ */
+interface BoolBacks {
+  onSuccess?: () => void;
+  onFailure?: () => void;
+}
+
+export type { ToastOptions, TooltipProps, InputState, InputActions, BoolBacks };

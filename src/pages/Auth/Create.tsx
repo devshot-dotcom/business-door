@@ -7,9 +7,8 @@ import {
   PasswordCriteria,
   CardBody,
 } from "../../components/components";
-import { useEmail, usePassword, useToast } from "../../hooks/hooks";
+import { useEmail, usePassword, useAuthenticator } from "../../hooks/hooks";
 import { useNavigate } from "react-router-dom";
-import { Authenticator } from "../../modules/Authenticator";
 import { doPasswordsMatch } from "../../modules/MatchPasswords";
 
 function Create() {
@@ -17,7 +16,7 @@ function Create() {
   const [pswdState, dispatchPswd, isPswdValid] = usePassword();
   const [rePswdState, dispatchRePswd, isRePswdValid] = usePassword();
   const navigate = useNavigate();
-  const makeToast = useToast();
+  const authenticator = useAuthenticator();
 
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -36,14 +35,11 @@ function Create() {
 
     // In case counter stays at 0 (No errors)
     if (errors === 0) {
-      new Authenticator({
-        makeToast: makeToast,
-        data: {
-          email: emailState.value,
-          password: pswdState.value,
-        },
-        onSuccess: () => navigate("/auth"),
-      }).createAccount();
+      authenticator.createAccount({
+        email: emailState.value,
+        password: pswdState.value,
+        boolBacks: { onSuccess: () => navigate("/auth") },
+      });
     }
   }
 

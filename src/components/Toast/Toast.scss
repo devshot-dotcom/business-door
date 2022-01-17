@@ -4,7 +4,7 @@
 );
 
 /* Toast List. */
-.ToastSandwich {
+.toast-sandwich {
   position: fixed;
   width: 100vw;
   padding: vars.$spacerDefault;
@@ -85,9 +85,12 @@ body[data-theme="dark"] .toast {
 
   .toast__icon {
     font-size: vars.$spacerDefault;
+    width: vars.$spacerDefault;
+    height: vars.$spacerDefault;
 
     * {
       color: var(--appTheme-colorText);
+      width: 100%;
     }
   }
 

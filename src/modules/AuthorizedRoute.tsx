@@ -10,7 +10,7 @@ function AuthorizedRoute() {
   }
 
   // Otherwise.
-  return <Navigate to="/auth" />;
+  return <Navigate to="/403" />;
 }
 
 export { AuthorizedRoute };
