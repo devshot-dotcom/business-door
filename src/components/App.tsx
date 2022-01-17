@@ -20,7 +20,7 @@ export function App(): JSX.Element {
     <ThemeContext.Provider value={{ theme, setTheme }}>
       <ToastContext.Provider value={{ toasts, setToasts }}>
         <>
-          <BrowserRouter basename="/business-door">
+          <BrowserRouter basename="/">
             <Routes>
               <Route path="/" element={<Outlet />}>
                 <Route index={true} element={<SplashScreen />} />

@@ -2,7 +2,7 @@
   "name": "business-door",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://devshot-dotcom.github.io/business-door",
+  "homepage": "https://business-door.netlify.app/",
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^1.2.36",
     "@fortawesome/free-solid-svg-icons": "^5.15.4",
