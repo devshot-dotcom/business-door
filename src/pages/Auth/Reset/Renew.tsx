@@ -41,7 +41,7 @@ function Renew() {
     <form onSubmit={handleSubmit}>
       <CardBody>
         <Flexbox align="start" direction="column" gap="smaller">
-          <h3 className="h3">Reset Password</h3>
+          <h1 className="h3">Reset Password</h1>
           <div className="small-text color-primary-subtle">
             Finally, time to get you a new one, don't forget it this time.
           </div>
@@ -51,11 +51,12 @@ function Renew() {
           <Input
             type="password"
             state={pswdState}
+            placeholder="Your Password"
+            title="Please enter your new password"
             changeHandler={(value) =>
               dispatchPswd({ type: "update", value: value })
             }
             focusHandler={() => dispatchPswd({ type: "default" })}
-            placeholder="Your Password"
             hasTypeController={true}
           />
         </PasswordCriteria>
@@ -64,11 +65,12 @@ function Renew() {
           <Input
             type="password"
             state={rePswdState}
+            placeholder="Re-enter Password"
+            title="Please re-enter your new password"
             changeHandler={(value) =>
               dispatchRePswd({ type: "update", value: value })
             }
             focusHandler={() => dispatchRePswd({ type: "default" })}
-            placeholder="Re-enter Password"
             hasTypeController={true}
           />
         </PasswordCriteria>

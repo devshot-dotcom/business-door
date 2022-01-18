@@ -1,8 +1,8 @@
-import { useState, useContext } from "react";
+import { useState, useContext, ComponentPropsWithoutRef } from "react";
 import { ThemeContext } from "../config/context/context";
 import { Switch } from "../components/components";
 
-function ThemeSwitcher() {
+function ThemeSwitcher({ ...attrs }: ComponentPropsWithoutRef<"span">) {
   // import the Theme Context.
   const { theme, setTheme } = useContext(ThemeContext);
 
@@ -32,6 +32,7 @@ function ThemeSwitcher() {
       label="Dark Mode"
       checked={isDarkMode}
       checkHandler={(isDarkMode) => handleChange(isDarkMode)}
+      {...attrs}
     />
   );
 }

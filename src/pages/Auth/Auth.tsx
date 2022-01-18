@@ -1,20 +1,24 @@
-import { Flexbox, Card, Logo, Absolute } from "../../components/components";
+import { Card, Logo } from "../../components/components";
 import { Outlet } from "react-router-dom";
 import { ThemeSwitcher } from "../../modules/modules";
+import "./Auth.scss";
 
 function Auth() {
   return (
-    <div className="viewport bg-secondary">
-      <Flexbox className="min-height-100">
-        <Card singular={true}>
-          <Logo size="medium" />
+    <main
+      className="auth viewport bg-secondary"
+      aria-label="Business door authentication system"
+    >
+      <div className="auth__card-wrapper">
+        <Card className="auth__card" singular={true}>
+          <Logo size="medium" aria-hidden="true" />
           <Outlet />
         </Card>
-      </Flexbox>
-      <Absolute placement="bottom-right" className="margin-medium">
-        <ThemeSwitcher />
-      </Absolute>
-    </div>
+      </div>
+      <div className="auth__switch-wrapper" aria-hidden="true">
+        <ThemeSwitcher className="auth__switch" />
+      </div>
+    </main>
   );
 }
 

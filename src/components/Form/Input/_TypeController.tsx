@@ -31,6 +31,7 @@ function TypeController({
   return (
     <button
       type="button"
+      aria-hidden="true"
       className="link type-controller"
       onClick={() => clickHandler(type === "password" ? "text" : "password")}
     >

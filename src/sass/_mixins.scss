@@ -1,0 +1,7 @@
+$tablet: 34.8em !default; //557px
+
+@mixin at-tablet {
+  @media (min-width: $tablet) {
+    @content;
+  }
+}

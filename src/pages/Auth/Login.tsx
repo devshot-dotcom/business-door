@@ -23,22 +23,22 @@ function Login() {
   return (
     <form onSubmit={handleSubmit}>
       <CardBody>
-        <h3 className="h3">Log In</h3>
-
+        <h1 className="h3">Log In</h1>
         <Input
           type="email"
           state={emailState}
           placeholder="Your Email Address"
+          title="Please enter your email address"
           changeHandler={(value) =>
             dispatchEmail({ type: "update", value: value })
           }
           focusHandler={() => dispatchEmail({ type: "default" })}
         />
-
         <Input
           type="password"
           state={pswdState}
           placeholder="Your Password"
+          title="Please enter your password"
           changeHandler={(value) =>
             dispatchPswd({ type: "update", value: value })
           }
@@ -59,7 +59,7 @@ function Login() {
 
         <Flexbox justify="start" align="center" gap="smaller">
           <div className="paragraph">Don't have an account?</div>
-          <Link to="/auth/create" className="link">
+          <Link to="/auth/create" className="link" title="Create an account">
             Create
           </Link>
         </Flexbox>

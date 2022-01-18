@@ -27,7 +27,7 @@ function InputIcon({ variant, tooltip }: IconProps) {
     return (
       <button
         type="button"
-        aria-label={tooltip.label}
+        aria-hidden="true"
         role="tooltip"
         data-microtip-position={tooltip.position || "top-left"}
         className={`button-blank ${tooltip.isShownForever && "show"}`}

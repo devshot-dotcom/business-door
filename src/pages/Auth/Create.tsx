@@ -46,27 +46,29 @@ function Create() {
   return (
     <form onSubmit={handleSubmit}>
       <CardBody>
-        <h3 className="h3">Create Your Account</h3>
+        <h1 className="h3">Create Your Account</h1>
 
         <Input
           type="email"
           state={emailState}
+          placeholder="Your Email Address"
+          title="Please enter your email address"
           changeHandler={(value) =>
             dispatchEmail({ type: "update", value: value })
           }
           focusHandler={() => dispatchEmail({ type: "default" })}
-          placeholder="Your Email Address"
         />
 
         <PasswordCriteria password={pswdState.value}>
           <Input
             type="password"
             state={pswdState}
+            placeholder="Your Password"
+            title="Please enter your password"
             changeHandler={(value) =>
               dispatchPswd({ type: "update", value: value })
             }
             focusHandler={() => dispatchPswd({ type: "default" })}
-            placeholder="Your Password"
             hasTypeController={true}
           />
         </PasswordCriteria>
@@ -75,11 +77,12 @@ function Create() {
           <Input
             type="password"
             state={rePswdState}
+            placeholder="Re-enter Password"
+            title="Please re-enter your password"
             changeHandler={(value) =>
               dispatchRePswd({ type: "update", value: value })
             }
             focusHandler={() => dispatchRePswd({ type: "default" })}
-            placeholder="Re-enter Password"
             hasTypeController={true}
           />
         </PasswordCriteria>
@@ -98,7 +101,7 @@ function Create() {
 
         <Flexbox justify="start" align="center" gap="smaller">
           <div className="paragraph">Already have an account?</div>
-          <Link to="/auth" className="link">
+          <Link to="/auth" className="link" title="Log in to your account">
             Login
           </Link>
         </Flexbox>

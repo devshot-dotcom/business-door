@@ -13,14 +13,14 @@
   }
 
   &.singular {
-    flex-basis: 100%;
-    align-self: stretch;
+    width: 100%;
+    height: 100%;
     padding: vars.$spacerLarge;
     background-color: var(--appTheme-altColorBackground);
 
     @media (min-width: vars.$smallestTablet) {
-      flex-basis: 23.75rem; //380px
-      align-self: center;
+      width: 23.75rem; //380px
+      height: auto;
       box-shadow: vars.$shadowMinimal;
       border-radius: vars.$spacerSmaller;
     }

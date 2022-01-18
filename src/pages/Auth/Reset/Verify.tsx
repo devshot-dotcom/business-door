@@ -34,7 +34,7 @@ function Verify() {
     <form onSubmit={handleSubmit}>
       <CardBody>
         <Flexbox align="start" direction="column" gap="smaller">
-          <h3 className="h3">Reset Password</h3>
+          <h1 className="h3">Reset Password</h1>
           <div className="small-text color-primary-subtle">
             Don't worry, happens to the best of us.
           </div>
@@ -44,6 +44,7 @@ function Verify() {
           type="email"
           state={emailState}
           placeholder="Your Email Address"
+          title="Please enter your email address"
           changeHandler={(value) =>
             dispatchEmail({ type: "update", value: value })
           }

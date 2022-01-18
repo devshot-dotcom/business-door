@@ -4,9 +4,6 @@ $breakpoint: 48em !default; //768px
 
 @mixin transition($prop) {
   @media (min-width: $breakpoint) {
-    -moz-transition: $prop;
-    -webkit-transition: $prop;
-    -o-transition: $prop;
     transition: $prop;
   }
 
@@ -17,9 +14,6 @@ $breakpoint: 48em !default; //768px
 
 @mixin animation($prop) {
   @media (min-width: $breakpoint) {
-    -moz-animation: $prop;
-    -webkit-animation: $prop;
-    -o-animation: $prop;
     animation: $prop;
   }
 

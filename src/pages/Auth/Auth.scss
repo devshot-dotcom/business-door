@@ -1,0 +1,31 @@
+@use "../../sass/vars";
+@use "../../sass/mixins" with (
+  $tablet: vars.$smallestTablet
+);
+
+main.auth {
+  min-height: 100vh;
+  display: grid;
+  grid-template-rows: 1fr auto;
+}
+
+.auth__card-wrapper {
+  @include mixins.at-tablet {
+    display: grid;
+    place-items: center;
+  }
+}
+
+.auth__switch-wrapper {
+  background-color: var(--appTheme-altColorBackground);
+  text-align: right;
+
+  @include mixins.at-tablet {
+    background-color: transparent;
+  }
+
+  .auth__switch {
+    display: inline-flex;
+    margin: 0 vars.$spacerMedium vars.$spacerMedium 0;
+  }
+}
