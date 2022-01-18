@@ -12,3 +12,9 @@
   gap: var(--spacer-smaller);
   border-radius: var(--spacer-smaller);
 }
+
+.grid-centered {
+  display: grid;
+  place-items: center;
+  min-height: 100vh;
+}

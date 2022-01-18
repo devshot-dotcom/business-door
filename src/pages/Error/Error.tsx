@@ -1,20 +1,14 @@
 import { Outlet } from "react-router-dom";
-import { Absolute, Card, CardBody, Flexbox } from "../../components/components";
-import { ThemeSwitcher } from "../../modules/ThemeSwitcher";
+import { Card, CardBody } from "../../components/components";
 
 function Error() {
   return (
-    <div className="viewport bg-secondary">
-      <Flexbox className="min-height-100">
-        <Card singular={true}>
-          <CardBody>
-            <Outlet />
-          </CardBody>
-        </Card>
-      </Flexbox>
-      <Absolute placement="bottom-right" className="margin-medium">
-        <ThemeSwitcher />
-      </Absolute>
+    <div className="viewport grid-centered bg-secondary">
+      <Card singular={true}>
+        <CardBody>
+          <Outlet />
+        </CardBody>
+      </Card>
     </div>
   );
 }

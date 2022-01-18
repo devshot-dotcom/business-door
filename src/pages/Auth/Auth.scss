@@ -1,7 +1,5 @@
 @use "../../sass/vars";
-@use "../../sass/mixins" with (
-  $tablet: vars.$smallestTablet
-);
+@use "../../sass/mixins";
 
 main.auth {
   min-height: 100vh;
