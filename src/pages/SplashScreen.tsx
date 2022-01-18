@@ -7,6 +7,7 @@ import {
   Flexbox,
 } from "../components/components";
 import { durationLong } from "../helpers/integers";
+import { versionName } from "../helpers/process";
 
 function SplashScreen() {
   const navigate = useNavigate();
@@ -31,7 +32,7 @@ function SplashScreen() {
           </Flexbox>
         </Absolute>
         <Absolute placement="bottom-right" className="padding-medium">
-          {process.env.REACT_APP_VERSION_NAME}
+          v{versionName}
         </Absolute>
       </LinearGradient>
     </div>

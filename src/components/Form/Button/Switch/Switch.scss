@@ -22,7 +22,7 @@
       background-color: white;
       border-radius: 50%;
       position: absolute;
-      top: calc(#{vars.$spacerSmaller} / 2.5);
+      top: calc(#{vars.$spacerSmaller} / 3);
       transform: translate(-110%);
 
       // Transitions suck at mobiles and smaller tablets.

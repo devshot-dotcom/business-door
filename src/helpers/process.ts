@@ -1,6 +1,6 @@
 // ENV variables.
 
-const versionName = "Business Door";
+const versionName = "1.0";
 const authorEmail = "devshot.coffee@gmail.com";
 const databaseUrl = "https://sllujlbxvmomdoxppwdd.supabase.co";
 const databasePublicKey =
