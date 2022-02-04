@@ -7,7 +7,7 @@ import {
   Flexbox,
 } from "../components/components";
 import { durationLong } from "../helpers/integers";
-import { versionName } from "../helpers/process";
+import { versionName } from "../helpers/meta";
 
 function SplashScreen() {
   const navigate = useNavigate();

@@ -1,5 +1,5 @@
 import * as React from "react";
-import { authorEmail } from "../../../helpers/process";
+import { authorEmail } from "../../../helpers/meta";
 import {
   Input,
   Button,

@@ -24,6 +24,7 @@ $buttonTypes: (
 
     &:hover,
     &:focus-within {
+      outline: 1px dotted var(--appTheme-colorLink);
       background-color: scale-color(
         $color: map-get($typeMap, "400"),
         $blackness: 25%

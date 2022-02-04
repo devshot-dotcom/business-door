@@ -1,3 +1,5 @@
+import { themes } from "./context/ThemeContext";
+
 function setDefaultTheme() {
   // If system preference is dark theme.
   if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
@@ -11,9 +13,8 @@ function setDefaultTheme() {
 }
 
 // Set default theme if not already set.
-const defaultTheme = localStorage.getItem("doorTheme") || setDefaultTheme();
+export const defaultTheme: themes =
+  (localStorage.getItem("doorTheme") as themes) || setDefaultTheme();
 
 // Apply the set theme.
 defaultTheme === "dark" && document.body.setAttribute("data-theme", "dark");
-
-export { defaultTheme };

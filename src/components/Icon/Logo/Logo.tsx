@@ -18,8 +18,12 @@ const Logo: React.FC<LogoProps> = ({
   const { theme } = React.useContext(ThemeContext);
 
   return (
-    <div className={`logo-container ${className}`} {...rest}>
-      <Link to="/">
+    <div
+      className={`logo-container ${className}`}
+      aria-label="Business Door's Logo"
+      {...rest}
+    >
+      <Link to="/" aria-hidden="true">
         <img
           src={theme === "light" ? lightLogo : darkLogo}
           alt="Business Door Logo"

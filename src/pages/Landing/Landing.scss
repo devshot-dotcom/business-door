@@ -1,0 +1,74 @@
+@use "../../sass/vars";
+
+#landing {
+  section {
+    position: relative;
+    min-height: 100vh;
+  }
+
+  #hero {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--appTheme-colorBackground);
+    min-height: 768px;
+
+    header {
+      padding: vars.$spacerMedium;
+      // To nullify the gap between the children.
+      padding-bottom: 0;
+    }
+
+    article {
+      // Controls vector sizes.
+      // Controls hero's width.
+      $vectorSize: 3.5rem;
+
+      flex-grow: 1;
+      padding: vars.$spacerMedium;
+      // Vertical Flexbox
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: vars.$spacerDefault;
+
+      h1 {
+        padding-right: $vectorSize;
+      }
+
+      .coffee-vector {
+        position: absolute;
+
+        &#vectorSemis {
+          top: 25%;
+          right: 0;
+          width: $vectorSize;
+        }
+
+        &#vectorBlocks {
+          left: 0;
+          bottom: 15%;
+          height: $vectorSize;
+        }
+      }
+    }
+  }
+
+  #intro {
+    background-color: var(--appTheme-colorBackground);
+
+    header {
+      transform: rotate(180deg) translateY(2px);
+    }
+
+    article {
+      padding: vars.$spacerMedium;
+
+      .intro__grid {
+        padding-top: vars.$spacerLargest;
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: calc(#{vars.$spacerLargest} * 2);
+      }
+    }
+  }
+}
