@@ -1,38 +1,44 @@
 @use "../../../../sass/vars";
-@use "../../../../sass/helper";
+@use "../../../../sass/mixins";
 
-@mixin button($colorBackground) {
-  @include helper.transition(background-color vars.$transitionFast linear);
-  padding: vars.$spacerDefault vars.$spacerMedium;
-  background-color: $colorBackground;
-  border-radius: vars.$spacerSmaller;
+@mixin button($color-background) {
+  padding: vars.$size-small vars.$size-medium;
+  background-color: $color-background;
+  border-radius: vars.$size-smaller;
   cursor: pointer;
   border: 0;
+  width: 100%;
+  align-self: stretch;
+
+  @media (min-width: vars.$breakpoint-mobile) {
+    width: auto;
+    align-self: flex-start;
+  }
 }
 
-$buttonTypes: (
-  "primary": vars.$colorBrand,
-  "secondary": vars.$colorSecondary,
-  "tertiary": vars.$colorTertiary,
+$button-variants: (
+  "primary": vars.$color-brand,
+  "secondary": vars.$color-secondary,
+  "tertiary": vars.$color-tertiary,
 );
 
 // Iterate over the type map.
-@each $typeName, $typeMap in $buttonTypes {
+@each $variant, $color in $button-variants {
   // Generate a class for each type (button-primary, etc).
-  .button-#{$typeName} {
-    @include button(map-get($typeMap, "400"));
+  .button-#{$variant} {
+    @include button(map-get($color, "400"));
 
     &:hover,
     &:focus-within {
-      outline: 1px dotted var(--appTheme-colorLink);
+      outline: 1px dotted var(--theme-color-link);
       background-color: scale-color(
-        $color: map-get($typeMap, "400"),
-        $blackness: 25%
+        $color: map-get($color, "400"),
+        $blackness: 10%
       );
     }
 
     &:disabled {
-      @include button(map-get($typeMap, "200"));
+      @include button(map-get($color, "200"));
       cursor: no-drop;
     }
   }

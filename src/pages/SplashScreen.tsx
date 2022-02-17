@@ -1,11 +1,6 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router";
-import {
-  LinearGradient,
-  Logo,
-  Absolute,
-  Flexbox,
-} from "../components/components";
+import { LinearGradient } from "../components/components";
 import { durationLong } from "../helpers/integers";
 import { versionName } from "../helpers/meta";
 
@@ -25,15 +20,12 @@ function SplashScreen() {
   return (
     <div className="viewport">
       <LinearGradient>
-        <Absolute placement="center">
-          <Flexbox direction="column" align="center" gap="none">
-            <Logo size="larger" />
+        <div className="layout-absolute center">
+          <div>
             <div className="pre-title">Loading ...</div>
-          </Flexbox>
-        </Absolute>
-        <Absolute placement="bottom-right" className="padding-medium">
-          v{versionName}
-        </Absolute>
+          </div>
+        </div>
+        <div className="layout-absolute bottom-right">v{versionName}</div>
       </LinearGradient>
     </div>
   );

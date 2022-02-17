@@ -1,10 +1,8 @@
 import * as React from "react";
 import {
-  Flexbox,
   Input,
   Button,
   PasswordCriteria,
-  CardBody,
 } from "../../../components/components";
 import { usePassword, useAuthenticator } from "../../../hooks/hooks";
 import { useNavigate } from "react-router-dom";
@@ -39,50 +37,48 @@ function Renew() {
 
   return (
     <form onSubmit={handleSubmit}>
-      <CardBody>
-        <Flexbox align="start" direction="column" gap="smaller">
-          <h1 className="h3">Reset Password</h1>
-          <div className="small-text color-primary-subtle">
-            Finally, time to get you a new one, don't forget it this time.
-          </div>
-        </Flexbox>
+      <div>
+        <h1 className="h3">Reset Password</h1>
+        <div className="small-text color-primary-subtle">
+          Finally, time to get you a new one, don't forget it this time.
+        </div>
+      </div>
 
-        <PasswordCriteria password={pswdState.value}>
-          <Input
-            type="password"
-            state={pswdState}
-            placeholder="Your Password"
-            title="Please enter your new password"
-            changeHandler={(value) =>
-              dispatchPswd({ type: "update", value: value })
-            }
-            focusHandler={() => dispatchPswd({ type: "default" })}
-            hasTypeController={true}
-          />
-        </PasswordCriteria>
+      <PasswordCriteria password={pswdState.value}>
+        <Input
+          type="password"
+          state={pswdState}
+          placeholder="Your Password"
+          title="Please enter your new password"
+          changeHandler={(value) =>
+            dispatchPswd({ type: "update", value: value })
+          }
+          focusHandler={() => dispatchPswd({ type: "default" })}
+          hasTypeController={true}
+        />
+      </PasswordCriteria>
 
-        <PasswordCriteria password={rePswdState.value}>
-          <Input
-            type="password"
-            state={rePswdState}
-            placeholder="Re-enter Password"
-            title="Please re-enter your new password"
-            changeHandler={(value) =>
-              dispatchRePswd({ type: "update", value: value })
-            }
-            focusHandler={() => dispatchRePswd({ type: "default" })}
-            hasTypeController={true}
-          />
-        </PasswordCriteria>
+      <PasswordCriteria password={rePswdState.value}>
+        <Input
+          type="password"
+          state={rePswdState}
+          placeholder="Re-enter Password"
+          title="Please re-enter your new password"
+          changeHandler={(value) =>
+            dispatchRePswd({ type: "update", value: value })
+          }
+          focusHandler={() => dispatchRePswd({ type: "default" })}
+          hasTypeController={true}
+        />
+      </PasswordCriteria>
 
-        <Button
-          type="submit"
-          variant="primary"
-          disabled={pswdState.value === "" || rePswdState.value === ""}
-        >
-          Reset Password
-        </Button>
-      </CardBody>
+      <Button
+        type="submit"
+        variant="primary"
+        disabled={pswdState.value === "" || rePswdState.value === ""}
+      >
+        Reset Password
+      </Button>
     </form>
   );
 }

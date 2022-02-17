@@ -1,9 +1,9 @@
 @use "../../../sass/vars";
-@use "../../../sass/helper" with ($breakpoint: vars.$halfTablet);
+@use "../../../sass/mixins";
 
-@mixin input-variant($color, $lightColor) {
+@mixin input-variant($color, $light-color) {
   border: 1px solid $color;
-  outline: calc(#{vars.$spacerSmaller} / 2) solid $lightColor;
+  outline: calc(#{vars.$size-smaller} / 2) solid $light-color;
 
   .icon {
     color: $color;
@@ -14,41 +14,41 @@
 }
 
 .input-container {
-  padding-right: vars.$spacerDefault;
-  background-color: var(--appTheme-colorBackground);
-  border-radius: vars.$spacerSmaller;
+  padding-right: vars.$size-small;
+  background-color: var(--theme-color-background);
+  border-radius: vars.$size-smaller;
   cursor: text;
   display: flex;
   align-items: center;
-  gap: vars.$spacerDefault;
-  @include helper.transition(outline vars.$transitionFast linear);
+  gap: vars.$size-small;
+  @include mixins.transition(outline vars.$transition-fast linear);
 
   &.input-default {
     @include input-variant(
-      var(--appTheme-altColorBackground),
-      var(--appTheme-altColorBackground)
+      var(--theme-color-background),
+      var(--theme-color-background)
     );
   }
 
   &.input-valid {
     @include input-variant(
-      map-get(vars.$colorValid, "400"),
-      map-get(vars.$colorValid, "25%")
+      map-get(vars.$color-valid, "400"),
+      map-get(vars.$color-valid, "25%")
     );
   }
 
   &.input-invalid {
     @include input-variant(
-      map-get(vars.$colorInvalid, "400"),
-      map-get(vars.$colorInvalid, "25%")
+      map-get(vars.$color-invalid, "400"),
+      map-get(vars.$color-invalid, "25%")
     );
   }
 
   &:focus-within {
     outline: 0;
     @include input-variant(
-      map-get(vars.$colorLink, "400"),
-      map-get(vars.$colorLink, "25%")
+      map-get(vars.$color-link, "400"),
+      map-get(vars.$color-link, "25%")
     );
   }
 
@@ -57,13 +57,13 @@
 
     input {
       cursor: no-drop;
-      color: var(--appTheme-colorTextSubtle);
+      color: var(--theme-color-text-subtle);
     }
 
     .icon {
-      color: map-get(vars.$colorTertiary, "400");
+      color: map-get(vars.$color-tertiary, "400");
       > path {
-        color: map-get(vars.$colorTertiary, "400");
+        color: map-get(vars.$color-tertiary, "400");
       }
     }
   }
@@ -76,14 +76,14 @@
   // Making it occupy all the available space.
   flex-grow: 1;
   display: inline-block;
-  padding: calc(#{vars.$spacerMedium} / 2) vars.$spacerDefault;
+  padding: calc(#{vars.$size-medium} / 2) vars.$size-small;
   padding-right: 0;
   background-color: transparent;
   border: 0;
   border-radius: inherit;
 
   &::placeholder {
-    color: var(--appTheme-colorTextSubtle);
+    color: var(--theme-color-text-subtle);
   }
 
   &:focus {

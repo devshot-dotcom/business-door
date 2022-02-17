@@ -1,24 +1,17 @@
 @use "../../../sass/vars";
+@use "../../../sass/mixins";
 
 @mixin spinner($size, $speed) {
   font-size: $size;
   height: $size;
-  @include vars.rotate360($speed);
+  @include mixins.rotate-360($speed);
 }
 
-.spinner {
-  @each $size, $value in vars.$sizes {
-    &.size-#{$size} {
-      &.speed-slow {
-        @include spinner($value, vars.$transitionSlow);
-      }
-
-      &.speed-default {
-        @include spinner($value, vars.$transitionDefault);
-      }
-
-      &.speed-fast {
-        @include spinner($value, vars.$transitionFast);
+.coffee-spinner {
+  @each $size-key, $size-value in vars.$sizes {
+    @each $transition-key, $transition-value in vars.$transitions {
+      &.spinner-#{$size-key}.spinner-#{$transition-key} {
+        @include spinner($size-value, $transition-value);
       }
     }
   }

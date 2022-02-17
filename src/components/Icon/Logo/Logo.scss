@@ -1,12 +1,14 @@
 @use "../../../sass/vars";
 
-.logo-container {
-  width: 100%;
-  text-align: center;
-
+.coffee-logo {
   @each $size, $value in vars.$sizes {
-    .logo-#{$size} {
-      height: calc(#{$value} * 2);
+    &.logo-#{$size} {
+      height: calc($value * 2);
+
+      img {
+        object-fit: contain;
+        height: 100%;
+      }
     }
   }
 }

@@ -1,86 +1,119 @@
-// Margin / Padding / Gap Classes.
-$spacers: "smallest", "smaller", "default", "medium", "large", "larger",
-  "largest", "huge", "humongous";
+@use "./vars";
 
-@each $spacer in $spacers {
-  .padding-#{$spacer} {
-    padding: var(--spacer-#{$spacer});
-  }
+// Text colors
+@each $color-name, $color-map in vars.$colors {
+  .text-#{$color-name} {
+    color: map-get($color-map, "400");
 
-  .margin-#{$spacer} {
-    margin: var(--spacer-#{$spacer});
-  }
-
-  .gap-#{$spacer} {
-    gap: var(--spacer-#{$spacer});
+    // Link's color swaps with theme.
+    @if ($color-name == "link") {
+      color: var(--theme-color-link);
+    }
   }
 }
 
-// Color Classes.
-$classNames: (
-  "primary": var(--appTheme-colorText),
-  "primary-subtle": var(--appTheme-colorTextSubtle),
-  "secondary": var(--appTheme-colorBackground),
-  "secondary-subtle": var(--appTheme-altColorBackground),
-  "brand": var(--appTheme-colorBrand),
-  "link": var(--appTheme-colorLink),
-);
+// Show/Hide
+.show {
+  display: block;
+}
 
-@each $name, $color in $classNames {
-  .color-#{$name} {
-    color: $color;
+.hide {
+  display: none;
+}
+
+@each $breakpoint-name, $breakpoint-value in vars.$breakpoints {
+  .show-on-#{$breakpoint-name} {
+    display: none;
+
+    @media (min-width: $breakpoint-value) {
+      display: block;
+    }
   }
 
-  .bg-#{$name} {
-    background-color: $color;
+  .hide-on-#{$breakpoint-name} {
+    @media (min-width: $breakpoint-value) {
+      display: none;
+    }
   }
 }
 
-// Width / Height Classes.
-@each $num in 0, 100 {
-  .width-#{$num} {
-    width: percentage($num / 100);
-  }
-
-  .height-#{$num} {
-    height: percentage($num / 100);
-  }
-
-  .min-width-#{$num} {
-    min-width: percentage($num / 100);
-  }
-
-  .min-height-#{$num} {
-    min-height: percentage($num / 100);
-  }
-
-  .max-width-#{$num} {
-    max-width: percentage($num / 100);
-  }
-
-  .max-height-#{$num} {
-    max-height: percentage($num / 100);
-  }
+// Typography
+.text-bold {
+  font-weight: 700;
 }
 
-// Alignment
-.align-start {
-  text-align: left;
+.text-regular {
+  font-weight: 500;
 }
 
-.align-center {
-  text-align: center;
+.text-subtle {
+  color: var(--theme-color-text-subtle);
 }
 
-.align-end {
-  text-align: right;
+.text-link {
+  font-weight: 700;
+  text-decoration: underline;
 }
 
-// Filters
-[data-theme="dark"] .invert-on-dark {
-  filter: invert(1);
+// Components
+.viewport {
+  width: 100vw;
+  height: 100vh;
+  overflow: auto;
 }
 
-[data-theme="light"] .invert-on-light {
-  filter: invert(1);
+//* Layout
+// Position
+.layout-absolute {
+  position: absolute;
+
+  &.top-left {
+    top: 0;
+    left: 0;
+  }
+
+  &.top-right {
+    top: 0;
+    right: 0;
+  }
+
+  &.bottom-right {
+    bottom: 0;
+    right: 0;
+  }
+
+  &.bottom-left {
+    bottom: 0;
+    left: 0;
+  }
+
+  &.center {
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  &.center-left {
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+  }
+
+  &.center-top {
+    left: 50%;
+    top: 0;
+    transform: translateX(-50%);
+  }
+
+  &.center-right {
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+  }
+
+  &.center-bottom {
+    left: 50%;
+    bottom: 0;
+    transform: translateX(-50%);
+  }
 }

@@ -1,74 +1,164 @@
 @use "../../sass/vars";
+@use "../../sass/mixins";
 
 #landing {
-  section {
+  > section,
+  > aside,
+  > footer {
     position: relative;
-    min-height: 100vh;
   }
 
   #hero {
+    // Controls vector sizes.
+    // Controls hero's width.
+    $vector-size: 3.5rem;
+
     display: flex;
     flex-direction: column;
-    background-color: var(--appTheme-colorBackground);
-    min-height: 768px;
+    background-color: var(--theme-color-background);
+    // Sizing
+    min-height: vars.$breakpoint-tablet;
+    height: 100%;
+
+    .spaced-for-nav {
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
 
     header {
-      padding: vars.$spacerMedium;
+      padding: var(--layout-gap);
       // To nullify the gap between the children.
       padding-bottom: 0;
     }
 
     article {
-      // Controls vector sizes.
-      // Controls hero's width.
-      $vectorSize: 3.5rem;
-
       flex-grow: 1;
-      padding: vars.$spacerMedium;
+      padding: var(--layout-gap);
       // Vertical Flexbox
       display: flex;
       flex-direction: column;
       justify-content: center;
-      gap: vars.$spacerDefault;
+      gap: vars.$size-small;
 
-      h1 {
-        padding-right: $vectorSize;
+      .hero__title {
+        padding-right: $vector-size;
       }
 
-      .coffee-vector {
+      .hero__buttons {
+        display: flex;
+        flex-direction: column;
+        gap: vars.$size-small;
+      }
+
+      @media (min-width: vars.$breakpoint-mobile) {
+        .hero__buttons {
+          flex-direction: row;
+        }
+      }
+
+      #vectorSemis {
         position: absolute;
+        top: 25%;
+        right: 0;
+        width: $vector-size;
+      }
+    }
 
-        &#vectorSemis {
-          top: 25%;
-          right: 0;
-          width: $vectorSize;
-        }
-
-        &#vectorBlocks {
-          left: 0;
-          bottom: 15%;
-          height: $vectorSize;
-        }
+    footer {
+      #vectorBlocks {
+        width: calc($vector-size * 3.25);
       }
     }
   }
 
   #intro {
-    background-color: var(--appTheme-colorBackground);
+    background-color: var(--theme-color-background);
 
     header {
       transform: rotate(180deg) translateY(2px);
     }
 
     article {
-      padding: vars.$spacerMedium;
+      padding: var(--layout-gap);
+
+      .intro__title {
+        text-align: center;
+      }
 
       .intro__grid {
-        padding-top: vars.$spacerLargest;
+        padding: vars.$size-largest 0;
         display: grid;
         grid-template-columns: 1fr;
-        gap: calc(#{vars.$spacerLargest} * 2);
+        place-items: center;
+        gap: calc(#{vars.$size-largest} * 2);
+
+        @media (min-width: vars.$breakpoint-laptop) {
+          grid-template-columns: 1fr 1fr;
+          // 0 column gap
+          gap: calc(#{vars.$size-largest} * 2) 0;
+        }
       }
+    }
+  }
+
+  #sidebar {
+    padding: var(--layout-gap);
+    background-color: var(--theme-color-background-subtle);
+
+    article {
+      @include mixins.box-bordered(
+        map-get(vars.$color-brand, "200"),
+        $bg: map-get(vars.$theme-dark, "color-text-subtle"),
+        $default-shadow: true
+      );
+
+      p {
+        margin-top: vars.$size-smaller;
+      }
+    }
+  }
+
+  #reason {
+    padding: vars.$size-largest var(--layout-gap);
+    background-color: var(--theme-color-background);
+
+    .spaced-for-nav {
+      // flexbox
+      display: flex;
+      flex-direction: column;
+      gap: calc(vars.$size-largest * 1.25);
+    }
+
+    header,
+    article {
+      display: flex;
+      flex-direction: column;
+      gap: vars.$size-smaller;
+    }
+
+    article {
+      gap: vars.$size-small;
+
+      header {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: vars.$size-smaller;
+      }
+    }
+  }
+}
+
+// Theme-wise rules.
+[data-theme="dark"] #landing {
+  #sidebar {
+    article {
+      @include mixins.box-bordered(
+        map-get(vars.$color-brand, "200"),
+        $default-bg: true,
+        $default-shadow: true
+      );
     }
   }
 }

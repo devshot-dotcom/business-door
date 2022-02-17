@@ -1,45 +1,37 @@
-/* Sizing System. */
-$spacerSmallest: var(--spacer-smallest);
-$spacerSmaller: var(--spacer-smaller);
-$spacerDefault: var(--spacer-default);
-$spacerMedium: var(--spacer-medium);
-$spacerLarge: var(--spacer-large);
-$spacerLarger: var(--spacer-larger);
-$spacerLargest: var(--spacer-largest);
-$spacerHuge: var(--spacer-huge);
-$spacerHumongous: var(--spacer-humungous);
+/* General sizes */
+$size-smallest: 0.125rem; // 2px
+$size-smaller: 0.5rem; // 8px
+$size-small: 1rem; // 16px
+$size-medium: 1.5rem; // 24px
+$size-large: 2rem; // 32px
+$size-larger: 2.5rem; // 40px
+$size-largest: 3rem; // 48px
+
 $sizes: (
-  "smallest": $spacerSmallest,
-  "smaller": $spacerSmaller,
-  "default": $spacerDefault,
-  "medium": $spacerMedium,
-  "larger": $spacerLarger,
-  "largest": $spacerLargest,
+  "smallest": $size-smallest,
+  "smaller": $size-smaller,
+  "small": $size-small,
+  "medium": $size-medium,
+  "large": $size-large,
+  "larger": $size-larger,
+  "largest": $size-largest,
 );
 
-/* Transitioning System. */
-$transitionFast: 100ms;
-$transitionDefault: 250ms;
-$transitionSlow: 1s;
+/* Component sizes */
+$navbar-size-mobile: 3.125rem; // 50px
+$navbar-size-desktop: 6.25rem; // 100px
+$main-pad-desktop: calc($navbar-size-desktop + var(--layout-gap));
+$sidebar-size: 23rem; // 368px
 
-/* Breakpoint System. */
-$smallestTablet: 34.8em; //557px
-$halfTablet: 48em; //768px
-$smallestLaptop: 62em; //992px
-$halfLaptop: 73em; //1168px
-$smallestDesktop: 85.5em; //1368px;
-$halfDesktop: 90em; //1440px
-$smallestHDR: 120em; //1920px
-
-/* Color System */
-$colorBrand: (
+/* Colors */
+$wine-red: (
   "100": #f9d5d3,
   "200": #f3aca8,
   "300": #ed837c,
   "400": #e75950,
 );
 
-$colorLink: (
+$royal-blue: (
   "100": #efeffd,
   "200": #a5a6f6,
   "300": #787af2,
@@ -50,33 +42,33 @@ $colorLink: (
   "75%": hsla(239, 82%, 61%, 0.75),
 );
 
-$colorSecondary: (
+$pale-peach: (
   "100": #f5efe8,
   "200": #ebe1d2,
   "300": #e1d1bb,
   "400": #d7c2a4,
 );
 
-$colorTertiary: (
-  "100": #e2e2e1,
+$gray: (
+  "100": #e9e9e9,
   "200": #c6c6c4,
   "300": #bfbebc,
   "400": #8d8c88,
 );
 
-$colorValid: (
+$sea-green: (
   "400": #31d0aa,
   "25%": hsla(166, 63%, 50%, 0.25),
   "50%": hsla(166, 63%, 50%, 0.5),
 );
 
-$colorInvalid: (
+$bright-pink: (
   "400": #ed4b9e,
   "25%": hsla(329, 82%, 61%, 0.25),
   "50%": hsla(329, 82%, 61%, 0.5),
 );
 
-$colorTransparent: (
+$transparent: (
   "white-10": hsla(0, 0%, 100%, 10%),
   "white-25": hsla(0, 0%, 100%, 25%),
   "white-50": hsla(0, 0%, 100%, 50%),
@@ -85,41 +77,102 @@ $colorTransparent: (
   "black-25": hsla(0, 0%, 0%, 25%),
   "black-50": hsla(0, 0%, 0%, 50%),
   "black-75": hsla(0, 0%, 0%, 75%),
+  "black-90": hsla(0, 0%, 0%, 90%),
 );
 
-$lightTheme: (
-  "colorText": #4a4a68,
-  "colorTextSubtle": #8c8ca1,
-  "colorBackground": #e9e7db,
+$theme-light: (
+  "color-text": #4a4a68,
+  "color-text-subtle": #8c8ca1,
+  "color-background": #e9e7db,
+  "color-background-subtle": white,
+  "color-link": map-get($royal-blue, "400"),
+  "color-root": map-get($pale-peach, "300"),
 );
 
-$darkTheme: (
-  "colorText": white,
-  "colorTextSubtle": #ecf1f4,
-  "colorBackground": #383838,
+$theme-dark: (
+  "color-text": white,
+  "color-text-subtle": #dbe2e6,
+  "color-background": #383838,
+  "color-background-subtle": #454545,
+  "color-link": map-get($royal-blue, "200"),
+  "color-root": #202020,
 );
 
-/* Shadow System. */
-$shadowMinimal: 0 4px 20px
-  map-get(
-    $map: $colorTransparent,
-    $key: "black-10",
-  );
+/*  Color Scheme */
+$color-brand: $wine-red;
+$color-link: $royal-blue;
+$color-valid: $sea-green;
+$color-invalid: $bright-pink;
+$color-secondary: $pale-peach;
+$color-tertiary: $gray;
 
-/* Translation System. */
-$translateYMinimal: translateY(-10%);
+$colors: (
+  "brand": $color-brand,
+  "link": $color-link,
+  "valid": $color-valid,
+  "invalid": $color-invalid,
+  "secondary": $color-secondary,
+  "tertiary": $color-tertiary,
+);
 
-/* Keyframe System. */
-@mixin rotate360($speed: $transitionDefault, $iterationCount: infinite) {
-  animation: rotate360 $speed $iterationCount;
+// For reference on how to filter an SVG's colors:
+// https://codepen.io/sosuke/pen/Pjoqqp
+$colors-filter: (
+  "brand": invert(55%) sepia(57%) saturate(5000%) hue-rotate(332deg)
+    brightness(97%) contrast(86%),
+  "link": invert(23%) sepia(82%) saturate(5020%) hue-rotate(240deg)
+    brightness(101%) contrast(86%),
+  "valid": invert(69%) sepia(46%) saturate(587%) hue-rotate(114deg)
+    brightness(90%) contrast(94%),
+  "invalid": invert(46%) sepia(36%) saturate(1392%) hue-rotate(285deg)
+    brightness(92%) contrast(101%),
+  "secondary": invert(76%) sepia(13%) saturate(544%) hue-rotate(356deg)
+    brightness(104%) contrast(86%),
+  "tertiary": invert(66%) sepia(1%) saturate(1132%) hue-rotate(11deg)
+    brightness(84%) contrast(84%),
+);
 
-  @keyframes rotate360 {
-    0% {
-      transform: rotate(0deg);
-    }
+/* Transitions */
+$transition-slowest: 3s;
+$transition-slower: 2s;
+$transition-slow: 1s;
+$transition-medium: 750s;
+$transition-fast: 500ms;
+$transition-faster: 250ms;
+$transition-fastest: 100ms;
 
-    100% {
-      transform: rotate(360deg);
-    }
-  }
-}
+$transitions: (
+  "slowest": $transition-slowest,
+  "slower": $transition-slower,
+  "slow": $transition-slow,
+  "medium": $transition-medium,
+  "fast": $transition-fast,
+  "faster": $transition-faster,
+  "fastest": $transition-fastest,
+);
+
+/* Breakpoints */
+$breakpoint-mobile: 557px;
+$breakpoint-tablet: 768px;
+$breakpoint-laptop: 992px;
+$breakpoint-desktop: 1368px;
+$breakpoint-high-definition: 1920px;
+$breakpoint-quad-high-definition: 2560px;
+$breakpoint-ultra-high-definition: 3840px;
+
+$breakpoints: (
+  "mobile": $breakpoint-mobile,
+  "tablet": $breakpoint-tablet,
+  "laptop": $breakpoint-laptop,
+  "desktop": $breakpoint-desktop,
+  "high-definition": $breakpoint-high-definition,
+  "quad-high-definition": $breakpoint-quad-high-definition,
+  "ultra-high-definition": $breakpoint-ultra-high-definition,
+);
+
+/* Shadows */
+$box-shadow-minimal: 0 4px 10px map-get($transparent, "black-10");
+
+/* Z-Indices */
+$z-index-nav: 100;
+$z-index-sidebar: 90;

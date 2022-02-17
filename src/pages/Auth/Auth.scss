@@ -8,22 +8,22 @@ main.auth {
 }
 
 .auth__card-wrapper {
-  @include mixins.at-tablet {
+  @media (min-width: vars.$breakpoint-mobile) {
     display: grid;
     place-items: center;
   }
 }
 
 .auth__switch-wrapper {
-  background-color: var(--appTheme-altColorBackground);
+  background-color: var(--theme-color-background-subtle);
   text-align: right;
 
-  @include mixins.at-tablet {
+  @media (min-width: vars.$breakpoint-mobile) {
     background-color: transparent;
   }
 
   .auth__switch {
     display: inline-flex;
-    margin: 0 vars.$spacerMedium vars.$spacerMedium 0;
+    margin: 0 vars.$size-medium vars.$size-medium 0;
   }
 }

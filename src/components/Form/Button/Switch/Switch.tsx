@@ -29,10 +29,10 @@ const Switch: React.FC<SwitchProps> = ({
         {label}
       </label>
       <button
-        className={`slider ${checked ? "checked" : ""}`}
+        className={`switch__slider ${checked ? "checked" : ""}`}
         onClick={() => switchRef.current?.click()}
       >
-        <span className="thumb" />
+        <span className="switch__thumb" />
       </button>
       <input
         type="checkbox"

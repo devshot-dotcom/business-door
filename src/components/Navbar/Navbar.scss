@@ -1,0 +1,96 @@
+@use "../../sass/vars";
+@use "../../sass/mixins";
+
+/// The wrapper of everything
+#app {
+  height: 100vh;
+  overflow: hidden;
+  display: grid;
+  place-items: center;
+  background-color: var(--theme-color-root);
+}
+
+/// The wrapper of the current page
+#root {
+  margin: auto;
+  position: relative;
+  max-width: vars.$breakpoint-desktop;
+}
+
+/// The navbar
+.root__nav {
+  z-index: vars.$z-index-nav;
+  position: absolute;
+  left: 0;
+  background-color: var(--theme-color-background-subtle);
+  box-shadow: vars.$box-shadow-minimal;
+
+  &.nav-mobile {
+    height: vars.$navbar-size-mobile;
+    width: 100%;
+    bottom: 0;
+    border-top: 1px solid var(--theme-color-text-subtle);
+  }
+
+  &.nav-desktop {
+    width: vars.$navbar-size-desktop;
+    height: calc(100vh - calc(var(--layout-gap) * 2));
+    top: var(--layout-gap);
+    left: var(--layout-gap);
+  }
+}
+
+/// The main content
+.root__main {
+  height: 100vh;
+  overflow: auto;
+  @include mixins.scrollbar();
+  box-shadow: vars.$box-shadow-minimal;
+  padding-bottom: vars.$navbar-size-mobile;
+}
+
+/// At Tablet
+@media (min-width: vars.$breakpoint-tablet) {
+  .root__main {
+    padding-bottom: 0;
+
+    .spaced-for-nav {
+      padding-left: vars.$main-pad-desktop !important;
+    }
+  }
+}
+
+/// At Laptop
+@media (min-width: vars.$breakpoint-laptop) {
+  #root {
+    padding-right: calc(var(--layout-gap) + vars.$sidebar-size);
+  }
+
+  /// The sidebar
+  .root__sidebar {
+    position: absolute !important;
+    z-index: vars.$z-index-sidebar;
+    top: 0;
+    right: 0;
+    width: vars.$sidebar-size;
+    height: 100%;
+    border-radius: vars.$size-smaller;
+    box-shadow: vars.$box-shadow-minimal;
+  }
+}
+
+/// At Desktop
+@media (min-width: vars.$breakpoint-desktop) {
+  .root__nav {
+    &.nav-desktop {
+      height: calc(100vh - var(--layout-gap) * 6);
+      max-height: vars.$breakpoint-laptop;
+    }
+  }
+
+  .root__main {
+    height: calc(100vh - var(--layout-gap) * 4);
+    max-height: vars.$breakpoint-laptop;
+    border-radius: vars.$size-smaller;
+  }
+}

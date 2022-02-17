@@ -36,9 +36,12 @@ interface Props extends ComponentPropsWithoutRef<"figure"> {
   coverForDesktop?: string;
 }
 
-/** A card that features a blob instead of a
- * traditional cover image. The blob then can contain
- * a cover image just for formality, or... for formality. */
+/**
+ * A card that features a blob
+ * instead of a traditional cover image.
+ * The blob then can contain a cover image
+ * just for formality, or... for formality.
+ */
 const BlobCard = (props: Props) => {
   const { theme } = useContext(ThemeContext);
   const {
@@ -79,25 +82,25 @@ const BlobCard = (props: Props) => {
           <picture>
             {coverForMobile && (
               <source
-                media={`(min-width: ${breakpoints.mobile.em})`}
+                media={`(min-width: ${breakpoints.mobile.px})`}
                 srcSet={coverForMobile}
               />
             )}
             {coverForTablet && (
               <source
-                media={`(min-width: ${breakpoints.tablet.em})`}
+                media={`(min-width: ${breakpoints.tablet.px})`}
                 srcSet={coverForTablet}
               />
             )}
             {coverForLaptop && (
               <source
-                media={`(min-width: ${breakpoints.laptop.em})`}
+                media={`(min-width: ${breakpoints.laptop.px})`}
                 srcSet={coverForLaptop}
               />
             )}
             {coverForDesktop && (
               <source
-                media={`(min-width: ${breakpoints.desktop.em})`}
+                media={`(min-width: ${breakpoints.desktop.px})`}
                 srcSet={coverForDesktop}
               />
             )}
@@ -110,7 +113,9 @@ const BlobCard = (props: Props) => {
         )}
       </div>
       {caption && (
-        <figcaption className="blob-card__caption">{caption}</figcaption>
+        <figcaption className="blob-card__caption text-paragraph">
+          {caption}
+        </figcaption>
       )}
     </figure>
   );

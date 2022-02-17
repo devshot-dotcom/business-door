@@ -29,27 +29,6 @@ export type InputStateType = [
   isValid: () => boolean
 ];
 
-export type colorName =
-  | "brand"
-  | "text"
-  | "text-subtle"
-  | "background"
-  | "background-subtle"
-  | "secondary"
-  | "tertiary"
-  | "link"
-  | "valid"
-  | "invalid";
-
-export type sizeName =
-  | "smallest"
-  | "smaller"
-  | "small"
-  | "medium"
-  | "large"
-  | "larger"
-  | "largest";
-
 export type DynamicModule = {
   default: string;
 };

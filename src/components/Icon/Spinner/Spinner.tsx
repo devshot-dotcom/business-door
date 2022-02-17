@@ -1,17 +1,18 @@
 import { faCircleNotch } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { themeSizes, themeSpeeds } from "../../../config/theme";
 import "./Spinner.scss";
 
-interface SpinnerProps {
-  size?: "smallest" | "smaller" | "default" | "medium" | "larger" | "largest";
-  speed?: "slow" | "default" | "fast";
+interface Props {
+  size?: themeSizes;
+  speed?: themeSpeeds;
 }
 
-function Spinner({ size = "default", speed = "default" }: SpinnerProps) {
+function Spinner({ size = "medium", speed = "medium" }: Props) {
   return (
     <FontAwesomeIcon
       icon={faCircleNotch}
-      className={`spinner size-${size} speed-${speed}`}
+      className={`coffee-spinner size-${size} speed-${speed}`}
     />
   );
 }

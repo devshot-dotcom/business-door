@@ -1,6 +1,34 @@
-import { themes } from "./context/ThemeContext";
+// Types.
+export type themeNames = "light" | "dark";
 
-function setDefaultTheme() {
+export type themeColors =
+  | "brand"
+  | "secondary"
+  | "tertiary"
+  | "link"
+  | "valid"
+  | "invalid";
+
+export type themeSizes =
+  | "smallest"
+  | "smaller"
+  | "small"
+  | "medium"
+  | "large"
+  | "larger"
+  | "largest";
+
+export type themeSpeeds =
+  | "slowest"
+  | "slower"
+  | "slow"
+  | "medium"
+  | "fast"
+  | "faster"
+  | "fastest";
+
+/** Set a theme based on the device preferences */
+function getDefaultTheme(): themeNames {
   // If system preference is dark theme.
   if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
     localStorage.setItem("doorTheme", "dark");
@@ -13,8 +41,5 @@ function setDefaultTheme() {
 }
 
 // Set default theme if not already set.
-export const defaultTheme: themes =
-  (localStorage.getItem("doorTheme") as themes) || setDefaultTheme();
-
-// Apply the set theme.
-defaultTheme === "dark" && document.body.setAttribute("data-theme", "dark");
+export const defaultTheme: themeNames =
+  (localStorage.getItem("doorTheme") as themeNames) || getDefaultTheme();

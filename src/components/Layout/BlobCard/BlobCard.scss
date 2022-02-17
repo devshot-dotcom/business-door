@@ -1,23 +1,25 @@
 @use "../../../sass/vars";
 
 .coffee-blob-card {
+  // Sizing
+  max-width: 20rem;
   margin: 0;
-  // flexbox.
+  // Display
   display: flex;
   flex-direction: column;
   justify-content: center;
 
   .blob-card__cover {
     position: relative;
-    padding: vars.$spacerMedium;
+    padding: vars.$size-medium;
 
     img {
       width: 100%;
       object-fit: contain;
 
       &.blob-card__illustration {
-        width: 70%;
-        // positioning.
+        width: 60%;
+        // Positioning
         position: absolute;
         top: 50%;
         left: 50%;

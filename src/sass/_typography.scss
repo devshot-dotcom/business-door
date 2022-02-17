@@ -1,73 +1,92 @@
-.h1 {
+//* Typography
+@mixin text($color, $weight) {
   margin: 0;
-  font-weight: 700;
+  color: $color;
+  font-weight: $weight;
+}
+
+@mixin text-heading($variant, $color, $weight: 700) {
+  @include text($color, $weight);
   letter-spacing: -2;
-  font-size: 3.75rem;
+
+  @if ($variant == "h1") {
+    font-size: 3.75rem;
+  }
+
+  @if ($variant == "h2") {
+    font-size: 2.25rem;
+  }
+
+  @if ($variant == "h3") {
+    font-size: 1.25rem;
+  }
 }
 
-.h2 {
-  margin: 0;
-  font-weight: 700;
-  letter-spacing: -2;
-  font-size: 2.25rem;
-}
-
-.h3 {
-  margin: 0;
-  font-weight: 700;
-  letter-spacing: -2;
-  font-size: 1.25rem;
-}
-
-.sub-title {
-  margin: 0;
-  font-weight: 500;
-  font-size: 1.25rem;
-}
-
-.paragraph {
-  margin: 0;
-  font-weight: 500;
-  line-height: 140%;
-  font-size: 0.85rem;
-}
-
-b,
-strong,
-.bold-text {
-  font-weight: 700;
-}
-
-.small-text {
-  line-height: 140%;
-  font-size: 0.75rem;
-}
-
-.pre-title {
-  margin: 0;
-  font-weight: 700;
+@mixin text-label($variant, $color, $weight: 700) {
+  @include text($color, $weight);
   letter-spacing: 1px;
-  font-size: 0.75rem;
   text-transform: uppercase;
+
+  @if ($variant == "pre-title") {
+    font-size: 0.75rem;
+  }
+
+  @if ($variant == "button") {
+    font-size: 0.95rem;
+    color: white;
+  }
 }
 
-.button-text {
-  font-weight: 700;
-  letter-spacing: 1px;
-  font-size: 0.95rem;
-  text-transform: uppercase;
-  color: white;
+@mixin text-body($variant, $color, $weight) {
+  @include text($color, $weight);
+  line-height: 140%;
+
+  @if ($variant == "title") {
+    font-size: 1.5rem;
+  }
+
+  @if ($variant == "sub-title") {
+    font-size: 1.25rem;
+  }
+
+  @if ($variant == "paragraph") {
+    font-size: 0.85rem;
+  }
+
+  @if ($variant == "small") {
+    font-size: 0.75rem;
+  }
+
+  @if ($variant == "smaller") {
+    font-size: 0.65rem;
+  }
+
+  @if ($variant == "smallest") {
+    font-size: 0.5rem;
+  }
 }
 
-.link {
-  letter-spacing: 0;
-  font-weight: 700;
-  font-size: 0.95rem;
-  text-decoration: underline;
-  color: var(--appTheme-colorLink);
-  text-transform: none;
-  padding: 0;
-  background-color: transparent;
-  border: 0;
-  cursor: pointer;
+// Use case for the above mixins.
+@mixin text-constructor(
+  $variant,
+  $color: var(--theme-color-text),
+  $weight: 500
+) {
+  @if ($variant == "h1" or $variant == "h2" or $variant == "h3") {
+    @include text-heading($variant, $color);
+  } @else if ($variant == "pre-title" or $variant == "button") {
+    @include text-label($variant, $color);
+  } @else {
+    @include text-body($variant, $color, $weight);
+  }
+}
+
+$text-variants: "h1", "h2", "h3", "pre-title", "button", "link", "title",
+  "sub-title", "paragraph", "small", "smaller", "smallest";
+
+// Each variant gets a class.
+@each $variant in $text-variants {
+  .text-#{$variant} {
+    @include text-constructor($variant);
+  }
 }
