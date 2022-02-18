@@ -16,9 +16,9 @@
     display: flex;
     flex-direction: column;
     background-color: var(--theme-color-background);
-    // Sizing
     min-height: vars.$breakpoint-tablet;
     height: 100%;
+    max-height: vars.$breakpoint-laptop;
 
     .spaced-for-nav {
       display: flex;

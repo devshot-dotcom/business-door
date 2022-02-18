@@ -35,13 +35,16 @@
   }
 }
 
+/// A sleek scrollbar.
 @mixin scrollbar() {
   $thumb-color: map-get(vars.$color-brand, "400");
   $track-color: map-get(vars.$color-brand, "200");
 
+  // Styles for firefox
   scrollbar-color: $thumb-color $track-color;
   scrollbar-width: thin;
 
+  // Styles for others
   &::-webkit-scrollbar {
     width: vars.$size-smaller;
     background-color: $track-color;
@@ -91,5 +94,18 @@
 
   @media (prefers-reduced-motion) {
     animation: none;
+  }
+}
+
+//* Breakpoints
+@mixin when-vertical-nav-appears() {
+  @media (min-width: vars.$breakpoint-tablet) {
+    @content;
+  }
+}
+
+@mixin when-sidebar-appears() {
+  @media (min-width: vars.$breakpoint-laptop) {
+    @content;
   }
 }

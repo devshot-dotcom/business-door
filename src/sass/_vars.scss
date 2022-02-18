@@ -17,12 +17,6 @@ $sizes: (
   "largest": $size-largest,
 );
 
-/* Component sizes */
-$navbar-size-mobile: 3.125rem; // 50px
-$navbar-size-desktop: 6.25rem; // 100px
-$main-pad-desktop: calc($navbar-size-desktop + var(--layout-gap));
-$sidebar-size: 23rem; // 368px
-
 /* Colors */
 $wine-red: (
   "100": #f9d5d3,
@@ -176,3 +170,11 @@ $box-shadow-minimal: 0 4px 10px map-get($transparent, "black-10");
 /* Z-Indices */
 $z-index-nav: 100;
 $z-index-sidebar: 90;
+
+/* Component sizes */
+$navbar-size-mobile: 3.125rem; // 50px
+$navbar-size-desktop: 6.25rem; // 100px
+$navbar-space-requirement: calc($navbar-size-desktop + var(--layout-gap));
+$sidebar-size: 23rem; // 368px
+$container-max-width: $breakpoint-desktop;
+$container-max-height: 56.25rem; // 900px
