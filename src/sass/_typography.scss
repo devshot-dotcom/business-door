@@ -32,6 +32,8 @@
   }
 
   @if ($variant == "button") {
+    text-decoration: none;
+    text-align: center;
     font-size: 0.95rem;
     color: white;
   }

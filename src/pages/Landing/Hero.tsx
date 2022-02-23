@@ -1,4 +1,4 @@
-import { Button, Logo } from "../../components/components";
+import { Button, Link, Logo } from "../../components/components";
 import { Vector } from "../../components/Vector/Vector";
 import waveX1 from "../../assets/vectors/abstract/wave/wave@x1.svg";
 import waveX2 from "../../assets/vectors/abstract/wave/wave@x2.svg";
@@ -27,8 +27,10 @@ export const Hero = () => {
             stand out.
           </p>
           <div className="hero__buttons">
-            <Button>Create a Card</Button>
-            <Button variant="tertiary">Browse Templates</Button>
+            <Link variant="primary" href="#intro">
+              Learn More
+            </Link>
+            <Button variant="tertiary">Get Started</Button>
           </div>
           <Vector src={semis} id="vectorSemis" />
         </article>
