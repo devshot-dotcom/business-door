@@ -1,0 +1,17 @@
+@use "../../../sass/vars";
+
+.coffee-icon {
+  @each $size, $value in vars.$sizes {
+    @each $color, $filter in vars.$colors-filter {
+      &.icon-#{$size} {
+        font-size: $value;
+        width: $value;
+        height: $value;
+      }
+
+      &.icon-#{$color} {
+        filter: $filter;
+      }
+    }
+  }
+}

@@ -1,29 +1,24 @@
-import iconValid from "../../assets/vectors/state/check-valid.svg";
-import iconInvalid from "../../assets/vectors/state/check-invalid.svg";
+type variants = "default" | "valid" | "invalid";
 
-interface MenuItemProps extends React.ComponentPropsWithoutRef<"li"> {
-  tabIndex?: number;
-  isValid: boolean;
-  label: string;
+interface Props extends React.ComponentPropsWithoutRef<"li"> {
+  icon?: {
+    /** The source of the icon. */
+    src: "string";
+
+    /** The alternative text of the icon. */
+    alt: "string";
+  };
+  variant?: variants;
+  title: string;
 }
 
-function MenuItem({
-  tabIndex,
-  isValid,
-  label,
-  className,
-  ...rest
-}: MenuItemProps) {
-  const classes = ["menu-item", isValid ? "valid" : "", className ?? ""];
+function MenuItem(props: Props) {
+  const { icon, variant = "default", title, className = "", ...rest } = props;
 
   return (
-    <li className={classes.join(" ")} tabIndex={tabIndex} {...rest}>
-      <img
-        src={isValid ? iconValid : iconInvalid}
-        alt={isValid ? "Valid" : "Invalid"}
-        className="menu-icon"
-      />
-      <p className="menu-label paragraph">{label}</p>
+    <li className={`menu__item menu__item-${variant} ${className}`} {...rest}>
+      {icon && <img src={icon.src} alt={icon.alt} className="menu__icon" />}
+      <div className="menu__label text-paragraph">{title}</div>
     </li>
   );
 }

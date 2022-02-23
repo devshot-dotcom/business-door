@@ -1,8 +1,14 @@
-import React from "react";
+import { ComponentPropsWithoutRef, FC } from "react";
 import "./Menu.scss";
 
-const Menu: React.FC = (props) => {
-  return <ul className="menu">{props.children}</ul>;
+const Menu: FC<ComponentPropsWithoutRef<"ul">> = (props) => {
+  const { className = "", children, ...rest } = props;
+
+  return (
+    <ul className={`coffee-menu ${className}`} {...rest}>
+      {children}
+    </ul>
+  );
 };
 
 export { Menu };

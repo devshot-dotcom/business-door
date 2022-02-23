@@ -2,17 +2,13 @@ import { ToastOptions } from "../../helpers/types";
 import { Toast } from "./Toast";
 import "./Toast.scss";
 
-interface SandwichProps {
+type Props = {
   toasts: ToastOptions[];
   setToasts: (toasts: ToastOptions[]) => void;
   position?: string;
-}
+};
 
-function ToastSandwich({
-  toasts,
-  setToasts,
-  position = "top-right",
-}: SandwichProps) {
+function ToastSandwich({ toasts, setToasts, position = "top-right" }: Props) {
   function removeToast(i: number) {
     // If the parent has set a method to be called
     // on the removal of this toast, call it.

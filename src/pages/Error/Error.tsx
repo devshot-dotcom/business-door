@@ -1,13 +1,11 @@
 import { Outlet } from "react-router-dom";
-import { Card, CardBody } from "../../components/components";
+import { Card } from "../../components/components";
 
 function Error() {
   return (
     <div className="viewport grid-centered bg-secondary">
-      <Card singular={true}>
-        <CardBody>
-          <Outlet />
-        </CardBody>
+      <Card>
+        <Outlet />
       </Card>
     </div>
   );

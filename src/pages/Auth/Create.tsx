@@ -1,12 +1,6 @@
 import * as React from "react";
 import { Link } from "react-router-dom";
-import {
-  Input,
-  Button,
-  Flexbox,
-  PasswordCriteria,
-  CardBody,
-} from "../../components/components";
+import { Input, Button, PasswordCriteria } from "../../components/components";
 import { useEmail, usePassword, useAuthenticator } from "../../hooks/hooks";
 import { useNavigate } from "react-router-dom";
 import { doPasswordsMatch } from "../../modules/MatchPasswords";
@@ -45,67 +39,65 @@ function Create() {
 
   return (
     <form onSubmit={handleSubmit}>
-      <CardBody>
-        <h1 className="h3">Create Your Account</h1>
+      <h1 className="h3">Create Your Account</h1>
 
+      <Input
+        type="email"
+        state={emailState}
+        placeholder="Your Email Address"
+        title="Please enter your email address"
+        changeHandler={(value) =>
+          dispatchEmail({ type: "update", value: value })
+        }
+        focusHandler={() => dispatchEmail({ type: "default" })}
+      />
+
+      <PasswordCriteria password={pswdState.value}>
         <Input
-          type="email"
-          state={emailState}
-          placeholder="Your Email Address"
-          title="Please enter your email address"
+          type="password"
+          state={pswdState}
+          placeholder="Your Password"
+          title="Please enter your password"
           changeHandler={(value) =>
-            dispatchEmail({ type: "update", value: value })
+            dispatchPswd({ type: "update", value: value })
           }
-          focusHandler={() => dispatchEmail({ type: "default" })}
+          focusHandler={() => dispatchPswd({ type: "default" })}
+          hasTypeController={true}
         />
+      </PasswordCriteria>
 
-        <PasswordCriteria password={pswdState.value}>
-          <Input
-            type="password"
-            state={pswdState}
-            placeholder="Your Password"
-            title="Please enter your password"
-            changeHandler={(value) =>
-              dispatchPswd({ type: "update", value: value })
-            }
-            focusHandler={() => dispatchPswd({ type: "default" })}
-            hasTypeController={true}
-          />
-        </PasswordCriteria>
-
-        <PasswordCriteria password={rePswdState.value}>
-          <Input
-            type="password"
-            state={rePswdState}
-            placeholder="Re-enter Password"
-            title="Please re-enter your password"
-            changeHandler={(value) =>
-              dispatchRePswd({ type: "update", value: value })
-            }
-            focusHandler={() => dispatchRePswd({ type: "default" })}
-            hasTypeController={true}
-          />
-        </PasswordCriteria>
-
-        <Button
-          type="submit"
-          variant="primary"
-          disabled={
-            emailState.value === "" ||
-            pswdState.value === "" ||
-            rePswdState.value === ""
+      <PasswordCriteria password={rePswdState.value}>
+        <Input
+          type="password"
+          state={rePswdState}
+          placeholder="Re-enter Password"
+          title="Please re-enter your password"
+          changeHandler={(value) =>
+            dispatchRePswd({ type: "update", value: value })
           }
-        >
-          Create Account
-        </Button>
+          focusHandler={() => dispatchRePswd({ type: "default" })}
+          hasTypeController={true}
+        />
+      </PasswordCriteria>
 
-        <Flexbox justify="start" align="center" gap="smaller">
-          <div className="paragraph">Already have an account?</div>
-          <Link to="/auth" className="link" title="Log in to your account">
-            Login
-          </Link>
-        </Flexbox>
-      </CardBody>
+      <Button
+        type="submit"
+        variant="primary"
+        disabled={
+          emailState.value === "" ||
+          pswdState.value === "" ||
+          rePswdState.value === ""
+        }
+      >
+        Create Account
+      </Button>
+
+      <div>
+        <div className="paragraph">Already have an account?</div>
+        <Link to="/auth" className="link" title="Log in to your account">
+          Login
+        </Link>
+      </div>
     </form>
   );
 }

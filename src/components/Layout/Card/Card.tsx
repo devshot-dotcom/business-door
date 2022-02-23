@@ -1,23 +1,14 @@
+import { ComponentPropsWithoutRef, FC } from "react";
 import "./Card.scss";
-import { Flexbox } from "../../components";
 
-interface CardProps extends React.ComponentPropsWithoutRef<"div"> {
-  /** Whether the card will be alone in the center of the page or not. */
-  singular?: boolean;
-}
+interface Props extends ComponentPropsWithoutRef<"div"> {}
 
-const Card: React.FC<CardProps> = ({ children, singular, ...rest }) => {
+const Card: FC<Props> = ({ children, ...rest }) => {
   return (
-    <article
-      {...rest}
-      className={`card padding-medium ${singular ? "singular" : ""}`}
-    >
-      <Flexbox direction="column" gap="medium" align="stretch">
-        {children}
-      </Flexbox>
+    <article {...rest} className={`coffee-card`}>
+      {children}
     </article>
   );
 };
 
 export { Card };
-export { CardBody } from "./CardBody";

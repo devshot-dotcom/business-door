@@ -1,0 +1,22 @@
+@use "../../sass/vars";
+
+footer#footer {
+  padding: var(--layout-gap);
+  padding-bottom: vars.$size-largest;
+  background-color: var(--theme-color-background-subtle);
+
+  .footer__bottom-indicator {
+    margin-top: var(--layout-gap);
+    margin-bottom: vars.$size-largest;
+
+    display: flex;
+    flex-direction: column;
+    gap: vars.$size-small;
+  }
+
+  .footer__about {
+    display: flex;
+    flex-direction: column;
+    gap: vars.$size-small;
+  }
+}

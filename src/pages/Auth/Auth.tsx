@@ -1,4 +1,4 @@
-import { Card, Logo } from "../../components/components";
+import { Card } from "../../components/components";
 import { Outlet } from "react-router-dom";
 import { ThemeSwitcher } from "../../modules/modules";
 import "./Auth.scss";
@@ -10,8 +10,7 @@ function Auth() {
       aria-label="Business door authentication system"
     >
       <div className="auth__card-wrapper">
-        <Card className="auth__card" singular={true}>
-          <Logo size="medium" aria-hidden="true" />
+        <Card className="auth__card">
           <Outlet />
         </Card>
       </div>

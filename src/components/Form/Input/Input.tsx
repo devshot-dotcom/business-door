@@ -1,5 +1,4 @@
 import * as React from "react";
-import { Flexbox } from "../../components";
 import { TypeController } from "./_TypeController";
 import { InputIcon } from "./_InputIcon";
 import { InputState } from "../../../helpers/types";
@@ -43,24 +42,22 @@ function Input({
   ];
 
   return (
-    <Flexbox direction="column" align="stretch" gap="none">
-      <div className={classes.join(" ")} style={style}>
-        <input
-          type={inputType}
-          value={value}
-          onFocus={focusHandler}
-          onChange={(e) => changeHandler(e.target.value)}
-          {...rest}
-        />
-        <InputIcon variant={variant} tooltip={tooltip} />
-        <TypeController
-          variant={variant}
-          hasTypeController={hasTypeController}
-          type={inputType}
-          clickHandler={(newType: string) => setInputType(newType)}
-        />
-      </div>
-    </Flexbox>
+    <div className={classes.join(" ")} style={style}>
+      <input
+        type={inputType}
+        value={value}
+        onFocus={focusHandler}
+        onChange={(e) => changeHandler(e.target.value)}
+        {...rest}
+      />
+      <InputIcon variant={variant} tooltip={tooltip} />
+      <TypeController
+        variant={variant}
+        hasTypeController={hasTypeController}
+        type={inputType}
+        clickHandler={(newType: string) => setInputType(newType)}
+      />
+    </div>
   );
 }
 

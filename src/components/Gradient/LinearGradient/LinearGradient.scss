@@ -7,9 +7,9 @@
 }
 
 $variants: (
-  "primary": var(--appTheme-colorBackground),
-  "secondary": map-get(vars.$colorSecondary, "400"),
-  "tertiary": map-get(vars.$colorTertiary, "400"),
+  "primary": var(--theme-color-background),
+  "secondary": map-get(vars.$color-secondary, "400"),
+  "tertiary": map-get(vars.$color-tertiary, "400"),
 );
 
 $angles: (
@@ -21,11 +21,11 @@ $angles: (
 
 .gradient {
   @each $variant, $color in $variants {
-    @each $angleName, $angleRule in $angles {
-      &.gradient-#{$variant}.gradient-#{$angleName} {
+    @each $angle-key, $angle-value in $angles {
+      &.gradient-#{$variant}.gradient-#{$angle-key} {
         @include linear-gradient(
-          $angleRule,
-          ($color, map-get(vars.$colorBrand, "400"))
+          $angle-value,
+          ($color, map-get(vars.$color-brand, "400"))
         );
       }
     }

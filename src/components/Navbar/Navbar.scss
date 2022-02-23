@@ -1,0 +1,28 @@
+@use "../../sass/vars";
+
+/// The navbar
+.root__nav {
+  z-index: vars.$z-index-nav;
+  position: absolute;
+  left: 0;
+  background-color: var(--theme-color-background-subtle);
+  box-shadow: vars.$box-shadow-minimal;
+
+  &.nav-mobile {
+    height: vars.$navbar-size-mobile;
+    width: 100%;
+    bottom: 0;
+    border-top: 1px solid var(--theme-color-text-subtle);
+  }
+
+  &.nav-desktop {
+    width: vars.$navbar-size-desktop;
+    height: calc(100vh - calc(var(--layout-gap) * 2));
+    top: var(--layout-gap);
+    left: var(--layout-gap);
+
+    @media (min-width: vars.$breakpoint-desktop) {
+      height: calc(vars.$container-max-height - var(--layout-gap) * 2);
+    }
+  }
+}

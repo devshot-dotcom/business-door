@@ -1,18 +1,16 @@
 @use "../../sass/vars";
-@use "../../sass/helper" with (
-  $breakpoint: vars.$halfTablet
-);
+@use "../../sass/mixins";
 
 /* Toast List. */
 .toast-sandwich {
   position: fixed;
   width: 100vw;
-  padding: vars.$spacerDefault;
+  padding: vars.$size-small;
   padding-top: 0;
   margin: 0;
   list-style: none;
 
-  @media (min-width: vars.$smallestTablet) {
+  @media (min-width: vars.$breakpoint-mobile) {
     width: 25rem;
   }
 
@@ -38,37 +36,37 @@
 }
 
 /* Toast (List Item). */
-body[data-theme="dark"] .toast {
+[data-theme="dark"] .coffee-toast {
   background-color: black;
 }
 
-.toast {
+.coffee-toast {
   background-color: white;
-  padding: vars.$spacerSmaller;
-  padding-left: vars.$spacerDefault;
-  margin-top: vars.$spacerDefault;
-  border-radius: vars.$spacerSmaller;
+  padding: vars.$size-small;
+  padding-left: vars.$size-small;
+  margin-top: vars.$size-small;
+  border-radius: vars.$size-small;
   display: flex;
   justify-content: space-between;
-  gap: vars.$spacerDefault;
+  gap: vars.$size-small;
   cursor: pointer;
-  @include helper.transition(all vars.$transitionFast);
+  @include mixins.transition(all vars.$transition-fast);
 
   &:hover,
   &:focus-within {
-    box-shadow: vars.$shadowMinimal;
-    transform: vars.$translateYMinimal;
+    box-shadow: vars.$box-shadow-minimal;
+    transform: translateY(-10%);
   }
 
-  $states: (
-    "valid": map-get(vars.$colorValid, "400"),
-    "invalid": map-get(vars.$colorInvalid, "400"),
-    "loading": var(--appTheme-colorTextSubtle),
+  $variants: (
+    "valid": map-get(vars.$color-valid, "400"),
+    "invalid": map-get(vars.$color-invalid, "400"),
+    "loading": var(--theme-color-text-subtle),
   );
 
-  @each $state, $color in $states {
-    &.toast-#{$state} {
-      border-bottom: calc(#{vars.$spacerSmaller} / 2) solid $color;
+  @each $variant, $color in $variants {
+    &.toast-#{$variant} {
+      border-bottom: calc(#{vars.$size-small} / 2) solid $color;
 
       .toast__icon * {
         color: $color;
@@ -81,23 +79,27 @@ body[data-theme="dark"] .toast {
 .toast__content {
   display: flex;
   align-items: center;
-  gap: vars.$spacerDefault;
+  gap: vars.$size-small;
 
   .toast__icon {
-    font-size: vars.$spacerDefault;
-    width: vars.$spacerDefault;
-    height: vars.$spacerDefault;
+    font-size: vars.$size-small;
+    width: vars.$size-small;
+    height: vars.$size-small;
 
     * {
-      color: var(--appTheme-colorText);
+      color: var(--theme-color-text);
       width: 100%;
     }
   }
 
   .toast__titles {
-    .small-text {
-      margin-top: vars.$spacerSmallest;
-      color: var(--appTheme-colorTextSubtle);
+    .text-small {
+      margin-top: vars.$size-small;
+      color: var(--theme-color-text-subtle);
+    }
+
+    .toast__accessible-title {
+      display: none;
     }
   }
 }
@@ -106,18 +108,18 @@ body[data-theme="dark"] .toast {
 .toast__button {
   background-color: transparent;
   border: 0;
-  border-radius: vars.$spacerSmaller;
-  font-size: vars.$spacerDefault;
-  padding: vars.$spacerSmaller;
+  border-radius: vars.$size-small;
+  font-size: vars.$size-small;
+  padding: vars.$size-small;
   cursor: pointer;
-  @include helper.transition(background-color vars.$transitionFast);
+  @include mixins.transition(background-color vars.$transition-fast);
 
   * {
-    color: var(--appTheme-colorText);
+    color: var(--theme-color-text);
   }
 
   &:hover,
   &:focus {
-    background-color: map-get(vars.$colorInvalid, "400");
+    background-color: map-get(vars.$color-invalid, "400");
   }
 }

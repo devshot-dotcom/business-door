@@ -1,37 +1,31 @@
-@import "./utilities";
+@use "./vars";
+@use "./mixins";
+@import "normalize.css";
 @import "./typography";
-@import "./elements";
+@import "./utilities";
 @import url("https://fonts.googleapis.com/css2?family=Work+Sans:wght@500;700&display=swap");
 
 :root {
-  /* Sizing System */
-  --spacer-smallest: 0.125rem; /* 2px */
-  --spacer-smaller: 0.5rem; /* 8px */
-  --spacer-default: 1rem; /* 16px */
-  --spacer-medium: 1.5rem; /* 24px */
-  --spacer-large: 2rem; /* 32px */
-  --spacer-larger: 2.5rem; /* 40px */
-  --spacer-largest: 3rem; /* 48px */
-  --spacer-huge: 3.5rem; /* 56px */
-  --spacer-humungous: 4rem; /* 64px */
   font-size: 16px;
+  --layout-gap: #{vars.$size-medium};
+}
+
+@media (min-width: vars.$breakpoint-tablet) {
+  :root {
+    --layout-gap: #{vars.$size-large};
+  }
 }
 
 body {
-  --appTheme-colorText: #4a4a68;
-  --appTheme-colorTextSubtle: #8c8ca1;
-  --appTheme-colorBackground: #e9e7db;
-  --appTheme-altColorBackground: white;
-  --appTheme-colorLink: #4b4ded;
-  --appTheme-colorBrand: #e75950;
+  @each $color-name, $color-value in vars.$theme-light {
+    --theme-#{$color-name}: #{$color-value};
+  }
 }
 
 body[data-theme="dark"] {
-  --appTheme-colorText: white;
-  --appTheme-colorTextSubtle: #8c8ca1;
-  --appTheme-colorBackground: #383838;
-  --appTheme-altColorBackground: #454545;
-  --appTheme-colorLink: #a5a6f6;
+  @each $color-name, $color-value in vars.$theme-dark {
+    --theme-#{$color-name}: #{$color-value};
+  }
 }
 
 *,
@@ -41,5 +35,77 @@ body[data-theme="dark"] {
   font-family: -apple-system, BlinkMacSystemFont, "Work Sans", "Segoe UI",
     Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   box-sizing: border-box;
-  color: var(--appTheme-colorText);
+  color: var(--theme-color-text);
+}
+
+body,
+p,
+ul,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+li {
+  margin: 0;
+  padding: 0;
+}
+
+/// The wrapper of everything
+#app {
+  height: 100vh;
+  overflow: hidden;
+  display: grid;
+  place-items: center;
+  background-color: var(--theme-color-root);
+
+  /// The wrapper of the current page
+  #root {
+    position: relative;
+    max-width: vars.$container-max-width;
+
+    @include mixins.when-sidebar-appears() {
+      padding-right: calc(var(--layout-gap) + vars.$sidebar-size);
+    }
+
+    /// The main content
+    .root__main {
+      height: 100vh;
+      overflow: auto;
+      @include mixins.scrollbar();
+      box-shadow: vars.$box-shadow-minimal;
+      padding-bottom: vars.$navbar-size-mobile;
+
+      @include mixins.when-vertical-nav-appears() {
+        padding-bottom: 0;
+
+        .spaced-for-nav {
+          padding-left: vars.$navbar-space-requirement !important;
+        }
+      }
+
+      @media (min-width: vars.$breakpoint-desktop) {
+        max-height: vars.$container-max-height;
+        border-radius: vars.$size-smaller;
+      }
+    }
+
+    /// The sidebar
+    .root__sidebar {
+      @include mixins.when-sidebar-appears() {
+        position: absolute !important;
+        z-index: vars.$z-index-sidebar;
+        top: 0;
+        right: 0;
+        width: vars.$sidebar-size;
+        height: 100%;
+        box-shadow: vars.$box-shadow-minimal;
+      }
+
+      @media (min-width: vars.$breakpoint-desktop) {
+        border-radius: vars.$size-smaller;
+      }
+    }
+  }
 }

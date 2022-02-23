@@ -5,7 +5,12 @@ import { IconProp } from "@fortawesome/fontawesome-svg-core";
 /**
  * The different visual `states` of the Input component.
  */
-type InputVariants = "default" | "focused" | "valid" | "invalid" | "disabled";
+export type InputVariants =
+  | "default"
+  | "focused"
+  | "valid"
+  | "invalid"
+  | "disabled";
 
 /**
  * The type of output received from a
@@ -13,7 +18,7 @@ type InputVariants = "default" | "focused" | "valid" | "invalid" | "disabled";
  * Without it, types get mixed up and
  * intellisense starts acting like an idiot.
  */
-type InputStateType = [
+export type InputStateType = [
   /** The actual state of the `Input`. */
   state: InputState,
 
@@ -24,7 +29,9 @@ type InputStateType = [
   isValid: () => boolean
 ];
 
-export type { InputVariants, InputStateType };
+export type DynamicModule = {
+  default: string;
+};
 
 //* INTERFACES.
 

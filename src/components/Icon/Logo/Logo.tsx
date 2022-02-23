@@ -1,31 +1,26 @@
-import * as React from "react";
-import { Link } from "react-router-dom";
-import { ThemeContext } from "../../../config/context/context";
-import lightLogo from "../../../assets/logo/@light/logo-plain.svg";
-import darkLogo from "../../../assets/logo/@dark/logo-plain.svg";
+import { useContext, useEffect, useState } from "react";
+import { ThemeContext } from "../../../config/context/ThemeContext";
+import { themeSizes } from "../../../config/theme";
+import { DynamicModule } from "../../../helpers/types";
 import "./Logo.scss";
 
-interface LogoProps extends React.ComponentPropsWithoutRef<"div"> {
-  size?: "smallest" | "smaller" | "default" | "medium" | "larger" | "largest";
-}
+type Props = {
+  size?: themeSizes;
+};
 
-const Logo: React.FC<LogoProps> = ({
-  size = "default",
-  className = "",
-  children,
-  ...rest
-}) => {
-  const { theme } = React.useContext(ThemeContext);
+const Logo = ({ size = "medium" }: Props) => {
+  const { theme } = useContext(ThemeContext);
+  const [logo, setLogo] = useState<DynamicModule>();
+
+  useEffect(() => {
+    import(`../../../assets/logo/@${theme}/logo-plain.svg`).then(
+      (logo: DynamicModule) => setLogo(logo)
+    );
+  }, [theme]);
 
   return (
-    <div className={`logo-container ${className}`} {...rest}>
-      <Link to="/">
-        <img
-          src={theme === "light" ? lightLogo : darkLogo}
-          alt="Business Door Logo"
-          className={`logo-${size}`}
-        />
-      </Link>
+    <div className={`coffee-logo logo-${size}`}>
+      <img src={logo?.default} alt="Business Door's Logo" />
     </div>
   );
 };
