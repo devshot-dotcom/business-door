@@ -1,1 +1,1 @@
-export { Landing } from "./Landing";
+export { Landing } from "./landing";
