@@ -1,7 +1,7 @@
 // Types.
-export type themeNames = "light" | "dark";
+export type ThemeNames = "light" | "dark";
 
-export type themeColors =
+export type ThemeColors =
   | "brand"
   | "secondary"
   | "tertiary"
@@ -9,7 +9,7 @@ export type themeColors =
   | "valid"
   | "invalid";
 
-export type themeSizes =
+export type ThemeSizes =
   | "smallest"
   | "smaller"
   | "small"
@@ -18,7 +18,9 @@ export type themeSizes =
   | "larger"
   | "largest";
 
-export type themeSpeeds =
+export type ThemeSizesCompact = "small" | "medium";
+
+export type ThemeSpeeds =
   | "slowest"
   | "slower"
   | "slow"
@@ -28,7 +30,7 @@ export type themeSpeeds =
   | "fastest";
 
 /** Set a theme based on the device preferences */
-function getDefaultTheme(): themeNames {
+function getDefaultTheme(): ThemeNames {
   // If system preference is dark theme.
   if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
     localStorage.setItem("doorTheme", "dark");
@@ -41,5 +43,5 @@ function getDefaultTheme(): themeNames {
 }
 
 // Set default theme if not already set.
-export const defaultTheme: themeNames =
-  (localStorage.getItem("doorTheme") as themeNames) || getDefaultTheme();
+export const defaultTheme: ThemeNames =
+  (localStorage.getItem("doorTheme") as ThemeNames) || getDefaultTheme();

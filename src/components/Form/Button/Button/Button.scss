@@ -4,7 +4,7 @@
 @mixin button($color-background) {
   padding: vars.$size-small vars.$size-medium;
   background-color: $color-background;
-  border-radius: vars.$size-smaller;
+  border-radius: vars.$border-radius-small;
   cursor: pointer;
   border: 0;
   width: 100%;

@@ -1,7 +1,7 @@
 import * as React from "react";
 import { authorEmail } from "../../../helpers/meta";
-import { Input, Button } from "../../../components/components";
-import { useEmail, useToast, useAuthenticator } from "../../../hooks/hooks";
+import { Input, Button } from "../../../components";
+import { useEmail, useToast, useAuthenticator } from "../../../hooks";
 
 function Verify() {
   const [emailState, dispatchEmail, isEmailValid] = useEmail();

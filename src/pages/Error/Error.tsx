@@ -1,5 +1,5 @@
 import { Outlet } from "react-router-dom";
-import { Card } from "../../components/components";
+import { Card } from "../../components";
 
 function Error() {
   return (

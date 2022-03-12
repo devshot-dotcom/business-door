@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Menu, MenuItem } from "../../../components";
+import { Menu, MenuItem } from "../../../";
 import { patterns } from "../../../../helpers/regex";
 import "./PasswordCriteria.scss";
 

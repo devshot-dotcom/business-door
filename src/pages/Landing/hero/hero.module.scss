@@ -1,0 +1,65 @@
+@use "../../../sass/vars";
+
+// Controls vector sizes.
+// Controls hero's width.
+$vector-size: 3.5rem;
+
+.hero {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--theme-color-background);
+  height: vars.$breakpoint-laptop;
+}
+
+.first {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+
+  header {
+    padding: var(--layout-gap);
+    // To nullify the gap between the children.
+    padding-bottom: 0;
+  }
+
+  article {
+    flex-grow: 1;
+    padding: var(--layout-gap);
+    // Vertical Flexbox
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: vars.$size-medium;
+
+    .title {
+      padding-right: $vector-size;
+    }
+
+    .buttons {
+      display: flex;
+      flex-direction: column;
+      gap: vars.$size-small;
+
+      @media (min-width: vars.$breakpoint-mobile) {
+        flex-direction: row;
+      }
+    }
+  }
+}
+
+.vector-blocks {
+  width: calc($vector-size * 3);
+}
+
+.vector-semis {
+  position: absolute;
+  top: 25%;
+  right: 0;
+  width: $vector-size;
+}
+
+.vector-wave-inverted {
+  rotate: 180deg;
+  translate: 0 -2px;
+  width: 100%;
+}

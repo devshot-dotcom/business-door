@@ -1,6 +1,6 @@
 import { ComponentPropsWithoutRef } from "react";
 import { breakpoints } from "../../config/breakpoints";
-import { themeColors } from "../../config/theme";
+import { ThemeColors } from "../../config/theme";
 import "./Vector.scss";
 
 interface Props extends ComponentPropsWithoutRef<"div"> {
@@ -8,7 +8,7 @@ interface Props extends ComponentPropsWithoutRef<"div"> {
   src: string;
 
   /** The color of the vector, see `vars.scss` for color names. */
-  color?: themeColors;
+  color?: ThemeColors;
 
   /** The alt attribute of the image containing the vector. */
   alt?: string;

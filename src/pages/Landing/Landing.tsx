@@ -1,22 +1,27 @@
-import { Hero } from "./Hero";
-import { Intro } from "./Intro";
-import { Reason } from "./Reason";
-import { Sidebar } from "./Sidebar";
-import { Footer } from "../../components/Footer/Footer";
-import { useTitle } from "../../hooks/hooks";
-import "./Landing.scss";
+import { Hero } from "./hero";
+import { Intro } from "./intro";
+import { Reason } from "./reason";
+import { Tidbits } from "./tidbits";
+import { useTitle } from "../../hooks";
 import { appName } from "../../helpers/meta";
+import { Main, Footer, Sidebar } from "../../components";
+import styles from "./landing.module.scss";
 
 const Landing = () => {
-  useTitle(`Welcome to ${appName}`);
+  useTitle(
+    `${appName} | Digitalize yourself with modern business cards that stand out`
+  );
+
   return (
-    <main id="landing" className="root__main">
+    <Main className={styles.landing}>
       <Hero />
       <Intro />
-      <Sidebar />
+      <Sidebar>
+        <Tidbits />
+      </Sidebar>
       <Reason />
       <Footer />
-    </main>
+    </Main>
   );
 };
 

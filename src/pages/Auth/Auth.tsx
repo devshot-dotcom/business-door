@@ -1,4 +1,4 @@
-import { Card } from "../../components/components";
+import { Card } from "../../components";
 import { Outlet } from "react-router-dom";
 import { ThemeSwitcher } from "../../modules/modules";
 import "./Auth.scss";

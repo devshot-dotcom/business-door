@@ -1,7 +1,7 @@
 import * as React from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { Input, Button } from "../../components/components";
-import { useInput, useAuthenticator } from "../../hooks/hooks";
+import { Input, Button } from "../../components";
+import { useInput, useAuthenticator } from "../../hooks";
 
 function Login() {
   const [emailState, dispatchEmail] = useInput();

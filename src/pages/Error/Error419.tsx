@@ -1,4 +1,4 @@
-import { useAuthenticator } from "../../hooks/hooks";
+import { useAuthenticator } from "../../hooks";
 import illustration from "../../assets/illustrations/monochrome/@x2/lady-employee-working-in-office.png";
 import { useNavigate, Link } from "react-router-dom";
 

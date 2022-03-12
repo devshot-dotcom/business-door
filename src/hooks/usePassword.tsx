@@ -1,4 +1,4 @@
-import { useInput } from "./hooks";
+import { useInput } from ".";
 import { patterns } from "../helpers/regex";
 import { InputActions } from "../helpers/types";
 import { InputStateType } from "../helpers/types";

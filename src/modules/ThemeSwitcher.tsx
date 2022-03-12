@@ -1,6 +1,6 @@
 import { useState, useContext, ComponentPropsWithoutRef } from "react";
 import { ThemeContext } from "../config/context/context";
-import { Switch } from "../components/components";
+import { Switch } from "../components";
 
 function ThemeSwitcher({ ...attrs }: ComponentPropsWithoutRef<"span">) {
   // import the Theme Context.

@@ -1,11 +1,11 @@
 import { IconProp } from "@fortawesome/fontawesome-svg-core";
 import {
   faCheckCircle,
+  faCircleNotch,
   faExclamationCircle,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { isString } from "../../helpers/functions";
-import { Spinner } from "../components";
 
 interface ToastIconProps {
   variant: string;
@@ -22,7 +22,7 @@ function ToastIcon({ variant, icon }: ToastIconProps): JSX.Element {
         default: defaultIcon,
         valid: <FontAwesomeIcon icon={faCheckCircle} />,
         invalid: <FontAwesomeIcon icon={faExclamationCircle} />,
-        loading: <Spinner speed="slow" />,
+        loading: <FontAwesomeIcon icon={faCircleNotch} spin />,
       }[variant] || defaultIcon
     );
   }

@@ -1,0 +1,29 @@
+@use "../../../sass/vars";
+@use "../../../sass/mixins";
+
+.sidebar {
+  * + * {
+    margin-top: vars.$size-medium;
+  }
+
+  @include mixins.when-sidebar-appears() {
+    // positioning
+    position: absolute !important;
+    top: 0;
+    right: 0;
+    z-index: vars.$z-index-sidebar;
+    // sizing
+    width: vars.$sidebar-size;
+    height: 100%;
+    // styling
+    box-shadow: vars.$box-shadow-smaller;
+    background-color: var(--theme-color-background);
+    @include mixins.scrollbar();
+    // content
+    overflow: auto;
+  }
+
+  @media (min-width: vars.$breakpoint-desktop) {
+    border-radius: vars.$border-radius-small;
+  }
+}

@@ -31,7 +31,7 @@
   }
 
   @if ($default-shadow == true) {
-    box-shadow: vars.$box-shadow-minimal;
+    box-shadow: vars.$box-shadow-smaller;
   }
 }
 

@@ -17,6 +17,11 @@ $sizes: (
   "largest": $size-largest,
 );
 
+$sizes-compact: (
+  "small": $size-small,
+  "medium": $size-medium,
+);
+
 /* Colors */
 $wine-red: (
   "100": #f9d5d3,
@@ -52,12 +57,18 @@ $gray: (
 
 $sea-green: (
   "400": #31d0aa,
-  "25%": hsla(166, 63%, 50%, 0.25),
+  "300": #64dcbf,
+  "200": #98e8d5,
+  "100": #cbf3e9,
+  "25%": hsla(168, 42%, 5%, 0.25),
   "50%": hsla(166, 63%, 50%, 0.5),
 );
 
 $bright-pink: (
   "400": #ed4b9e,
+  "300": #f278b6,
+  "200": #f6a5cf,
+  "100": #fad2e6,
   "25%": hsla(329, 82%, 61%, 0.25),
   "50%": hsla(329, 82%, 61%, 0.5),
 );
@@ -165,7 +176,46 @@ $breakpoints: (
 );
 
 /* Shadows */
-$box-shadow-minimal: 0 4px 10px map-get($transparent, "black-10");
+
+$box-shadow-smallest: 0 0 8px map-get($transparent, "black-10");
+$box-shadow-smaller: 0 4px 16px map-get($transparent, "black-10");
+$box-shadow-small: 0 4px 24px map-get($transparent, "black-10");
+$box-shadow-medium: 0 4px 32px map-get($transparent, "black-10");
+$box-shadow-large: 0 4px 40px map-get($transparent, "black-10");
+$box-shadow-larger: 0 4px 48px map-get($transparent, "black-10");
+$box-shadow-largest: 0 4px 56px map-get($transparent, "black-10");
+$box-shadow-ugly: 0 4px 64px map-get($transparent, "black-10");
+
+$box-shadows: (
+  "smallest": (
+    "default": $box-shadow-smallest,
+    "crude": $box-shadow-smaller,
+  ),
+  "smaller": (
+    "default": $box-shadow-smaller,
+    "crude": $box-shadow-small,
+  ),
+  "small": (
+    "default": $box-shadow-small,
+    "crude": $box-shadow-medium,
+  ),
+  "medium": (
+    "default": $box-shadow-medium,
+    "crude": $box-shadow-large,
+  ),
+  "large": (
+    "default": $box-shadow-large,
+    "crude": $box-shadow-larger,
+  ),
+  "larger": (
+    "default": $box-shadow-larger,
+    "crude": $box-shadow-largest,
+  ),
+  "largest": (
+    "default": $box-shadow-largest,
+    "crude": $box-shadow-ugly,
+  ),
+);
 
 /* Z-Indices */
 $z-index-nav: 100;
@@ -178,3 +228,4 @@ $navbar-space-requirement: calc($navbar-size-desktop + var(--layout-gap));
 $sidebar-size: 23rem; // 368px
 $container-max-width: $breakpoint-desktop;
 $container-max-height: 56.25rem; // 900px
+$border-radius-small: $size-smaller;

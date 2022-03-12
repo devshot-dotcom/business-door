@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router";
-import { LinearGradient } from "../components/components";
+import { LinearGradient } from "../components";
 import { durationLong } from "../helpers/integers";
 import { versionName } from "../helpers/meta";
 

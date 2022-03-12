@@ -54,7 +54,7 @@
 
   &:hover,
   &:focus-within {
-    box-shadow: vars.$box-shadow-minimal;
+    box-shadow: vars.$box-shadow-smaller;
     transform: translateY(-10%);
   }
 

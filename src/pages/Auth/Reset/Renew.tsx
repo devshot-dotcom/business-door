@@ -1,10 +1,6 @@
 import * as React from "react";
-import {
-  Input,
-  Button,
-  PasswordCriteria,
-} from "../../../components/components";
-import { usePassword, useAuthenticator } from "../../../hooks/hooks";
+import { Input, Button, PasswordCriteria } from "../../../components";
+import { usePassword, useAuthenticator } from "../../../hooks";
 import { useNavigate } from "react-router-dom";
 import { doPasswordsMatch } from "../../../modules/MatchPasswords";
 
