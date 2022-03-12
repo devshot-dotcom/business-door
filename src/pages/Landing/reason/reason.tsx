@@ -1,10 +1,4 @@
-import {
-  faFile,
-  faHeart,
-  faMapMarkerAlt,
-  faTrashAlt,
-} from "@fortawesome/free-solid-svg-icons";
-import { Card, Icon, NextToNav } from "../../../components";
+import { Card, NextToNav } from "../../../components";
 import { CardTitle } from "../../../components/card";
 import { reasons } from "./reason-items";
 import styles from "./reason.module.scss";
