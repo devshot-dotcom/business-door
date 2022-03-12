@@ -10,7 +10,7 @@ import { Auth, Create, Login } from "./pages/Auth/Auth";
 import { Reset, Renew, Verify } from "./pages/Auth/Reset/Reset";
 import { Error, Error403, Error404, Error419 } from "./pages/Error/Error";
 import { Home } from "./pages/Home";
-import { Landing } from "./pages/landing1";
+import { Landing } from "./pages/landing";
 import { App, Container, ToastSandwich } from "./components";
 import "./sass/index.scss";
 
