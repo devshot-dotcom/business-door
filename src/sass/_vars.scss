@@ -229,3 +229,19 @@ $sidebar-size: 23rem; // 368px
 $container-max-width: $breakpoint-desktop;
 $container-max-height: 56.25rem; // 900px
 $border-radius-small: $size-smaller;
+
+/* Fallback properties */
+$fallback-colors: (
+  "none": (
+    "400": transparent,
+  ),
+  "default": (
+    "400": var(--theme-color-background),
+  ),
+  "default-subtle": (
+    "400": var(--theme-color-background-subtle),
+  ),
+  "root": (
+    "400": var(--theme-color-root),
+  ),
+);

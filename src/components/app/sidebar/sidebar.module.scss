@@ -17,7 +17,6 @@
     height: 100%;
     // styling
     box-shadow: vars.$box-shadow-smaller;
-    background-color: var(--theme-color-background);
     @include mixins.scrollbar();
     // content
     overflow: auto;
@@ -26,4 +25,8 @@
   @media (min-width: vars.$breakpoint-desktop) {
     border-radius: vars.$border-radius-small;
   }
+}
+
+.background {
+  height: 100%;
 }

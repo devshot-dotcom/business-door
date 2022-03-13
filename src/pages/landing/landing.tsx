@@ -16,7 +16,7 @@ const Landing = () => {
     <Main className={styles.landing}>
       <Hero />
       <Intro />
-      <Sidebar>
+      <Sidebar bg="default-subtle" bgOnLaptop="default">
         <Tidbits />
       </Sidebar>
       <Reason />

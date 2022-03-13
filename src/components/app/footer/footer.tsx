@@ -1,3 +1,5 @@
+import { faHeart } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useContext } from "react";
 import { NextToNav } from "..";
 import { Button, Icon, Logo } from "../..";
@@ -26,8 +28,9 @@ const Footer = () => {
         </article>
         <article className={styles.about}>
           <Logo />
-          <div className="text-smaller">
-            Made with <Icon src="❤" size="smaller" color="brand" /> using React.
+          <div className="text-small">
+            Made with <Icon src={faHeart} size="small" color="brand" /> using
+            React.
           </div>
           <div className="text-paragraph">
             For inquiries, contact{" "}
