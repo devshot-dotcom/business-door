@@ -4,8 +4,7 @@ import { Reason } from "./reason";
 import { Tidbits } from "./tidbits";
 import { useTitle } from "../../hooks";
 import { appName } from "../../helpers/meta";
-import { Main, Footer, Sidebar } from "../../components";
-import styles from "./landing.module.scss";
+import { Footer, Sidebar } from "../../components";
 
 const Landing = () => {
   useTitle(
@@ -13,7 +12,7 @@ const Landing = () => {
   );
 
   return (
-    <Main className={styles.landing}>
+    <>
       <Hero />
       <Intro />
       <Sidebar bg="default-subtle" bgOnLaptop="default">
@@ -21,7 +20,7 @@ const Landing = () => {
       </Sidebar>
       <Reason />
       <Footer />
-    </Main>
+    </>
   );
 };
 

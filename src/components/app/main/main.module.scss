@@ -2,11 +2,16 @@
 @use "../../../sass/mixins";
 
 .main {
-  overflow: auto;
+  overflow-y: auto;
+  overflow-x: hidden;
   height: 100vh;
   box-shadow: vars.$box-shadow-smaller;
   padding-bottom: vars.$navbar-size-mobile;
   @include mixins.scrollbar();
+
+  > * {
+    position: relative;
+  }
 
   @include mixins.when-vertical-nav-appears() {
     padding-bottom: 0;

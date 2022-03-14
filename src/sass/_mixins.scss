@@ -1,41 +1,5 @@
 @use "./vars";
 
-//* Components
-/// A sleek bordered box.
-/// @param {string} $borderColor
-/// @param {string | undefined} $bg [optional] A color, image, or gradient.
-/// @param {string | undefined} $shadow [optional] A box shadow rule.
-/// @param {boolean} $default-bg Pass true to set the theme's bg color on this box.
-/// @param {boolean} $default-shadow Pass true to set the theme's shadow on this box.
-@mixin box-bordered(
-  $border-color,
-  $bg: null,
-  $shadow: null,
-  $default-bg: false,
-  $default-shadow: false
-) {
-  padding: vars.$size-small;
-  border: 1px solid $border-color;
-  border-radius: vars.$size-smaller;
-
-  @if ($bg) {
-    background-color: $bg;
-  }
-
-  @if ($default-bg == true) {
-    background-color: var(--theme-color-background);
-  }
-
-  @if ($shadow) {
-    box-shadow: $shadow;
-  }
-
-  @if ($default-shadow == true) {
-    box-shadow: vars.$box-shadow-smaller;
-  }
-}
-
-/// A sleek scrollbar.
 @mixin scrollbar() {
   $thumb-color: map-get(vars.$color-brand, "400");
   $track-color: map-get(vars.$color-brand, "200");
@@ -60,7 +24,7 @@
   }
 }
 
-//* Animations
+/* Animations */
 @mixin rotate-360($speed) {
   @keyframes rotate-360 {
     0% {
@@ -75,7 +39,8 @@
   animation: rotate-360 $speed infinite;
 }
 
-//* Extensions
+/* Extensions */
+
 // We're using transitions only on screens larger than mobiles, only if the user doesn't prefer reduced motion. Cuz web apps suck on mobiles, let alone transitions and animations.
 @mixin transition($prop) {
   @media (min-width: vars.$breakpoint-tablet) {
@@ -97,7 +62,7 @@
   }
 }
 
-//* Breakpoints
+/* Breakpoints */
 @mixin when-vertical-nav-appears() {
   @media (min-width: vars.$breakpoint-tablet) {
     @content;
