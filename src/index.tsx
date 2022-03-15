@@ -9,7 +9,7 @@ import { Auth, Create, Login } from "./pages/auth/auth";
 import { Reset, Renew, Verify } from "./pages/auth/reset/reset";
 import { Error, Error403, Error404, Error419 } from "./pages/Error/Error";
 import { Home } from "./pages/Home";
-import { Landing } from "./pages/landing";
+import { Landing, Splash } from "./pages";
 import { App, Container, ToastSandwich } from "./components";
 import "./sass/index.scss";
 
@@ -36,7 +36,8 @@ export function Root(): JSX.Element {
               <Routes>
                 <Route path="/" element={<Outlet />}>
                   <Route element={<Container />}>
-                    <Route index={true} element={<Landing />} />
+                    <Route index={true} element={<Splash />} />
+                    <Route path="landing" element={<Landing />} />
                     <Route path="auth" element={<Auth />}>
                       <Route index={true} element={<Login />} />
                       <Route path="create" element={<Create />} />

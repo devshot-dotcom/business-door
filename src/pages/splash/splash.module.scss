@@ -1,0 +1,37 @@
+@use "../../sass/vars";
+
+.splash {
+  text-align: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: vars.$z-index-splash;
+  display: grid;
+  place-items: center;
+
+  /* https://codepen.io/P1N2O/pen/pyBNzX */
+  background: linear-gradient(
+    -45deg,
+    var(--theme-color-background),
+    var(--theme-color-background-subtle),
+    var(--theme-color-root),
+    map-get(vars.$color-brand, "400")
+  );
+  background-size: 400% 400%;
+  animation: gradient 15s ease infinite;
+  height: 100vh;
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
