@@ -1,7 +1,7 @@
 import { Card } from "../../components";
 import { Outlet } from "react-router-dom";
 import { ThemeSwitcher } from "../../modules/modules";
-import "./Auth.scss";
+import "./auth.scss";
 
 function Auth() {
   return (
@@ -22,5 +22,5 @@ function Auth() {
 }
 
 export { Auth };
-export { Login } from "./Login";
-export { Create } from "./Create";
+export { Login } from "./login";
+export { Create } from "./create";

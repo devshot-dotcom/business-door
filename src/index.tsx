@@ -3,11 +3,10 @@ import { useEffect, useState } from "react";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
 import { defaultTheme } from "./config/theme";
 import { ToastOptions } from "./helpers/types";
-import { ThemeContext } from "./config/context/ThemeContext";
-import { ToastContext } from "./config/context/ToastContext";
+import { ThemeContext, ToastContext } from "./config/context";
 import { AuthorizedRoute } from "./modules/AuthorizedRoute";
-import { Auth, Create, Login } from "./pages/Auth/Auth";
-import { Reset, Renew, Verify } from "./pages/Auth/Reset/Reset";
+import { Auth, Create, Login } from "./pages/auth/auth";
+import { Reset, Renew, Verify } from "./pages/auth/reset/reset";
 import { Error, Error403, Error404, Error419 } from "./pages/Error/Error";
 import { Home } from "./pages/Home";
 import { Landing } from "./pages/landing";
@@ -21,7 +20,7 @@ export function Root(): JSX.Element {
   useEffect(() => {
     // Default theme is either the one
     // that the user prefers, the one
-    // he/she has selected, or the default,
+    // he/she has selected, or the default;
     // light theme. If it's dark, we need to
     // apply it, otherwise, we do nothing.
     if (defaultTheme === "dark")

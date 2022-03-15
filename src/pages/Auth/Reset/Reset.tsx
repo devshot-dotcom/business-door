@@ -5,5 +5,5 @@ function Reset() {
 }
 
 export { Reset };
-export { Verify } from "./Verify";
-export { Renew } from "./Renew";
+export { Verify } from "./verify";
+export { Renew } from "./renew";
