@@ -29,7 +29,7 @@ export const Hero = () => {
             stand out.
           </p>
           <div className={styles.buttons}>
-            <Link variant="primary" href="#intro">
+            <Link variant="primary" scrollTo="intro">
               Learn More
             </Link>
             <Button variant="tertiary">Get Started</Button>
