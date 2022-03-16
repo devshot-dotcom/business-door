@@ -4,6 +4,7 @@
 .container {
   margin: auto;
   position: relative;
+  width: 100%;
   max-width: vars.$container-max-width;
 
   @include mixins.when-sidebar-appears() {

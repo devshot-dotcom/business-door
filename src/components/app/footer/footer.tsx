@@ -1,5 +1,4 @@
 import { faHeart } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useContext } from "react";
 import { NextToNav } from "..";
 import { Button, Icon, Logo } from "../..";

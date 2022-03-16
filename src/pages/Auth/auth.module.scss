@@ -1,0 +1,12 @@
+@use "../../sass/vars";
+@use "../../sass/mixins";
+
+.auth {
+  height: calc(100vh - vars.$navbar-size-mobile);
+  background-color: var(--theme-color-background);
+  padding: var(--layout-gap);
+
+  @include mixins.when-sidebar-appears() {
+    height: 100%;
+  }
+}
