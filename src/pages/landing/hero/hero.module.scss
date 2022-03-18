@@ -16,12 +16,6 @@ $vector-size: 3.5rem;
   flex-direction: column;
   flex-grow: 1;
 
-  header {
-    padding: var(--layout-gap);
-    // To nullify the gap between the children.
-    padding-bottom: 0;
-  }
-
   article {
     flex-grow: 1;
     padding: var(--layout-gap);

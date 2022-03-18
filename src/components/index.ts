@@ -1,4 +1,12 @@
-export { App, Container, Main, Sidebar, Footer, NextToNav } from "./app";
+export {
+  App,
+  Container,
+  Header,
+  Main,
+  Sidebar,
+  Footer,
+  NextToNav,
+} from "./app";
 export { Icon } from "./icon";
 export { Logo } from "./logo";
 export { BlobCard } from "./blob-card";

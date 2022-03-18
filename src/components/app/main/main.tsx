@@ -3,7 +3,7 @@ import { MainContext } from ".";
 import styles from "./main.module.scss";
 
 const Main: FC<ComponentPropsWithoutRef<"main">> = (props) => {
-  const { className, children, ...rest } = props;
+  const { className = "", children, ...rest } = props;
 
   const ref = createRef<HTMLElement>();
 

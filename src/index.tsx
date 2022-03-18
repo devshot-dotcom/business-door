@@ -5,7 +5,7 @@ import { defaultTheme } from "./config/theme";
 import { ToastOptions } from "./helpers/types";
 import { ThemeContext, ToastContext } from "./config/context";
 import { AuthorizedRoute } from "./modules/AuthorizedRoute";
-import { Auth, Create, Login } from "./pages/auth/auth";
+import { Auth, Create, Login } from "./pages";
 import { Reset, Renew, Verify } from "./pages/auth/reset/reset";
 import { Error, Error403, Error404, Error419 } from "./pages/Error/Error";
 import { Home } from "./pages/Home";

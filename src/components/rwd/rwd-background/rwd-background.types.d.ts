@@ -1,4 +1,4 @@
-import { ComponentPropsWithoutRef, ReactNode } from "react";
+import { ComponentPropsWithoutRef } from "react";
 import { ResponsiveColors } from "..";
 
 export interface RwdBackgroundProps extends ComponentPropsWithoutRef<"div"> {

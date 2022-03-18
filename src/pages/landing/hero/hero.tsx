@@ -1,4 +1,4 @@
-import { Button, Link, Logo, NextToNav } from "../../../components";
+import { Button, Link, NextToNav } from "../../../components";
 import { Vector } from "../../../components/Vector/Vector";
 import waveX1 from "../../../assets/vectors/abstract/wave/wave-full.svg";
 import waveX2 from "../../../assets/vectors/abstract/wave/@x2/wave-full.svg";
@@ -6,15 +6,14 @@ import waveX3 from "../../../assets/vectors/abstract/wave/@x3/wave-full.svg";
 import semis from "../../../assets/vectors/abstract/semis.svg";
 import blocks from "../../../assets/vectors/abstract/blocks.svg";
 import styles from "./hero.module.scss";
+import { Header } from "../../../components/app";
 
 /** The hero section of the landing page. */
 export const Hero = () => {
   return (
     <section className={styles.hero}>
       <NextToNav className={styles.first}>
-        <header>
-          <Logo size="large" />
-        </header>
+        <Header />
         <article>
           <h1 className={`${styles.title}  text-h2`}>
             We're the upbringing

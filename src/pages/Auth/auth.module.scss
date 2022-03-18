@@ -1,12 +1,25 @@
 @use "../../sass/vars";
-@use "../../sass/mixins";
 
 .auth {
-  height: calc(100vh - vars.$navbar-size-mobile);
+  height: 100%;
+  max-height: vars.$breakpoint-tablet;
   background-color: var(--theme-color-background);
+}
+
+.wrapper {
+  height: 100%;
+  min-height: vars.$breakpoint-mobile;
+  max-height: vars.$breakpoint-tablet;
+  display: grid;
+  grid-template-rows: auto 1fr;
+}
+
+.grid {
+  display: grid;
+  place-items: center;
   padding: var(--layout-gap);
 
-  @include mixins.when-sidebar-appears() {
-    height: 100%;
+  @media (min-width: vars.$breakpoint-desktop) {
+    grid-template-columns: 1fr 1fr;
   }
 }

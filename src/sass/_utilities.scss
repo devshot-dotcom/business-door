@@ -1,4 +1,5 @@
 @use "./vars";
+@use "./mixins";
 
 // Text colors
 @each $color-name, $color-map in vars.$colors {
@@ -19,6 +20,30 @@
 
 .hide {
   display: none;
+}
+
+.show-when-sidebar-appears {
+  @include mixins.when-sidebar-appears() {
+    display: block;
+  }
+}
+
+.hide-when-sidebar-appears {
+  @include mixins.when-sidebar-appears() {
+    display: none;
+  }
+}
+
+.show-when-vertical-nav-appears {
+  @include mixins.when-vertical-nav-appears() {
+    display: block;
+  }
+}
+
+.hide-when-vertical-nav-appears {
+  @include mixins.when-vertical-nav-appears() {
+    display: none;
+  }
 }
 
 @each $breakpoint-name, $breakpoint-value in vars.$breakpoints {
@@ -53,13 +78,6 @@
 .text-link {
   font-weight: 700;
   text-decoration: underline;
-}
-
-// Components
-.viewport {
-  width: 100vw;
-  height: 100vh;
-  overflow: auto;
 }
 
 //* Layout

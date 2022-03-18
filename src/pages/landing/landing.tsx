@@ -1,7 +1,6 @@
 import { Hero } from "./hero";
 import { Intro } from "./intro";
 import { Reason } from "./reason";
-import { Tidbits } from "./tidbits";
 import { useTitle } from "../../hooks";
 import { appName } from "../../helpers/meta";
 import { Footer, Sidebar } from "../../components";
@@ -15,9 +14,10 @@ const Landing = () => {
     <>
       <Hero />
       <Intro />
-      <Sidebar bg="default-subtle" bgOnLaptop="default">
-        <Tidbits />
-      </Sidebar>
+      <Sidebar
+        variant="tidbits"
+        rwd={{ bg: "default-subtle", bgOnLaptop: "default" }}
+      />
       <Reason />
       <Footer />
     </>

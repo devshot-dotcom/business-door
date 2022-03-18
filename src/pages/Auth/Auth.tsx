@@ -1,25 +1,25 @@
-import { Card, NextToNav, Sidebar } from "../../components";
+import { Header, Footer, NextToNav, Sidebar, BlobCard } from "../../components";
 import { Outlet } from "react-router-dom";
-import { ThemeSwitcher } from "../../modules/modules";
+import cover from "../../assets/illustrations/monochrome/lady-employee-working-in-office.png";
 import styles from "./auth.module.scss";
 
-function Auth() {
+export const Auth = () => {
   return (
     <>
       <section id="auth" className={styles.auth}>
         <NextToNav className={styles.wrapper}>
-          <div className="auth__card-wrapper">
-            <Card className="auth__card">
-              <Outlet />
-            </Card>
-          </div>
+          <Header />
+          <article className={styles.grid}>
+            <Outlet />
+            <BlobCard
+              cover={cover}
+              className="hide show-when-sidebar-appears"
+            />
+          </article>
         </NextToNav>
       </section>
-      <Sidebar />
+      <Sidebar className="hide show-when-sidebar-appears" />
+      <Footer />
     </>
   );
-}
-
-export { Auth };
-export { Login } from "./login";
-export { Create } from "./create";
+};
