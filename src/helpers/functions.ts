@@ -1,4 +1,4 @@
-import { patterns } from "./regex";
+import { PATTERNS } from "./regex";
 
 // Functions.
 /** @see https://stackoverflow.com/a/32108184/14716989 */
@@ -17,11 +17,11 @@ function isAccessToken(tokenName: string) {
 }
 
 function isEmailValid(email: string): boolean {
-  return patterns.EMAIL.test(email);
+  return PATTERNS.EMAIL.test(email);
 }
 
 function isPasswordValid(password: string): boolean {
-  return patterns.PASSWORD.test(password);
+  return PATTERNS.PASSWORD.test(password);
 }
 
 /** @see https://stackoverflow.com/a/9436948/14716989 */

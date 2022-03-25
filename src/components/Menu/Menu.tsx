@@ -1,7 +1,7 @@
 import { ComponentPropsWithoutRef, FC } from "react";
-import "./Menu.scss";
+import styles from "./menu.module.scss";
 
-const Menu: FC<ComponentPropsWithoutRef<"ul">> = (props) => {
+export const Menu: FC<ComponentPropsWithoutRef<"ul">> = (props) => {
   const { className = "", children, ...rest } = props;
 
   return (
@@ -10,6 +10,3 @@ const Menu: FC<ComponentPropsWithoutRef<"ul">> = (props) => {
     </ul>
   );
 };
-
-export { Menu };
-export { MenuItem } from "./MenuItem";

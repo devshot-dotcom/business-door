@@ -1,6 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import { breakpoints } from "../../config/breakpoints";
-import { ThemeContext } from "../../config";
+import { ThemeContext, BREAKPOINTS } from "../../config";
 import { DynamicModule } from "../../helpers/types";
 import type { BlobProps } from "./blob-card-types";
 import styles from "./blob-card.module.scss";
@@ -47,25 +46,25 @@ const BlobCard = (props: BlobProps) => {
           <picture>
             {coverForMobile && (
               <source
-                media={`(min-width: ${breakpoints.mobile.px})`}
+                media={`(min-width: ${BREAKPOINTS.MOBILE.px})`}
                 srcSet={coverForMobile}
               />
             )}
             {coverForTablet && (
               <source
-                media={`(min-width: ${breakpoints.tablet.px})`}
+                media={`(min-width: ${BREAKPOINTS.TABLET.px})`}
                 srcSet={coverForTablet}
               />
             )}
             {coverForLaptop && (
               <source
-                media={`(min-width: ${breakpoints.laptop.px})`}
+                media={`(min-width: ${BREAKPOINTS.LAPTOP.px})`}
                 srcSet={coverForLaptop}
               />
             )}
             {coverForDesktop && (
               <source
-                media={`(min-width: ${breakpoints.desktop.px})`}
+                media={`(min-width: ${BREAKPOINTS.DESKTOP.px})`}
                 srcSet={coverForDesktop}
               />
             )}

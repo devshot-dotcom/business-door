@@ -1,12 +1,12 @@
 import { useInput } from ".";
 import { InputActions, InputStateType } from "../components/input";
-import { patterns } from "../helpers/regex";
+import { PATTERNS } from "../helpers/regex";
 
 function useEmail(): InputStateType {
   const [emailState, dispatchEmail] = useInput();
 
   const isEmailValid = (): boolean => {
-    const isValid = patterns.EMAIL.test(emailState.value);
+    const isValid = PATTERNS.EMAIL.test(emailState.value);
 
     if (!isValid) {
       const action: InputActions = {

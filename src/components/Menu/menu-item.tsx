@@ -12,7 +12,7 @@ interface Props extends React.ComponentPropsWithoutRef<"li"> {
   title: string;
 }
 
-function MenuItem(props: Props) {
+export const MenuItem = (props: Props) => {
   const { icon, variant = "default", title, className = "", ...rest } = props;
 
   return (
@@ -21,6 +21,4 @@ function MenuItem(props: Props) {
       <div className="menu__label text-paragraph">{title}</div>
     </li>
   );
-}
-
-export { MenuItem };
+};

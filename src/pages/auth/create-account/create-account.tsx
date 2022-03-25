@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { Input, Button, PasswordCriteria } from "../../../components";
+import { Input, Button } from "../../../components";
 import { routes } from "../../../config";
 import { useEmail, usePassword, useAuthenticator } from "../../../hooks";
 import { doPasswordsMatch } from "../../../modules";
@@ -53,32 +53,27 @@ export const CreateAccount = () => {
         }
         onFocus={() => dispatchEmail({ type: "default" })}
       />
+      <Input
+        type="password"
+        state={pswdState}
+        placeholder="Your Password"
+        title="Please enter your password"
+        onChange={(e) =>
+          dispatchPswd({ type: "update", value: e.target.value })
+        }
+        onFocus={() => dispatchPswd({ type: "default" })}
+      />
 
-      <PasswordCriteria password={pswdState.value}>
-        <Input
-          type="password"
-          state={pswdState}
-          placeholder="Your Password"
-          title="Please enter your password"
-          onChange={(e) =>
-            dispatchPswd({ type: "update", value: e.target.value })
-          }
-          onFocus={() => dispatchPswd({ type: "default" })}
-        />
-      </PasswordCriteria>
-
-      <PasswordCriteria password={rePswdState.value}>
-        <Input
-          type="password"
-          state={rePswdState}
-          placeholder="Re-enter Password"
-          title="Please re-enter your password"
-          onChange={(e) =>
-            dispatchRePswd({ type: "update", value: e.target.value })
-          }
-          onFocus={() => dispatchRePswd({ type: "default" })}
-        />
-      </PasswordCriteria>
+      <Input
+        type="password"
+        state={rePswdState}
+        placeholder="Re-enter Password"
+        title="Please re-enter your password"
+        onChange={(e) =>
+          dispatchRePswd({ type: "update", value: e.target.value })
+        }
+        onFocus={() => dispatchRePswd({ type: "default" })}
+      />
 
       <Button
         type="submit"

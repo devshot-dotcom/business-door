@@ -1,5 +1,5 @@
 import * as React from "react";
-import "./Switch.scss";
+import styles from "./switch.module.scss";
 
 interface SwitchProps extends React.ComponentPropsWithoutRef<"span"> {
   id?: string;
@@ -8,7 +8,7 @@ interface SwitchProps extends React.ComponentPropsWithoutRef<"span"> {
   checkHandler: (checked: boolean) => void;
 }
 
-const Switch: React.FC<SwitchProps> = ({
+export const Switch: React.FC<SwitchProps> = ({
   id,
   label,
   checked,
@@ -44,5 +44,3 @@ const Switch: React.FC<SwitchProps> = ({
     </span>
   );
 };
-
-export { Switch };

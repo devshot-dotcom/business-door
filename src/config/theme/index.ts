@@ -7,3 +7,4 @@ export type {
 } from "./theme-types";
 export { DURATION } from "./integers";
 export { DEFAULT_THEME } from "./default-theme";
+export { BREAKPOINTS } from "./breakpoints";

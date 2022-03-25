@@ -1,12 +1,12 @@
 import { useInput } from ".";
 import { InputActions, InputStateType } from "../components/input";
-import { patterns } from "../helpers/regex";
+import { PATTERNS } from "../helpers/regex";
 
 function usePassword(): InputStateType {
   const [pswdState, dispatchPswd] = useInput();
 
   const isPasswordValid = (): boolean => {
-    const isValid = patterns.PASSWORD.test(pswdState.value);
+    const isValid = PATTERNS.PASSWORD.test(pswdState.value);
 
     if (!isValid) {
       const action: InputActions = {

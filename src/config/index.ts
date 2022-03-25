@@ -11,5 +11,4 @@ export type {
   ThemeSizesCompact,
   ThemeSpeeds,
 } from "./theme";
-export { DURATION } from "./theme";
-export { DEFAULT_THEME } from "./theme";
+export { DURATION, DEFAULT_THEME, BREAKPOINTS } from "./theme";
