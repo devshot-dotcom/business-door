@@ -1,0 +1,23 @@
+@use "../../../sass/vars";
+
+.reason {
+  padding: vars.$size-largest var(--layout-gap);
+  background-color: var(--theme-color-background);
+
+  header {
+    display: flex;
+    flex-direction: column;
+    gap: vars.$size-smaller;
+  }
+
+  .cards {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: vars.$size-large;
+    margin-top: vars.$size-largest;
+
+    @media (min-width: vars.$breakpoint-desktop) {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+}

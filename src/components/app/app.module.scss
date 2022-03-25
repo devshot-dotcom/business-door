@@ -1,0 +1,10 @@
+@use "../../sass/vars";
+
+.app {
+  height: 100vh;
+  overflow: hidden;
+  background-color: var(--theme-color-root);
+
+  display: grid;
+  place-items: center;
+}

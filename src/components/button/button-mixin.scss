@@ -1,0 +1,27 @@
+@use "../../sass/vars";
+
+@mixin button($color-background) {
+  padding: vars.$size-small vars.$size-medium;
+  background-color: $color-background;
+  border-radius: vars.$border-radius-small;
+  cursor: pointer;
+  border: 0;
+  width: 100%;
+  align-self: stretch;
+
+  @media (min-width: vars.$breakpoint-mobile) {
+    width: auto;
+    align-self: flex-start;
+  }
+
+  &:hover,
+  &:focus-within {
+    outline: 1px dotted var(--theme-color-link);
+    background-color: scale-color($color-background, $blackness: 10%);
+  }
+
+  &:disabled {
+    cursor: no-drop;
+    background-color: scale-color($color-background, $lightness: 25%);
+  }
+}

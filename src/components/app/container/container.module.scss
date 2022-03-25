@@ -1,0 +1,13 @@
+@use "../../../sass/vars";
+@use "../../../sass/mixins";
+
+.container {
+  margin: auto;
+  position: relative;
+  width: 100%;
+  max-width: vars.$container-max-width;
+
+  @include mixins.when-sidebar-appears() {
+    padding-right: calc(var(--layout-gap) + vars.$sidebar-size);
+  }
+}

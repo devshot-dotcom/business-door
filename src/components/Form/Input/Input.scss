@@ -1,0 +1,92 @@
+@use "../../../sass/vars";
+@use "../../../sass/mixins";
+
+@mixin input-variant($color, $light-color) {
+  border: 1px solid $color;
+  outline: calc(#{vars.$size-smaller} / 2) solid $light-color;
+
+  .icon {
+    color: $color;
+    > path {
+      color: $color;
+    }
+  }
+}
+
+.input-container {
+  padding-right: vars.$size-small;
+  background-color: var(--theme-color-background);
+  border-radius: vars.$size-smaller;
+  cursor: text;
+  display: flex;
+  align-items: center;
+  gap: vars.$size-small;
+  @include mixins.transition(outline vars.$transition-fast linear);
+
+  &.input-default {
+    @include input-variant(
+      var(--theme-color-background),
+      var(--theme-color-background)
+    );
+  }
+
+  &.input-valid {
+    @include input-variant(
+      map-get(vars.$color-valid, "400"),
+      map-get(vars.$color-valid, "25%")
+    );
+  }
+
+  &.input-invalid {
+    @include input-variant(
+      map-get(vars.$color-invalid, "400"),
+      map-get(vars.$color-invalid, "25%")
+    );
+  }
+
+  &:focus-within {
+    outline: 0;
+    @include input-variant(
+      map-get(vars.$color-link, "400"),
+      map-get(vars.$color-link, "25%")
+    );
+  }
+
+  &[disabled] {
+    cursor: no-drop;
+
+    input {
+      cursor: no-drop;
+      color: var(--theme-color-text-subtle);
+    }
+
+    .icon {
+      color: map-get(vars.$color-tertiary, "400");
+      > path {
+        color: map-get(vars.$color-tertiary, "400");
+      }
+    }
+  }
+}
+
+.input-container input {
+  // To remove default width of the element.
+  width: 0;
+
+  // Making it occupy all the available space.
+  flex-grow: 1;
+  display: inline-block;
+  padding: calc(#{vars.$size-medium} / 2) vars.$size-small;
+  padding-right: 0;
+  background-color: transparent;
+  border: 0;
+  border-radius: inherit;
+
+  &::placeholder {
+    color: var(--theme-color-text-subtle);
+  }
+
+  &:focus {
+    outline: none;
+  }
+}

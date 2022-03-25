@@ -1,0 +1,12 @@
+@use "../../../sass/vars";
+
+.title-icon {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: vars.$size-smaller;
+}
+
+.title {
+  text-align: left !important;
+}

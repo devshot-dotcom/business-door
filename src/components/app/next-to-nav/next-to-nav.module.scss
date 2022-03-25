@@ -1,0 +1,15 @@
+@use "../../../sass/vars";
+@use "../../../sass/mixins";
+
+@include mixins.when-vertical-nav-appears() {
+  .next-to-nav {
+    padding-left: vars.$navbar-space-requirement;
+  }
+}
+
+@include mixins.when-sidebar-appears() {
+  .next-to-nav[data-sidebar] {
+    height: 100%;
+    padding-left: 0;
+  }
+}

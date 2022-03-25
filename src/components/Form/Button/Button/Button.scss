@@ -1,0 +1,53 @@
+@use "../../../../sass/vars";
+@use "../../../../sass/mixins";
+
+@mixin button($color-background) {
+  padding: vars.$size-small vars.$size-medium;
+  background-color: $color-background;
+  border-radius: vars.$border-radius-small;
+  cursor: pointer;
+  border: 0;
+  width: 100%;
+  align-self: stretch;
+
+  @media (min-width: vars.$breakpoint-mobile) {
+    width: auto;
+    align-self: flex-start;
+  }
+}
+
+$button-variants: (
+  "primary": vars.$color-brand,
+  "secondary": vars.$color-secondary,
+  "tertiary": vars.$color-tertiary,
+);
+
+// Iterate over the type map.
+@each $variant, $color in $button-variants {
+  // Generate a class for each type (button-primary, etc).
+  .button-#{$variant} {
+    @include button(map-get($color, "400"));
+
+    &:hover,
+    &:focus-within {
+      outline: 1px dotted var(--theme-color-link);
+      background-color: scale-color(
+        $color: map-get($color, "400"),
+        $blackness: 10%
+      );
+    }
+
+    &:disabled {
+      @include button(map-get($color, "200"));
+      cursor: no-drop;
+    }
+  }
+}
+
+.button-blank {
+  background-color: transparent;
+  border: 0;
+  outline: 0;
+  padding: 0;
+  cursor: pointer;
+}

@@ -1,0 +1,29 @@
+@use "../../../sass/vars";
+@use "../../../sass/mixins";
+
+.main {
+  overflow-y: auto;
+  overflow-x: hidden;
+  height: 100vh;
+  box-shadow: vars.$box-shadow-smaller;
+  background-color: var(--theme-color-background-subtle);
+  padding-bottom: vars.$navbar-size-mobile;
+  @include mixins.scrollbar();
+
+  > * {
+    position: relative;
+  }
+
+  @include mixins.when-vertical-nav-appears() {
+    padding-bottom: 0;
+  }
+
+  @media (min-width: vars.$breakpoint-desktop) {
+    border-radius: vars.$border-radius-small;
+    height: calc(100vh - var(--layout-gap) * 2);
+  }
+
+  @media (min-width: vars.$breakpoint-high-definition) {
+    height: calc(100vh - var(--layout-gap) * 4);
+  }
+}
