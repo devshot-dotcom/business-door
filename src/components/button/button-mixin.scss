@@ -22,6 +22,6 @@
 
   &:disabled {
     cursor: no-drop;
-    background-color: scale-color($color-background, $lightness: 10%);
+    background-color: scale-color($color-background, $lightness: 25%);
   }
 }

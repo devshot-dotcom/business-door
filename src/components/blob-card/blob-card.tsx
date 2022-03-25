@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { breakpoints } from "../../config/breakpoints";
-import { ThemeContext } from "../../config/context/ThemeContext";
+import { ThemeContext } from "../../config";
 import { DynamicModule } from "../../helpers/types";
 import type { BlobProps } from "./blob-card-types";
 import styles from "./blob-card.module.scss";

@@ -2,9 +2,9 @@ import { ComponentPropsWithoutRef } from "react";
 import { ResponsiveColors } from "..";
 
 export interface RwdBackgroundProps extends ComponentPropsWithoutRef<"div"> {
-  bg?: ResponsiveColors;
-  bgOnMobile?: ResponsiveColors;
-  bgOnTablet?: ResponsiveColors;
-  bgOnLaptop?: ResponsiveColors;
-  bgOnDesktop?: ResponsiveColors;
+  variant?: ResponsiveColors;
+  onMobile?: ResponsiveColors;
+  onTablet?: ResponsiveColors;
+  onLaptop?: ResponsiveColors;
+  onDesktop?: ResponsiveColors;
 }

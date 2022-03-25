@@ -6,7 +6,7 @@ const Container = () => {
   return (
     <div className={styles.container}>
       <Navbar />
-      <Main>
+      <Main data-no-sidebar>
         <Outlet />
       </Main>
     </div>

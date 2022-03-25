@@ -92,3 +92,48 @@ $text-variants: "h1", "h2", "h3", "pre-title", "button", "link", "title",
     @include text-constructor($variant);
   }
 }
+
+// Individual variant mixins
+@mixin h1() {
+  @include text-constructor("h1");
+}
+
+@mixin h2() {
+  @include text-constructor("h2");
+}
+
+@mixin h3() {
+  @include text-constructor("h3");
+}
+
+@mixin pre-title() {
+  @include text-constructor("pre-title");
+}
+
+@mixin button() {
+  @include text-constructor("button");
+}
+
+@mixin title() {
+  @include text-constructor("title");
+}
+
+@mixin sub-title() {
+  @include text-constructor("sub-title");
+}
+
+@mixin paragraph() {
+  @include text-constructor("paragraph");
+}
+
+@mixin small() {
+  @include text-constructor("small");
+}
+
+@mixin smaller() {
+  @include text-constructor("smaller");
+}
+
+@mixin smallest() {
+  @include text-constructor("smallest");
+}

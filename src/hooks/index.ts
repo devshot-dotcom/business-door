@@ -1,6 +1,6 @@
-export { useInput } from "./useInput";
-export { useEmail } from "./useEmail";
-export { usePassword } from "./usePassword";
-export { useToast } from "./useToast";
-export { useAuthenticator } from "./useAuthenticator";
-export { useTitle } from "./useTitle";
+export { useInput } from "./use-input";
+export { useEmail } from "./use-email";
+export { usePassword } from "./use-password";
+export { useToast } from "./use-toast";
+export { useAuthenticator } from "./use-authenticator";
+export { useTitle } from "./use-title";

@@ -1,17 +1,18 @@
 import { Outlet } from "react-router-dom";
-import { Card } from "../../components";
+import { Footer, Header, NextToNav, Sidebar } from "../../components";
+import styles from "./error.module.scss";
 
-function Error() {
+export const Error = () => {
   return (
-    <div className="viewport grid-centered bg-secondary">
-      <Card>
-        <Outlet />
-      </Card>
-    </div>
+    <>
+      <div className={styles.error}>
+        <Header />
+        <NextToNav>
+          <Outlet />
+        </NextToNav>
+      </div>
+      <Sidebar className="hide show-when-sidebar-appears" />
+      <Footer />
+    </>
   );
-}
-
-export { Error };
-export { Error403 } from "./Error403";
-export { Error404 } from "./Error404";
-export { Error419 } from "./Error419";
+};

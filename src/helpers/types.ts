@@ -1,5 +1,3 @@
-import { IconProp } from "@fortawesome/fontawesome-svg-core";
-
 //* TYPES.
 
 /**
@@ -34,31 +32,6 @@ export type DynamicModule = {
 };
 
 //* INTERFACES.
-
-/**
- * The set of data required to initialize a toast.
- */
-interface ToastOptions {
-  /** Visual state of the toast. */
-  variant?: "default" | "valid" | "invalid" | "loading";
-
-  title?: string;
-  subTitle?: string;
-
-  /** An icon, ofc. Provide a URL,
-   * an emoji, or a `FontAwesomeIcon`. */
-  icon?: string | IconProp;
-
-  /** For how long the toast will be displayed.
-   * Number must be in milliseconds (1s = 1000ms).
-   * - REMOVE_ON_PUSH removes the toast when a
-   * newer toast is cooked.
-   */
-  upTime?: number | "REMOVE_ON_PUSH";
-
-  /** Callback that's called when a toast is removed */
-  onRemove?: () => void;
-}
 
 /**
  * Since tooltip isn't really a react component,
@@ -131,4 +104,4 @@ interface BoolBacks {
   onFailure?: () => void;
 }
 
-export type { ToastOptions, TooltipProps, InputState, InputActions, BoolBacks };
+export type { TooltipProps, InputState, InputActions, BoolBacks };

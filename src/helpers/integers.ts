@@ -4,13 +4,6 @@ const durationMedium = 2000;
 const durationLong = 3000;
 
 // Component-oriented durations (Millisecond).
-const toastUptime = 6000;
 const redirectTime = 5000;
 
-export {
-  durationShort,
-  durationMedium,
-  durationLong,
-  toastUptime,
-  redirectTime,
-};
+export { durationShort, durationMedium, durationLong, redirectTime };

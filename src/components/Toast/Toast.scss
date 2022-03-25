@@ -4,11 +4,15 @@
 /* Toast List. */
 .toast-sandwich {
   position: fixed;
+  z-index: vars.$z-index-toast;
   width: 100vw;
   padding: vars.$size-small;
-  padding-top: 0;
   margin: 0;
   list-style: none;
+
+  > * + * {
+    margin-top: vars.$size-small;
+  }
 
   @media (min-width: vars.$breakpoint-mobile) {
     width: 25rem;
@@ -35,22 +39,18 @@
   }
 }
 
-/* Toast (List Item). */
-[data-theme="dark"] .coffee-toast {
-  background-color: black;
-}
-
-.coffee-toast {
-  background-color: white;
-  padding: vars.$size-small;
+.toast {
+  background-color: var(--theme-color-root);
+  padding: vars.$size-smaller;
   padding-left: vars.$size-small;
-  margin-top: vars.$size-small;
-  border-radius: vars.$size-small;
+  border-radius: vars.$border-radius-small;
   display: flex;
+  flex-direction: row;
   justify-content: space-between;
+  align-items: center;
   gap: vars.$size-small;
   cursor: pointer;
-  @include mixins.transition(all vars.$transition-fast);
+  @include mixins.transition(all vars.$transition-fastest);
 
   &:hover,
   &:focus-within {
@@ -93,9 +93,8 @@
   }
 
   .toast__titles {
-    .text-small {
-      margin-top: vars.$size-small;
-      color: var(--theme-color-text-subtle);
+    * + * {
+      margin-top: vars.$size-smallest;
     }
 
     .toast__accessible-title {
@@ -108,11 +107,11 @@
 .toast__button {
   background-color: transparent;
   border: 0;
-  border-radius: vars.$size-small;
+  border-radius: vars.$border-radius-small;
   font-size: vars.$size-small;
-  padding: vars.$size-small;
+  padding: vars.$size-smaller;
   cursor: pointer;
-  @include mixins.transition(background-color vars.$transition-fast);
+  @include mixins.transition(background-color vars.$transition-fastest);
 
   * {
     color: var(--theme-color-text);

@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { Logo } from "../../components";
+import { routes } from "../../config";
 import styles from "./splash.module.scss";
 
 export const Splash = () => {
@@ -8,7 +9,7 @@ export const Splash = () => {
 
   useEffect(() => {
     const timeout = setTimeout(
-      () => navigate("/landing", { replace: true }),
+      () => navigate(routes.landing.path, { replace: true }),
       5000
     );
     return () => clearTimeout(timeout);

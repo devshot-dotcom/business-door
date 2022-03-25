@@ -2,14 +2,10 @@ import { Hero } from "./hero";
 import { Intro } from "./intro";
 import { Reason } from "./reason";
 import { useTitle } from "../../hooks";
-import { appName } from "../../helpers/meta";
 import { Footer, Sidebar } from "../../components";
+import { routes } from "../../config";
 
 const Landing = () => {
-  useTitle(
-    `${appName} | Digitalize yourself with modern business cards that stand out`
-  );
-
   return (
     <>
       <Hero />

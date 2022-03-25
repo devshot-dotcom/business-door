@@ -7,14 +7,11 @@ export const Auth = () => {
   return (
     <>
       <section id="auth" className={styles.auth}>
+        <Header />
         <NextToNav className={styles.wrapper}>
-          <Header />
           <article className={styles.grid}>
-            <Outlet />
-            <BlobCard
-              cover={cover}
-              className="hide show-when-sidebar-appears"
-            />
+            <Outlet context={{ className: styles.form }} />
+            <BlobCard cover={cover} className="hide show-on-desktop" />
           </article>
         </NextToNav>
       </section>

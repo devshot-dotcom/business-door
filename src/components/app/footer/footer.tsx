@@ -2,7 +2,7 @@ import { faHeart } from "@fortawesome/free-solid-svg-icons";
 import { useContext } from "react";
 import { NextToNav } from "..";
 import { Button, Icon, Logo } from "../..";
-import { authorEmail, authorSite } from "../../../helpers/meta";
+import { env } from "../../../config";
 import { MainContext, MainRef } from "../main";
 import styles from "./footer.module.scss";
 
@@ -34,16 +34,16 @@ const Footer = () => {
           <div className="text-paragraph">
             For inquiries, contact{" "}
             <a
-              href={`mailto://${authorEmail}`}
+              href={`mailto://${env.AUTHOR.EMAIL}`}
               className="text-paragraph text-link"
             >
-              {authorEmail}
+              {env.AUTHOR.EMAIL}
             </a>
           </div>
           <div className="text-paragraph">
             &copy; {new Date().getFullYear()}{" "}
-            <a href={authorSite} className="text-paragraph text-link">
-              {authorSite}
+            <a href={env.AUTHOR.SITE.URL} className="text-paragraph text-link">
+              {env.AUTHOR.SITE.NAME}
             </a>
             {", "}
             all rights reserved.

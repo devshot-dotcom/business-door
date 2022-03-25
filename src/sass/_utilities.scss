@@ -80,6 +80,27 @@
   text-decoration: underline;
 }
 
+// Margins
+.h-gap {
+  > * + * {
+    margin-left: vars.$size-medium;
+  }
+
+  &-small > * + * {
+    margin-left: vars.$size-smaller;
+  }
+}
+
+.v-gap {
+  > * + * {
+    margin-top: vars.$size-medium;
+  }
+
+  &-small > * + * {
+    margin-top: vars.$size-smaller;
+  }
+}
+
 //* Layout
 // Position
 .layout-absolute {

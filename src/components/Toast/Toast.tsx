@@ -1,57 +1,37 @@
 import { useEffect } from "react";
-import { ToastIcon } from "./_ToastIcon";
+import { ToastIcon } from "./toast-icon";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { toastUptime } from "../../helpers/integers";
-import { isString } from "../../helpers/functions";
-import { ToastOptions } from "../../helpers/types";
+import { ToastProps, TOAST_UPTIME } from ".";
 
-type Props = {
-  index: number;
-  toastOptions: ToastOptions;
-  removeToast: (index: number) => void;
-};
-
-function Toast({ index, toastOptions, removeToast }: Props) {
-  const { variant = "default", title, subTitle, icon, upTime } = toastOptions;
+export const Toast = ({ index, toastOptions, removeToast }: ToastProps) => {
+  const {
+    variant = "default",
+    title,
+    subTitle,
+    icon,
+    upTime = TOAST_UPTIME.DEFAULT,
+  } = toastOptions;
 
   // Remove the toast after set upTime.
   useEffect(() => {
-    const getUptime = (): number => {
-      if (isString(upTime)) {
-        // A string represents some special case,
-        // such as a toast that hides only when a
-        // new toast is added to the sandwich.
-        // Most HTTP requests are cancelled within
-        // 30 seconds so, that's the max upTime.
-        return 30000;
-      }
-
-      // When not a string, provide the upTime if provided
-      // and the fallback otherwise.
-      return (upTime as number) || toastUptime;
-    };
-
     // Remove toast after the calculated delay.
     const timeout = setTimeout(() => {
       removeToast(index);
-    }, getUptime());
+    }, upTime);
 
     return () => clearTimeout(timeout);
   }, [removeToast, index, upTime]);
 
   return (
-    <li
-      onClick={() => removeToast(index)}
-      className={`coffee-toast toast-${variant} show`}
-    >
+    <li onClick={() => removeToast(index)} className={`toast toast-${variant}`}>
       <div className="toast__content">
         <div className="toast__icon">
           <ToastIcon variant={variant} icon={icon} />
         </div>
         <div className="toast__titles">
           <div className="text-paragraph">{title}</div>
-          <div className="text-paragraph">{title}</div>
+          <div className="text-small text-subtle">{subTitle}</div>
           <div role="alert" className="toast__accessible-title">
             {subTitle}
           </div>
@@ -62,7 +42,4 @@ function Toast({ index, toastOptions, removeToast }: Props) {
       </button>
     </li>
   );
-}
-
-export { Toast };
-export { ToastSandwich } from "./ToastSandwich";
+};

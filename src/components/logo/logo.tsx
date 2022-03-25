@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import { ThemeContext } from "../../config/context/ThemeContext";
+import { ThemeContext } from "../../config";
 import { ThemeSizes } from "../../config/theme";
 import { DynamicModule } from "../../helpers/types";
 import styles from "./logo.module.scss";
@@ -8,7 +8,7 @@ type Props = {
   size?: ThemeSizes;
 };
 
-const Logo = ({ size = "medium" }: Props) => {
+export const Logo = ({ size = "medium" }: Props) => {
   const { theme } = useContext(ThemeContext);
   const [logo, setLogo] = useState<DynamicModule>();
   const classes = [styles.logo, styles[`logo-${size}`]];
@@ -26,5 +26,3 @@ const Logo = ({ size = "medium" }: Props) => {
     </div>
   );
 };
-
-export { Logo };

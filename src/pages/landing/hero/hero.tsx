@@ -12,8 +12,8 @@ import { Header } from "../../../components/app";
 export const Hero = () => {
   return (
     <section className={styles.hero}>
+      <Header />
       <NextToNav className={styles.first}>
-        <Header />
         <article>
           <h1 className={`${styles.title}  text-h2`}>
             We're the upbringing

@@ -21,7 +21,7 @@ export const Link: FC<LinkProps> = (props) => {
     naked: LinkNaked,
   }[variant];
 
-  // In case of a link that refers to t
+  // In case of a link that refers to an element
   const onClick = scrollTo
     ? () =>
         document
@@ -29,12 +29,13 @@ export const Link: FC<LinkProps> = (props) => {
           ?.scrollIntoView({ behavior: "smooth" })
     : undefined;
 
+  const classes = [
+    variant === "naked" ? "text-link" : "text-button",
+    className,
+  ];
+
   return (
-    <Component
-      {...rest}
-      onClick={onClick}
-      className={`text-button ${className}`}
-    >
+    <Component {...rest} onClick={onClick} className={classes.join(" ")}>
       {children}
     </Component>
   );

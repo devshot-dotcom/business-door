@@ -1,8 +1,8 @@
 import { createClient } from "@supabase/supabase-js";
-import { databaseUrl, databasePublicKey } from "../helpers/meta";
+import { env } from ".";
 
-if (databaseUrl === undefined || databasePublicKey === undefined) {
+if (env.DATABASE.KEY === undefined || env.DATABASE.URL === undefined) {
   throw new Error("Database initialization error.");
 }
 
-export const supabase = createClient(databaseUrl, databasePublicKey);
+export const SUPABASE = createClient(env.DATABASE.URL, env.DATABASE.KEY);

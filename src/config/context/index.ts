@@ -1,2 +1,2 @@
-export { ToastContext } from "./ToastContext";
-export { ThemeContext } from "./ThemeContext";
+export { ToastContext } from "./toast-context";
+export { ThemeContext } from "./theme-context";

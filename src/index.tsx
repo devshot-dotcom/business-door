@@ -1,20 +1,15 @@
 import ReactDOM from "react-dom";
 import { useEffect, useState } from "react";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
-import { defaultTheme } from "./config/theme";
-import { ToastOptions } from "./helpers/types";
-import { ThemeContext, ToastContext } from "./config/context";
-import { AuthorizedRoute } from "./modules/AuthorizedRoute";
-import { Auth, Create, Login } from "./pages";
-import { Reset, Renew, Verify } from "./pages/auth/reset/reset";
-import { Error, Error403, Error404, Error419 } from "./pages/Error/Error";
-import { Home } from "./pages/Home";
-import { Landing, Splash } from "./pages";
+import { routes, ThemeContext, ToastContext, DEFAULT_THEME } from "./config";
+import { AuthorizedRoute, Meta } from "./modules";
 import { App, Container, ToastSandwich } from "./components";
+import { ToastOptions } from "./components/toast";
+import { Splash } from "./pages";
 import "./sass/index.scss";
 
 export function Root(): JSX.Element {
-  const [theme, setTheme] = useState(defaultTheme);
+  const [theme, setTheme] = useState(DEFAULT_THEME);
   const [toasts, setToasts] = useState([] as ToastOptions[]);
 
   useEffect(() => {
@@ -23,7 +18,7 @@ export function Root(): JSX.Element {
     // he/she has selected, or the default;
     // light theme. If it's dark, we need to
     // apply it, otherwise, we do nothing.
-    if (defaultTheme === "dark")
+    if (DEFAULT_THEME === "dark")
       document.body.setAttribute("data-theme", "dark");
   }, []);
 
@@ -36,23 +31,80 @@ export function Root(): JSX.Element {
               <Routes>
                 <Route path="/" element={<Outlet />}>
                   <Route element={<Container />}>
+                    {/* Splash Page */}
                     <Route index={true} element={<Splash />} />
-                    <Route path="landing" element={<Landing />} />
-                    <Route path="auth" element={<Auth />}>
-                      <Route index={true} element={<Login />} />
-                      <Route path="create" element={<Create />} />
-                      <Route path="reset" element={<Reset />}>
-                        <Route index={true} element={<Verify />} />
+
+                    {/* Landing Page */}
+                    <Route element={<Meta title={routes.landing.title} />}>
+                      <Route
+                        path={routes.landing.basename}
+                        element={routes.landing.Page}
+                      />
+                    </Route>
+
+                    {/* Auth Page */}
+                    <Route
+                      path={routes.auth.basename}
+                      element={routes.auth.Page}
+                    >
+                      {/* Login */}
+                      <Route element={<Meta title={routes.login.title} />}>
+                        <Route index={true} element={routes.login.Page} />
+                      </Route>
+
+                      {/* Create Account */}
+                      <Route
+                        element={<Meta title={routes.createAccount.title} />}
+                      >
+                        <Route
+                          path={routes.createAccount.basename}
+                          element={routes.createAccount.Page}
+                        />
+                      </Route>
+
+                      {/* Verify Account */}
+                      <Route
+                        element={<Meta title={routes.verifyAccount.title} />}
+                      >
+                        <Route
+                          path={routes.verifyAccount.basename}
+                          element={routes.verifyAccount.Page}
+                        />
+                      </Route>
+
+                      {/* Reset Password */}
+                      <Route
+                        element={<Meta title={routes.resetPassword.title} />}
+                      >
                         <Route element={<AuthorizedRoute />}>
-                          <Route path="renew" element={<Renew />} />
+                          <Route
+                            path={routes.resetPassword.basename}
+                            element={routes.resetPassword.Page}
+                          />
                         </Route>
                       </Route>
                     </Route>
-                    <Route path="home" element={<Home />} />
-                    <Route path="*" element={<Error />}>
-                      <Route path="403" element={<Error403 />} />
-                      <Route path="419" element={<Error419 />} />
-                      <Route path="*" element={<Error404 />} />
+
+                    {/* Error */}
+                    <Route
+                      path={routes.error.basename}
+                      element={routes.error.Page}
+                    >
+                      {/* Error 404 */}
+                      <Route element={<Meta title={routes.error404.title} />}>
+                        <Route
+                          path={routes.error404.basename}
+                          element={routes.error404.Page}
+                        />
+                      </Route>
+
+                      {/* Error 403 */}
+                      <Route element={<Meta title={routes.error403.title} />}>
+                        <Route
+                          path={routes.error403.basename}
+                          element={routes.error403.Page}
+                        />
+                      </Route>
                     </Route>
                   </Route>
                 </Route>

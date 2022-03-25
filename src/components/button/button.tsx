@@ -15,8 +15,10 @@ export const Button: FC<ButtonProps> = (props) => {
     naked: ButtonNaked,
   }[variant];
 
+  const classes = variant === "naked" ? className : `text-button ${className}`;
+
   return (
-    <Component {...rest} className={`text-button ${className}`}>
+    <Component {...rest} className={classes}>
       {children}
     </Component>
   );
