@@ -1,4 +1,4 @@
-export { routes } from "./router";
+export { ROUTES } from "./router";
 export type { Route } from "./router";
 export { env } from "./env";
 export { SUPABASE } from "./database";

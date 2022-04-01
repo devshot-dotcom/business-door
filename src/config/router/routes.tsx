@@ -7,12 +7,14 @@ import {
   Error404,
   Landing,
   Login,
+  Profile,
+  ViewProfile,
   ResetPassword,
   VerifyAccount,
 } from "../../pages";
 import { Error } from "../../pages/error";
 
-export const routes: Record<string, Route> = {
+export const ROUTES: Record<string, Route> = {
   landing: {
     path: "/landing",
     basename: "landing",
@@ -48,6 +50,16 @@ export const routes: Record<string, Route> = {
     basename: "reset-password",
     title: `${env.APP.NAME} | Reset your account's password`,
     Page: <ResetPassword />,
+  },
+  profile: {
+    path: "/profile",
+    basename: "profile",
+    Page: <Profile />,
+  },
+  ViewProfile: {
+    path: "/profile/:username",
+    basename: ":username",
+    Page: <ViewProfile />,
   },
   error: {
     path: "*",

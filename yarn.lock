@@ -5954,6 +5954,11 @@
     "jsprim" "^1.2.2"
     "sshpk" "^1.7.0"
 
+"http-status-codes@^2.2.0":
+  "integrity" "sha512-feERVo9iWxvnejp3SEfm/+oNG517npqL2/PIA8ORjyOZjGC7TwCRQsZylciLS64i6pJ0wRYz3rkXLRwbtFa8Ng=="
+  "resolved" "https://registry.npmjs.org/http-status-codes/-/http-status-codes-2.2.0.tgz"
+  "version" "2.2.0"
+
 "https-browserify@^1.0.0":
   "integrity" "sha1-7AbBDgo0wPL68Zn3/X/Hj//QPHM="
   "resolved" "https://registry.npmjs.org/https-browserify/-/https-browserify-1.0.0.tgz"

@@ -1,8 +1,8 @@
 import * as React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Input, Button } from "../../../components";
-import { useInput, useAuthenticator, useToast } from "../../../hooks";
-import { routes } from "../../../config";
+import { useInput, useAuthenticator } from "../../../hooks";
+import { ROUTES } from "../../../config";
 import styles from "../auth.module.scss";
 
 export const Login = () => {
@@ -47,7 +47,7 @@ export const Login = () => {
         onFocus={() => dispatchPswd({ type: "default" })}
       />
 
-      <Link to={routes.verifyAccount.path} className="text-link">
+      <Link to={ROUTES.verifyAccount.path} className="text-link">
         Forgot Password
       </Link>
 
@@ -61,7 +61,7 @@ export const Login = () => {
       <div className="h-gap-small">
         <span className="text-paragraph">Don't have an account?</span>
         <Link
-          to={routes.createAccount.path}
+          to={ROUTES.createAccount.path}
           className="text-link"
           title="Create an account"
         >

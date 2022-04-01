@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { routes } from "../../config";
+import { ROUTES } from "../../config";
 import styles from "./error.module.scss";
 
 export const Error403 = () => {
@@ -13,8 +13,8 @@ export const Error403 = () => {
         <p className="text-paragraph">
           You're not authorized to access this page. Please{" "}
           <Link
-            to={routes.login.path}
-            replace={true}
+            replace
+            to={ROUTES.login.path}
             className="text-paragraph text-link"
           >
             log in

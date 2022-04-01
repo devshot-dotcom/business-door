@@ -1,5 +1,14 @@
+import { StatusCodes } from "http-status-codes";
+
 export type DynamicModule = {
   default: string;
+};
+
+export type ApiError = {
+  message: string;
+  details?: string;
+  hint?: string;
+  code?: StatusCodes | string;
 };
 
 /**
@@ -7,6 +16,6 @@ export type DynamicModule = {
  * Mimicked as `BoolBacks` as in Boolean Callbacks.
  */
 export type BoolBacks = {
-  onSuccess?: () => void;
-  onFailure?: () => void;
+  onSuccess?: (data?: any) => void;
+  onFailure?: (error?: ApiError) => void;
 };
