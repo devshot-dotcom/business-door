@@ -1,0 +1,14 @@
+@use "../../sass/vars";
+@use "../../sass/typography";
+
+.badge {
+  padding: calc(vars.$size-smaller / 2) vars.$size-smaller;
+  border-radius: vars.$border-radius-smaller;
+  @include typography.pre-title(map-get(vars.$theme-dark, "color-text"));
+}
+
+@each $key, $value in vars.$colors {
+  .bg-#{$key} {
+    background-color: map-get($value, "400");
+  }
+}

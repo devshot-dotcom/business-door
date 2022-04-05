@@ -9,10 +9,13 @@
 :root {
   font-size: 16px;
   --layout-gap: #{vars.$size-medium};
-}
+  --profile-cover-height: 180px;
 
-@media (min-width: vars.$breakpoint-tablet) {
-  :root {
+  @include mixins.when-vertical-nav-appears() {
+    --profile-cover-height: 220px;
+  }
+
+  @media (min-width: vars.$breakpoint-tablet) {
     --layout-gap: #{vars.$size-large};
   }
 }

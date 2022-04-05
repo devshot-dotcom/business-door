@@ -1,0 +1,13 @@
+@use "../../../sass/vars";
+
+.profile__cover {
+  width: 100%;
+  height: vars.$profile-cover-height;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+}

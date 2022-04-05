@@ -51,6 +51,43 @@ async function createProfile(profileData: ProfileData) {
   console.log(data);
 } */
 
+class StorageApi extends Api {
+  getAvatarUrl(fileName: string): string | Error {
+    const { publicURL, error } = SUPABASE.storage
+      .from("avatars")
+      .getPublicUrl(fileName);
+
+    if (error) {
+      console.error(error);
+      return error;
+    }
+
+    if (!publicURL) {
+      console.error(`${StatusCodes.NOT_FOUND} - ${ReasonPhrases.NOT_FOUND}`);
+      return {
+        name: ReasonPhrases.NOT_FOUND,
+        message: ReasonPhrases.NOT_FOUND,
+      };
+    }
+
+    return publicURL;
+  }
+
+  async fetchAvatar(fileName: string, boolBacks?: BoolBacks) {
+    const { data, error } = await SUPABASE.storage
+      .from("avatars")
+      .download(fileName);
+
+    if (error) {
+      boolBacks?.onFailure?.(error);
+      console.error(error);
+      return;
+    }
+
+    boolBacks?.onSuccess?.(data);
+  }
+}
+
 class ProfileApi extends Api {
   handleProfile(data: any, error: PostgrestError | null, boolBacks: BoolBacks) {
     // Network error, or database errors.
@@ -142,5 +179,8 @@ export const useApi = () => {
   const makeToast = useToast();
   const navigate = useNavigate();
 
-  return { profile: new ProfileApi(makeToast, navigate) };
+  return {
+    storage: new StorageApi(makeToast),
+    profile: new ProfileApi(makeToast, navigate),
+  };
 };

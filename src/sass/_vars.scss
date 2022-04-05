@@ -230,7 +230,13 @@ $navbar-space-requirement: calc($navbar-size-desktop + var(--layout-gap));
 $sidebar-size: 23rem; // 368px
 $container-max-width: $breakpoint-desktop;
 $container-max-height: 56.25rem; // 900px
+
+/* Profile */
+$profile-cover-height: var(--profile-cover-height);
+
+/* Border Radii */
 $border-radius-small: $size-smaller;
+$border-radius-smaller: calc($size-smaller / 1.5);
 
 /* Fallback properties */
 $fallback-colors: (

@@ -1,3 +1,7 @@
+import { UserLevelCodes } from "../../config";
+import { ProfileCover } from "./profile-cover";
+import { ProfileHeader } from "./profile-header";
+
 /**
  * The state of the profile component.
  */
@@ -6,7 +10,7 @@ export type ProfileState = {
    * The data representing a user's profile,
    * undefined until fetched successfully.
    */
-  data?: any;
+  data?: ProfileData;
 
   /**
    * The status of the profile component,
@@ -38,16 +42,23 @@ export type ProfileAction = ProfileState & {
 };
 
 export type ProfileData = {
-  aboutMe?: string;
-  additionalInfo?: string;
-  avatarUrl?: string;
+  readonly id?: string;
+  profession?: string;
+  organization?: string;
   city?: string;
   country?: string;
-  fullname?: string;
-  readonly id?: string;
-  organization?: string;
-  profession?: string;
-  readonly updatedAt?: string;
-  username: string;
   website?: string;
+  fullName?: string;
+  additionalInfo?: string;
+  avatar?: string;
+  username?: string;
+  readonly updatedAt?: string;
+  aboutMe?: string;
+  cover: string;
+  level: UserLevelCodes;
+};
+
+export type ProfileChildren = {
+  Cover: typeof ProfileCover;
+  Header: typeof ProfileHeader;
 };

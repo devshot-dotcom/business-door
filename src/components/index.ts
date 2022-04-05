@@ -20,3 +20,5 @@ export { Switch } from "./switch";
 export { Menu, MenuItem } from "./menu";
 export { ResponsiveBackground, ResponsiveImage } from "./rwd";
 export { Loader } from "./loader";
+export { Badge } from "./badge";
+export { Avatar } from "./avatar";
