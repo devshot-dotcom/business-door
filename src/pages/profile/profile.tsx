@@ -1,14 +1,15 @@
 import { useReducer, useEffect, FC } from "react";
-import { Outlet, useNavigate, useParams } from "react-router-dom";
+import { Outlet, useLocation, useNavigate, useParams } from "react-router-dom";
 import { profileReducer } from ".";
 import { Footer, Loader, Sidebar } from "../../components";
-import { SUPABASE } from "../../config";
+import { ROUTES, SUPABASE } from "../../config";
 import { ApiError } from "../../helpers/types";
 import { useApi } from "../../hooks";
 
 export const ProfileComponent: FC = () => {
   const api = useApi();
   const navigate = useNavigate();
+  const location = useLocation();
 
   // Get the URL params.
   const { username = "" } = useParams();
@@ -18,35 +19,48 @@ export const ProfileComponent: FC = () => {
     status: "fetching",
   });
 
-  const onSuccess = (data: any) => {
+  function onSuccess(data: any) {
     dispatchProfile({ type: "successful", data: data });
-  };
+  }
 
-  const onFailure = (error?: ApiError) =>
+  function onFailure(error?: ApiError) {
     dispatchProfile({
       type: "failed",
       error: error,
     });
+  }
 
   useEffect(() => {
-    // Using template data for debugging purposses.
     /* const user = SUPABASE.auth.user();
+    const pathNames = location.pathname.split("/");
 
-    // If user is logged in but
-    // 1. No username is provided.
-    // 2. The edit profile page is requested and
-    // the router has taken it as a username.
-    if ((username === "" || username === "edit") && user?.email) {
+    // In case the edit page is requested,
+    // we need to check if the user is logged in,
+    // and fetch the profile of the logged in user.
+    // Otherwise slap them with a 403.
+    if (pathNames[pathNames.length - 1] === "edit") {
+      if (!user) {
+        navigate(ROUTES.error403.path);
+        return;
+      }
+
+      api.profile.fetchById(user.id, {
+        onSuccess: onSuccess,
+        onFailure: onFailure,
+      });
+
+      return;
+    }
+
+    // In the the view profile page is requested
+    // and the user is logged in but no username is provided.
+    if (username === "" && user?.email) {
       // Every user's username is auto-generated
       // from the first part of their email.
       // Since a logged user's username is unknown
       // unless their profile is fetched, we use
       // this strategy to navigate to their profile.
-      const expectedUsername = user.email.split("@")[0];
-
-      if (username === "") navigate(`/profile/${expectedUsername}`);
-      else navigate(`/profile/edit/${expectedUsername}`);
-
+      navigate(`/profile/${user.email.split("@")[0]}`);
       return;
     }
 

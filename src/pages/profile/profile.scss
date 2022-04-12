@@ -29,7 +29,14 @@
 
     @include mixins.when-vertical-nav-appears() {
       grid-template-columns: 1fr 1fr;
-      gap: calc(var(--layout-gap) * 2);
+    }
+
+    > * {
+      margin-top: var(--layout-gap);
+
+      @include mixins.when-vertical-nav-appears() {
+        margin-top: 0;
+      }
     }
   }
 }

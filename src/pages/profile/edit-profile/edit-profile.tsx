@@ -1,9 +1,7 @@
 import "./edit-profile.scss";
 
-type Props = {};
-
-const EditProfile = (props: Props) => {
-  return <div>EditProfile</div>;
+const EditProfile = () => {
+  return <div className="profile">EditProfile</div>;
 };
 
 export default EditProfile;

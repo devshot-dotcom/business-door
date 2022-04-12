@@ -9,7 +9,6 @@
   .menu__title {
     @include typography.button();
     text-align: left;
-    padding-top: var(--layout-gap);
     color: var(--theme-color-text);
   }
 }
