@@ -3,29 +3,26 @@ import { Icon } from "../..";
 import { IconProps } from "../../icon";
 import styles from "./card-title.module.scss";
 
-type Props = {
-  icon?: IconProps;
+type Props = IconProps & {
   children?: ReactNode;
 };
 
 const CardTitle: FC<Props> = (props) => {
-  const { icon } = props;
+  const { children, src, ...rest } = props;
 
-  if (icon) {
+  if (src) {
     return (
       <div className={styles["title-icon"]}>
-        <Icon {...icon} />
+        <Icon src={src} {...rest} />
         <h2 data-gap-none className="text-button text-brand">
-          {props.children}
+          {children}
         </h2>
       </div>
     );
   }
 
   return (
-    <h2 className={`${styles.title} text-button text-brand`}>
-      {props.children}
-    </h2>
+    <h2 className={`${styles.title} text-button text-brand`}>{children}</h2>
   );
 };
 

@@ -4,6 +4,7 @@ export {
   isEmailValid,
   isPasswordValid,
   isString,
+  hasEmptyIndex,
 } from "./functions";
 
 export type { DynamicModule, BoolBacks } from "./types";

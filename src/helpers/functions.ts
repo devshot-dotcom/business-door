@@ -29,10 +29,28 @@ function isString(value: any): boolean {
   return typeof value === "string" || value instanceof String;
 }
 
+/**
+ * Check whether an array contains an empty value or not.
+ * @param arr The array to be tested.
+ * @returns {boolean | null}
+ */
+function hasEmptyIndex(arr?: any[]): boolean | null {
+  if (!arr) return null;
+
+  let hasEmptyIndex = false;
+
+  arr.forEach((value) => {
+    if (!value) hasEmptyIndex = !hasEmptyIndex;
+  });
+
+  return hasEmptyIndex;
+}
+
 export {
   isObjectValid,
   isAccessToken,
   isEmailValid,
   isPasswordValid,
   isString,
+  hasEmptyIndex,
 };

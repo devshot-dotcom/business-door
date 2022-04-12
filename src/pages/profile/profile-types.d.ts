@@ -1,6 +1,9 @@
 import { UserLevelCodes } from "../../config";
+import { ProfileAdditional } from "./profile-additional";
+import { ProfileBio } from "./profile-bio";
 import { ProfileCover } from "./profile-cover";
 import { ProfileHeader } from "./profile-header";
+import { ProfilePersonal } from "./profile-personal";
 
 /**
  * The state of the profile component.
@@ -41,24 +44,33 @@ export type ProfileAction = ProfileState & {
   type: "successful" | "failed";
 };
 
+export type AdditionalInfo = {
+  label: string;
+  url: string;
+};
+
 export type ProfileData = {
   readonly id?: string;
+  email: string;
   profession?: string;
   organization?: string;
   city?: string;
   country?: string;
-  website?: string;
   fullName?: string;
-  additionalInfo?: string;
+  additionalInfo: string;
   avatar?: string;
   username?: string;
   readonly updatedAt?: string;
   aboutMe?: string;
   cover: string;
   level: UserLevelCodes;
+  cards: string;
 };
 
 export type ProfileChildren = {
   Cover: typeof ProfileCover;
   Header: typeof ProfileHeader;
+  Bio: typeof ProfileBio;
+  PersonalInformation: typeof ProfilePersonal;
+  AdditionalInformation: typeof ProfileAdditional;
 };

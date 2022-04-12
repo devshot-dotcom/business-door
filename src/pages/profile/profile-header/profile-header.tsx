@@ -10,21 +10,21 @@ type Props = {
 };
 
 export const ProfileHeader: FC<Props> = ({ isLogged, data }) => {
-  const badgeProps = getPropsOfLevel(data.level);
+  const levelProps = getPropsOfLevel(data.level);
 
   return (
     <header className="profile__header">
       <Profile.Cover src={data.cover} />
       <NextToNav className="profile__intro-wrapper">
         <div className="profile__intro">
-          <Avatar.Profile src={data.avatar} />
+          <Avatar.Profile
+            src={data.avatar}
+            className={`bd-${levelProps?.COLOR}`}
+          />
           <div className="profile__hero">
-            {badgeProps && (
-              <Badge
-                backgroundColor={badgeProps.COLOR}
-                className="profile__badge"
-              >
-                {badgeProps.LABEL}
+            {levelProps && (
+              <Badge className={`profile__badge bg-${levelProps.COLOR}`}>
+                {levelProps.LABEL}
               </Badge>
             )}
             <h1 className="text-h3">{isLogged ? "Welcome" : "Stalkin, eh?"}</h1>

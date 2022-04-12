@@ -1,8 +1,8 @@
 import { FC, useEffect, useState } from "react";
 import { AvatarProps } from ".";
 import { useApi } from "../../hooks";
-import defaultAvatar from "../../assets/avatar.svg";
 import { Loader } from "..";
+import defaultAvatar from "../../assets/avatar.svg";
 import "./avatar.scss";
 
 export const AvatarComponent: FC<AvatarProps> = (props) => {

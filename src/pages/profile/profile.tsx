@@ -45,13 +45,41 @@ export const ProfileComponent: FC = () => {
       onFailure: onFailure,
     }); */
 
+    const additionalInfo: any[] = [
+      {
+        label: "YouTube",
+        url: "https://www.youtube.com",
+      },
+      {
+        label: "Github",
+        url: "https://www.github.com",
+      },
+      {
+        label: "Dribble",
+        url: "https://www.dribble.com",
+      },
+      {
+        label: "Tumblr",
+        url: "https://www.tumblr.com",
+      },
+      {
+        label: "Facebook",
+        url: "https://www.facebook.com",
+      },
+      {
+        label: "Spotify",
+        url: "https://www.spotify.com",
+      },
+    ];
+
     // Manual dispatch for debugging purposes.
     dispatchProfile({
       type: "successful",
       data: {
+        email: "kashan1588@gmail.com",
         aboutMe:
           "Aspernatur sed nisi. Nobis tempora voluptate et qui explicabo rerum dignissimos cumque beatae. Ex ut voluptas ducimus quis sunt suscipit ducimus consequatur earum. Earum suscipit ab tenetur enim eaque odit molestias vel quis. Officiis dicta deleniti ut dolor velit. Rerum reprehenderit laborum nobis corrupti nesciunt.",
-        additionalInfo: undefined,
+        additionalInfo: JSON.stringify(additionalInfo),
         avatar: "kashan1588-avatar.png",
         cover: "background-05.png",
         city: "Port Frankstad",
@@ -60,7 +88,7 @@ export const ProfileComponent: FC = () => {
         organization: "Blanda - Frami",
         profession: "Chief Engineer",
         username: "kashan1588",
-        website: "https://kylee.org",
+        cards: "[]",
         level: 1,
       },
     });

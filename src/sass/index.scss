@@ -24,11 +24,23 @@ body {
   @each $color-name, $color-value in vars.$theme-light {
     --theme-#{$color-name}: #{$color-value};
   }
+
+  [data-theme-inverted] {
+    @each $color-name, $color-value in vars.$theme-dark {
+      --theme-#{$color-name}: #{$color-value};
+    }
+  }
 }
 
 body[data-theme="dark"] {
   @each $color-name, $color-value in vars.$theme-dark {
     --theme-#{$color-name}: #{$color-value};
+  }
+
+  [data-theme-inverted] {
+    @each $color-name, $color-value in vars.$theme-light {
+      --theme-#{$color-name}: #{$color-value};
+    }
   }
 }
 

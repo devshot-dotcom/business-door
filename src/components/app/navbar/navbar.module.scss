@@ -12,7 +12,7 @@
   height: vars.$navbar-size-mobile;
   width: 100%;
   bottom: 0;
-  border-top: 1px solid var(--theme-color-text-subtle);
+  border-top: 1px solid map-get(vars.$color-tertiary, "400");
 }
 
 .nav-desktop {

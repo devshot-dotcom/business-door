@@ -1,0 +1,15 @@
+@use "../../sass/vars";
+@use "../../sass/typography";
+
+.menu {
+  > * + * {
+    margin-top: var(--layout-gap);
+  }
+
+  .menu__title {
+    @include typography.button();
+    text-align: left;
+    padding-top: var(--layout-gap);
+    color: var(--theme-color-text);
+  }
+}

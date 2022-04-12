@@ -4,7 +4,6 @@
   width: 5rem;
   height: 5rem;
   border-radius: 50%;
-  border: 1px solid map-get(vars.$color-brand, "400");
   background-color: var(--theme-color-background);
   position: relative;
 
@@ -28,6 +27,6 @@
     width: calc($value * 3);
     height: calc($value * 3);
     font-size: calc($value * 3);
-    border-width: calc($value / 6);
+    border: calc($value / 6) solid;
   }
 }
