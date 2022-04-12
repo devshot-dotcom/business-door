@@ -18,6 +18,7 @@ export const Profile = Object.assign<FC, ProfileChildren>(ProfileComponent, {
 });
 
 export { ViewProfile } from "./view-profile";
+export { EditProfile } from "./edit-profile";
 export { profileReducer, trimByConfig } from "./profile-utils";
 export { profileConfig } from "./profile-config";
 export type {

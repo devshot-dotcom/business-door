@@ -8,4 +8,4 @@ export {
   ResetPassword,
 } from "./auth";
 export { Error403, Error404 } from "./error";
-export { Profile, ViewProfile } from "./profile";
+export { Profile, ViewProfile, EditProfile } from "./profile";

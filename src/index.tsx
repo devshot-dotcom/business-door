@@ -91,8 +91,13 @@ export function Root(): JSX.Element {
                       element={ROUTES.profile.Page}
                     >
                       <Route
-                        path={ROUTES.ViewProfile.basename}
-                        element={ROUTES.ViewProfile.Page}
+                        path={ROUTES.viewProfile.basename}
+                        element={ROUTES.viewProfile.Page}
+                      />
+
+                      <Route
+                        path={ROUTES.editProfile.basename}
+                        element={ROUTES.editProfile.Page}
                       />
                     </Route>
 

@@ -1,10 +1,10 @@
 import { useReducer, useEffect, FC } from "react";
 import { Outlet, useNavigate, useParams } from "react-router-dom";
-import { profileReducer, ProfileState } from ".";
+import { profileReducer } from ".";
 import { Footer, Loader, Sidebar } from "../../components";
 import { SUPABASE } from "../../config";
 import { ApiError } from "../../helpers/types";
-import { useApi, useAuthenticator } from "../../hooks";
+import { useApi } from "../../hooks";
 
 export const ProfileComponent: FC = () => {
   const api = useApi();
@@ -32,11 +32,21 @@ export const ProfileComponent: FC = () => {
     // Using template data for debugging purposses.
     /* const user = SUPABASE.auth.user();
 
-    // If user is logged in but no username is provided.
-    if (username === "" && user?.email) {
+    // If user is logged in but
+    // 1. No username is provided.
+    // 2. The edit profile page is requested and
+    // the router has taken it as a username.
+    if ((username === "" || username === "edit") && user?.email) {
       // Every user's username is auto-generated
       // from the first part of their email.
-      navigate(`/profile/${user.email.split("@")[0]}`);
+      // Since a logged user's username is unknown
+      // unless their profile is fetched, we use
+      // this strategy to navigate to their profile.
+      const expectedUsername = user.email.split("@")[0];
+
+      if (username === "") navigate(`/profile/${expectedUsername}`);
+      else navigate(`/profile/edit/${expectedUsername}`);
+
       return;
     }
 

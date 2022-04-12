@@ -11,6 +11,7 @@ import {
   ViewProfile,
   ResetPassword,
   VerifyAccount,
+  EditProfile,
 } from "../../pages";
 import { Error } from "../../pages/error";
 
@@ -56,10 +57,15 @@ export const ROUTES: Record<string, Route> = {
     basename: "profile",
     Page: <Profile />,
   },
-  ViewProfile: {
+  viewProfile: {
     path: "/profile/:username",
     basename: ":username",
     Page: <ViewProfile />,
+  },
+  editProfile: {
+    path: "/profile/edit/:username",
+    basename: "edit/:username",
+    Page: <EditProfile />,
   },
   error: {
     path: "*",

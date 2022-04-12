@@ -46,7 +46,7 @@ export function getPersonalInfo({
       rightNodes: (
         <>
           <span className="text-button text-brand">
-            {cards && JSON.parse(cards).length}
+            {cards && cards !== "" && JSON.parse(cards).length}
           </span>
           {isLogged && (
             <Link to="/error" className="menu__link" title="Create a new card">
