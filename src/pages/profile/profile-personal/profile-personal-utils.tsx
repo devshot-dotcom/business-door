@@ -8,7 +8,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 import { PersonalInfo, PersonalInfoProps } from ".";
-import { profileConfig } from "..";
+import { trimByConfig } from "..";
 import { Icon, Badge } from "../../../components";
 import { getPropsOfLevel } from "../../../config";
 
@@ -90,11 +90,9 @@ export function openURL(url: string | undefined) {
  * @returns {string | null} The trimmed label. Null in case the array is empty.
  */
 export function getBetterLabels(labels: string[] | undefined): string | null {
-  const maxLength = profileConfig.INFO_MAX_LENGTH;
-
   if (!labels) return null;
 
   const label = labels.join(", ");
 
-  return label.length < maxLength ? label : `${label.slice(0, maxLength)}...`;
+  return trimByConfig(label);
 }

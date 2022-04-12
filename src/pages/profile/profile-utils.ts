@@ -1,4 +1,4 @@
-import { ProfileAction, ProfileState } from ".";
+import { ProfileAction, profileConfig, ProfileState } from ".";
 
 /**
  * Reducer method that dispatches the state of the profile
@@ -15,4 +15,9 @@ export function profileReducer(
     successful: { ...state, data: action.data, status: "fetched" },
     failed: { ...state, error: action.error, status: "failed" },
   }[action.type] as ProfileState;
+}
+
+export function trimByConfig(value: string) {
+  const maxLength = profileConfig.INFO_MAX_LENGTH;
+  return value.length < maxLength ? value : `${value.slice(0, maxLength)}...`;
 }

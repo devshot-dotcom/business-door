@@ -60,7 +60,7 @@ export const ProfileComponent: FC = () => {
       },
       {
         label: "Tumblr",
-        url: "https://www.tumblr.com",
+        url: "https://www.tumblr.comhttps://www.tumblr.com",
       },
       {
         label: "Facebook",
@@ -79,7 +79,7 @@ export const ProfileComponent: FC = () => {
         email: "kashan1588@gmail.com",
         aboutMe:
           "Aspernatur sed nisi. Nobis tempora voluptate et qui explicabo rerum dignissimos cumque beatae. Ex ut voluptas ducimus quis sunt suscipit ducimus consequatur earum. Earum suscipit ab tenetur enim eaque odit molestias vel quis. Officiis dicta deleniti ut dolor velit. Rerum reprehenderit laborum nobis corrupti nesciunt.",
-        additionalInfo: JSON.stringify(additionalInfo),
+        additionalInfo: "",
         avatar: "kashan1588-avatar.png",
         cover: "background-05.png",
         city: "Port Frankstad",

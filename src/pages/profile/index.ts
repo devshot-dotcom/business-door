@@ -18,7 +18,7 @@ export const Profile = Object.assign<FC, ProfileChildren>(ProfileComponent, {
 });
 
 export { ViewProfile } from "./view-profile";
-export { profileReducer } from "./profile-utils";
+export { profileReducer, trimByConfig } from "./profile-utils";
 export { profileConfig } from "./profile-config";
 export type {
   ProfileData,
@@ -26,5 +26,6 @@ export type {
   ProfileAction,
   AdditionalInfo,
 } from "./profile-types";
+
 /* PersonalInformation */
 export type { PersonalInfoProps, PersonalInfo } from "./profile-personal";
