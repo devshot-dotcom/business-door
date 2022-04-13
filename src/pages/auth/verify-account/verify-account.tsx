@@ -58,7 +58,7 @@ export const VerifyAccount = () => {
       <div className="h-gap-small">
         <span className="text-paragraph">Forgot the email as well?</span>
         <a
-          href={`mailto:${env.AUTHOR.EMAIL}`}
+          href={`mailto:${env.author.EMAIL}`}
           className="text-link"
           title="Mail us all you remember about your account."
         >

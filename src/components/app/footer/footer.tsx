@@ -34,16 +34,16 @@ const Footer = () => {
           <div className="text-paragraph">
             For inquiries, contact{" "}
             <a
-              href={`mailto://${env.AUTHOR.EMAIL}`}
+              href={`mailto://${env.author.EMAIL}`}
               className="text-paragraph text-link"
             >
-              {env.AUTHOR.EMAIL}
+              {env.author.EMAIL}
             </a>
           </div>
           <div className="text-paragraph">
             &copy; {new Date().getFullYear()}{" "}
-            <a href={env.AUTHOR.SITE.URL} className="text-paragraph text-link">
-              {env.AUTHOR.SITE.NAME}
+            <a href={env.author.site.URL} className="text-paragraph text-link">
+              {env.author.site.NAME}
             </a>
             {", "}
             all rights reserved.
