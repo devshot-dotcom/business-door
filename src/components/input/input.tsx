@@ -1,7 +1,7 @@
 import { createRef, useEffect, useState } from "react";
 import { InputProps } from "./input-types";
 import { TypeSwapper } from "./type-swapper";
-import { getIcon } from "./input-helper";
+import { getIcon } from "./input-utils";
 import { Icon } from "..";
 import { Microtip } from "..";
 import styles from "./input.module.scss";

@@ -1,0 +1,15 @@
+.profile__intro {
+  padding: 0;
+  padding-top: calc(var(--layout-gap) * 4);
+
+  .avatar {
+    translate: -50% -10%;
+  }
+}
+
+#coverEditButton {
+  position: absolute;
+  top: var(--layout-gap);
+  right: var(--layout-gap);
+  width: auto;
+}

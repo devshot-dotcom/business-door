@@ -17,7 +17,15 @@ export function profileReducer(
   }[action.type] as ProfileState;
 }
 
-export function trimByConfig(value: string) {
+/**
+ * Trim a string according to the configured length.
+ * If the string exceeds the length,
+ * a trimmed string with an ellipsis is returned.
+ * @param value {string} The string to be trimmed.
+ * @returns {string} Trimmed string if longer than
+ * the configured length. Same string otherwise.
+ */
+export function trimByConfig(value: string): string {
   const maxLength = profileConfig.INFO_MAX_LENGTH;
   return value.length < maxLength ? value : `${value.slice(0, maxLength)}...`;
 }

@@ -52,6 +52,6 @@ export type InputStateType = [
   isValid: () => boolean
 ];
 
-export interface InputProps extends ComponentPropsWithoutRef<"input"> {
+export type InputProps = {
   state: InputState;
-}
+} & JSX.IntrinsicElements["input"];

@@ -1,13 +1,16 @@
 import { FC } from "react";
 import { BREAKPOINTS } from "../../../config";
-import type { CoverProps } from ".";
+import { CoverProps } from ".";
 import "./profile-cover.scss";
 
-export const ProfileCover: FC<CoverProps> = ({ src = "background-05.png" }) => {
+export const ProfileCover: FC<CoverProps> = ({
+  src = "background-05.png",
+  onClick,
+}) => {
   const dirName = "assets/backgrounds";
 
   return (
-    <div className="profile__cover">
+    <div className="profile__cover" onClick={onClick}>
       <picture>
         <source
           media={`(min-width: ${BREAKPOINTS.DESKTOP.px})`}

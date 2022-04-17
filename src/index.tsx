@@ -96,12 +96,10 @@ export function Root(): JSX.Element {
                         element={ROUTES.viewProfile.Page}
                       />
                       {/* Edit Profile Page */}
-                      <Route element={<AuthorizedRoute />}>
-                        <Route
-                          path={ROUTES.editProfile.basename}
-                          element={ROUTES.editProfile.Page}
-                        />
-                      </Route>
+                      <Route
+                        path={ROUTES.editProfile.basename}
+                        element={ROUTES.editProfile.Page}
+                      />
                     </Route>
 
                     {/* Error */}

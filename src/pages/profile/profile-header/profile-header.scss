@@ -17,24 +17,19 @@
 
 .profile__intro {
   text-align: center;
-  padding: var(--layout-gap);
-  padding-top: calc(var(--layout-gap) * 4);
   background-color: var(--theme-color-background-subtle);
 
   .avatar {
     position: absolute;
     top: 50%;
     left: 50%;
-    translate: -50% -55%;
   }
 
   .profile__badge {
     display: inline-block;
     translate: 0 -#{vars.$size-smaller};
   }
-}
 
-.profile__intro {
   @include mixins.when-vertical-nav-appears() {
     padding: var(--layout-gap);
     height: 100%;

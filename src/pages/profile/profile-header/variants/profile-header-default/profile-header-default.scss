@@ -1,0 +1,8 @@
+.profile__intro {
+  padding: var(--layout-gap);
+  padding-top: calc(var(--layout-gap) * 4);
+
+  .avatar {
+    translate: -50% -50%;
+  }
+}
