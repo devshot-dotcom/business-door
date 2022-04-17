@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { ProfileHeaderEditableProps } from "../..";
 import { Profile } from "../../..";
-import { NextToNav, Avatar, Badge } from "../../../../../components";
+import { NextToNav, Avatar, Badge, Modal } from "../../../../../components";
 import { getPropsOfLevel } from "../../../../../config";
 import "./profile-header-editable.scss";
 
@@ -14,6 +14,7 @@ export const ProfileHeaderEditable: FC<ProfileHeaderEditableProps> = ({
   return (
     <header className="profile__header">
       <Profile.Cover src={state.cover} />
+      <Modal isOpen />
       <Badge id="coverEditButton" className="bg-tertiary">
         Change
       </Badge>
