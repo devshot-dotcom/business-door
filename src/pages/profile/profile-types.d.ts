@@ -40,7 +40,7 @@ export type ProfileState = {
  * - `successful`: The profile is fetched, inform the reducer.
  * - `failed`: The profile request failed, inform the reducer.
  */
-export type ProfileAction = ProfileState & {
+export type ProfileActions = ProfileState & {
   type: "successful" | "failed";
 };
 

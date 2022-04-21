@@ -1,4 +1,4 @@
-import { Dispatch, useReducer } from "react";
+import { useReducer } from "react";
 import { EditProfileActions, EditProfileState } from ".";
 import { ProfileData } from "..";
 

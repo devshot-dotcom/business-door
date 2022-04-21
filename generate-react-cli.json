@@ -6,20 +6,22 @@
     "default": {
       "customTemplates": {
         "component": "templates/component/TemplateName.tsx",
-        "style": "templates/component/TemplateName.module.scss",
-        "index": "templates/component/index.ts"
+        "style": "templates/component/TemplateName.scss",
+        "index": "templates/component/index.ts",
+        "types": "templates/component/TemplateName-types.d.ts"
       },
       "path": "src/components",
       "withStyle": true,
       "withIndex": true,
       "withTest": false,
       "withStory": false,
-      "withLazy": false
+      "withLazy": false,
+      "withTypes": true
     },
     "page": {
       "customTemplates": {
         "component": "templates/component/TemplateName.tsx",
-        "style": "templates/component/TemplateName.module.scss",
+        "style": "templates/component/TemplateName.scss",
         "index": "templates/component/index.ts"
       },
       "path": "src/pages",

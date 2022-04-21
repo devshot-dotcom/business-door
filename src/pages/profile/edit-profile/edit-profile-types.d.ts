@@ -4,4 +4,4 @@ export type EditProfileState = ProfileData;
 
 export type EditProfileActions = {
   type: "updateCover";
-} & EditProfileState;
+} & Partial<EditProfileState>;

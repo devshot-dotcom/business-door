@@ -24,7 +24,7 @@ export { profileConfig } from "./profile-config";
 export type {
   ProfileData,
   ProfileState,
-  ProfileAction,
+  ProfileActions,
   AdditionalInfo,
 } from "./profile-types";
 

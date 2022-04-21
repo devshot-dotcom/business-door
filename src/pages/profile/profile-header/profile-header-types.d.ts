@@ -8,6 +8,6 @@ export type ProfileHeaderDefaultProps = {
 };
 
 export type ProfileHeaderEditableProps = {
-  state: EditProfileState;
-  dispatch: Dispatch<EditProfileActions>;
+  profileState: EditProfileState;
+  dispatchProfile: Dispatch<EditProfileActions>;
 };

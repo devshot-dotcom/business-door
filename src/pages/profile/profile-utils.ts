@@ -1,4 +1,4 @@
-import { ProfileAction, profileConfig, ProfileState } from ".";
+import { ProfileActions, profileConfig, ProfileState } from ".";
 
 /**
  * Reducer method that dispatches the state of the profile
@@ -9,7 +9,7 @@ import { ProfileAction, profileConfig, ProfileState } from ".";
  */
 export function profileReducer(
   state: ProfileState,
-  action: ProfileAction
+  action: ProfileActions
 ): ProfileState {
   return {
     successful: { ...state, data: action.data, status: "fetched" },

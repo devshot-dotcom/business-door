@@ -33,5 +33,17 @@
       width: vars.$breakpoint-mobile;
       max-height: calc(100% - var(--layout-gap) * 2);
     }
+
+    > * + * {
+      // Every direct child with a previous sibling gets margin on top.
+      margin-top: vars.$size-medium;
+    }
+
+    > #modalCloseButton {
+      position: absolute;
+      top: vars.$size-small;
+      right: vars.$size-small;
+      margin-top: 0;
+    }
   }
 }

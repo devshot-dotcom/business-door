@@ -1,7 +1,6 @@
-import styles from "./TemplateName.module.scss";
+import { TemplateNameProps } from ".";
+import "./TemplateName.scss";
 
-type Props = {};
-
-export const TemplateName = (props: Props) => {
-  return <div className={styles.TemplateName}>TemplateName</div>;
+export const TemplateName = (props: TemplateNameProps) => {
+  return <div>TemplateName</div>;
 };

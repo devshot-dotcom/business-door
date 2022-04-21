@@ -1,4 +1,3 @@
-import { ComponentPropsWithoutRef } from "react";
 import { MicrotipProps } from "../microtip";
 
 export type InputState = {

@@ -9,11 +9,14 @@ const EditProfile = () => {
   if (!data) return <Navigate to="/error" />;
 
   // eslint-disable-next-line react-hooks/rules-of-hooks
-  const [state, dispatch] = useEditProfileState(data);
+  const [profileState, dispatchProfile] = useEditProfileState(data);
 
   return (
     <div className="profile">
-      <Profile.Header.Editable state={state} dispatch={dispatch} />
+      <Profile.Header.Editable
+        profileState={profileState}
+        dispatchProfile={dispatchProfile}
+      />
     </div>
   );
 };
