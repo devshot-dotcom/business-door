@@ -29,3 +29,10 @@ export function useEditProfileState(profileData: ProfileData) {
 
   return useReducer(editProfileReducer, initialState);
 }
+
+export function updateProfile(
+  e: React.FormEvent<HTMLFormElement>,
+  state: EditProfileState
+) {
+  e.preventDefault();
+}

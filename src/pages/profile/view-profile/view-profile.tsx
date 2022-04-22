@@ -13,7 +13,7 @@ export const ViewProfile = () => {
   const isLogged = isObjectValid(SUPABASE.auth.user());
 
   return (
-    <div className="profile">
+    <>
       <Profile.Header data={data} isLogged={isLogged} />
       <NextToNav>
         <div className="profile__data">
@@ -27,6 +27,6 @@ export const ViewProfile = () => {
           </div>
         </div>
       </NextToNav>
-    </div>
+    </>
   );
 };

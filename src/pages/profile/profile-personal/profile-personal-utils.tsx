@@ -92,7 +92,5 @@ export function openURL(url: string | undefined) {
 export function getBetterLabels(labels: string[] | undefined): string | null {
   if (!labels) return null;
 
-  const label = labels.join(", ");
-
-  return trimByConfig(label);
+  return trimByConfig(labels.join(", "));
 }

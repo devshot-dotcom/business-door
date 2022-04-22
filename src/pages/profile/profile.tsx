@@ -122,8 +122,10 @@ export const ProfileComponent: FC = () => {
 
   return (
     <>
-      {profile.status === "fetching" && <Loader />}
-      {profile.status === "fetched" && <Outlet context={profile} />}
+      <div className="profile">
+        {profile.status === "fetching" && <Loader />}
+        {profile.status === "fetched" && <Outlet context={profile} />}
+      </div>
       <Sidebar className="hide show-when-sidebar-appears" />
       <Footer />
     </>
