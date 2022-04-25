@@ -7,3 +7,6 @@ export type {
   InputProps,
   TextAreaProps,
 } from "./text-field";
+
+// Microtip
+export type { MicrotipProps } from "./microtip";

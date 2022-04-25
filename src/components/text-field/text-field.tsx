@@ -1,64 +1,50 @@
-import {
-  ComponentPropsWithoutRef,
-  createRef,
-  useEffect,
-  useState,
-} from "react";
+import { createRef } from "react";
 import { TextFieldProps } from "./text-field-types";
-import { TypeSwapper } from "./type-swapper";
 import { getIcon } from "./text-field-utils";
 import { Icon } from "..";
 import { InputProps, TextAreaProps } from ".";
-import { Microtip } from "..";
-import styles from "./text-field.module.scss";
+import { useMicrotip } from "../../hooks";
+import { Input, TextArea } from "./children";
+import "./text-field.scss";
 
-export const TextArea = (props: ComponentPropsWithoutRef<"textarea">) => {
-  return <textarea {...props}>{props.value}</textarea>;
-};
-
-export const Input = (props: ComponentPropsWithoutRef<"input">) => {
-  // The type to be monitored for change.
-  // Based upon the type passed as HTML attribute
-  // to make sure that the swapper is shown only
-  // when the HTML type is password.
-  const [type, setType] = useState(props.type);
-
-  return (
-    <>
-      <input {...props} type={type} />
-      {props.type === "password" && (
-        <TypeSwapper
-          type={type as string}
-          onClick={() => setType(type === "password" ? "text" : "password")}
-        />
-      )}
-    </>
-  );
-};
-
+/**
+ * A component that takes in a props object and returns a
+ * div with an input or a textarea element inside of it.
+ * @param {TextFieldProps} props - TextFieldProps
+ * @returns A function that returns a div element.
+ */
 export const TextField = (props: TextFieldProps) => {
-  const { as = "input", state, className = "", ...rest } = props;
-  const { value, variant = "default", tooltip } = state;
+  const { as, state, className = "", ...rest } = props;
+  const { value, tooltip, variant = "default" } = state;
 
+  // Create a ref to the input element.
   const ref = createRef<HTMLDivElement>();
+  useMicrotip(ref, tooltip);
 
-  const classes = [styles.input, styles[`input-${variant}`], className];
+  const classes = [
+    "text-field",
+    `text-field-${variant}`,
+    props.disabled ? "text-field-disabled" : "",
+    className,
+  ];
 
-  // Apply tooltip once the component is rendered.
-  // useEffect is used cuz we need the ref.
-  useEffect(() => {
-    if (tooltip) Microtip({ ...tooltip, ref: ref });
-  }, [ref, tooltip]);
+  // Return the corresponding element.
+  let Component =
+    as === "input" ? (
+      <Input {...(rest as InputProps)} value={value} />
+    ) : (
+      <TextArea {...(rest as TextAreaProps)} value={value} />
+    );
 
   return (
-    <div className={classes.join(" ")} ref={ref} data-disabled={props.disabled}>
-      {as === "input" ? (
-        <Input {...(rest as InputProps)} value={value} />
-      ) : (
-        <TextArea {...(rest as TextAreaProps)} value={value} />
-      )}
+    <div className={classes.join(" ")} ref={ref}>
+      {Component}
       {variant !== "default" && (
-        <Icon src={getIcon(variant)!} size="small" className={styles.icon} />
+        <Icon
+          src={getIcon(variant)!}
+          size="small"
+          className="text-field__icon"
+        />
       )}
     </div>
   );

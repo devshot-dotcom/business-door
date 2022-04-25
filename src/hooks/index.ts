@@ -5,3 +5,4 @@ export { useToast } from "./use-toast";
 export { useAuthenticator } from "./use-authenticator";
 export { useTitle } from "./use-title";
 export { useApi } from "./use-api";
+export { useMicrotip } from "./use-microtip";

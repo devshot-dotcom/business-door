@@ -3,6 +3,7 @@ import { Profile, ProfileState } from "..";
 import { useEditProfileState } from ".";
 import { Button, TextField, Menu, NextToNav } from "../../../components";
 import { updateProfile } from "./edit-profile-utils";
+import { Fieldset } from "./fieldset";
 import "./edit-profile.scss";
 
 const EditProfile = () => {
@@ -36,20 +37,15 @@ const EditProfile = () => {
             Save
           </Button>
           <div className="profile__grid">
-            <Menu title="About me">
-              <TextField
-                as="input"
-                state={{
-                  value: data.aboutMe!,
-                  variant: "default",
-                }}
-              />
-            </Menu>
+            <Fieldset.Bio
+              bio={profileState.aboutMe}
+              dispatchProfile={dispatchProfile}
+            />
             <Menu title="Confidential Information">
               <TextField
                 as="input"
                 state={{
-                  value: data.aboutMe!,
+                  value: profileState.aboutMe!,
                   variant: "default",
                 }}
               />

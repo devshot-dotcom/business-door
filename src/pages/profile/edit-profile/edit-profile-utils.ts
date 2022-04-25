@@ -14,6 +14,8 @@ function editProfileReducer(
 ): EditProfileState {
   return {
     updateCover: { ...state, cover: action.cover },
+    updateAvatar: { ...state, avatar: action.avatar },
+    updateBio: { ...state, aboutMe: action.aboutMe },
   }[action.type] as EditProfileState;
 }
 

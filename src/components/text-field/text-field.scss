@@ -6,7 +6,7 @@
   border: 1px solid $color;
   outline: calc(#{vars.$size-smaller} / 2) solid $light-color;
 
-  .icon {
+  .text-field__icon {
     color: $color;
     > path {
       color: $color;
@@ -14,7 +14,7 @@
   }
 }
 
-.input {
+.text-field {
   background-color: var(--theme-color-root);
   border-radius: vars.$size-smaller;
   cursor: text;
@@ -33,21 +33,21 @@
 
   @include mixins.transition(outline vars.$transition-fastest linear);
 
-  &.input-default {
+  &.text-field-default {
     @include input-variant(
       var(--theme-color-background),
       var(--theme-color-background)
     );
   }
 
-  &.input-valid {
+  &.text-field-valid {
     @include input-variant(
       map-get(vars.$color-valid, "400"),
       map-get(vars.$color-valid, "25%")
     );
   }
 
-  &.input-invalid {
+  &.text-field-invalid {
     @include input-variant(
       map-get(vars.$color-invalid, "400"),
       map-get(vars.$color-invalid, "25%")
@@ -62,7 +62,7 @@
     );
   }
 
-  &[data-disabled] {
+  &-disabled {
     cursor: no-drop;
     background-color: transparent;
     border: 1px solid var(--theme-color-background-subtle);
@@ -75,18 +75,21 @@
   }
 }
 
-.input :is(input, textarea) {
+.text-field :is(input, textarea) {
   // To remove default width of the element.
   width: 0;
 
   // Making it occupy all the available space.
   flex-grow: 1;
   display: inline-block;
+
+  // Styling.
   padding: calc(#{vars.$size-medium} / 2) vars.$size-small;
   padding-right: 0;
   background-color: transparent;
   border: 0;
   border-radius: inherit;
+  scrollbar-width: none;
   @include typography.paragraph();
 
   &::placeholder {

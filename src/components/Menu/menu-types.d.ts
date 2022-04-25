@@ -1,9 +1,10 @@
+import { ComponentPropsWithoutRef } from "react";
 import { MenuItem } from "./menu-item";
 
 export type MenuProps = {
-  variant?: "default";
   title?: string;
-} & JSX.IntrinsicElements["ul"];
+  variant?: "default";
+} & ComponentPropsWithoutRef<"ul">;
 
 export type MenuChildren = {
   Item: typeof MenuItem;
