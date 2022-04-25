@@ -5,6 +5,7 @@ import { Footer, Loader, Sidebar } from "../../components";
 import { ROUTES, SUPABASE } from "../../config";
 import { ApiError } from "../../helpers/types";
 import { useApi } from "../../hooks";
+import "./profile.scss";
 
 export const ProfileComponent: FC = () => {
   const api = useApi();

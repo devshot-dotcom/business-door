@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Input, Button } from "../../../components";
+import { TextField, Button } from "../../../components";
 import { usePassword, useAuthenticator } from "../../../hooks";
 import { useNavigate } from "react-router-dom";
 import { doPasswordsMatch } from "../../../modules/do-passwords-match";
@@ -40,7 +40,8 @@ export const ResetPassword = () => {
         </div>
       </div>
 
-      <Input
+      <TextField
+        as="input"
         type="password"
         state={pswdState}
         placeholder="Your Password"
@@ -51,7 +52,8 @@ export const ResetPassword = () => {
         onFocus={() => dispatchPswd({ type: "default" })}
       />
 
-      <Input
+      <TextField
+        as="input"
         type="password"
         state={rePswdState}
         placeholder="Re-enter Password"

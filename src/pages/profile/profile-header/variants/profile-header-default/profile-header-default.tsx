@@ -12,7 +12,7 @@ export const ProfileHeaderDefault: FC<ProfileHeaderDefaultProps> = ({
   const levelProps = getPropsOfLevel(data.level);
 
   return (
-    <header className="profile__header">
+    <header className="profile__header" data-editable="false">
       <Profile.Cover src={data.cover} />
       <NextToNav className="profile__intro-wrapper">
         <div className="profile__intro">

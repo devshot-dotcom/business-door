@@ -3,7 +3,6 @@ import { SUPABASE } from "../../../config";
 import { isObjectValid } from "../../../helpers";
 import { Profile, ProfileState } from "..";
 import { NextToNav } from "../../../components";
-import "../profile.scss";
 
 export const ViewProfile = () => {
   const { data } = useOutletContext<ProfileState>();
@@ -17,7 +16,7 @@ export const ViewProfile = () => {
       <Profile.Header data={data} isLogged={isLogged} />
       <NextToNav>
         <div className="profile__data">
-          <h2 className="profile__title">
+          <h2 className="text-h2">
             {isLogged ? "Your Profile" : "User's Profile"}
           </h2>
           {data.aboutMe && <Profile.Bio bio={data.aboutMe} />}

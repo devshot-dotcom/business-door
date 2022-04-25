@@ -3,9 +3,9 @@ import {
   faCheckCircle,
   faExclamationCircle,
 } from "@fortawesome/free-solid-svg-icons";
-import { InputVariants } from ".";
+import { TextFieldVariants } from ".";
 
-export function getIcon(variant: InputVariants) {
+export function getIcon(variant: TextFieldVariants) {
   return {
     default: faCheck,
     valid: faCheckCircle,

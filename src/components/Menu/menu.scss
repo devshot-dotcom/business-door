@@ -10,5 +10,6 @@
     @include typography.button();
     text-align: left;
     color: var(--theme-color-text);
+    margin-top: var(--layout-gap);
   }
 }

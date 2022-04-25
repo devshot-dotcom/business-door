@@ -1,8 +1,11 @@
 import * as React from "react";
-import { InputActions, InputState } from "../components/input";
+import { TextFieldActions, TextFieldState } from "../components/types";
 
 /** Reducer method for an input component. */
-function inputReducer(state: InputState, action: InputActions): InputState {
+function inputReducer(
+  state: TextFieldState,
+  action: TextFieldActions
+): TextFieldState {
   return {
     default: { ...state, variant: "default" },
     update: { ...state, value: action.value },
@@ -16,7 +19,7 @@ function inputReducer(state: InputState, action: InputActions): InputState {
       variant: "invalid",
       tooltip: action.tooltip,
     },
-  }[action.type] as InputState;
+  }[action.type] as TextFieldState;
 }
 
 /** The reducer hook for an input component.
@@ -34,7 +37,7 @@ function inputReducer(state: InputState, action: InputActions): InputState {
  */
 function useInput() {
   /** The initial state of an input component. */
-  const initialState: InputState = {
+  const initialState: TextFieldState = {
     value: "",
     variant: "default",
   };

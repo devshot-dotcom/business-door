@@ -1,13 +1,7 @@
 import { FC, useState } from "react";
 import { ProfileHeaderEditableProps } from "../..";
 import { Profile } from "../../..";
-import {
-  NextToNav,
-  Avatar,
-  Badge,
-  Modal,
-  Button,
-} from "../../../../../components";
+import { NextToNav, Avatar, Badge, Button } from "../../../../../components";
 import { getPropsOfLevel } from "../../../../../config";
 import "./profile-header-editable.scss";
 
@@ -23,7 +17,7 @@ export const ProfileHeaderEditable: FC<ProfileHeaderEditableProps> = ({
   const levelProps = getPropsOfLevel(profileState.level);
 
   return (
-    <header className="profile__header">
+    <header className="profile__header" data-editable="true">
       <Profile.Cover src={profileState.cover} />
       <Profile.Cover.Modal
         isOpen={isModalShown}

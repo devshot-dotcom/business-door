@@ -1,9 +1,9 @@
 import { Navigate, useOutletContext } from "react-router-dom";
 import { Profile, ProfileState } from "..";
 import { useEditProfileState } from ".";
-import { Button, NextToNav } from "../../../components";
-import "./edit-profile.scss";
+import { Button, TextField, Menu, NextToNav } from "../../../components";
 import { updateProfile } from "./edit-profile-utils";
+import "./edit-profile.scss";
 
 const EditProfile = () => {
   const { data } = useOutletContext<ProfileState>();
@@ -22,7 +22,7 @@ const EditProfile = () => {
       <NextToNav>
         <div className="profile__data">
           <div>
-            <h2 className="profile__title">Edit Profile</h2>
+            <h2 className="text-h2">Edit Profile</h2>
             <div className="text-small text-subtle">
               Leave empty fields to remove them.
             </div>
@@ -35,7 +35,86 @@ const EditProfile = () => {
           >
             Save
           </Button>
-          <div className="profile__grid"></div>
+          <div className="profile__grid">
+            <Menu title="About me">
+              <TextField
+                as="input"
+                state={{
+                  value: data.aboutMe!,
+                  variant: "default",
+                }}
+              />
+            </Menu>
+            <Menu title="Confidential Information">
+              <TextField
+                as="input"
+                state={{
+                  value: data.aboutMe!,
+                  variant: "default",
+                }}
+              />
+            </Menu>
+            <Menu title="Personal Information">
+              <TextField
+                as="input"
+                state={{
+                  value: data.aboutMe!,
+                  variant: "default",
+                }}
+              />
+              <TextField
+                as="input"
+                state={{
+                  value: data.aboutMe!,
+                  variant: "default",
+                }}
+              />
+              <TextField
+                as="input"
+                state={{
+                  value: data.aboutMe!,
+                  variant: "default",
+                }}
+              />
+              <TextField
+                as="input"
+                state={{
+                  value: data.aboutMe!,
+                  variant: "default",
+                }}
+              />
+            </Menu>
+            <Menu title="Additional Information">
+              <TextField
+                as="input"
+                state={{
+                  value: data.aboutMe!,
+                  variant: "default",
+                }}
+              />
+              <TextField
+                as="input"
+                state={{
+                  value: data.aboutMe!,
+                  variant: "default",
+                }}
+              />
+              <TextField
+                as="input"
+                state={{
+                  value: data.aboutMe!,
+                  variant: "default",
+                }}
+              />
+              <TextField
+                as="input"
+                state={{
+                  value: data.aboutMe!,
+                  variant: "default",
+                }}
+              />
+            </Menu>
+          </div>
         </div>
       </NextToNav>
     </form>

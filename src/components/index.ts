@@ -13,7 +13,7 @@ export { BlobCard } from "./blob-card";
 export { Card, CardCover, CardTitle } from "./card";
 export { Button } from "./button";
 export { Link } from "./link";
-export { Input } from "./input";
+export { TextField } from "./text-field";
 export { Microtip } from "./microtip";
 export { Toast, ToastSandwich } from "./toast";
 export { Switch } from "./switch";

@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { Input, Button } from "../../../components";
+import { TextField, Button } from "../../../components";
 import { useInput, useAuthenticator } from "../../../hooks";
 import { ROUTES } from "../../../config";
 import styles from "../auth.module.scss";
@@ -26,8 +26,8 @@ export const Login = () => {
   return (
     <form onSubmit={handleSubmit} className={`${styles.form} v-gap`}>
       <h1 className={styles.heading}>Log In</h1>
-      <Input
-        type="email"
+      <TextField
+        as="textarea"
         state={emailState}
         placeholder="Your Email Address"
         title="Please enter your email address"
@@ -36,7 +36,8 @@ export const Login = () => {
         }
         onFocus={() => dispatchEmail({ type: "default" })}
       />
-      <Input
+      <TextField
+        as="input"
         type="password"
         state={pswdState}
         placeholder="Your Password"

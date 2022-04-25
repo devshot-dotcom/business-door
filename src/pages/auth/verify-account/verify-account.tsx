@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Input, Button } from "../../../components";
+import { TextField, Button } from "../../../components";
 import { env } from "../../../config";
 import { useEmail, useToast, useAuthenticator } from "../../../hooks";
 import styles from "../auth.module.scss";
@@ -36,7 +36,8 @@ export const VerifyAccount = () => {
         </div>
       </div>
 
-      <Input
+      <TextField
+        as="input"
         type="email"
         state={emailState}
         placeholder="Your Email Address"

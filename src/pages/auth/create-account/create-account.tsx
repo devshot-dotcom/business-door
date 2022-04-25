@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { Input, Button } from "../../../components";
+import { TextField, Button } from "../../../components";
 import { ROUTES } from "../../../config";
 import { useEmail, usePassword, useAuthenticator } from "../../../hooks";
 import { doPasswordsMatch } from "../../../modules";
@@ -43,7 +43,8 @@ export const CreateAccount = () => {
     <form onSubmit={handleSubmit} className={`${styles.form} v-gap`}>
       <h1 className={styles.heading}>Create Your Account</h1>
 
-      <Input
+      <TextField
+        as="input"
         type="email"
         state={emailState}
         placeholder="Your Email Address"
@@ -53,7 +54,8 @@ export const CreateAccount = () => {
         }
         onFocus={() => dispatchEmail({ type: "default" })}
       />
-      <Input
+      <TextField
+        as="input"
         type="password"
         state={pswdState}
         placeholder="Your Password"
@@ -64,7 +66,8 @@ export const CreateAccount = () => {
         onFocus={() => dispatchPswd({ type: "default" })}
       />
 
-      <Input
+      <TextField
+        as="input"
         type="password"
         state={rePswdState}
         placeholder="Re-enter Password"
