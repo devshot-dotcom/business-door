@@ -2,7 +2,7 @@ import { useReducer, useEffect, FC } from "react";
 import { Outlet, useLocation, useNavigate, useParams } from "react-router-dom";
 import { profileReducer } from ".";
 import { Footer, Loader, Sidebar } from "../../components";
-import { ROUTES, SUPABASE } from "../../config";
+import { routes, SUPABASE } from "../../config";
 import { ApiError } from "../../helpers/types";
 import { useApi } from "../../hooks";
 import "./profile.scss";
@@ -41,7 +41,7 @@ export const ProfileComponent: FC = () => {
     // Otherwise slap them with a 403.
     if (pathNames[pathNames.length - 1] === "edit") {
       if (!user) {
-        navigate(ROUTES.error403.path);
+        navigate(routes.error403.PATH);
         return;
       }
 

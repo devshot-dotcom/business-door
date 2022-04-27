@@ -36,8 +36,8 @@
     transform-origin: top;
   }
 
-  &:not(.show)::before,
-  &:not(.show)::after {
+  &:not(.microtip-show)::before,
+  &:not(.microtip-show)::after {
     opacity: 0;
     pointer-events: none;
   }

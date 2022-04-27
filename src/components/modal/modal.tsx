@@ -12,9 +12,10 @@ export const ModalComponent: FC<ModalProps> = ({
   return (
     <ReactModal
       {...rest}
-      onRequestClose={onRequestClose}
       className="modal__content"
+      onRequestClose={onRequestClose}
       overlayClassName="modal__overlay"
+      appElement={document.getElementById("app")!}
       parentSelector={() => document.getElementById("app")!}
     >
       {children}

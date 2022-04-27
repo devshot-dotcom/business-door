@@ -16,6 +16,10 @@ function editProfileReducer(
     updateCover: { ...state, cover: action.cover },
     updateAvatar: { ...state, avatar: action.avatar },
     updateBio: { ...state, aboutMe: action.aboutMe },
+    updateName: { ...state, fullName: action.fullName },
+    updateEmail: { ...state, email: action.email },
+    updateProfession: { ...state, profession: action.profession },
+    updateOrganization: { ...state, organization: action.organization },
   }[action.type] as EditProfileState;
 }
 

@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import { ROUTES } from "../../config";
+import { routes } from "../../config";
 import styles from "./error.module.scss";
 
 export const Error404 = () => {
@@ -11,7 +11,7 @@ export const Error404 = () => {
         <p className="text-paragraph">
           Nobody resides here, even we didn't know of this place's existence,{" "}
           <Link
-            to={ROUTES.landing.path}
+            to={routes.landing.PATH}
             replace={true}
             className="text-paragraph text-link"
           >

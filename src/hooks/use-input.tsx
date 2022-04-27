@@ -7,7 +7,7 @@ function inputReducer(
   action: TextFieldActions
 ): TextFieldState {
   return {
-    default: { ...state, variant: "default" },
+    default: { ...state, variant: "default", tooltip: undefined },
     update: { ...state, value: action.value },
     valid: {
       ...state,
@@ -19,6 +19,7 @@ function inputReducer(
       variant: "invalid",
       tooltip: action.tooltip,
     },
+    reset: { ...state, value: "", tooltip: undefined },
   }[action.type] as TextFieldState;
 }
 

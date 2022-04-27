@@ -3,7 +3,7 @@ import { EditProfileActions } from "..";
 import { profileConfig } from "../..";
 import { Menu, TextField } from "../../../../components";
 
-type BioProps = {
+type Props = {
   bio?: string;
   dispatchProfile: Dispatch<EditProfileActions>;
 };
@@ -13,7 +13,7 @@ type BioProps = {
  * @param bio - The user's bio
  * @param dispatchProfile - The dispatch function for the profile reducer.
  */
-export const Bio = ({ bio, dispatchProfile }: BioProps) => {
+export const Bio = ({ bio, dispatchProfile }: Props) => {
   if (bio === undefined) return null;
 
   const onChange = (e: ChangeEvent<HTMLTextAreaElement>) => {

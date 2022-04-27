@@ -1,7 +1,7 @@
 import * as React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { TextField, Button } from "../../../components";
-import { ROUTES } from "../../../config";
+import { routes } from "../../../config";
 import { useEmail, usePassword, useAuthenticator } from "../../../hooks";
 import { doPasswordsMatch } from "../../../modules";
 import styles from "../auth.module.scss";
@@ -93,7 +93,7 @@ export const CreateAccount = () => {
       <div className="h-gap-small">
         <span className="text-paragraph">Already have an account?</span>
         <Link
-          to={ROUTES.login.path}
+          to={routes.login.PATH}
           className="text-link"
           title="Log in to your account"
         >

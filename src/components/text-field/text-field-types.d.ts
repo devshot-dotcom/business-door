@@ -20,14 +20,14 @@ export type TextFieldActions = {
   value?: string;
 
   /** Tooltip, can be displayed for validation messages, etc. */
-  tooltip?: TooltipProps;
+  tooltip?: MicrotipProps;
 
   /** Types of actions.
    * - `default` Resets the field with current value.
    * - `update` Updates the value.
    * - `valid` Displays the valid visuals.
    * - `invalid` Displays the invalid visuals. */
-  type: "default" | "update" | "valid" | "invalid";
+  type: "default" | "update" | "valid" | "invalid" | "reset";
 };
 
 /**

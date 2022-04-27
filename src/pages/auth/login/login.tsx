@@ -2,7 +2,7 @@ import * as React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { TextField, Button } from "../../../components";
 import { useInput, useAuthenticator } from "../../../hooks";
-import { ROUTES } from "../../../config";
+import { routes } from "../../../config";
 import styles from "../auth.module.scss";
 
 export const Login = () => {
@@ -27,7 +27,8 @@ export const Login = () => {
     <form onSubmit={handleSubmit} className={`${styles.form} v-gap`}>
       <h1 className={styles.heading}>Log In</h1>
       <TextField
-        as="textarea"
+        as="input"
+        type="email"
         state={emailState}
         placeholder="Your Email Address"
         title="Please enter your email address"
@@ -48,7 +49,7 @@ export const Login = () => {
         onFocus={() => dispatchPswd({ type: "default" })}
       />
 
-      <Link to={ROUTES.verifyAccount.path} className="text-link">
+      <Link to={routes.verifyAccount.PATH} className="text-link">
         Forgot Password
       </Link>
 
@@ -62,7 +63,7 @@ export const Login = () => {
       <div className="h-gap-small">
         <span className="text-paragraph">Don't have an account?</span>
         <Link
-          to={ROUTES.createAccount.path}
+          to={routes.createAccount.PATH}
           className="text-link"
           title="Create an account"
         >

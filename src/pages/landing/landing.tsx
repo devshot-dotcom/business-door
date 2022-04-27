@@ -2,7 +2,7 @@ import { Hero } from "./hero";
 import { Intro } from "./intro";
 import { Reason } from "./reason";
 import { Footer, Sidebar } from "../../components";
-import { ROUTES } from "../../config";
+import { routes } from "../../config";
 
 const Landing = () => {
   return (

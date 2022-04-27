@@ -17,9 +17,10 @@ export const TextField = (props: TextFieldProps) => {
   const { as, state, className = "", ...rest } = props;
   const { value, tooltip, variant = "default" } = state;
 
-  // Create a ref to the input element.
+  //! For now, we're disabling tootlitp for text fields.
+  /* // Create a ref to the input element.
   const ref = createRef<HTMLDivElement>();
-  useMicrotip(ref, tooltip);
+  useMicrotip(ref, tooltip); */
 
   const classes = [
     "text-field",
@@ -37,14 +38,21 @@ export const TextField = (props: TextFieldProps) => {
     );
 
   return (
-    <div className={classes.join(" ")} ref={ref}>
-      {Component}
-      {variant !== "default" && (
-        <Icon
-          src={getIcon(variant)!}
-          size="small"
-          className="text-field__icon"
-        />
+    <div className="v-gap-small">
+      <div className={classes.join(" ")}>
+        {Component}
+        {variant !== "default" && (
+          <Icon
+            src={getIcon(variant)!}
+            size="small"
+            className="text-field__icon"
+          />
+        )}
+      </div>
+      {tooltip && (
+        <div className={`text-paragraph text-${variant} text-small`}>
+          {tooltip.label}
+        </div>
       )}
     </div>
   );

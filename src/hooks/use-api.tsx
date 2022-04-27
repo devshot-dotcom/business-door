@@ -1,7 +1,7 @@
 import { NavigateFunction, useNavigate } from "react-router-dom";
 import { useToast } from ".";
-import { ToastOptions } from "../components/toast";
-import { SUPABASE } from "../config";
+import { ToastOptions, TOAST_UPTIME } from "../components/toast";
+import { setUserMetaData, SUPABASE } from "../config";
 import { BoolBacks } from "../helpers";
 import { StatusCodes, ReasonPhrases } from "http-status-codes";
 import { PostgrestError } from "@supabase/supabase-js";
@@ -41,15 +41,6 @@ class Api {
     this.navigate = navigate;
   }
 }
-
-/*
-async function createProfile(profileData: ProfileData) {
-  const { data, error } = await SUPABASE.from("profiles").insert([profileData]);
-
-  if (error) throw new Error(error.message);
-
-  console.log(data);
-} */
 
 class StorageApi extends Api {
   getAvatarUrl(fileName: string): string | Error {
@@ -168,6 +159,51 @@ class ProfileApi extends Api {
   }
 }
 
+class AuthApi extends Api {
+  // Request supabase to change user's email address.
+  async changeEmail(email: string, boolBacks: BoolBacks) {
+    this.makeToast({
+      title: "Verifying email address...",
+      variant: "loading",
+      upTime: TOAST_UPTIME.REMOVE_ON_PUSH,
+    });
+
+    // Request supabase to change user's email address.
+    const { user, error } = await SUPABASE.auth.update({ email: email });
+
+    // Network error, or database errors.
+    if (error) {
+      this.makeToast({
+        title: "Failed to change email address.",
+        subTitle: error.message,
+        variant: "invalid",
+      });
+
+      boolBacks.onFailure?.(error);
+      console.error(error);
+      return;
+    }
+
+    // In case of no errors, set the metadata action
+    // in correspondance to the user's email change.
+    setUserMetaData({
+      action: "EMAIL_CHANGED",
+      payload: {
+        // @ts-ignore
+        email: user?.new_email,
+      },
+    });
+
+    this.makeToast({
+      title: "A confirmation email has been sent.",
+      subTitle: `Please check your email at ${email} for a confirmation link.`,
+      variant: "valid",
+    });
+
+    boolBacks.onSuccess?.(user);
+  }
+}
+
 /**
  * Call this hook to gain access to the classes that
  * serve as a bridge between the client and the cloud API.
@@ -182,5 +218,6 @@ export const useApi = () => {
   return {
     storage: new StorageApi(makeToast),
     profile: new ProfileApi(makeToast, navigate),
+    auth: new AuthApi(makeToast),
   };
 };

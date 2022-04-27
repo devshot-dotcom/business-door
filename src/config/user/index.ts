@@ -1,2 +1,12 @@
 export { userLevels, getPropsOfLevel } from "./user";
-export type { UserLevel, UserLevelCodes } from "./user-types";
+export {
+  setUserMetaData,
+  getUserMetaData,
+  clearUserMetaData,
+} from "./user-meta";
+export type {
+  UserLevel,
+  UserLevelCodes,
+  UserAction,
+  UserMeta,
+} from "./user-types";

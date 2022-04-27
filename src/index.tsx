@@ -1,7 +1,7 @@
 import ReactDOM from "react-dom";
 import { useEffect, useState } from "react";
 import { BrowserRouter, Routes, Route, Outlet } from "react-router-dom";
-import { ROUTES, ThemeContext, ToastContext, DEFAULT_THEME } from "./config";
+import { routes, ThemeContext, ToastContext, DEFAULT_THEME } from "./config";
 import { AuthorizedRoute, Meta } from "./modules";
 import { App, Container, ToastSandwich } from "./components";
 import { ToastOptions } from "./components/toast";
@@ -35,51 +35,51 @@ export function Root(): JSX.Element {
                     <Route index={true} element={<Splash />} />
 
                     {/* Landing Page */}
-                    <Route element={<Meta title={ROUTES.landing.title} />}>
+                    <Route element={<Meta title={routes.landing.TITLE} />}>
                       <Route
-                        path={ROUTES.landing.basename}
-                        element={ROUTES.landing.Page}
+                        path={routes.landing.BASENAME}
+                        element={<routes.landing.Page />}
                       />
                     </Route>
 
                     {/* Auth Page */}
                     <Route
-                      path={ROUTES.auth.basename}
-                      element={ROUTES.auth.Page}
+                      path={routes.auth.BASENAME}
+                      element={<routes.auth.Page />}
                     >
                       {/* Login */}
-                      <Route element={<Meta title={ROUTES.login.title} />}>
-                        <Route index={true} element={ROUTES.login.Page} />
+                      <Route element={<Meta title={routes.login.TITLE} />}>
+                        <Route index={true} element={<routes.login.Page />} />
                       </Route>
 
                       {/* Create Account */}
                       <Route
-                        element={<Meta title={ROUTES.createAccount.title} />}
+                        element={<Meta title={routes.createAccount.TITLE} />}
                       >
                         <Route
-                          path={ROUTES.createAccount.basename}
-                          element={ROUTES.createAccount.Page}
+                          path={routes.createAccount.BASENAME}
+                          element={<routes.createAccount.Page />}
                         />
                       </Route>
 
                       {/* Verify Account */}
                       <Route
-                        element={<Meta title={ROUTES.verifyAccount.title} />}
+                        element={<Meta title={routes.verifyAccount.TITLE} />}
                       >
                         <Route
-                          path={ROUTES.verifyAccount.basename}
-                          element={ROUTES.verifyAccount.Page}
+                          path={routes.verifyAccount.BASENAME}
+                          element={<routes.verifyAccount.Page />}
                         />
                       </Route>
 
                       {/* Reset Password */}
                       <Route
-                        element={<Meta title={ROUTES.resetPassword.title} />}
+                        element={<Meta title={routes.resetPassword.TITLE} />}
                       >
                         <Route element={<AuthorizedRoute />}>
                           <Route
-                            path={ROUTES.resetPassword.basename}
-                            element={ROUTES.resetPassword.Page}
+                            path={routes.resetPassword.BASENAME}
+                            element={<routes.resetPassword.Page />}
                           />
                         </Route>
                       </Route>
@@ -87,39 +87,39 @@ export function Root(): JSX.Element {
 
                     {/* User Profile Page */}
                     <Route
-                      path={ROUTES.profile.basename}
-                      element={ROUTES.profile.Page}
+                      path={routes.profile.BASENAME}
+                      element={<routes.profile.Page />}
                     >
                       {/* View Profile Page */}
                       <Route
-                        path={ROUTES.viewProfile.basename}
-                        element={ROUTES.viewProfile.Page}
+                        path={routes.viewProfile.BASENAME}
+                        element={<routes.viewProfile.Page />}
                       />
                       {/* Edit Profile Page */}
                       <Route
-                        path={ROUTES.editProfile.basename}
-                        element={ROUTES.editProfile.Page}
+                        path={routes.editProfile.BASENAME}
+                        element={<routes.editProfile.Page />}
                       />
                     </Route>
 
                     {/* Error */}
                     <Route
-                      path={ROUTES.error.basename}
-                      element={ROUTES.error.Page}
+                      path={routes.error.BASENAME}
+                      element={<routes.error.Page />}
                     >
                       {/* Error 404 */}
-                      <Route element={<Meta title={ROUTES.error404.title} />}>
+                      <Route element={<Meta title={routes.error404.TITLE} />}>
                         <Route
-                          path={ROUTES.error404.basename}
-                          element={ROUTES.error404.Page}
+                          path={routes.error404.BASENAME}
+                          element={<routes.error404.Page />}
                         />
                       </Route>
 
                       {/* Error 403 */}
-                      <Route element={<Meta title={ROUTES.error403.title} />}>
+                      <Route element={<Meta title={routes.error403.TITLE} />}>
                         <Route
-                          path={ROUTES.error403.basename}
-                          element={ROUTES.error403.Page}
+                          path={routes.error403.BASENAME}
+                          element={<routes.error403.Page />}
                         />
                       </Route>
                     </Route>

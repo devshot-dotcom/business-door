@@ -41,15 +41,10 @@ const EditProfile = () => {
               bio={profileState.aboutMe}
               dispatchProfile={dispatchProfile}
             />
-            <Menu title="Confidential Information">
-              <TextField
-                as="input"
-                state={{
-                  value: profileState.aboutMe!,
-                  variant: "default",
-                }}
-              />
-            </Menu>
+            <Fieldset.Confidentials
+              email={profileState.email}
+              dispatchProfile={dispatchProfile}
+            />
             <Menu title="Personal Information">
               <TextField
                 as="input"

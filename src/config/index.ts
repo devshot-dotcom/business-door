@@ -1,4 +1,4 @@
-export { ROUTES } from "./router";
+export { routes } from "./router";
 export type { Route } from "./router";
 export { env } from "./env";
 export { SUPABASE } from "./database";
@@ -11,7 +11,13 @@ export type {
   ThemeSizesCompact,
   ThemeSpeeds,
 } from "./theme";
-export { DURATION, DEFAULT_THEME, BREAKPOINTS } from "./theme";
+export { duration, DEFAULT_THEME, BREAKPOINTS } from "./theme";
 // User.
-export { userLevels, getPropsOfLevel } from "./user";
-export type { UserLevel, UserLevelCodes } from "./user";
+export {
+  userLevels,
+  getPropsOfLevel,
+  setUserMetaData,
+  getUserMetaData,
+  clearUserMetaData,
+} from "./user";
+export type { UserLevel, UserLevelCodes, UserAction, UserMeta } from "./user";

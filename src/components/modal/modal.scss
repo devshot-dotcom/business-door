@@ -1,15 +1,11 @@
 @use "../../sass/vars";
 @use "../../sass/mixins";
 
-[data-theme="dark"] .modal__overlay {
-  background-color: map-get(vars.$transparent, "black-75");
-}
-
 .modal__overlay {
   inset: 0px;
   position: fixed;
   z-index: vars.$z-index-modal;
-  background-color: map-get(vars.$transparent, "white-75");
+  background-color: map-get(vars.$transparent, "black-75");
 
   .modal__content {
     // overflow
@@ -22,6 +18,7 @@
     // styling
     background-color: var(--theme-color-background-subtle);
     border-radius: vars.$border-radius-small;
+    box-shadow: vars.$box-shadow-largest;
     padding: var(--layout-gap);
 
     @include mixins.when-vertical-nav-appears() {

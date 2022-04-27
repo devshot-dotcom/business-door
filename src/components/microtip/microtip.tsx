@@ -8,7 +8,7 @@ export const Microtip = (props: MicrotipProps) => {
 
   if (element === null || element === undefined) return null;
 
-  isShownForever && element.classList.add("show");
+  isShownForever && element.classList.add("microtip-show");
   element.setAttribute("aria-label", label);
   element.setAttribute("role", "tooltip");
   element.setAttribute("data-microtip-position", position);

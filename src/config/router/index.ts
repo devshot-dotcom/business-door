@@ -1,2 +1,2 @@
-export { ROUTES } from "./routes";
+export { routes } from "./routes";
 export type { Route } from "./router-types";

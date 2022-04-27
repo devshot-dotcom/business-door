@@ -34,10 +34,7 @@
   @include mixins.transition(outline vars.$transition-fastest linear);
 
   &.text-field-default {
-    @include input-variant(
-      var(--theme-color-background),
-      var(--theme-color-background)
-    );
+    @include input-variant(var(--theme-color-background), transparent);
   }
 
   &.text-field-valid {

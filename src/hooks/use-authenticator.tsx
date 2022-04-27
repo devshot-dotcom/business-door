@@ -1,6 +1,6 @@
 import { ApiError, Session, User } from "@supabase/supabase-js";
 import { ToastOptions, TOAST_UPTIME } from "../components/toast";
-import { ROUTES, SUPABASE } from "../config";
+import { routes, SUPABASE } from "../config";
 import { isObjectValid } from "../helpers/functions";
 import { BoolBacks } from "../helpers/types";
 import { useToast } from "./use-toast";
@@ -149,7 +149,7 @@ class Authenticator {
     try {
       this.handleResponse({
         response: await SUPABASE.auth.api.signUpWithEmail(email, password, {
-          redirectTo: `${window.location.origin}${ROUTES.login.path}`,
+          redirectTo: `${window.location.origin}${routes.login.PATH}`,
         }),
         toastOptions: {
           title: "Account created successfully",
@@ -179,7 +179,7 @@ class Authenticator {
     try {
       this.handleResponse({
         response: await SUPABASE.auth.api.resetPasswordForEmail(email, {
-          redirectTo: `${window.location.origin}${ROUTES.resetPassword.path}`,
+          redirectTo: `${window.location.origin}${routes.resetPassword.PATH}`,
         }),
         toastOptions: {
           title: "Ready to reset!",
