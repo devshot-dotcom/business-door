@@ -23,3 +23,4 @@ export { Badge } from "./badge";
 export { Avatar } from "./avatar";
 export { Menu } from "./menu";
 export { Modal } from "./modal";
+export { TextCounter } from "./text-counter";

@@ -1,18 +1,19 @@
 import * as React from "react";
+import { User } from "@supabase/supabase-js";
 import { Link, useNavigate } from "react-router-dom";
 import { TextField, Button } from "../../../components";
-import { routes } from "../../../config";
-import { useEmail, usePassword, useAuthenticator } from "../../../hooks";
+import { routes, setAppMetaData } from "../../../config";
+import { useEmail, usePassword, useApi } from "../../../hooks";
 import { doPasswordsMatch } from "../../../modules";
+import { AuthApi } from "../../../hooks/use-api";
 import styles from "../auth.module.scss";
 
 export const CreateAccount = () => {
+  const navigate = useNavigate();
+  const api = useApi("auth") as AuthApi;
   const [emailState, dispatchEmail, isEmailValid] = useEmail();
   const [pswdState, dispatchPswd, isPswdValid] = usePassword();
   const [rePswdState, dispatchRePswd, isRePswdValid] = usePassword();
-
-  const navigate = useNavigate();
-  const authenticator = useAuthenticator();
 
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -31,10 +32,8 @@ export const CreateAccount = () => {
 
     // In case counter stays at 0 (No errors)
     if (errors === 0) {
-      authenticator.createAccount({
-        email: emailState.value,
-        password: pswdState.value,
-        boolBacks: { onSuccess: () => navigate("/auth") },
+      api.createAccount(emailState.value, pswdState.value, {
+        onSuccess: () => navigate("/auth"),
       });
     }
   }

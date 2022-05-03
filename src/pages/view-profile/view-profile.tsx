@@ -1,8 +1,8 @@
 import { Navigate, useOutletContext } from "react-router-dom";
-import { SUPABASE } from "../../../config";
-import { isObjectValid } from "../../../helpers";
-import { Profile, ProfileState } from "..";
-import { NextToNav } from "../../../components";
+import { SUPABASE } from "../../config";
+import { isObjectValid } from "../../helpers";
+import { Profile, ProfileState } from "../profile";
+import { NextToNav } from "../../components";
 
 export const ViewProfile = () => {
   const { data } = useOutletContext<ProfileState>();
@@ -21,8 +21,8 @@ export const ViewProfile = () => {
           </h2>
           {data.aboutMe && <Profile.Bio bio={data.aboutMe} />}
           <div className="profile__grid">
-            <Profile.PersonalInformation isLogged={isLogged} data={data} />
-            <Profile.AdditionalInformation data={data.additionalInfo} />
+            <Profile.Personal isLogged={isLogged} data={data} />
+            <Profile.Additional data={data.additionalInfo} />
           </div>
         </div>
       </NextToNav>

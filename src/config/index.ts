@@ -16,8 +16,9 @@ export { duration, DEFAULT_THEME, BREAKPOINTS } from "./theme";
 export {
   userLevels,
   getPropsOfLevel,
-  setUserMetaData,
-  getUserMetaData,
-  clearUserMetaData,
+  setAppMetaData,
+  getAppMetaData,
+  clearAppMetaData,
+  getProfileRoute,
 } from "./user";
-export type { UserLevel, UserLevelCodes, UserAction, UserMeta } from "./user";
+export type { UserLevel, UserLevelCode, UserMetaData } from "./user";

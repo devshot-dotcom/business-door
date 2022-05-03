@@ -59,14 +59,22 @@
     );
   }
 
-  &-disabled {
+  &-disabled,
+  &-readonly {
     cursor: no-drop;
-    background-color: transparent;
+
     border: 1px solid var(--theme-color-background-subtle);
 
     input {
       cursor: no-drop;
       color: var(--theme-color-text-subtle);
+    }
+  }
+
+  &-disabled {
+    background-color: transparent;
+
+    input {
       text-decoration: line-through;
     }
   }

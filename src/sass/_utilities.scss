@@ -97,6 +97,10 @@
   &-small > * + * {
     margin-left: vars.$size-smaller;
   }
+
+  &-0 {
+    margin-left: 0;
+  }
 }
 
 .v-gap {
@@ -107,6 +111,14 @@
   &-small > * + * {
     margin-top: vars.$size-smaller;
   }
+
+  &-0 {
+    margin-top: 0;
+  }
+}
+
+.gap-0 {
+  gap: 0;
 }
 
 //* Layout

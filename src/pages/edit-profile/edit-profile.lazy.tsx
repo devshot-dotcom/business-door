@@ -1,5 +1,5 @@
 import { lazy, ReactNode, Suspense } from "react";
-import { Loader } from "../../../components";
+import { Loader } from "../../components";
 
 const LazyEditProfile = lazy(() => import("./edit-profile"));
 

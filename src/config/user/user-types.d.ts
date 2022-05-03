@@ -1,29 +1,42 @@
 import { ThemeColors } from "..";
 
-export type UserLevelCodes = 1 | 2 | 3 | 4;
+export type UserLevelCode = 1 | 2 | 3 | 4;
 
 export type UserLevel = {
-  CODE: UserLevelCodes;
+  /**
+   * The numerical level of the user.
+   *
+   * @type {UserLevelCode}
+   */
+  CODE: UserLevelCode;
+
+  /**
+   * The name of the user's level.
+   *
+   * @type {string}
+   */
   LABEL: string;
+
+  /**
+   * The color of the user's level.
+   *
+   * @type {ThemeColors}
+   */
   COLOR: ThemeColors;
 };
 
-/**
- * A type that represents the action that needs
- * to be performed based on the user's activity.
- */
-export type UserAction = "EMAIL_CHANGED";
+export type UserMetaData = {
+  /**
+   * The state of the user's account.
+   *
+   * @type {string}
+   */
+  state: "EMAIL_CHANGED";
 
-/**
- * An type representing the user's metadata.
- * Current, it contains just an action property.
- * The action property is a string constant that
- * defines the type of action that is to be
- * performed based on the user's activity.
- */
-export type UserMeta = {
-  action: UserAction;
-  payload?: {
-    [key: string]: any;
-  };
+  /**
+   * The data to be used by the state.
+   *
+   * @type {Object}
+   */
+  payload?: { [key: string]: any };
 };

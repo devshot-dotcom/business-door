@@ -1,32 +1,28 @@
 import { User } from "@supabase/supabase-js";
 import { Dispatch, useState } from "react";
-import { EditProfileActions } from "..";
-import { Button, Menu, Modal, TextField } from "../../../../components";
-import { SUPABASE } from "../../../../config";
-import { useApi, useEmail } from "../../../../hooks";
+import { EditProfileActions } from "../../edit-profile";
+import { Button, Menu, Modal, TextField } from "../../../components";
+import { SUPABASE } from "../../../config";
+import { useApi, useEmail } from "../../../hooks";
+import { AuthApi } from "../../../hooks/use-api";
 
 type Props = {
-  email: string;
   dispatchProfile: Dispatch<EditProfileActions>;
 };
 
-export const Confidentials = ({ email, dispatchProfile }: Props) => {
+export const ProfileConfidential = ({ dispatchProfile }: Props) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const [existingEmail, dispatchExistingEmail, isExistingEmailValid] =
-    useEmail();
   const [newEmail, dispatchNewEmail, isNewEmailValid] = useEmail();
   const [newEmailConfirm, dispatchNewEmailConfirm, isNewEmailConfirmValid] =
     useEmail();
 
-  const api = useApi();
-
-  console.log(SUPABASE.auth.user());
+  const api = useApi("auth") as AuthApi;
+  const currentEmail = SUPABASE.auth.user()?.email;
 
   /**
    * Reset the email states to their initial values.
    */
   function resetForm() {
-    dispatchExistingEmail({ type: "reset" });
     dispatchNewEmail({ type: "reset" });
     dispatchNewEmailConfirm({ type: "reset" });
   }
@@ -47,21 +43,6 @@ export const Confidentials = ({ email, dispatchProfile }: Props) => {
    */
   function changeEmail() {
     let errors = 0;
-    let currentEmail = SUPABASE.auth.user()?.email;
-
-    // Check if the existing email is the same as the current email.
-    // Also check the syntactical validity of the existing email.
-    // If it isn't, invalidate the existing email.
-    if (currentEmail !== existingEmail.value || !isExistingEmailValid()) {
-      ++errors;
-      dispatchExistingEmail({
-        type: "invalid",
-        tooltip: {
-          isShownForever: true,
-          label: "Invalid email, please enter a valid email address.",
-        },
-      });
-    }
 
     // Check if the new email is equal to the current email
     // If it isn't, invalidate the new email.
@@ -125,7 +106,7 @@ export const Confidentials = ({ email, dispatchProfile }: Props) => {
 
     // If there are no errors, request an email change.
     if (errors === 0) {
-      api.auth.changeEmail(newEmail.value, {
+      api.changeEmail(newEmail.value, {
         onSuccess: (user: User) => {
           console.log(user);
 
@@ -145,6 +126,7 @@ export const Confidentials = ({ email, dispatchProfile }: Props) => {
     <>
       <Menu title="Confidential Information">
         <Button
+          type="button"
           variant="tertiary"
           style={{ width: "100%" }}
           onClick={() => setIsModalOpen(true)}
@@ -162,17 +144,14 @@ export const Confidentials = ({ email, dispatchProfile }: Props) => {
           </label>
           <TextField
             as="input"
+            readOnly
             type="email"
             id="existingEmail"
             placeholder="Enter your existing email address"
-            state={existingEmail}
-            onChange={(e) =>
-              dispatchExistingEmail({
-                type: "update",
-                value: e.target.value,
-              })
-            }
-            onFocus={() => dispatchExistingEmail({ type: "default" })}
+            state={{
+              value: currentEmail || "Email not found!",
+              variant: "default",
+            }}
           />
         </div>
 
@@ -222,10 +201,7 @@ export const Confidentials = ({ email, dispatchProfile }: Props) => {
             type: "button",
             children: "Change",
             onClick: changeEmail,
-            disabled:
-              existingEmail.value === "" ||
-              newEmail.value === "" ||
-              newEmailConfirm.value === "",
+            disabled: newEmail.value === "" || newEmailConfirm.value === "",
           }}
           cancelButton={{
             type: "button",

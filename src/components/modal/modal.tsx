@@ -15,8 +15,8 @@ export const ModalComponent: FC<ModalProps> = ({
       className="modal__content"
       onRequestClose={onRequestClose}
       overlayClassName="modal__overlay"
-      appElement={document.getElementById("app")!}
-      parentSelector={() => document.getElementById("app")!}
+      appElement={document.getElementById("root")!}
+      parentSelector={() => document.getElementById("root")!}
     >
       {children}
       <Badge

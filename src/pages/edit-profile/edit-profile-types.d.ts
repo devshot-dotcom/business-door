@@ -1,4 +1,4 @@
-import { ProfileData } from "..";
+import { ProfileData } from "../profile";
 
 export type EditProfileState = ProfileData;
 
@@ -10,5 +10,8 @@ export type EditProfileActions = {
     | "updateName"
     | "updateEmail"
     | "updateProfession"
-    | "updateOrganization";
+    | "updateOrganization"
+    | "updateCity"
+    | "updateCountry"
+    | "updateAdditionalInfo";
 } & Partial<EditProfileState>;

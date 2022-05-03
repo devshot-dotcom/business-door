@@ -10,7 +10,7 @@ import { Link } from "react-router-dom";
 import { PersonalInfo, PersonalInfoProps } from ".";
 import { trimByConfig } from "..";
 import { Icon, Badge } from "../../../components";
-import { getPropsOfLevel } from "../../../config";
+import { getPropsOfLevel, routes } from "../../../config";
 
 /**
  * Parse and retrieve a list of personal information items, ready to be displayed.
@@ -49,7 +49,11 @@ export function getPersonalInfo({
             {cards && cards !== "" ? JSON.parse(cards).length : 0}
           </span>
           {isLogged && (
-            <Link to="/error" className="menu__link" title="Create a new card">
+            <Link
+              to={routes.editProfile.PATH}
+              className="menu__link"
+              title="Create a new card"
+            >
               <Icon src={faPlusCircle} size="small" />
             </Link>
           )}

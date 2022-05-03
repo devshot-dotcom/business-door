@@ -32,18 +32,21 @@ function isString(value: any): boolean {
 /**
  * Check whether an array contains an empty value or not.
  * @param arr The array to be tested.
- * @returns {boolean | null}
+ * @returns {boolean}
  */
-function hasEmptyIndex(arr?: any[]): boolean | null {
-  if (!arr) return null;
+function hasEmptyIndex(arr?: any[]): boolean {
+  if (!arr) return false;
 
-  let hasEmptyIndex = false;
+  let isEmpty = false;
 
   arr.forEach((value) => {
-    if (!value) hasEmptyIndex = !hasEmptyIndex;
+    if (!value) {
+      isEmpty = true;
+      return;
+    }
   });
 
-  return hasEmptyIndex;
+  return isEmpty;
 }
 
 export {

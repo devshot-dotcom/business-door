@@ -1,11 +1,12 @@
 import { useState } from "react";
 import { ProfileCoverModalProps } from ".";
+import { profileConfig } from "../..";
 import { Modal } from "../../../../components";
 import { backgrounds } from "./profile-cover-modal-utils";
 import "./profile-cover-modal.scss";
 
 export const ProfileCoverModal = ({
-  cover,
+  cover = profileConfig.DEFAULT_COVER,
   onRequestClose,
   dispatchProfile,
   ...rest
@@ -28,9 +29,10 @@ export const ProfileCoverModal = ({
     <Modal {...rest} onRequestClose={onRequestClose}>
       <Modal.Header title="Select Cover" />
       <div className="cover-modal__grid" role="grid">
-        {backgrounds.map((background) => {
+        {backgrounds.map((background, i) => {
           return (
             <button
+              key={i}
               role="gridcell"
               onClick={() => setSelectedCover(background.fileName)}
               data-selected={selectedCover === background.fileName}

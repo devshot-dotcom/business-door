@@ -1,9 +1,9 @@
-import { FC } from "react";
+import { ComponentPropsWithoutRef, FC } from "react";
 import "./menu-item.scss";
 
 export type MenuItemProps = {
   direction: "row" | "column";
-} & JSX.IntrinsicElements["li"];
+} & ComponentPropsWithoutRef<"li">;
 
 export const MenuItem: FC<MenuItemProps> = ({
   direction = "row",

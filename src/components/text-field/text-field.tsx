@@ -1,9 +1,7 @@
-import { createRef } from "react";
 import { TextFieldProps } from "./text-field-types";
 import { getIcon } from "./text-field-utils";
 import { Icon } from "..";
 import { InputProps, TextAreaProps } from ".";
-import { useMicrotip } from "../../hooks";
 import { Input, TextArea } from "./children";
 import "./text-field.scss";
 
@@ -26,6 +24,7 @@ export const TextField = (props: TextFieldProps) => {
     "text-field",
     `text-field-${variant}`,
     props.disabled ? "text-field-disabled" : "",
+    props.readOnly ? "text-field-readonly" : "",
     className,
   ];
 

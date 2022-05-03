@@ -8,7 +8,7 @@ import "./avatar.scss";
 export const AvatarComponent: FC<AvatarProps> = (props) => {
   const { src, size = "medium", className = "", ...rest } = props;
 
-  const api = useApi();
+  const api = useApi("storage");
   const [imageSrc, setImageSrc] = useState<string>();
 
   useEffect(() => {

@@ -1,11 +1,11 @@
-import { UserMeta } from ".";
+import { AppState } from "../../helpers/types";
 
-export function getUserMetaData(): UserMeta | null {
-  const object = localStorage.getItem("userMetaData");
+export function getAppMetaData(): AppState | null {
+  const object = localStorage.getItem("appMetaData");
   return object ? JSON.parse(object) : null;
 }
 
-export const setUserMetaData = (data: UserMeta) =>
-  localStorage.setItem("userMetaData", JSON.stringify(data));
+export const setAppMetaData = (data: AppState) =>
+  localStorage.setItem("appMetaData", JSON.stringify(data));
 
-export const clearUserMetaData = () => localStorage.removeItem("userMetaData");
+export const clearAppMetaData = () => localStorage.removeItem("appMetaData");

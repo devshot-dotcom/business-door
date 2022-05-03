@@ -12,4 +12,14 @@
     color: var(--theme-color-text);
     margin-top: var(--layout-gap);
   }
+
+  &.gap-0 {
+    > * + *:not(.gap-auto) {
+      margin-top: 0;
+    }
+
+    .menu__title {
+      margin-bottom: var(--layout-gap);
+    }
+  }
 }

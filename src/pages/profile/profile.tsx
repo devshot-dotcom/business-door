@@ -1,51 +1,59 @@
 import { useReducer, useEffect, FC } from "react";
 import { Outlet, useLocation, useNavigate, useParams } from "react-router-dom";
-import { profileReducer } from ".";
+import { ProfileData, profileReducer } from ".";
 import { Footer, Loader, Sidebar } from "../../components";
-import { routes, SUPABASE } from "../../config";
+import { getProfileRoute, routes, SUPABASE } from "../../config";
 import { ApiError } from "../../helpers/types";
 import { useApi } from "../../hooks";
+import { ProfileApi } from "../../hooks/use-api";
 import "./profile.scss";
 
 export const ProfileComponent: FC = () => {
-  const api = useApi();
   const navigate = useNavigate();
   const location = useLocation();
+  const api = useApi("profile") as ProfileApi;
 
   // Get the URL params.
-  const { username = "" } = useParams();
+  const { route = "" } = useParams();
 
   // Note the initial state [fetching].
   const [profile, dispatchProfile] = useReducer(profileReducer, {
     status: "fetching",
   });
 
-  function onSuccess(data: any) {
-    dispatchProfile({ type: "successful", data: data });
-  }
-
-  function onFailure(error?: ApiError) {
-    dispatchProfile({
-      type: "failed",
-      error: error,
-    });
-  }
-
   useEffect(() => {
-    /* const user = SUPABASE.auth.user();
+    const user = SUPABASE.auth.user();
     const pathNames = location.pathname.split("/");
 
-    // In case the edit page is requested,
-    // we need to check if the user is logged in,
-    // and fetch the profile of the logged in user.
-    // Otherwise slap them with a 403.
-    if (pathNames[pathNames.length - 1] === "edit") {
+    /**
+     * The callback that sets the profile data.
+     * @param {ProfileData} data The profile data.
+     * @returns {void}
+     */
+    const onSuccess = (data: ProfileData): void =>
+      dispatchProfile({ type: "successful", data: data });
+
+    /**
+     * The callback that sets the error.
+     * @param {ApiError} error The error that shows a failed request.
+     * @returns {void}
+     */
+    const onFailure = (error?: ApiError): void =>
+      dispatchProfile({
+        type: "failed",
+        error: error,
+      });
+
+    // This is the case where the edit profile page is requested but this page also parsed since its the parent route.
+    // The term `edit` could have also been taken as a route parameter by the router, but that didn't happen, and the
+    /* if (pathNames[pathNames.length - 1] === "edit") {
+      // Only authorized users can access the edit profile page.
       if (!user) {
         navigate(routes.error403.PATH);
         return;
       }
 
-      api.profile.fetchById(user.id, {
+      api.fetchById(user.id, {
         onSuccess: onSuccess,
         onFailure: onFailure,
       });
@@ -53,19 +61,14 @@ export const ProfileComponent: FC = () => {
       return;
     }
 
-    // In the the view profile page is requested
-    // and the user is logged in but no username is provided.
-    if (username === "" && user?.email) {
-      // Every user's username is auto-generated
-      // from the first part of their email.
-      // Since a logged user's username is unknown
-      // unless their profile is fetched, we use
-      // this strategy to navigate to their profile.
-      navigate(`/profile/${user.email.split("@")[0]}`);
+    // If the the view profile page is requested and the user is logged in but no route is provided, we redirect the user to their profile page.
+    if (route === "" && user) {
+      navigate(getProfileRoute(user.id));
       return;
     }
 
-    api.profile.fetchByUsername(username, {
+    // By default, we fetch the profile data for the provided route.
+    api.fetchByRoute(route, {
       onSuccess: onSuccess,
       onFailure: onFailure,
     }); */
@@ -101,25 +104,23 @@ export const ProfileComponent: FC = () => {
     dispatchProfile({
       type: "successful",
       data: {
-        email: "kashan1588@gmail.com",
+        route: "123",
+        email: "lanaven774@wowcg.com",
         aboutMe:
           "Aspernatur sed nisi. Nobis tempora voluptate et qui explicabo rerum dignissimos cumque beatae. Ex ut voluptas ducimus quis sunt suscipit ducimus consequatur earum. Earum suscipit ab tenetur enim eaque odit molestias vel quis. Officiis dicta deleniti ut dolor velit. Rerum reprehenderit laborum nobis corrupti nesciunt.",
-        additionalInfo: "",
         avatar: "kashan1588-avatar.png",
         cover: "background-05.png",
         city: "Port Frankstad",
         country: "Niger",
         fullName: "Morissette Renee",
-        organization: "Blanda - Frami",
         profession: "Chief Engineer",
-        username: "kashan1588",
-        cards: "[]",
+        additionalInfo: JSON.stringify(additionalInfo),
         level: 1,
       },
     });
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [username]);
+  }, [route]);
 
   return (
     <>

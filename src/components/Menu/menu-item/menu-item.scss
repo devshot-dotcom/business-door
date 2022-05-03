@@ -17,11 +17,11 @@
   .menu__text {
     flex-grow: 1;
     @include typography.paragraph(var(--theme-color-text-subtle));
-  }
 
-  .underlined {
-    padding-bottom: 2px;
-    border-bottom: 1px solid map-get(vars.$color-brand, "400");
+    &-underlined {
+      padding-bottom: 2px;
+      border-bottom: 1px solid map-get(vars.$color-brand, "400");
+    }
   }
 
   .menu__link,

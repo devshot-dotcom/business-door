@@ -1,42 +1,39 @@
-import { useToast } from ".";
-import {
-  SUPABASE,
-  getUserMetaData,
-  routes,
-  clearUserMetaData,
-} from "../config";
+import { useState } from "react";
+import { useApi, useToast } from ".";
+import { SUPABASE, getAppMetaData, routes, clearAppMetaData } from "../config";
 
 /**
- * Hook to get the user meta data.
+ * Hook to get the app meta data.
  */
 export function useMetaData() {
+  const api = useApi("profile");
   const makeToast = useToast();
+  const [path, setPath] = useState(routes.landing.PATH);
 
   /**
-   * Perform the action stated in the user meta data.
+   * Perform the action stated in the app meta data.
    * And return the path to navigate to based on the action.
    * @returns {string} The path to navigate to.
    */
-  function getPathForUserAction(): string {
+  function getPathForMetaDataAction(): string {
     const user = SUPABASE.auth.user();
-    const userMetaData = getUserMetaData();
-    const defaultPath = routes.landing.PATH;
+    const appMetaData = getAppMetaData();
 
-    // If the user meta data is not set, return the default path.
-    if (!userMetaData) return defaultPath;
+    // If the app meta data is not set, return the default path.
+    if (!appMetaData) return path;
 
     // If the action is EMAIL_CHANGED,
     // - Check if the meta data has a new email.
     // - If it does, check if the new email matches the user's email.
     // - If it doesn't, return the default path.
     // If the emails match, that means the server has already confirmed the email change.
-    // So, clear the user meta data, make a confirmation toast, and return the path to the edit profile page.
-    if (userMetaData.action === "EMAIL_CHANGED") {
-      if (!user?.email || !userMetaData.payload) return defaultPath;
+    // So, clear the app meta data, make a confirmation toast, and return the path to the edit profile page.
+    if (appMetaData.action === "EMAIL_CHANGED") {
+      if (!user?.email || !appMetaData.payload) return path;
 
       // This confirms that the user is returning after confirming the email change. How? Because the email stored in the payload is the new email. If that matches the user's email, that means the server has changed the email.
-      if (user.email === userMetaData.payload.email) {
-        clearUserMetaData();
+      if (user.email === appMetaData.payload.email) {
+        clearAppMetaData();
 
         makeToast({
           title: "Email changed successfully",
@@ -47,8 +44,21 @@ export function useMetaData() {
       }
     }
 
-    return defaultPath;
+    // If the action is ACCOUNT_CREATED,
+    // Check if the user is logged in, this is how the API works:
+    // - The user isn't logged in once they create an account.
+    // - The user is logged in automatically after they confirm their email.
+    // So we are going to check if the action is ACCOUNT_CREATED  and the user is logged in. Then we will request the user's profile which will indicate two possibilities.
+    // 1. The user has logged in for the first time and we have to create a profile.
+    // 2. The user is returning and their profile is already set.
+    // In case of the first possibility, we'll create the user's profile and take them to their profile page.
+    // In case of the second possibility, we'll do nothing.
+    if (appMetaData.action === "ACCOUNT_CREATED") {
+      if (!user) return path;
+    }
+
+    return path;
   }
 
-  return { getPathForUserAction };
+  return { getPathForMetaDataAction };
 }

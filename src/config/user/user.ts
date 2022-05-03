@@ -28,7 +28,9 @@ export const userLevels: Record<string, UserLevel> = {
  * @param levelCode The number to match to the levels.
  * @returns {UserLevel | null}
  */
-export function getPropsOfLevel(levelCode: number): UserLevel | null {
+export function getPropsOfLevel(levelCode?: number): UserLevel | null {
+  if (!levelCode) return null;
+
   let userLevel: UserLevel | null = null;
 
   Object.values(userLevels).forEach((level) => {
@@ -36,4 +38,14 @@ export function getPropsOfLevel(levelCode: number): UserLevel | null {
   });
 
   return userLevel;
+}
+
+/**
+ * Function that extracts the route to the user's profile page from their `id`.
+ *
+ * @param id The user's id.
+ * @returns {string} The route to the user's profile page.
+ */
+export function getProfileRoute(id: string): string {
+  return id.split("-")[0];
 }

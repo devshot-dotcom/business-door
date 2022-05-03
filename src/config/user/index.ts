@@ -1,12 +1,3 @@
-export { userLevels, getPropsOfLevel } from "./user";
-export {
-  setUserMetaData,
-  getUserMetaData,
-  clearUserMetaData,
-} from "./user-meta";
-export type {
-  UserLevel,
-  UserLevelCodes,
-  UserAction,
-  UserMeta,
-} from "./user-types";
+export { userLevels, getPropsOfLevel, getProfileRoute } from "./user";
+export { setAppMetaData, getAppMetaData, clearAppMetaData } from "./user-meta";
+export type { UserLevel, UserLevelCode, UserMetaData } from "./user-types";

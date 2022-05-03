@@ -1,6 +1,6 @@
 import { useReducer } from "react";
 import { EditProfileActions, EditProfileState } from ".";
-import { ProfileData } from "..";
+import { ProfileData } from "../profile";
 
 /**
  * Updates the profile attributes systematically.
@@ -20,6 +20,9 @@ function editProfileReducer(
     updateEmail: { ...state, email: action.email },
     updateProfession: { ...state, profession: action.profession },
     updateOrganization: { ...state, organization: action.organization },
+    updateCity: { ...state, city: action.city },
+    updateCountry: { ...state, country: action.country },
+    updateAdditionalInfo: { ...state, additionalInfo: action.additionalInfo },
   }[action.type] as EditProfileState;
 }
 
@@ -41,4 +44,5 @@ export function updateProfile(
   state: EditProfileState
 ) {
   e.preventDefault();
+  console.log("Submitted");
 }

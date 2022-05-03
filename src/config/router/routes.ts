@@ -58,8 +58,8 @@ export const routes: Record<string, Route> = {
     Page: Profile,
   },
   viewProfile: {
-    PATH: "/profile/:username",
-    BASENAME: ":username",
+    PATH: "/profile/:route",
+    BASENAME: ":route",
     Page: ViewProfile,
   },
   editProfile: {

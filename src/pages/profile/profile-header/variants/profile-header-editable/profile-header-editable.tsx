@@ -1,14 +1,13 @@
-import { FC, useState } from "react";
-import { ProfileHeaderEditableProps } from "../..";
-import { Profile } from "../../..";
+import { useState } from "react";
+import { Profile, ProfileChildProps } from "../../..";
 import { NextToNav, Avatar, Badge, Button } from "../../../../../components";
 import { getPropsOfLevel } from "../../../../../config";
 import "./profile-header-editable.scss";
 
-export const ProfileHeaderEditable: FC<ProfileHeaderEditableProps> = ({
+export const ProfileHeaderEditable = ({
   profileState,
   dispatchProfile,
-}) => {
+}: ProfileChildProps) => {
   const [isModalShown, setIsModalShown] = useState(false);
 
   const hideCoverModal = () => setIsModalShown(false);

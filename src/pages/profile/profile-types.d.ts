@@ -1,6 +1,9 @@
-import { UserLevelCodes } from "../../config";
+import { Dispatch } from "react";
+import { UserLevelCode } from "../../config";
+import { EditProfileActions, EditProfileState } from "../edit-profile";
 import { ProfileAdditional } from "./profile-additional";
 import { ProfileBio } from "./profile-bio";
+import { ProfileConfidential } from "./profile-confidential";
 import { ProfileCover } from "./profile-cover";
 import { ProfileHeader } from "./profile-header";
 import { ProfilePersonal } from "./profile-personal";
@@ -50,27 +53,33 @@ export type AdditionalInfo = {
 };
 
 export type ProfileData = {
-  readonly id?: string;
-  email: string;
+  id?: string;
+  route: string;
   profession?: string;
   organization?: string;
   city?: string;
   country?: string;
   fullName?: string;
-  additionalInfo: string;
+  additionalInfo?: string;
   avatar?: string;
-  username?: string;
-  readonly updatedAt?: string;
+  updatedAt?: string;
   aboutMe?: string;
-  cover: string;
-  level: UserLevelCodes;
-  cards: string;
+  email?: string;
+  cover?: string;
+  level?: UserLevelCode;
+  cards?: string;
 };
 
 export type ProfileChildren = {
   Cover: typeof ProfileCover;
   Header: typeof ProfileHeader;
   Bio: typeof ProfileBio;
-  PersonalInformation: typeof ProfilePersonal;
-  AdditionalInformation: typeof ProfileAdditional;
+  Personal: typeof ProfilePersonal;
+  Additional: typeof ProfileAdditional;
+  Confidential: typeof ProfileConfidential;
+};
+
+export type ProfileChildProps = {
+  profileState: EditProfileState;
+  dispatchProfile: Dispatch<EditProfileActions>;
 };

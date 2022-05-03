@@ -2,6 +2,7 @@ import { FC } from "react";
 import { ProfileComponent } from "./profile";
 import { ProfileAdditional } from "./profile-additional";
 import { ProfileBio } from "./profile-bio";
+import { ProfileConfidential } from "./profile-confidential";
 import { ProfileCover } from "./profile-cover";
 import { ProfileHeader } from "./profile-header";
 import { ProfilePersonal } from "./profile-personal";
@@ -13,12 +14,11 @@ export const Profile = Object.assign<FC, ProfileChildren>(ProfileComponent, {
   Header: ProfileHeader,
   Cover: ProfileCover,
   Bio: ProfileBio,
-  PersonalInformation: ProfilePersonal,
-  AdditionalInformation: ProfileAdditional,
+  Personal: ProfilePersonal,
+  Additional: ProfileAdditional,
+  Confidential: ProfileConfidential,
 });
 
-export { ViewProfile } from "./view-profile";
-export { EditProfile } from "./edit-profile";
 export { profileReducer, trimByConfig } from "./profile-utils";
 export { profileConfig } from "./profile-config";
 export type {
@@ -26,6 +26,8 @@ export type {
   ProfileState,
   ProfileActions,
   AdditionalInfo,
+  ProfileChildren,
+  ProfileChildProps,
 } from "./profile-types";
 
 /* PersonalInformation */
