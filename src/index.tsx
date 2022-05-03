@@ -35,91 +35,74 @@ export function Root(): JSX.Element {
                     <Route index={true} element={<Splash />} />
 
                     {/* Landing Page */}
-                    <Route element={<Meta title={routes.landing.TITLE} />}>
+                    <Route element={<Meta title={routes.landing.title} />}>
                       <Route
-                        path={routes.landing.BASENAME}
-                        element={<routes.landing.Page />}
+                        path={routes.landing.basename}
+                        element={routes.landing.Page}
                       />
                     </Route>
 
                     {/* Auth Page */}
                     <Route
-                      path={routes.auth.BASENAME}
-                      element={<routes.auth.Page />}
+                      path={routes.auth.basename}
+                      element={routes.auth.Page}
                     >
                       {/* Login */}
-                      <Route element={<Meta title={routes.login.TITLE} />}>
-                        <Route index={true} element={<routes.login.Page />} />
+                      <Route element={<Meta title={routes.login.title} />}>
+                        <Route index={true} element={routes.login.Page} />
                       </Route>
 
                       {/* Create Account */}
                       <Route
-                        element={<Meta title={routes.createAccount.TITLE} />}
+                        element={<Meta title={routes.createAccount.title} />}
                       >
                         <Route
-                          path={routes.createAccount.BASENAME}
-                          element={<routes.createAccount.Page />}
+                          path={routes.createAccount.basename}
+                          element={routes.createAccount.Page}
                         />
                       </Route>
 
                       {/* Verify Account */}
                       <Route
-                        element={<Meta title={routes.verifyAccount.TITLE} />}
+                        element={<Meta title={routes.verifyAccount.title} />}
                       >
                         <Route
-                          path={routes.verifyAccount.BASENAME}
-                          element={<routes.verifyAccount.Page />}
+                          path={routes.verifyAccount.basename}
+                          element={routes.verifyAccount.Page}
                         />
                       </Route>
 
                       {/* Reset Password */}
                       <Route
-                        element={<Meta title={routes.resetPassword.TITLE} />}
+                        element={<Meta title={routes.resetPassword.title} />}
                       >
                         <Route element={<AuthorizedRoute />}>
                           <Route
-                            path={routes.resetPassword.BASENAME}
-                            element={<routes.resetPassword.Page />}
+                            path={routes.resetPassword.basename}
+                            element={routes.resetPassword.Page}
                           />
                         </Route>
                       </Route>
                     </Route>
 
-                    {/* User Profile Page */}
-                    <Route
-                      path={routes.profile.BASENAME}
-                      element={<routes.profile.Page />}
-                    >
-                      {/* View Profile Page */}
-                      <Route
-                        path={routes.viewProfile.BASENAME}
-                        element={<routes.viewProfile.Page />}
-                      />
-                      {/* Edit Profile Page */}
-                      <Route
-                        path={routes.editProfile.BASENAME}
-                        element={<routes.editProfile.Page />}
-                      />
-                    </Route>
-
                     {/* Error */}
                     <Route
-                      path={routes.error.BASENAME}
-                      element={<routes.error.Page />}
+                      path={routes.error.basename}
+                      element={routes.error.Page}
                     >
                       {/* Error 404 */}
-                      <Route element={<Meta title={routes.error404.TITLE} />}>
+                      <Route element={<Meta title={routes.error404.title} />}>
                         <Route
-                          path={routes.error404.BASENAME}
-                          element={<routes.error404.Page />}
+                          path={routes.error404.basename}
+                          element={routes.error404.Page}
                         />
                       </Route>
 
                       {/* Error 403 */}
-                      <Route element={<Meta title={routes.error403.TITLE} />}>
+                      <Route element={<Meta title={routes.error403.title} />}>
                         <Route
-                          path={routes.error403.BASENAME}
-                          element={<routes.error403.Page />}
+                          path={routes.error403.basename}
+                          element={routes.error403.Page}
                         />
                       </Route>
                     </Route>

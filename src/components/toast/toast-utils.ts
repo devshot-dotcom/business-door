@@ -1,7 +1,7 @@
-import { duration } from "../../config/theme";
+import { DURATION } from "../../config/theme";
 
 export const TOAST_UPTIME = {
-  DEFAULT: duration.ALERT,
-  ELONGATED: duration.GUIDE,
+  DEFAULT: DURATION.ALERT,
+  ELONGATED: DURATION.GUIDE,
   REMOVE_ON_PUSH: 30000,
 };

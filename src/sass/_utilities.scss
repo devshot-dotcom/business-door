@@ -1,23 +1,15 @@
 @use "./vars";
 @use "./mixins";
 
-// Colors.
-@each $key, $value in vars.$colors {
-  .text-#{$key} {
-    color: map-get($value, "400");
+// Text colors
+@each $color-name, $color-map in vars.$colors {
+  .text-#{$color-name} {
+    color: map-get($color-map, "400");
 
     // Link's color swaps with theme.
-    @if ($key == "link") {
+    @if ($color-name == "link") {
       color: var(--theme-color-link);
     }
-  }
-
-  .bg-#{$key} {
-    background-color: map-get($value, "400");
-  }
-
-  .bd-#{$key} {
-    border-color: map-get($value, "400");
   }
 }
 
@@ -97,10 +89,6 @@
   &-small > * + * {
     margin-left: vars.$size-smaller;
   }
-
-  &-0 {
-    margin-left: 0;
-  }
 }
 
 .v-gap {
@@ -111,14 +99,6 @@
   &-small > * + * {
     margin-top: vars.$size-smaller;
   }
-
-  &-0 {
-    margin-top: 0;
-  }
-}
-
-.gap-0 {
-  gap: 0;
 }
 
 //* Layout

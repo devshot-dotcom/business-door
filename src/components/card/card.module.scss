@@ -74,7 +74,7 @@ $card-size: vars.$size-medium;
     // The Owl Rule
     // https://alistapart.com/article/axiomatic-css-and-lobotomized-owls/
     &.gap-#{$size-name} {
-      > * + *:not([data-gap-none]) {
+      * + *:not([data-gap-none]) {
         margin-top: $size-value !important;
       }
     }

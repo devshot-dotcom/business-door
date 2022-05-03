@@ -1,4 +1,4 @@
-import { TextFieldActions } from "../components/types";
+import { InputActions } from "../components/input";
 
 /**
  * Module that tests if two passwords match and,
@@ -12,7 +12,7 @@ import { TextFieldActions } from "../components/types";
  */
 export function doPasswordsMatch(
   passwords: string[],
-  dispatchers?: React.Dispatch<TextFieldActions>[]
+  dispatchers?: React.Dispatch<InputActions>[]
 ): boolean {
   let passwordCount = passwords.length;
 

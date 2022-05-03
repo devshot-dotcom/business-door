@@ -1,0 +1,33 @@
+@use "../../../sass/vars";
+
+@mixin linear-gradient($angle, $colors) {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient($angle, nth($colors, 1), 80%, nth($colors, 2));
+}
+
+$variants: (
+  "primary": var(--theme-color-background),
+  "secondary": map-get(vars.$color-secondary, "400"),
+  "tertiary": map-get(vars.$color-tertiary, "400"),
+);
+
+$angles: (
+  "to-top": to top,
+  "to-right": to right,
+  "to-bottom": to bottom,
+  "to-left": to left,
+);
+
+.gradient {
+  @each $variant, $color in $variants {
+    @each $angle-key, $angle-value in $angles {
+      &.gradient-#{$variant}.gradient-#{$angle-key} {
+        @include linear-gradient(
+          $angle-value,
+          ($color, map-get(vars.$color-brand, "400"))
+        );
+      }
+    }
+  }
+}

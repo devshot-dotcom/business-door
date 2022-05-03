@@ -1,5 +1,5 @@
 import * as React from "react";
-import { TextField, Button } from "../../../components";
+import { Input, Button, PasswordCriteria } from "../../../components";
 import { usePassword, useAuthenticator } from "../../../hooks";
 import { useNavigate } from "react-router-dom";
 import { doPasswordsMatch } from "../../../modules/do-passwords-match";
@@ -40,29 +40,31 @@ export const ResetPassword = () => {
         </div>
       </div>
 
-      <TextField
-        as="input"
-        type="password"
-        state={pswdState}
-        placeholder="Your Password"
-        title="Please enter your new password"
-        onChange={(e) =>
-          dispatchPswd({ type: "update", value: e.target.value })
-        }
-        onFocus={() => dispatchPswd({ type: "default" })}
-      />
+      <PasswordCriteria password={pswdState.value}>
+        <Input
+          type="password"
+          state={pswdState}
+          placeholder="Your Password"
+          title="Please enter your new password"
+          onChange={(e) =>
+            dispatchPswd({ type: "update", value: e.target.value })
+          }
+          onFocus={() => dispatchPswd({ type: "default" })}
+        />
+      </PasswordCriteria>
 
-      <TextField
-        as="input"
-        type="password"
-        state={rePswdState}
-        placeholder="Re-enter Password"
-        title="Please re-enter your new password"
-        onChange={(e) =>
-          dispatchRePswd({ type: "update", value: e.target.value })
-        }
-        onFocus={() => dispatchRePswd({ type: "default" })}
-      />
+      <PasswordCriteria password={rePswdState.value}>
+        <Input
+          type="password"
+          state={rePswdState}
+          placeholder="Re-enter Password"
+          title="Please re-enter your new password"
+          onChange={(e) =>
+            dispatchRePswd({ type: "update", value: e.target.value })
+          }
+          onFocus={() => dispatchRePswd({ type: "default" })}
+        />
+      </PasswordCriteria>
 
       <Button
         type="submit"

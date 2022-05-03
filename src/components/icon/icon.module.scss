@@ -1,8 +1,6 @@
 @use "../../sass/vars";
 
 .icon {
-  color: var(--theme-color-text);
-
   @each $size, $value in vars.$sizes {
     @each $color, $filter in vars.$colors-filter {
       &.icon-#{$size} {

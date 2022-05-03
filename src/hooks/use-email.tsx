@@ -1,15 +1,15 @@
 import { useInput } from ".";
-import { TextFieldActions, TextFieldStateType } from "../components/types";
-import { PATTERNS } from "../helpers/regex";
+import { InputActions, InputStateType } from "../components/input";
+import { patterns } from "../helpers/regex";
 
-function useEmail(): TextFieldStateType {
+function useEmail(): InputStateType {
   const [emailState, dispatchEmail] = useInput();
 
   const isEmailValid = (): boolean => {
-    const isValid = PATTERNS.EMAIL.test(emailState.value);
+    const isValid = patterns.EMAIL.test(emailState.value);
 
     if (!isValid) {
-      const action: TextFieldActions = {
+      const action: InputActions = {
         type: "invalid",
         tooltip: {
           label: "Invalid Email Address 😥",

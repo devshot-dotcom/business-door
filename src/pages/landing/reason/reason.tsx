@@ -27,7 +27,7 @@ export const Reason = () => {
                 shadow="smaller"
                 background="default-subtle"
               >
-                <CardTitle src={reason.icon} size="small">
+                <CardTitle icon={{ src: reason.icon, size: "small" }}>
                   {reason.title}
                 </CardTitle>
                 <p className="text-paragraph text-subtle">{reason.paragraph}</p>

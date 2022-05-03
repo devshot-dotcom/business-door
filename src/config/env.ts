@@ -1,19 +1,19 @@
 export const env = {
-  app: {
+  APP: {
     NAME: "Business Door",
-    version: {
+    VERSION: {
       NAME: "1.0",
       CODE: 1,
     },
   },
-  author: {
-    site: {
-      NAME: "Devshot",
+  AUTHOR: {
+    SITE: {
+      NAME: "Devshot Dotcom",
       URL: "https://devshot-dotcom.github.io/",
     },
     EMAIL: "devshot.coffee@gmail.com",
   },
-  database: {
+  DATABASE: {
     URL: process.env.REACT_APP_DATABASE_URL,
     KEY: process.env.REACT_APP_DATABASE_KEY,
   },
