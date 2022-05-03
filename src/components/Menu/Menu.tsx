@@ -1,15 +1,20 @@
-import { ComponentPropsWithoutRef, FC } from "react";
-import "./Menu.scss";
+import { FC } from "react";
+import { MenuProps } from ".";
+import "./menu.scss";
 
-const Menu: FC<ComponentPropsWithoutRef<"ul">> = (props) => {
-  const { className = "", children, ...rest } = props;
+export const MenuComponent: FC<MenuProps> = ({
+  title,
+  variant = "default",
+  className = "",
+  children,
+  ...rest
+}) => {
+  const classes = ["menu", `menu-${variant}`, className];
 
   return (
-    <ul className={`coffee-menu ${className}`} {...rest}>
+    <ul {...rest} className={classes.join(" ")}>
+      {title && <div className="menu__title">{title}</div>}
       {children}
     </ul>
   );
 };
-
-export { Menu };
-export { MenuItem } from "./MenuItem";

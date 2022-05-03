@@ -1,10 +1,13 @@
 import * as React from "react";
-import { InputActions, InputState } from "../components/input";
+import { TextFieldActions, TextFieldState } from "../components/types";
 
 /** Reducer method for an input component. */
-function inputReducer(state: InputState, action: InputActions): InputState {
+function inputReducer(
+  state: TextFieldState,
+  action: TextFieldActions
+): TextFieldState {
   return {
-    default: { ...state, variant: "default" },
+    default: { ...state, variant: "default", tooltip: undefined },
     update: { ...state, value: action.value },
     valid: {
       ...state,
@@ -16,7 +19,8 @@ function inputReducer(state: InputState, action: InputActions): InputState {
       variant: "invalid",
       tooltip: action.tooltip,
     },
-  }[action.type] as InputState;
+    reset: { ...state, value: "", tooltip: undefined },
+  }[action.type] as TextFieldState;
 }
 
 /** The reducer hook for an input component.
@@ -27,20 +31,14 @@ function inputReducer(state: InputState, action: InputActions): InputState {
  * - `Update` - Updates the value of the input.
  *
  * Usage:-
- * - Valid - `{type: 'valid', tooltip: action.tooltip (scroll down)}`
- * - Invalid - `{type: 'invalid', tooltip: action.tooltip (scroll down)}`
+ * - Valid - `{type: 'valid'}`
+ * - Invalid - `{type: 'invalid'}`
  * - Default - `{type: 'default'}`
  * - Update - `{type: 'update', value: action.value}`
- *
- * How to show a tooltip?
- * Provide a tooltip object in the action. The object can have 3 properties:
- * - `label` - The tooltip text.
- * - `isShownForever` - Whether the tooltip is shown forever or shown on focus.
- * - `position` - Where should the tooltip be shown. Provide one of [`top-left`, `top-right`, `bottom-right`, `bottom-left`], defaults to top-left.
  */
 function useInput() {
   /** The initial state of an input component. */
-  const initialState: InputState = {
+  const initialState: TextFieldState = {
     value: "",
     variant: "default",
   };

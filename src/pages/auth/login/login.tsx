@@ -1,7 +1,7 @@
 import * as React from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { Input, Button } from "../../../components";
-import { useInput, useAuthenticator, useToast } from "../../../hooks";
+import { TextField, Button } from "../../../components";
+import { useInput, useAuthenticator } from "../../../hooks";
 import { routes } from "../../../config";
 import styles from "../auth.module.scss";
 
@@ -26,7 +26,8 @@ export const Login = () => {
   return (
     <form onSubmit={handleSubmit} className={`${styles.form} v-gap`}>
       <h1 className={styles.heading}>Log In</h1>
-      <Input
+      <TextField
+        as="input"
         type="email"
         state={emailState}
         placeholder="Your Email Address"
@@ -36,7 +37,8 @@ export const Login = () => {
         }
         onFocus={() => dispatchEmail({ type: "default" })}
       />
-      <Input
+      <TextField
+        as="input"
         type="password"
         state={pswdState}
         placeholder="Your Password"
@@ -47,7 +49,7 @@ export const Login = () => {
         onFocus={() => dispatchPswd({ type: "default" })}
       />
 
-      <Link to={routes.verifyAccount.path} className="text-link">
+      <Link to={routes.verifyAccount.PATH} className="text-link">
         Forgot Password
       </Link>
 
@@ -61,7 +63,7 @@ export const Login = () => {
       <div className="h-gap-small">
         <span className="text-paragraph">Don't have an account?</span>
         <Link
-          to={routes.createAccount.path}
+          to={routes.createAccount.PATH}
           className="text-link"
           title="Create an account"
         >

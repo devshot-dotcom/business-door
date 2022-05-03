@@ -1,107 +1,79 @@
-//* TYPES.
-
-/**
- * The different visual `states` of the Input component.
- */
-export type InputVariants =
-  | "default"
-  | "focused"
-  | "valid"
-  | "invalid"
-  | "disabled";
-
-/**
- * The type of output received from a
- * `useEmail` or `usePassword` hook.
- * Without it, types get mixed up and
- * intellisense starts acting like an idiot.
- */
-export type InputStateType = [
-  /** The actual state of the `Input`. */
-  state: InputState,
-
-  /** The dispatcher that updates the state. */
-  dispatch: React.Dispatch<InputActions>,
-
-  /** Whether the field has a valid value or not. */
-  isValid: () => boolean
-];
+import { Session, User } from "@supabase/supabase-js";
+import { StatusCodes } from "http-status-codes";
+import { ToastOptions } from "../components/toast";
 
 export type DynamicModule = {
   default: string;
 };
 
-//* INTERFACES.
-
-/**
- * Since tooltip isn't really a react component,
- * rather it's just a CSS library, we've created
- * a separate interface to carry it's needs.
- */
-interface TooltipProps {
-  /** The text to be displayed. */
-  label: string;
-
-  /** Whether to show the tooltip all the
-   * time or only on focus & hover. */
-  isShownForever?: boolean;
-
-  /** Where to show the tooltip. */
-  position?:
-    | "top"
-    | "right"
-    | "bottom"
-    | "left"
-    | "top-left"
-    | "top-right"
-    | "bottom-left"
-    | "bottom-right";
-}
-
-/**
- * Basic state of an input field.
- */
-interface InputState {
-  /** The value of an input field,
-   * don't use input `type=number`,
-   * or anything else, use checks on this value. */
-  value: string;
-
-  /** The visual state of an input. */
-  variant: InputVariants;
-
-  /** The tooltip to be displayed
-   * on the `InputIcon` component. */
-  tooltip?: TooltipProps;
-}
-
-/**
- * Reducer actions for an `Input` component.
- * Have the power to modify the variant, value,
- * and the tooltips of the subject.
- */
-interface InputActions {
-  /** New value (if updated, ofc) */
-  value?: string;
-
-  /** Tooltip, in case of validation. */
-  tooltip?: TooltipProps;
-
-  /** Types of actions.
-   * - `default` Resets the field with current value.
-   * - `update` Updates the value.
-   * - `valid` Displays the valid visuals.
-   * - `invalid` Displays the invalid visuals. */
-  type: "default" | "update" | "valid" | "invalid";
-}
+export type ApiError = {
+  message: string;
+  details?: string;
+  hint?: string;
+  code?: StatusCodes | string;
+};
 
 /**
  * Callback functions for a boolean response.
  * Mimicked as `BoolBacks` as in Boolean Callbacks.
  */
-interface BoolBacks {
-  onSuccess?: () => void;
-  onFailure?: () => void;
-}
+export type BoolBacks = {
+  onSuccess?: (data?: any) => void;
+  onFailure?: (error?: ApiError) => void;
+};
 
-export type { TooltipProps, InputState, InputActions, BoolBacks };
+/**
+ * A type that represents the action that needs
+ * to be performed based on the application's metadata.
+ */
+export type AppAction = "EMAIL_CHANGED" | "ACCOUNT_CREATED";
+
+/**
+ * A type representing the app's metadata.
+ */
+export type AppState = {
+  action: AppAction;
+
+  /**
+   * The data to be used for the action.
+   */
+  payload?: {
+    [key: string]: any;
+  };
+};
+
+export type Response = {
+  /**
+   * The user object.
+   *
+   * @type {User | null}
+   */
+  user?: User | null;
+
+  /**
+   * The response-data, retrived instead of user, at times.
+   *
+   * @type {User | Session | {} | null}
+   */
+  data?: User | Session | {} | null;
+
+  /**
+   * The error object. Null when there ain't an error.
+   *
+   * @type {ApiError | null}
+   */
+  error: ApiError | null;
+};
+
+export type ApiResponseHandler = {
+  response: Response;
+  successToast?: ToastOptions;
+  failureToast?: ToastOptions;
+  boolBacks?: BoolBacks;
+};
+
+export type ApiErrorHandler = {
+  error?: ApiError | null;
+  toastOptions?: ToastOptions;
+  boolBacks?: BoolBacks;
+};

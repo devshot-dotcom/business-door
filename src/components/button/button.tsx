@@ -5,9 +5,12 @@ import { ButtonSecondary } from "./button-secondary";
 import { ButtonTertiary } from "./button-tertiary";
 import { ButtonProps } from "./button-types";
 
-export const Button: FC<ButtonProps> = (props) => {
-  const { variant = "primary", className = "", children, ...rest } = props;
-
+export const Button: FC<ButtonProps> = ({
+  variant = "primary",
+  className = "",
+  children,
+  ...rest
+}) => {
   const Component = {
     primary: ButtonPrimary,
     secondary: ButtonSecondary,

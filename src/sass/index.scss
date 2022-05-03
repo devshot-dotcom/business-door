@@ -1,7 +1,6 @@
 @use "./vars";
 @use "./mixins";
 @import "~normalize.css";
-@import "./microtip-fork";
 @import "./typography";
 @import "./utilities";
 @import url("https://fonts.googleapis.com/css2?family=Work+Sans:wght@500;700&display=swap");
@@ -9,10 +8,13 @@
 :root {
   font-size: 16px;
   --layout-gap: #{vars.$size-medium};
-}
+  --profile-cover-height: 180px;
 
-@media (min-width: vars.$breakpoint-tablet) {
-  :root {
+  @include mixins.when-vertical-nav-appears() {
+    --profile-cover-height: 220px;
+  }
+
+  @media (min-width: vars.$breakpoint-tablet) {
     --layout-gap: #{vars.$size-large};
   }
 }
@@ -21,11 +23,23 @@ body {
   @each $color-name, $color-value in vars.$theme-light {
     --theme-#{$color-name}: #{$color-value};
   }
+
+  [data-theme-inverted] {
+    @each $color-name, $color-value in vars.$theme-dark {
+      --theme-#{$color-name}: #{$color-value};
+    }
+  }
 }
 
 body[data-theme="dark"] {
   @each $color-name, $color-value in vars.$theme-dark {
     --theme-#{$color-name}: #{$color-value};
+  }
+
+  [data-theme-inverted] {
+    @each $color-name, $color-value in vars.$theme-light {
+      --theme-#{$color-name}: #{$color-value};
+    }
   }
 }
 

@@ -5,5 +5,6 @@ export type {
   ThemeSizesCompact,
   ThemeSpeeds,
 } from "./theme-types";
-export { DURATION } from "./integers";
+export { duration } from "./integers";
 export { DEFAULT_THEME } from "./default-theme";
+export { BREAKPOINTS } from "./breakpoints";

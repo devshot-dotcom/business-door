@@ -1,7 +1,6 @@
 import { Hero } from "./hero";
 import { Intro } from "./intro";
 import { Reason } from "./reason";
-import { useTitle } from "../../hooks";
 import { Footer, Sidebar } from "../../components";
 import { routes } from "../../config";
 

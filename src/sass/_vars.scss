@@ -87,7 +87,7 @@ $transparent: (
 
 $theme-light: (
   "color-text": #4a4a68,
-  "color-text-subtle": #8c8ca1,
+  "color-text-subtle": #7b7b8f,
   "color-background": #e9e7db,
   "color-background-subtle": white,
   "color-link": map-get($royal-blue, "400"),
@@ -218,10 +218,11 @@ $box-shadows: (
 );
 
 /* Z-Indices */
-$z-index-nav: 100;
 $z-index-sidebar: 90;
+$z-index-nav: 100;
 $z-index-splash: 110;
-$z-index-toast: 120;
+$z-index-modal: 120;
+$z-index-toast: 130;
 
 /* Component sizes */
 $navbar-size-mobile: 3.125rem; // 50px
@@ -230,7 +231,13 @@ $navbar-space-requirement: calc($navbar-size-desktop + var(--layout-gap));
 $sidebar-size: 23rem; // 368px
 $container-max-width: $breakpoint-desktop;
 $container-max-height: 56.25rem; // 900px
+
+/* Profile */
+$profile-cover-height: var(--profile-cover-height);
+
+/* Border Radii */
 $border-radius-small: $size-smaller;
+$border-radius-smaller: calc($size-smaller / 1.5);
 
 /* Fallback properties */
 $fallback-colors: (

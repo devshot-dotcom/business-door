@@ -6,7 +6,9 @@ export const Header = () => {
   return (
     <NextToNav>
       <header className={styles.header}>
-        <Logo size="large" />
+        <a href="/">
+          <Logo size="large" />
+        </a>
       </header>
     </NextToNav>
   );

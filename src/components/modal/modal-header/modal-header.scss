@@ -1,0 +1,6 @@
+@use "../../../sass/vars";
+
+.modal__header {
+  padding-bottom: vars.$size-small;
+  border-bottom: 1px solid var(--theme-color-text-subtle);
+}

@@ -1,0 +1,72 @@
+@use "../../../sass/vars";
+@use "../../../sass/mixins";
+
+.profile__header {
+  position: relative;
+}
+
+.profile__intro-wrapper {
+  @include mixins.when-vertical-nav-appears() {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: vars.$profile-cover-height;
+  }
+}
+
+.profile__intro {
+  text-align: center;
+  background-color: var(--theme-color-background-subtle);
+
+  .avatar {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+  }
+
+  .profile__badge {
+    display: inline-block;
+    translate: 0 -#{vars.$size-smaller};
+  }
+
+  @include mixins.when-vertical-nav-appears() {
+    padding: var(--layout-gap) !important;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: vars.$size-small;
+    background-color: transparent;
+    text-align: left;
+
+    .avatar {
+      position: static;
+      translate: 0 0 !important;
+    }
+
+    .profile__hero {
+      position: relative;
+      background-color: map-get(vars.$transparent, "white-75");
+      border-radius: vars.$border-radius-small;
+      padding: vars.$size-medium;
+    }
+
+    .profile__badge {
+      position: absolute;
+      top: 0;
+      right: 0;
+      translate: 1rem -1rem;
+    }
+  }
+}
+
+[data-theme="dark"] {
+  .profile__intro {
+    @include mixins.when-vertical-nav-appears() {
+      .profile__hero {
+        background-color: map-get(vars.$transparent, "black-75");
+      }
+    }
+  }
+}

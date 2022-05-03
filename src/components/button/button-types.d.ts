@@ -1,4 +1,5 @@
 import { ComponentPropsWithoutRef } from "react";
+import { ThemeSizes } from "../../config";
 
 export type ButtonVariants = "primary" | "secondary" | "tertiary" | "naked";
 

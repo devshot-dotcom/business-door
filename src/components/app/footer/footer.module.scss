@@ -4,6 +4,7 @@
   padding: var(--layout-gap);
   padding-bottom: vars.$size-largest;
   background-color: var(--theme-color-background-subtle);
+  //border-top: 1px solid map-get(vars.$color-tertiary, "400");
 
   .page-end-indicator {
     margin-top: var(--layout-gap);

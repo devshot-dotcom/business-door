@@ -1,0 +1,10 @@
+@use "../../sass/vars";
+
+[data-id="editProfileSaveButton"] {
+  position: absolute;
+  top: var(--layout-gap);
+  right: var(--layout-gap);
+  width: auto;
+  margin: 0 !important;
+  z-index: vars.$z-index-nav;
+}

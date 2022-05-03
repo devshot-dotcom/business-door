@@ -1,0 +1,8 @@
+@use "../../../sass/vars";
+
+.profile__empty {
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  gap: vars.$size-small;
+}

@@ -22,7 +22,7 @@ interface Response {
 }
 
 /** Requirements of an API-response handler */
-interface ResponseHandler {
+interface ApiResponseHandler {
   response: Response;
   toastOptions: ToastOptions;
   boolBacks?: BoolBacks;
@@ -71,13 +71,15 @@ class Authenticator {
     response,
     toastOptions,
     boolBacks,
-  }: ResponseHandler) => {
+  }: ApiResponseHandler) => {
+    const { user, error } = response;
+
     // When the response is erred.
-    if (response.error !== null) {
+    if (error !== null) {
       // Inform the user.
       this.makeToast({
         variant: "invalid",
-        title: response.error?.message,
+        title: error?.message,
       });
 
       // And call the failure callback.
@@ -93,7 +95,7 @@ class Authenticator {
     how the current auth API works. */
 
     // When the response is valid.
-    if (response.user !== null || response.data === {}) {
+    if (user !== null || response.data === {}) {
       // Inform the user.
       this.makeToast({
         ...toastOptions,
@@ -101,7 +103,7 @@ class Authenticator {
       });
 
       // And call the success callback.
-      boolBacks?.onSuccess?.();
+      boolBacks?.onSuccess?.(user);
     }
   };
 
@@ -139,30 +141,6 @@ class Authenticator {
     }
   };
 
-  createAccount = async ({ email, password, boolBacks }: AuthOptions) => {
-    this.makeToast({
-      variant: "loading",
-      title: "Creating your account",
-      upTime: TOAST_UPTIME.REMOVE_ON_PUSH,
-    });
-
-    try {
-      this.handleResponse({
-        response: await SUPABASE.auth.api.signUpWithEmail(email, password, {
-          redirectTo: `${window.location.origin}${routes.login.path}`,
-        }),
-        toastOptions: {
-          title: "Account created successfully",
-          subTitle: `A verification link has been mailed to ${email}, please verify and log in.`,
-          upTime: TOAST_UPTIME.ELONGATED,
-        },
-        boolBacks: boolBacks,
-      });
-    } catch (e: any) {
-      this.handleException(e);
-    }
-  };
-
   verifyEmail = async ({
     email,
     boolBacks,
@@ -179,7 +157,7 @@ class Authenticator {
     try {
       this.handleResponse({
         response: await SUPABASE.auth.api.resetPasswordForEmail(email, {
-          redirectTo: `${window.location.origin}${routes.resetPassword.path}`,
+          redirectTo: `${window.location.origin}${routes.resetPassword.PATH}`,
         }),
         toastOptions: {
           title: "Ready to reset!",

@@ -1,0 +1,27 @@
+@use "../../sass/mixins";
+@use "../../sass/typography";
+
+.profile {
+  width: 100%;
+  background-color: var(--theme-color-background);
+  padding-bottom: var(--layout-gap);
+
+  .profile__data {
+    position: relative;
+    padding: var(--layout-gap);
+
+    > * + * {
+      margin-top: var(--layout-gap);
+    }
+  }
+
+  .profile__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--layout-gap);
+
+    @include mixins.when-vertical-nav-appears() {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+}

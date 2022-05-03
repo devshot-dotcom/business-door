@@ -1,8 +1,8 @@
-import { patterns } from "./regex";
+import { PATTERNS } from "./regex";
 
 // Functions.
 /** @see https://stackoverflow.com/a/32108184/14716989 */
-function isObjectValid(object: any) {
+function isObjectValid(object: any): boolean {
   return (
     object &&
     Object.keys(object).length > 0 &&
@@ -17,16 +17,36 @@ function isAccessToken(tokenName: string) {
 }
 
 function isEmailValid(email: string): boolean {
-  return patterns.EMAIL.test(email);
+  return PATTERNS.EMAIL.test(email);
 }
 
 function isPasswordValid(password: string): boolean {
-  return patterns.PASSWORD.test(password);
+  return PATTERNS.PASSWORD.test(password);
 }
 
 /** @see https://stackoverflow.com/a/9436948/14716989 */
 function isString(value: any): boolean {
   return typeof value === "string" || value instanceof String;
+}
+
+/**
+ * Check whether an array contains an empty value or not.
+ * @param arr The array to be tested.
+ * @returns {boolean}
+ */
+function hasEmptyIndex(arr?: any[]): boolean {
+  if (!arr) return false;
+
+  let isEmpty = false;
+
+  arr.forEach((value) => {
+    if (!value) {
+      isEmpty = true;
+      return;
+    }
+  });
+
+  return isEmpty;
 }
 
 export {
@@ -35,4 +55,5 @@ export {
   isEmailValid,
   isPasswordValid,
   isString,
+  hasEmptyIndex,
 };

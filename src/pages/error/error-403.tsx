@@ -13,8 +13,8 @@ export const Error403 = () => {
         <p className="text-paragraph">
           You're not authorized to access this page. Please{" "}
           <Link
-            to={routes.login.path}
-            replace={true}
+            replace
+            to={routes.login.PATH}
             className="text-paragraph text-link"
           >
             log in

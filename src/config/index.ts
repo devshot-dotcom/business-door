@@ -11,5 +11,14 @@ export type {
   ThemeSizesCompact,
   ThemeSpeeds,
 } from "./theme";
-export { DURATION } from "./theme";
-export { DEFAULT_THEME } from "./theme";
+export { duration, DEFAULT_THEME, BREAKPOINTS } from "./theme";
+// User.
+export {
+  userLevels,
+  getPropsOfLevel,
+  setAppMetaData,
+  getAppMetaData,
+  clearAppMetaData,
+  getProfileRoute,
+} from "./user";
+export type { UserLevel, UserLevelCode, UserMetaData } from "./user";

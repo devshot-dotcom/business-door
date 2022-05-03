@@ -1,0 +1,13 @@
+@use "../../../sass/vars";
+@use "../../../sass/mixins";
+
+.modal__footer {
+  // Styling
+  text-align: right;
+  padding-top: vars.$size-small;
+  border-top: 1px solid var(--theme-color-text-subtle);
+  // Flexbox
+  display: flex;
+  gap: vars.$size-small;
+  justify-content: flex-end;
+}

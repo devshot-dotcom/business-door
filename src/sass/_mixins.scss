@@ -70,7 +70,7 @@
 }
 
 @mixin when-sidebar-appears() {
-  @media (min-width: vars.$breakpoint-laptop) {
+  @media (min-width: vars.$breakpoint-desktop) {
     @content;
   }
 }
