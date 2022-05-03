@@ -1,15 +1,15 @@
 import { useInput } from ".";
-import { TextFieldActions, TextFieldStateType } from "../components/types";
-import { PATTERNS } from "../helpers/regex";
+import { InputActions, InputStateType } from "../components/input";
+import { patterns } from "../helpers/regex";
 
-function usePassword(): TextFieldStateType {
+function usePassword(): InputStateType {
   const [pswdState, dispatchPswd] = useInput();
 
   const isPasswordValid = (): boolean => {
-    const isValid = PATTERNS.PASSWORD.test(pswdState.value);
+    const isValid = patterns.PASSWORD.test(pswdState.value);
 
     if (!isValid) {
-      const action: TextFieldActions = {
+      const action: InputActions = {
         type: "invalid",
         tooltip: {
           label: "Invalid Password, criteria mismatch 💔",

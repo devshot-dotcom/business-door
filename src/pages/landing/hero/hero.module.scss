@@ -51,3 +51,9 @@ $vector-size: 3.5rem;
   right: 0;
   width: $vector-size;
 }
+
+.vector-wave-inverted {
+  rotate: 180deg;
+  translate: 0 -2px;
+  width: 100%;
+}

@@ -1,19 +1,18 @@
 import * as React from "react";
-import { User } from "@supabase/supabase-js";
 import { Link, useNavigate } from "react-router-dom";
-import { TextField, Button } from "../../../components";
-import { routes, setAppMetaData } from "../../../config";
-import { useEmail, usePassword, useApi } from "../../../hooks";
+import { Input, Button, PasswordCriteria } from "../../../components";
+import { routes } from "../../../config";
+import { useEmail, usePassword, useAuthenticator } from "../../../hooks";
 import { doPasswordsMatch } from "../../../modules";
-import { AuthApi } from "../../../hooks/use-api";
 import styles from "../auth.module.scss";
 
 export const CreateAccount = () => {
-  const navigate = useNavigate();
-  const api = useApi("auth") as AuthApi;
   const [emailState, dispatchEmail, isEmailValid] = useEmail();
   const [pswdState, dispatchPswd, isPswdValid] = usePassword();
   const [rePswdState, dispatchRePswd, isRePswdValid] = usePassword();
+
+  const navigate = useNavigate();
+  const authenticator = useAuthenticator();
 
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -32,8 +31,10 @@ export const CreateAccount = () => {
 
     // In case counter stays at 0 (No errors)
     if (errors === 0) {
-      api.createAccount(emailState.value, pswdState.value, {
-        onSuccess: () => navigate("/auth"),
+      authenticator.createAccount({
+        email: emailState.value,
+        password: pswdState.value,
+        boolBacks: { onSuccess: () => navigate("/auth") },
       });
     }
   }
@@ -42,8 +43,7 @@ export const CreateAccount = () => {
     <form onSubmit={handleSubmit} className={`${styles.form} v-gap`}>
       <h1 className={styles.heading}>Create Your Account</h1>
 
-      <TextField
-        as="input"
+      <Input
         type="email"
         state={emailState}
         placeholder="Your Email Address"
@@ -53,29 +53,32 @@ export const CreateAccount = () => {
         }
         onFocus={() => dispatchEmail({ type: "default" })}
       />
-      <TextField
-        as="input"
-        type="password"
-        state={pswdState}
-        placeholder="Your Password"
-        title="Please enter your password"
-        onChange={(e) =>
-          dispatchPswd({ type: "update", value: e.target.value })
-        }
-        onFocus={() => dispatchPswd({ type: "default" })}
-      />
 
-      <TextField
-        as="input"
-        type="password"
-        state={rePswdState}
-        placeholder="Re-enter Password"
-        title="Please re-enter your password"
-        onChange={(e) =>
-          dispatchRePswd({ type: "update", value: e.target.value })
-        }
-        onFocus={() => dispatchRePswd({ type: "default" })}
-      />
+      <PasswordCriteria password={pswdState.value}>
+        <Input
+          type="password"
+          state={pswdState}
+          placeholder="Your Password"
+          title="Please enter your password"
+          onChange={(e) =>
+            dispatchPswd({ type: "update", value: e.target.value })
+          }
+          onFocus={() => dispatchPswd({ type: "default" })}
+        />
+      </PasswordCriteria>
+
+      <PasswordCriteria password={rePswdState.value}>
+        <Input
+          type="password"
+          state={rePswdState}
+          placeholder="Re-enter Password"
+          title="Please re-enter your password"
+          onChange={(e) =>
+            dispatchRePswd({ type: "update", value: e.target.value })
+          }
+          onFocus={() => dispatchRePswd({ type: "default" })}
+        />
+      </PasswordCriteria>
 
       <Button
         type="submit"
@@ -92,7 +95,7 @@ export const CreateAccount = () => {
       <div className="h-gap-small">
         <span className="text-paragraph">Already have an account?</span>
         <Link
-          to={routes.login.PATH}
+          to={routes.login.path}
           className="text-link"
           title="Log in to your account"
         >

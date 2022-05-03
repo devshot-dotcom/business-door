@@ -1,0 +1,55 @@
+@use "../../../../sass/vars";
+
+.switch {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: vars.$size-smaller;
+
+  .switch__slider {
+    width: 4rem;
+    height: 2rem;
+    border-radius: vars.$size-medium;
+    border: 0;
+    background-color: map-get(vars.$color-tertiary, "200");
+    position: relative;
+    cursor: pointer;
+
+    &.checked {
+      background-color: map-get(vars.$color-brand, "400");
+
+      .switch__thumb {
+        left: auto;
+        transform: translate(0) scale(1.5);
+      }
+    }
+
+    @media (min-width: vars.$breakpoint-mobile) {
+      width: 4.5rem;
+      height: 2.5rem;
+
+      .switch__thumb {
+        width: 2rem;
+        height: 2rem;
+        top: calc(#{vars.$size-smaller} / 2);
+        transform: translate(-100%);
+      }
+    }
+
+    .switch__thumb {
+      width: 1.65rem;
+      height: 1.65rem;
+      display: inline-block;
+      background-color: white;
+      border-radius: 50%;
+      position: absolute;
+      top: calc(#{vars.$size-smaller} / 3);
+      transform: translate(-110%);
+
+      // Transitions suck at mobiles and smaller tablets.
+      @media (min-width: vars.$breakpoint-tablet) {
+        transition: transform vars.$transition-fast ease-out;
+      }
+    }
+  }
+}

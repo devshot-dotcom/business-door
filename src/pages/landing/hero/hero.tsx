@@ -1,4 +1,5 @@
-import { Button, Link, NextToNav, ResponsiveImage } from "../../../components";
+import { Button, Link, NextToNav } from "../../../components";
+import { Vector } from "../../../components/Vector/Vector";
 import waveX1 from "../../../assets/vectors/abstract/wave/wave-full.svg";
 import waveX2 from "../../../assets/vectors/abstract/wave/@x2/wave-full.svg";
 import waveX3 from "../../../assets/vectors/abstract/wave/@x3/wave-full.svg";
@@ -14,7 +15,7 @@ export const Hero = () => {
       <Header />
       <NextToNav className={styles.first}>
         <article>
-          <h1 className={`${styles.title} text-h2`}>
+          <h1 className={`${styles.title}  text-h2`}>
             We're the upbringing
             <br />
             of business technologies
@@ -32,24 +33,20 @@ export const Hero = () => {
             </Link>
             <Button variant="tertiary">Get Started</Button>
           </div>
-          <ResponsiveImage
-            src={semis}
-            filter="brand"
-            className={styles["vector-semis"]}
-          />
+          <Vector src={semis} className={styles["vector-semis"]} />
         </article>
       </NextToNav>
       <footer className={styles.last}>
-        <ResponsiveImage
+        <Vector
           src={blocks}
-          filter="tertiary"
+          color="tertiary"
           className={styles["vector-blocks"]}
         />
-        <ResponsiveImage
+        <Vector
           src={waveX1}
-          filter="brand"
           srcForMobile={waveX2}
           srcForLaptop={waveX3}
+          color="brand"
           className={styles["vector-wave"]}
         />
       </footer>

@@ -1,6 +1,8 @@
+import { ReactElement } from "react";
+
 export type Route = {
-  PATH: string;
-  BASENAME: string;
-  TITLE?: string;
-  Page: (props?: any) => JSX.Element | FC;
+  path: string;
+  basename: string;
+  title?: string;
+  Page: ReactElement;
 };

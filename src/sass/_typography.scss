@@ -1,5 +1,6 @@
 //* Typography
 @mixin text($color, $weight) {
+  margin: 0;
   color: $color;
   font-weight: $weight;
 }
@@ -7,7 +8,6 @@
 @mixin text-heading($variant, $color, $weight: 700) {
   @include text($color, $weight);
   letter-spacing: -2;
-  margin: 0;
 
   @if ($variant == "h1") {
     font-size: 3.75rem;
@@ -94,46 +94,46 @@ $text-variants: "h1", "h2", "h3", "pre-title", "button", "link", "title",
 }
 
 // Individual variant mixins
-@mixin h1($color: null) {
-  @include text-constructor("h1", $color);
+@mixin h1() {
+  @include text-constructor("h1");
 }
 
-@mixin h2($color: null) {
-  @include text-constructor("h2", $color);
+@mixin h2() {
+  @include text-constructor("h2");
 }
 
-@mixin h3($color: null) {
-  @include text-constructor("h3", $color);
+@mixin h3() {
+  @include text-constructor("h3");
 }
 
-@mixin pre-title($color: null) {
-  @include text-constructor("pre-title", $color);
+@mixin pre-title() {
+  @include text-constructor("pre-title");
 }
 
-@mixin button($color: null) {
-  @include text-constructor("button", $color);
+@mixin button() {
+  @include text-constructor("button");
 }
 
-@mixin title($color: null) {
-  @include text-constructor("title", $color);
+@mixin title() {
+  @include text-constructor("title");
 }
 
-@mixin sub-title($color: null) {
-  @include text-constructor("sub-title", $color);
+@mixin sub-title() {
+  @include text-constructor("sub-title");
 }
 
-@mixin paragraph($color: null) {
-  @include text-constructor("paragraph", $color);
+@mixin paragraph() {
+  @include text-constructor("paragraph");
 }
 
-@mixin small($color: null) {
-  @include text-constructor("small", $color);
+@mixin small() {
+  @include text-constructor("small");
 }
 
-@mixin smaller($color: null) {
-  @include text-constructor("smaller", $color);
+@mixin smaller() {
+  @include text-constructor("smaller");
 }
 
-@mixin smallest($color: null) {
-  @include text-constructor("smallest", $color);
+@mixin smallest() {
+  @include text-constructor("smallest");
 }
