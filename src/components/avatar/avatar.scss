@@ -12,14 +12,11 @@
     height: 100%;
     object-fit: contain;
     position: absolute;
+    border-radius: 50%;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
   }
-}
-
-[data-theme="dark"] .avatar-filtered img {
-  filter: invert(1);
 }
 
 @each $key, $value in vars.$sizes {

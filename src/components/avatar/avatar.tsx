@@ -1,11 +1,11 @@
-import { FC, useEffect, useState } from "react";
+import "./avatar.scss";
+import { Loader } from "..";
 import { AvatarProps } from ".";
 import { useApi } from "../../hooks";
-import { Loader } from "..";
-import defaultAvatar from "../../assets/avatar.svg";
-import "./avatar.scss";
+import { useEffect, useState } from "react";
+import defaultAvatar from "../../assets/avatar/avatar.png";
 
-export const AvatarComponent: FC<AvatarProps> = (props) => {
+export const AvatarComponent = (props: AvatarProps) => {
   const { src, size = "medium", className = "", ...rest } = props;
 
   const api = useApi("storage");
@@ -29,11 +29,6 @@ export const AvatarComponent: FC<AvatarProps> = (props) => {
   }, [src]);
 
   const classes = ["avatar", `avatar-${size}`, className];
-
-  // Apply filter if default.
-  if (imageSrc === defaultAvatar) {
-    classes.push("avatar-filtered");
-  }
 
   return (
     <div {...rest} className={classes.join(" ")}>

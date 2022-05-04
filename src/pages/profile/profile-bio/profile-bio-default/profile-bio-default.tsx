@@ -1,6 +1,6 @@
 import { profileConfig } from "../..";
 import { Card, CardTitle } from "../../../../components";
-import aboutIcon from "../../../../assets/avatar.svg";
+import aboutIcon from "../../../../assets/avatar/avatar.svg";
 
 export const ProfileBioDefault = ({ bio }: { bio: string }) => {
   let aboutMe = bio;
