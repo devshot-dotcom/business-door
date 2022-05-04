@@ -1,9 +1,23 @@
 @use "../../sass/vars";
 @use "../../sass/typography";
 
+$bgColor: map-get(vars.$color-brand, "400");
+
 .CloseButton {
+  // Reset.
+  border: 0;
+  outline: 0;
+  // Styling.
+  cursor: pointer;
   text-transform: uppercase;
-  @include typography.pre-title();
+  background-color: $bgColor;
   border-radius: vars.$border-radius-smaller;
   padding: calc(vars.$size-smaller / 2) vars.$size-smaller;
+  @include typography.pre-title(map-get(vars.$theme-dark, "color-text"));
+  // States.
+  &:hover,
+  &:focus-within {
+    outline: 1px dotted var(--theme-color-link);
+    background-color: scale-color($bgColor, $blackness: 10%);
+  }
 }
