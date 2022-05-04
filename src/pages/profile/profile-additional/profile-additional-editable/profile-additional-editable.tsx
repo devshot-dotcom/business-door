@@ -82,7 +82,8 @@ export const ProfileAdditionalEditable = ({
       {additionalInfo.length < profileConfig.MAX_ADDITIONAL_INFOS && (
         <Button
           type="button"
-          variant="secondary"
+          variant="tertiary"
+          style={{ width: "100%" }}
           onClick={() => {
             dispatchProfile({
               type: "updateAdditionalInfo",

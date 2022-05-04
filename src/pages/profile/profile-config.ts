@@ -3,4 +3,5 @@ export const profileConfig = {
   MAX_ADDITIONAL_INFOS: 5,
   INFO_MAX_LENGTH: 30,
   DEFAULT_COVER: "background-05.png",
+  DEFAULT_AVATAR: "avatar.png",
 };

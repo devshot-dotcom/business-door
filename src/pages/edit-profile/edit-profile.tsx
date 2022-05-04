@@ -26,7 +26,7 @@ const EditProfile = () => {
           <div>
             <h2 className="text-h2">Edit Profile</h2>
             <div className="text-small text-subtle">
-              Leave empty fields to remove them.
+              All fields are optional, leave empty fields to remove them.
             </div>
           </div>
           <Button

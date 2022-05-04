@@ -90,14 +90,6 @@ export const ProfileComponent: FC = () => {
         label: "Tumblr",
         url: "https://www.tumblr.comhttps://www.tumblr.com",
       },
-      {
-        label: "Facebook",
-        url: "https://www.facebook.com",
-      },
-      {
-        label: "Spotify",
-        url: "https://www.spotify.com",
-      },
     ];
 
     // Manual dispatch for debugging purposes.
@@ -114,6 +106,7 @@ export const ProfileComponent: FC = () => {
         country: "Niger",
         fullName: "Morissette Renee",
         profession: "Chief Engineer",
+        organization: "Blanda",
         additionalInfo: JSON.stringify(additionalInfo),
         level: 1,
       },
