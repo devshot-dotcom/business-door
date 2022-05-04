@@ -1,0 +1,9 @@
+@use "../../sass/vars";
+@use "../../sass/typography";
+
+.CloseButton {
+  text-transform: uppercase;
+  @include typography.pre-title();
+  border-radius: vars.$border-radius-smaller;
+  padding: calc(vars.$size-smaller / 2) vars.$size-smaller;
+}

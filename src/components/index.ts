@@ -1,3 +1,5 @@
+import CloseButton from "./close-button";
+
 export {
   App,
   Container,
@@ -24,3 +26,4 @@ export { Avatar } from "./avatar";
 export { Menu } from "./menu";
 export { Modal } from "./modal";
 export { TextCounter } from "./text-counter";
+export { CloseButton };
