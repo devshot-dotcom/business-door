@@ -1,5 +1,5 @@
 import { AdditionalInfo, ProfileChildProps, profileConfig } from "../..";
-import { Button, Menu, TextField } from "../../../../components";
+import { Button, CloseButton, Menu, TextField } from "../../../../components";
 
 export const ProfileAdditionalEditable = ({
   profileState,
@@ -42,9 +42,18 @@ export const ProfileAdditionalEditable = ({
       {additionalInfo.map((info, i) => {
         return i > profileConfig.MAX_ADDITIONAL_INFOS - 1 ? null : (
           <Menu.Item direction="column" key={i} className="v-gap-small gap-0">
-            <label htmlFor={`additionalInfo-${i}`} className="text-paragraph">
-              New information
-            </label>
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "space-between",
+              }}
+            >
+              <label htmlFor={`additionalInfo-${i}`} className="text-paragraph">
+                New information
+              </label>
+              <CloseButton />
+            </div>
             <TextField
               as="input"
               id={`additionalInfo-${i}`}
@@ -77,8 +86,7 @@ export const ProfileAdditionalEditable = ({
           </Menu.Item>
         );
       })}
-      {/* The button appends a new additionalInfo to the list
-      if the maximum items are lesser than the allowed limit. */}
+      {/* The button appends a new additionalInfo to the list if the maximum items are lesser than the allowed limit. */}
       {additionalInfo.length < profileConfig.MAX_ADDITIONAL_INFOS && (
         <Button
           type="button"

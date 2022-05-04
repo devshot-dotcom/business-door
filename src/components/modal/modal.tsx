@@ -1,7 +1,7 @@
 import { FC } from "react";
 import ReactModal from "react-modal";
 import { ModalProps } from ".";
-import { Badge } from "..";
+import { CloseButton } from "..";
 import "./modal.scss";
 
 export const ModalComponent: FC<ModalProps> = ({
@@ -19,15 +19,11 @@ export const ModalComponent: FC<ModalProps> = ({
       parentSelector={() => document.getElementById("root")!}
     >
       {children}
-      <Badge
+      <CloseButton
         title="Close Modal"
-        className="bg-brand"
         id="modalCloseButton"
         onClick={onRequestClose}
-        style={{ cursor: "pointer" }}
-      >
-        x
-      </Badge>
+      />
     </ReactModal>
   );
 };
