@@ -46,7 +46,7 @@ export const ProfileComponent: FC = () => {
 
     // This is the case where the edit profile page is requested but this page also parsed since its the parent route.
     // The term `edit` could have also been taken as a route parameter by the router, but that didn't happen, and the
-    /* if (pathNames[pathNames.length - 1] === "edit") {
+    if (pathNames[pathNames.length - 1] === "edit") {
       // Only authorized users can access the edit profile page.
       if (!user) {
         navigate(routes.error403.PATH);
@@ -71,9 +71,9 @@ export const ProfileComponent: FC = () => {
     api.fetchByRoute(route, {
       onSuccess: onSuccess,
       onFailure: onFailure,
-    }); */
+    });
 
-    const additionalInfo: any[] = [
+    /* const additionalInfo: any[] = [
       {
         label: "YouTube",
         url: "https://www.youtube.com",
@@ -110,7 +110,7 @@ export const ProfileComponent: FC = () => {
         additionalInfo: JSON.stringify(additionalInfo),
         level: 1,
       },
-    });
+    }); */
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [route]);

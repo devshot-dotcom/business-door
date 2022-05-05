@@ -1,7 +1,10 @@
 import { PostgrestError } from "@supabase/supabase-js";
 import { ReasonPhrases, StatusCodes } from "http-status-codes";
+import { TOAST_UPTIME } from "../../components/toast";
 import { SUPABASE } from "../../config";
 import { BoolBacks } from "../../helpers";
+import { isArrayValid } from "../../helpers/functions";
+import { EditProfileState } from "../../pages/edit-profile";
 import { ProfileData } from "../../pages/types";
 import Api from "./api";
 
@@ -90,6 +93,52 @@ class ProfileApi extends Api {
     ]);
 
     this.handleProfile(data, error, boolBacks);
+  }
+
+  /**
+   * Updates a profile in the `supabase.profiles` table.
+   * @param {ProfileData} profileData The profile data to update.
+   * @param {BoolBacks} boolBacks The callback functions called to extend response handling functionalities.
+   * @returns {Promise<void>} The promise to be resolved.
+   *
+   * @version 1.0.1
+   * @author kashan-ahmad
+   *
+   * @changelog
+   * 1.0.1: Changed parameter `state`'s type from `ProfileData` to `EditProfileState`.
+   */
+  async update(state: EditProfileState, boolBacks: BoolBacks): Promise<void> {
+    // Initialization toast.
+    this.makeToast({
+      title: "Updating profile...",
+      variant: "loading",
+      upTime: TOAST_UPTIME.REMOVE_ON_PUSH,
+    });
+
+    try {
+      const { data, error } = await SUPABASE.from("profiles")
+        .update([state])
+        .eq("id", SUPABASE.auth.user()?.id);
+
+      if (error) {
+        this.handleError({ error, shouldToast: true, boolBacks });
+        return;
+      }
+
+      if (isArrayValid(data)) {
+        this.makeToast({
+          title: "Profile updated successfully!",
+          variant: "valid",
+        });
+        boolBacks?.onSuccess?.(data![0] as ProfileData);
+        return;
+      }
+
+      this.handleError({ error, shouldToast: true, boolBacks });
+    } catch (e) {
+      console.error(e);
+      this.handleError({ boolBacks });
+    }
   }
 }
 

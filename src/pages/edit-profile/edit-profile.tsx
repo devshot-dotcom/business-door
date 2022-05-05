@@ -1,11 +1,11 @@
 import { Navigate, useOutletContext } from "react-router-dom";
 import { Profile, ProfileState } from "../profile";
-import { useEditProfileState } from ".";
-import { Button, TextField, Menu, NextToNav } from "../../components";
-import { updateProfile } from "./edit-profile-utils";
+import { useEditProfileState, useEditProfileForm } from ".";
+import { NextToNav, Button } from "../../components";
 import "./edit-profile.scss";
 
 const EditProfile = () => {
+  const form = useEditProfileForm();
   const { data } = useOutletContext<ProfileState>();
 
   if (!data) return <Navigate to="/error" />;
@@ -19,7 +19,7 @@ const EditProfile = () => {
   };
 
   return (
-    <form onSubmit={(e) => updateProfile(e, profileState)}>
+    <form onSubmit={(e) => form.onSubmit(e, profileState)}>
       <Profile.Header.Editable {...fieldsetProps} />
       <NextToNav>
         <div className="profile__data">

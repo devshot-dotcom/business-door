@@ -74,6 +74,6 @@ export type ApiResponseHandler = {
 
 export type ApiErrorHandler = {
   error?: ApiError | null;
-  toastOptions?: ToastOptions;
+  shouldToast?: boolean;
   boolBacks?: BoolBacks;
 };

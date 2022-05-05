@@ -49,7 +49,7 @@ export const ProfileAdditionalEditable = ({
   return (
     <Menu title="Additional Information">
       {additionalInfo.map((info, i) => {
-        return i > profileConfig.MAX_ADDITIONAL_INFOS - 1 ? null : (
+        return i >= profileConfig.MAX_ADDITIONAL_INFOS ? null : (
           <Menu.Item
             key={i}
             direction="column"
@@ -59,6 +59,7 @@ export const ProfileAdditionalEditable = ({
               New information
             </label>
             <CloseButton
+              type="button"
               className="additional-close"
               onClick={() => handleRemoval(i)}
             />

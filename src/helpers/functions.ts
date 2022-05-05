@@ -10,6 +10,15 @@ function isObjectValid(object: any): boolean {
   );
 }
 
+/**
+ * Function that checks if an array isn't null or undefined or empty.
+ * @param {any[]} arr The array to be tested.
+ * @returns {boolean}
+ * @version 1.0.0
+ */
+const isArrayValid = (arr?: any[] | null): boolean =>
+  arr !== undefined && arr !== null && arr.length > 0;
+
 /** Retrive the access token from window.location.hash (if it exists). */
 function isAccessToken(tokenName: string) {
   const hash = window.location.hash;
@@ -51,6 +60,7 @@ function hasEmptyIndex(arr?: any[]): boolean {
 
 export {
   isObjectValid,
+  isArrayValid,
   isAccessToken,
   isEmailValid,
   isPasswordValid,

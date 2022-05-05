@@ -36,8 +36,8 @@ class Api {
     this.navigate = navigate;
   }
 
-  handleError({ error, toastOptions, boolBacks }: ApiErrorHandler) {
-    toastOptions &&
+  handleError({ error, shouldToast, boolBacks }: ApiErrorHandler) {
+    shouldToast &&
       this.makeToast({
         variant: "invalid",
         title: error?.message || ReasonPhrases.INTERNAL_SERVER_ERROR,
@@ -67,7 +67,7 @@ class Api {
     const { user, data, error } = response;
 
     if (error) {
-      this.handleError({ error, toastOptions: failureToast, boolBacks });
+      this.handleError({ error, shouldToast: true, boolBacks });
       return;
     }
 
@@ -94,7 +94,7 @@ class Api {
     }
 
     // In case the API returns nothing, we consider it a failed request.
-    this.handleError({ error, toastOptions: failureToast, boolBacks });
+    this.handleError({ error, shouldToast: true, boolBacks });
   }
 }
 

@@ -3,4 +3,4 @@ export type {
   EditProfileState,
   EditProfileActions,
 } from "./edit-profile-types";
-export { useEditProfileState, updateProfile } from "./edit-profile-utils";
+export { useEditProfileState, useEditProfileForm } from "./edit-profile-utils";
