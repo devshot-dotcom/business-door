@@ -27,7 +27,7 @@ class StorageApi extends Api {
 
   async fetchAvatar(fileName: string, boolBacks?: BoolBacks) {
     const { data, error } = await SUPABASE.storage
-      .from("avatars")
+      .from("public/avatars")
       .download(fileName);
 
     if (error) {

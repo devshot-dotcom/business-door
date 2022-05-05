@@ -44,5 +44,5 @@ export function updateProfile(
   state: EditProfileState
 ) {
   e.preventDefault();
-  console.log("Submitted");
+  console.log(state);
 }

@@ -1,5 +1,6 @@
 import { AdditionalInfo, ProfileChildProps, profileConfig } from "../..";
 import { Button, CloseButton, Menu, TextField } from "../../../../components";
+import "./profile-additional-editable.scss";
 
 export const ProfileAdditionalEditable = ({
   profileState,
@@ -24,7 +25,7 @@ export const ProfileAdditionalEditable = ({
    * @param index The number of the text field from the list.
    * @param newInfo The new value of the text field.
    */
-  const handleChange = (index: number, newInfo: AdditionalInfo) => {
+  function handleChange(index: number, newInfo: AdditionalInfo) {
     // Immutability is maintained by using a new array.
     const newAdditionalInfo = additionalInfo.slice();
 
@@ -35,25 +36,32 @@ export const ProfileAdditionalEditable = ({
       type: "updateAdditionalInfo",
       additionalInfo: JSON.stringify(newAdditionalInfo),
     });
-  };
+  }
+
+  const handleRemoval = (index: number) =>
+    dispatchProfile({
+      type: "updateAdditionalInfo",
+      additionalInfo: JSON.stringify(
+        additionalInfo.filter((_, i) => i !== index)
+      ),
+    });
 
   return (
     <Menu title="Additional Information">
       {additionalInfo.map((info, i) => {
         return i > profileConfig.MAX_ADDITIONAL_INFOS - 1 ? null : (
-          <Menu.Item direction="column" key={i} className="v-gap-small gap-0">
-            <div
-              style={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "space-between",
-              }}
-            >
-              <label htmlFor={`additionalInfo-${i}`} className="text-paragraph">
-                New information
-              </label>
-              <CloseButton />
-            </div>
+          <Menu.Item
+            key={i}
+            direction="column"
+            className="additional-fieldset v-gap-small gap-0"
+          >
+            <label htmlFor={`additionalInfo-${i}`} className="text-paragraph">
+              New information
+            </label>
+            <CloseButton
+              className="additional-close"
+              onClick={() => handleRemoval(i)}
+            />
             <TextField
               as="input"
               id={`additionalInfo-${i}`}

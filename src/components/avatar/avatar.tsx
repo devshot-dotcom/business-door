@@ -3,12 +3,13 @@ import { Loader } from "..";
 import { AvatarProps } from ".";
 import { useApi } from "../../hooks";
 import { useEffect, useState } from "react";
+import { StorageApi } from "../../hooks/use-api";
 import defaultAvatar from "../../assets/avatar/avatar.png";
 
 export const AvatarComponent = (props: AvatarProps) => {
   const { src, size = "medium", className = "", ...rest } = props;
 
-  const api = useApi("storage");
+  const api = useApi("storage") as StorageApi;
   const [imageSrc, setImageSrc] = useState<string>();
 
   useEffect(() => {
@@ -17,7 +18,7 @@ export const AvatarComponent = (props: AvatarProps) => {
       return;
     }
 
-    api.storage.fetchAvatar(src, {
+    api.fetchAvatar(src, {
       onSuccess: (src: Blob) => setImageSrc(URL.createObjectURL(src)),
       onFailure: () => setImageSrc(defaultAvatar),
     }); */
