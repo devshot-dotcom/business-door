@@ -1,4 +1,4 @@
-import { Button, Link, NextToNav, ResponsiveImage } from "../../../components";
+import { Button, NextToNav, ResponsiveImage } from "../../../components";
 import waveX1 from "../../../assets/vectors/abstract/wave/wave-full.svg";
 import waveX2 from "../../../assets/vectors/abstract/wave/@x2/wave-full.svg";
 import waveX3 from "../../../assets/vectors/abstract/wave/@x3/wave-full.svg";
@@ -27,9 +27,9 @@ export const Hero = () => {
             stand out.
           </p>
           <div className={styles.buttons}>
-            <Link variant="primary" scrollTo="intro">
+            <Button as="a" href="#intro">
               Learn More
-            </Link>
+            </Button>
             <Button variant="tertiary">Get Started</Button>
           </div>
           <ResponsiveImage

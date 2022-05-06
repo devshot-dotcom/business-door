@@ -1,5 +1,4 @@
 import { ComponentPropsWithoutRef, useState } from "react";
-import { Button } from "../..";
 
 export const Input = (props: ComponentPropsWithoutRef<"input">) => {
   // The type to be monitored for change.
@@ -12,15 +11,14 @@ export const Input = (props: ComponentPropsWithoutRef<"input">) => {
     <>
       <input {...props} type={type} />
       {props.type === "password" && (
-        <Button
-          variant="naked"
+        <button
           type="button"
-          className="text-link"
+          className="text-paragraph text-link"
           onClick={() => setType(type === "password" ? "text" : "password")}
           aria-hidden="true"
         >
           {type === "password" ? "Show" : "Hide"}
-        </Button>
+        </button>
       )}
     </>
   );

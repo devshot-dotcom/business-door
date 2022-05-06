@@ -84,6 +84,7 @@
 }
 
 .text-link {
+  cursor: pointer;
   font-weight: 700;
   text-decoration: underline;
 }
@@ -121,7 +122,6 @@
   gap: 0;
 }
 
-//* Layout
 // Position
 .layout-absolute {
   position: absolute;
