@@ -1,5 +1,5 @@
 import { Navigate, useOutletContext } from "react-router-dom";
-import { SUPABASE } from "../../config";
+import { routes, SUPABASE } from "../../config";
 import { isObjectValid } from "../../helpers";
 import { Profile, ProfileState } from "../profile";
 import { Button, NextToNav } from "../../components";
@@ -25,7 +25,9 @@ export const ViewProfile = () => {
               }}
             >
               <h2 className="text-h2">Your Profile</h2>
-              <Button variant="primary">Edit</Button>
+              <Button as="Link" variant="primary" to={routes.editProfile.PATH}>
+                Edit
+              </Button>
             </div>
           ) : (
             <h2 className="text-h2">User's Profile</h2>

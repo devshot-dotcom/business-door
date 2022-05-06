@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Profile, ProfileChildProps } from "../../..";
-import { NextToNav, Avatar, Badge, Button } from "../../../../../components";
 import { getPropsOfLevel } from "../../../../../config";
+import { NextToNav, Avatar, Button } from "../../../../../components";
 import "./profile-header-editable.scss";
 
 export const ProfileHeaderEditable = ({
@@ -24,14 +24,15 @@ export const ProfileHeaderEditable = ({
         onRequestClose={hideCoverModal}
         dispatchProfile={dispatchProfile}
       />
-      <Badge
+      <Button
+        size="small"
+        type="button"
+        variant="tertiary"
         id="coverEditButton"
-        className="bg-tertiary"
-        style={{ cursor: "pointer" }}
         onClick={showCoverModal}
       >
         Change
-      </Badge>
+      </Button>
       <NextToNav className="profile__intro-wrapper">
         <div className="profile__intro">
           <Avatar.Profile

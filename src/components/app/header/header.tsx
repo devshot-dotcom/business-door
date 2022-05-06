@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { NextToNav } from "..";
 import { Logo } from "../..";
 import styles from "./header.module.scss";
@@ -6,9 +7,9 @@ export const Header = () => {
   return (
     <NextToNav>
       <header className={styles.header}>
-        <a href="/">
+        <Link to="/">
           <Logo size="large" />
-        </a>
+        </Link>
       </header>
     </NextToNav>
   );
