@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { ProfileChildProps, Profile } from "../..";
-import { Button, NextToNav, Avatar } from "../../../../components";
+import { Button, NextToNav } from "../../../../components";
 import { getPropsOfLevel } from "../../../../config";
 import "./profile-header-editable.scss";
 
@@ -35,7 +35,7 @@ function ProfileHeaderEditable({
       </Button>
       <NextToNav className="profile__intro-wrapper">
         <div className="profile__intro">
-          <Avatar.Profile
+          <Profile.Avatar.Editable
             src={profileState.avatar}
             className={`bd-${levelProps?.COLOR}`}
           />

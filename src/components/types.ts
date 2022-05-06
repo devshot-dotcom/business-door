@@ -19,3 +19,6 @@ export type { ToastOptions, ToastProps } from "./toast";
 
 // Button
 export type { ButtonProps } from "./button";
+
+// Avatar
+export type { AvatarProps } from "./avatar";

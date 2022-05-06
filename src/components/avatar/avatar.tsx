@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import { StorageApi } from "../../hooks/use-api";
 import defaultAvatar from "../../assets/avatar/avatar.png";
 
-export const AvatarComponent = (props: AvatarProps) => {
+function Avatar(props: AvatarProps) {
   const { src, size = "medium", className = "", ...rest } = props;
 
   const api = useApi("storage") as StorageApi;
@@ -36,4 +36,6 @@ export const AvatarComponent = (props: AvatarProps) => {
       {imageSrc ? <img src={imageSrc} alt="" /> : <Loader />}
     </div>
   );
-};
+}
+
+export default Avatar;

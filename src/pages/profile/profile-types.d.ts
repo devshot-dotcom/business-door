@@ -73,6 +73,7 @@ export type ProfileData = {
 export type ProfileChildren = {
   Cover: typeof ProfileCover;
   Header: typeof ProfileHeader;
+  Avatar: typeof ProfileAvatar;
   Bio: typeof ProfileBio;
   Personal: typeof ProfilePersonal;
   Additional: typeof ProfileAdditional;

@@ -1,6 +1,6 @@
 import { Profile } from "../../..";
 import { ProfileHeaderDefaultProps } from "..";
-import { NextToNav, Avatar, Badge } from "../../../../components";
+import { NextToNav, Badge } from "../../../../components";
 import { getPropsOfLevel } from "../../../../config";
 import "./profile-header-default.scss";
 
@@ -12,7 +12,7 @@ function ProfileHeaderDefault({ isLogged, data }: ProfileHeaderDefaultProps) {
       <Profile.Cover src={data.cover} />
       <NextToNav className="profile__intro-wrapper">
         <div className="profile__intro">
-          <Avatar.Profile
+          <Profile.Avatar
             src={data.avatar}
             className={`bd-${levelProps?.COLOR}`}
           />

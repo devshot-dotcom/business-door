@@ -1,4 +1,5 @@
 import { FC } from "react";
+import ProfileAvatar from "./profile-avatar";
 import { ProfileComponent } from "./profile";
 import { ProfileAdditional } from "./profile-additional";
 import { ProfileBio } from "./profile-bio";
@@ -12,6 +13,7 @@ import { ProfileChildren } from "./profile-types";
 // by the use of dot notation. Example: <Profile.Header/>
 export const Profile = Object.assign<FC, ProfileChildren>(ProfileComponent, {
   Header: ProfileHeader,
+  Avatar: ProfileAvatar,
   Cover: ProfileCover,
   Bio: ProfileBio,
   Personal: ProfilePersonal,

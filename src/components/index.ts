@@ -1,5 +1,6 @@
 import CloseButton from "./close-button";
 import Button from "./button";
+import Avatar from "./avatar";
 
 export {
   App,
@@ -21,8 +22,7 @@ export { Switch } from "./switch";
 export { ResponsiveBackground, ResponsiveImage } from "./rwd";
 export { Loader } from "./loader";
 export { Badge } from "./badge";
-export { Avatar } from "./avatar";
 export { Menu } from "./menu";
 export { Modal } from "./modal";
 export { TextCounter } from "./text-counter";
-export { CloseButton, Button };
+export { CloseButton, Button, Avatar };
