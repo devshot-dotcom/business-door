@@ -1,14 +1,10 @@
-import { FC } from "react";
-import { ProfileHeaderDefaultProps } from "../..";
 import { Profile } from "../../..";
-import { NextToNav, Avatar, Badge } from "../../../../../components";
-import { getPropsOfLevel } from "../../../../../config";
+import { ProfileHeaderDefaultProps } from "..";
+import { NextToNav, Avatar, Badge } from "../../../../components";
+import { getPropsOfLevel } from "../../../../config";
 import "./profile-header-default.scss";
 
-export const ProfileHeaderDefault: FC<ProfileHeaderDefaultProps> = ({
-  isLogged,
-  data,
-}) => {
+function ProfileHeaderDefault({ isLogged, data }: ProfileHeaderDefaultProps) {
   const levelProps = getPropsOfLevel(data.level);
 
   return (
@@ -33,4 +29,6 @@ export const ProfileHeaderDefault: FC<ProfileHeaderDefaultProps> = ({
       </NextToNav>
     </header>
   );
-};
+}
+
+export default ProfileHeaderDefault;
