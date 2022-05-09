@@ -8,6 +8,10 @@ import { EditProfileChildrenProps as Types } from "../../../edit-profile";
 import useCustomReducer from "./profile-avatar-editable-utils";
 import "./profile-avatar-editable.scss";
 
+/**
+ * @author kashan-ahmad
+ * @version 1.0.0
+ */
 function ProfileAvatarEditable({
   dispatchProfile,
   ...rest
