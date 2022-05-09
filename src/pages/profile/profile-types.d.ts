@@ -1,7 +1,6 @@
-import { Dispatch } from "react";
 import { UserLevelCode } from "../../config";
-import { EditProfileActions, EditProfileState } from "../edit-profile";
 import { ProfileAdditional } from "./profile-additional";
+import ProfileAvatar from "./profile-avatar";
 import { ProfileBio } from "./profile-bio";
 import { ProfileConfidential } from "./profile-confidential";
 import { ProfileCover } from "./profile-cover";
@@ -78,9 +77,4 @@ export type ProfileChildren = {
   Personal: typeof ProfilePersonal;
   Additional: typeof ProfileAdditional;
   Confidential: typeof ProfileConfidential;
-};
-
-export type ProfileChildProps = {
-  profileState: EditProfileState;
-  dispatchProfile: Dispatch<EditProfileActions>;
 };

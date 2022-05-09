@@ -5,7 +5,7 @@ import { SUPABASE } from "../../config";
 import { BoolBacks } from "../../helpers";
 import { isArrayValid } from "../../helpers/functions";
 import { EditProfileState } from "../../pages/edit-profile";
-import { ProfileData } from "../../pages/types";
+import { ProfileData } from "../../pages/profile";
 import Api from "./api";
 
 class ProfileApi extends Api {

@@ -10,7 +10,7 @@ export const ProfileCoverComponent: FC<CoverProps> = ({
   const dirName = "assets/backgrounds";
 
   return (
-    <div className="profile__cover">
+    <div className="profile__cover" aria-hidden>
       <picture>
         <source
           media={`(min-width: ${BREAKPOINTS.DESKTOP.px})`}

@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { ProfileChildProps, Profile } from "../..";
+import { Profile } from "../..";
+import { EditProfileChildrenProps as Types } from "../../../edit-profile";
 import { Button, NextToNav } from "../../../../components";
 import { getPropsOfLevel } from "../../../../config";
 import "./profile-header-editable.scss";
@@ -7,7 +8,7 @@ import "./profile-header-editable.scss";
 function ProfileHeaderEditable({
   profileState,
   dispatchProfile,
-}: ProfileChildProps) {
+}: Types.StateSubscriber) {
   const [isModalShown, setIsModalShown] = useState(false);
 
   const hideCoverModal = () => setIsModalShown(false);
@@ -37,6 +38,7 @@ function ProfileHeaderEditable({
         <div className="profile__intro">
           <Profile.Avatar.Editable
             src={profileState.avatar}
+            dispatchProfile={dispatchProfile}
             className={`bd-${levelProps?.COLOR}`}
           />
           <Button

@@ -1,11 +1,12 @@
-import { ProfileChildProps, profileConfig } from "../..";
+import { profileConfig } from "../..";
+import { EditProfileChildrenProps as Types } from "../../../edit-profile";
 import { Menu, TextCounter, TextField } from "../../../../components";
 import { EditProfileActions } from "../../../edit-profile";
 
 export const ProfilePersonalEditable = ({
   profileState,
   dispatchProfile,
-}: ProfileChildProps) => {
+}: Types.StateSubscriber) => {
   type PersonalInfoField = {
     label: string;
     value?: string;

@@ -31,7 +31,7 @@ export const ProfileBioEditable = ({ bio, dispatchProfile }: Props) => {
               aboutMe: e.target.value,
             })
           }
-          placeholder="Tell us about yourself"
+          placeholder="Tell us about yourself..."
         />
         {/* Render the character counter */}
         <TextCounter

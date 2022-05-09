@@ -1,11 +1,12 @@
-import { AdditionalInfo, ProfileChildProps, profileConfig } from "../..";
+import { AdditionalInfo, profileConfig } from "../..";
+import { EditProfileChildrenProps as Types } from "../../../edit-profile";
 import { Button, CloseButton, Menu, TextField } from "../../../../components";
 import "./profile-additional-editable.scss";
 
 export const ProfileAdditionalEditable = ({
   profileState,
   dispatchProfile,
-}: ProfileChildProps) => {
+}: Types.StateSubscriber) => {
   // A default value for the additional info.
   const defaultAdditionalInfo: AdditionalInfo[] = [
     {

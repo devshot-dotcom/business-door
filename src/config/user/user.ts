@@ -46,6 +46,4 @@ export function getPropsOfLevel(levelCode?: number): UserLevel | null {
  * @param id The user's id.
  * @returns {string} The route to the user's profile page.
  */
-export function getProfileRoute(id: string): string {
-  return id.split("-")[0];
-}
+export const getProfileRoute = (id: string): string => id.split("-")[0];

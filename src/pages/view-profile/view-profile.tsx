@@ -25,7 +25,12 @@ export const ViewProfile = () => {
               }}
             >
               <h2 className="text-h2">Your Profile</h2>
-              <Button as="Link" variant="primary" to={routes.editProfile.PATH}>
+              <Button
+                as="Link"
+                variant="primary"
+                to={routes.editProfile.PATH}
+                style={{ width: "auto" }}
+              >
                 Edit
               </Button>
             </div>

@@ -29,7 +29,6 @@ export type {
   ProfileActions,
   AdditionalInfo,
   ProfileChildren,
-  ProfileChildProps,
 } from "./profile-types";
 
 /* PersonalInformation */
