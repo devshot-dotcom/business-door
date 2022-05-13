@@ -42,7 +42,7 @@ function EditProfile(): JSX.Element {
             type="submit"
             variant="primary"
             data-id="editProfileSaveButton"
-            className="hide show-when-vertical-nav-appears"
+            className="profile__button hide show-when-vertical-nav-appears"
           >
             Save
           </Button>

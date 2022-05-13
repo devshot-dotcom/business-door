@@ -45,8 +45,7 @@ function ProfileHeaderEditable({
             aria-hidden
             type="submit"
             variant="primary"
-            data-id="editProfileSaveButton"
-            className="show hide-when-vertical-nav-appears"
+            className="profile__button show hide-when-vertical-nav-appears"
           >
             Save
           </Button>

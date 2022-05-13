@@ -1,5 +1,6 @@
 @use "./vars";
 @use "./mixins";
+@use "./typography";
 
 // Colors.
 @each $key, $value in vars.$colors {
@@ -95,6 +96,14 @@
 
 .text-ellipsis-2 {
   @include mixins.ellipsize(2);
+}
+
+.text-heading {
+  @include typography.h3();
+
+  @media (min-width: vars.$breakpoint-tablet) {
+    @include typography.h2();
+  }
 }
 
 // Margins

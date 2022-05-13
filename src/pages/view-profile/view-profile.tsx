@@ -25,18 +25,19 @@ function ViewProfile() {
                 alignItems: "center",
               }}
             >
-              <h2 className="text-h2">Your Profile</h2>
+              <h2 className="text-heading">Your Profile</h2>
               <Button
                 as="Link"
                 variant="primary"
                 to={routes.editProfile.PATH}
                 style={{ width: "auto" }}
+                className="profile__button hide show-when-vertical-nav-appears"
               >
                 Edit
               </Button>
             </div>
           ) : (
-            <h2 className="text-h2">User's Profile</h2>
+            <h2 className="text-heading">User's Profile</h2>
           )}
           {data.aboutMe && <Profile.Bio bio={data.aboutMe} />}
           <div className="profile__grid">

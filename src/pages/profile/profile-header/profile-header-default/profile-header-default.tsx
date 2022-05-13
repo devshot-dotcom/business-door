@@ -1,7 +1,7 @@
 import { Profile } from "../../..";
 import { ProfileHeaderDefaultProps } from "..";
-import { NextToNav, Badge } from "../../../../components";
-import { getPropsOfLevel } from "../../../../config";
+import { NextToNav, Badge, Button } from "../../../../components";
+import { getPropsOfLevel, routes } from "../../../../config";
 import "./profile-header-default.scss";
 
 function ProfileHeaderDefault({ isLogged, data }: ProfileHeaderDefaultProps) {
@@ -16,6 +16,15 @@ function ProfileHeaderDefault({ isLogged, data }: ProfileHeaderDefaultProps) {
             src={data.avatar}
             className={`bd-${levelProps?.COLOR}`}
           />
+          <Button
+            as="Link"
+            variant="primary"
+            to={routes.editProfile.PATH}
+            style={{ width: "auto" }}
+            className="profile__button show hide-when-vertical-nav-appears"
+          >
+            Edit
+          </Button>
           <div className="profile__hero">
             {levelProps && (
               <Badge className={`profile__badge bg-${levelProps.COLOR}`}>

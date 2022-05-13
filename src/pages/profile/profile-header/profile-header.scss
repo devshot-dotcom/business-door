@@ -27,7 +27,7 @@
 
   .profile__badge {
     display: inline-block;
-    translate: 0 -#{vars.$size-smaller};
+    transform: translate(0, -#{vars.$size-smaller});
   }
 
   @include mixins.when-vertical-nav-appears() {
@@ -42,7 +42,7 @@
 
     .avatar {
       position: static;
-      translate: 0 0 !important;
+      transform: translate(0, 0) !important;
     }
 
     .profile__hero {
@@ -56,7 +56,7 @@
       position: absolute;
       top: 0;
       right: 0;
-      translate: 1rem -1rem;
+      transform: translate(1rem, -1rem);
     }
   }
 }

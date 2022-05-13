@@ -32,7 +32,7 @@ const LoginView = ({
   dispatchPswd,
 }: Props): JSX.Element => (
   <form onSubmit={onSubmit} className={`${styles.form} v-gap`}>
-    <h1 className={styles.heading}>Log In</h1>
+    <h1 className="text-heading">Log In</h1>
     <TextField
       as="input"
       type="email"

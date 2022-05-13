@@ -1,3 +1,4 @@
+@use "../../sass/vars";
 @use "../../sass/mixins";
 @use "../../sass/typography";
 
@@ -5,6 +6,10 @@
   width: 100%;
   background-color: var(--theme-color-background);
   padding-bottom: var(--layout-gap);
+
+  .profile__intro {
+    position: relative;
+  }
 
   .profile__data {
     position: relative;
@@ -23,5 +28,14 @@
     @include mixins.when-vertical-nav-appears() {
       grid-template-columns: 1fr 1fr;
     }
+  }
+
+  .profile__button {
+    position: absolute;
+    top: var(--layout-gap);
+    right: var(--layout-gap);
+    width: auto;
+    margin: 0 !important;
+    z-index: vars.$z-index-nav;
   }
 }

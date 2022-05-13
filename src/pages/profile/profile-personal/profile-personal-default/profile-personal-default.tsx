@@ -17,9 +17,11 @@ function ProfilePersonalDefault(props: PersonalInfoProps) {
             <div className="menu__text-underlined">
               <Icon src={info.icon} size="small" />
             </div>
-            <div className="menu__text text-ellipsis-1">
+            <div className="menu__text">
               <div className="text-paragraph text-bold">{info.title}</div>
-              {info?.labels?.join(", ")}
+              <div className="text-ellipsis-1 text-paragraph text-subtle">
+                {info?.labels?.join(", ")}
+              </div>
             </div>
             {info.rightNodes && info.rightNodes}
           </Menu.Item>

@@ -30,7 +30,7 @@ function VerifyAccount() {
   return (
     <form onSubmit={handleSubmit} className={`${styles.form} v-gap`}>
       <div>
-        <h1 className={styles.heading}>Reset Password</h1>
+        <h1 className="text-heading">Reset Password</h1>
         <div className="text-small text-subtle">
           Don't worry, happens to the best of us.
         </div>

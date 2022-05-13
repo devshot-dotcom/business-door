@@ -8,7 +8,15 @@ import { Footer, Loader, Sidebar } from "../../components";
 import { getProfileRoute, routes, SUPABASE } from "../../config";
 import { Outlet, useLocation, useNavigate, useParams } from "react-router-dom";
 
-function Profile() {
+/**
+ * Profile page component.
+ *
+ * @returns {JSX.Element}
+ *
+ * @version 1.0.2
+ * @author [kashan-ahmad](https://github.com/kashan-ahmad)
+ */
+function Profile(): JSX.Element {
   const navigate = useNavigate();
   const location = useLocation();
   const api = useApi("profile") as ProfileApi;

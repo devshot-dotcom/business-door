@@ -30,11 +30,3 @@
   display: flex;
   flex-direction: column;
 }
-
-.heading {
-  @include typography.h3();
-
-  @media (min-width: vars.$breakpoint-laptop) {
-    @include typography.h2();
-  }
-}

@@ -3,11 +3,10 @@
 [data-editable="true"] {
   .profile__intro {
     padding: 0;
-    position: relative;
     padding-top: calc(var(--layout-gap) * 4);
 
     .avatar {
-      translate: -50% -90%;
+      transform: translate(-50%, -90%);
     }
   }
 

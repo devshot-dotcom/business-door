@@ -39,7 +39,7 @@ function CreateAccount() {
 
   return (
     <form onSubmit={handleSubmit} className={`${styles.form} v-gap`}>
-      <h1 className={styles.heading}>Create Your Account</h1>
+      <h1 className="text-heading">Create Your Account</h1>
 
       <TextField
         as="input"
