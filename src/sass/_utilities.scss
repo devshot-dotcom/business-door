@@ -89,6 +89,14 @@
   text-decoration: underline;
 }
 
+.text-ellipsis-1 {
+  @include mixins.ellipsize(1);
+}
+
+.text-ellipsis-2 {
+  @include mixins.ellipsize(2);
+}
+
 // Margins
 .h-gap {
   > * + * {
