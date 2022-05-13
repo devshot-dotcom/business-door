@@ -53,6 +53,7 @@ body[data-theme="dark"] {
   color: var(--theme-color-text);
 }
 
+// Resets
 body,
 p,
 ul,
@@ -65,4 +66,12 @@ h6,
 li {
   margin: 0;
   padding: 0;
+}
+
+button {
+  border: 0;
+  padding: 0;
+  outline: 0;
+  cursor: pointer;
+  background-color: transparent;
 }

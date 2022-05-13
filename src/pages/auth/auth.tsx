@@ -3,7 +3,7 @@ import { Outlet } from "react-router-dom";
 import cover from "../../assets/illustrations/monochrome/lady-employee-working-in-office.png";
 import styles from "./auth.module.scss";
 
-export const Auth = () => {
+function Auth() {
   return (
     <>
       <section id="auth" className={styles.auth}>
@@ -19,4 +19,6 @@ export const Auth = () => {
       <Footer />
     </>
   );
-};
+}
+
+export default Auth;

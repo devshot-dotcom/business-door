@@ -4,7 +4,7 @@ import { env } from "../../../config";
 import { useEmail, useToast, useAuthenticator } from "../../../hooks";
 import styles from "../auth.module.scss";
 
-export const VerifyAccount = () => {
+function VerifyAccount() {
   const [emailState, dispatchEmail, isEmailValid] = useEmail();
 
   const makeToast = useToast();
@@ -30,7 +30,7 @@ export const VerifyAccount = () => {
   return (
     <form onSubmit={handleSubmit} className={`${styles.form} v-gap`}>
       <div>
-        <h1 className={styles.heading}>Reset Password</h1>
+        <h1 className="text-heading">Reset Password</h1>
         <div className="text-small text-subtle">
           Don't worry, happens to the best of us.
         </div>
@@ -68,4 +68,6 @@ export const VerifyAccount = () => {
       </div>
     </form>
   );
-};
+}
+
+export default VerifyAccount;

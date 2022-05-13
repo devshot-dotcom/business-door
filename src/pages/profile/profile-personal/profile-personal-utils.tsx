@@ -8,7 +8,6 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 import { PersonalInfo, PersonalInfoProps } from ".";
-import { trimByConfig } from "..";
 import { Icon, Badge } from "../../../components";
 import { getPropsOfLevel, routes } from "../../../config";
 
@@ -36,7 +35,7 @@ export function getPersonalInfo({
       icon: faMapMarkerAlt,
     },
     {
-      title: "Profession",
+      title: "Workspace",
       labels: [profession, organization],
       icon: faBriefcase,
     },
@@ -86,15 +85,4 @@ export function openURL(url: string | undefined) {
     // A web link otherwise.
     window.open(url, "_blank")?.focus();
   }
-}
-
-/**
- * Trims the labels from the array and suffixes the resulting string with ellipsis in case of length exceedings.
- * @param labels The array of labels.
- * @returns {string | null} The trimmed label. Null in case the array is empty.
- */
-export function getBetterLabels(labels: string[] | undefined): string | null {
-  if (!labels) return null;
-
-  return trimByConfig(labels.join(", "));
 }

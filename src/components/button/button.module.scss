@@ -1,0 +1,60 @@
+@use "../../sass/vars";
+@use "../../sass/typography";
+
+.button {
+  // Styling
+  border: 0;
+  width: 100%;
+  cursor: pointer;
+  align-self: stretch;
+  @include typography.button();
+  border-radius: vars.$border-radius-small;
+  padding: vars.$size-small vars.$size-medium;
+
+  @media (min-width: vars.$breakpoint-mobile) {
+    width: auto;
+    align-self: flex-start;
+  }
+
+  &:is(:hover, :focus-within):not(:disabled) {
+    outline: 1px dotted var(--theme-color-link);
+  }
+
+  &:disabled {
+    cursor: no-drop;
+  }
+}
+
+$button-variants: (
+  "primary": map-get(vars.$color-brand, "400"),
+  "secondary": map-get(vars.$color-secondary, "400"),
+  "tertiary": map-get(vars.$color-tertiary, "400"),
+);
+
+$button-sizes: (
+  "small": calc(vars.$size-smaller / 2) vars.$size-smaller,
+  "medium": vars.$size-small vars.$size-medium,
+);
+
+@each $variant, $color in $button-variants {
+  @each $size, $padding in $button-sizes {
+    .#{$variant}-#{$size} {
+      composes: button;
+      padding: $padding;
+      background-color: $color;
+
+      &:hover,
+      &:focus-within {
+        background-color: scale-color($color, $blackness: 10%);
+      }
+
+      &:disabled {
+        background-color: scale-color($color, $lightness: 25%);
+      }
+    }
+
+    .#{$variant}-small {
+      @include typography.pre-title();
+    }
+  }
+}

@@ -1,5 +1,5 @@
 import * as React from "react";
-import styles from "./switch.module.scss";
+import "./switch.scss";
 
 interface SwitchProps extends React.ComponentPropsWithoutRef<"span"> {
   id?: string;

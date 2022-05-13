@@ -1,13 +1,8 @@
-import {
-  PersonalInfoProps,
-  getPersonalInfo,
-  openURL,
-  getBetterLabels,
-} from "..";
+import { PersonalInfoProps, getPersonalInfo, openURL } from "..";
 import { Menu, Icon } from "../../../../components";
 import { hasEmptyIndex } from "../../../../helpers";
 
-export const ProfilePersonalDefault = (props: PersonalInfoProps) => {
+function ProfilePersonalDefault(props: PersonalInfoProps) {
   return (
     <Menu title="Personal Information">
       {getPersonalInfo(props).map((info, i) => {
@@ -24,7 +19,9 @@ export const ProfilePersonalDefault = (props: PersonalInfoProps) => {
             </div>
             <div className="menu__text">
               <div className="text-paragraph text-bold">{info.title}</div>
-              {getBetterLabels(info?.labels)}
+              <div className="text-ellipsis-1 text-paragraph text-subtle">
+                {info?.labels?.join(", ")}
+              </div>
             </div>
             {info.rightNodes && info.rightNodes}
           </Menu.Item>
@@ -32,4 +29,6 @@ export const ProfilePersonalDefault = (props: PersonalInfoProps) => {
       })}
     </Menu>
   );
-};
+}
+
+export default ProfilePersonalDefault;

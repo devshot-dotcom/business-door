@@ -1,14 +1,22 @@
-import { useReducer, useEffect, FC } from "react";
-import { Outlet, useLocation, useNavigate, useParams } from "react-router-dom";
+import "./profile.scss";
+import * as React from "react";
+import { useApi } from "../../hooks";
+import { ApiError } from "../../helpers/types";
 import { ProfileData, profileReducer } from ".";
+import { ProfileApi } from "../../hooks/use-api";
 import { Footer, Loader, Sidebar } from "../../components";
 import { getProfileRoute, routes, SUPABASE } from "../../config";
-import { ApiError } from "../../helpers/types";
-import { useApi } from "../../hooks";
-import { ProfileApi } from "../../hooks/use-api";
-import "./profile.scss";
+import { Outlet, useLocation, useNavigate, useParams } from "react-router-dom";
 
-export const ProfileComponent: FC = () => {
+/**
+ * Profile page component.
+ *
+ * @returns {JSX.Element}
+ *
+ * @version 1.0.2
+ * @author [kashan-ahmad](https://github.com/kashan-ahmad)
+ */
+function Profile(): JSX.Element {
   const navigate = useNavigate();
   const location = useLocation();
   const api = useApi("profile") as ProfileApi;
@@ -17,11 +25,11 @@ export const ProfileComponent: FC = () => {
   const { route = "" } = useParams();
 
   // Note the initial state [fetching].
-  const [profile, dispatchProfile] = useReducer(profileReducer, {
+  const [profile, dispatchProfile] = React.useReducer(profileReducer, {
     status: "fetching",
   });
 
-  useEffect(() => {
+  React.useEffect(() => {
     const user = SUPABASE.auth.user();
     const pathNames = location.pathname.split("/");
 
@@ -46,7 +54,7 @@ export const ProfileComponent: FC = () => {
 
     // This is the case where the edit profile page is requested but this page also parsed since its the parent route.
     // The term `edit` could have also been taken as a route parameter by the router, but that didn't happen, and the
-    /* if (pathNames[pathNames.length - 1] === "edit") {
+    if (pathNames[pathNames.length - 1] === "edit") {
       // Only authorized users can access the edit profile page.
       if (!user) {
         navigate(routes.error403.PATH);
@@ -71,9 +79,9 @@ export const ProfileComponent: FC = () => {
     api.fetchByRoute(route, {
       onSuccess: onSuccess,
       onFailure: onFailure,
-    }); */
+    });
 
-    const additionalInfo: any[] = [
+    /* const additionalInfo: any[] = [
       {
         label: "YouTube",
         url: "https://www.youtube.com",
@@ -89,14 +97,6 @@ export const ProfileComponent: FC = () => {
       {
         label: "Tumblr",
         url: "https://www.tumblr.comhttps://www.tumblr.com",
-      },
-      {
-        label: "Facebook",
-        url: "https://www.facebook.com",
-      },
-      {
-        label: "Spotify",
-        url: "https://www.spotify.com",
       },
     ];
 
@@ -114,10 +114,11 @@ export const ProfileComponent: FC = () => {
         country: "Niger",
         fullName: "Morissette Renee",
         profession: "Chief Engineer",
+        organization: "Blanda",
         additionalInfo: JSON.stringify(additionalInfo),
         level: 1,
       },
-    });
+    }); */
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [route]);
@@ -125,11 +126,15 @@ export const ProfileComponent: FC = () => {
   return (
     <>
       <div className="profile">
-        {profile.status === "fetching" && <Loader />}
+        {profile.status === "fetching" && (
+          <Loader style={{ height: "100vh" }} />
+        )}
         {profile.status === "fetched" && <Outlet context={profile} />}
       </div>
       <Sidebar className="hide show-when-sidebar-appears" />
       <Footer />
     </>
   );
-};
+}
+
+export default Profile;

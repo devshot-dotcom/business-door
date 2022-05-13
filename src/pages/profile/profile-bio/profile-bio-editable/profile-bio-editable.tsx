@@ -13,7 +13,7 @@ type Props = {
  * @param bio - The user's bio
  * @param dispatchProfile - The dispatch function for the profile reducer.
  */
-export const ProfileBioEditable = ({ bio, dispatchProfile }: Props) => {
+function ProfileBioEditable({ bio, dispatchProfile }: Props) {
   if (bio === undefined) return null;
 
   return (
@@ -31,7 +31,7 @@ export const ProfileBioEditable = ({ bio, dispatchProfile }: Props) => {
               aboutMe: e.target.value,
             })
           }
-          placeholder="Tell us about yourself"
+          placeholder="Tell us about yourself..."
         />
         {/* Render the character counter */}
         <TextCounter
@@ -41,4 +41,6 @@ export const ProfileBioEditable = ({ bio, dispatchProfile }: Props) => {
       </div>
     </Menu>
   );
-};
+}
+
+export default ProfileBioEditable;

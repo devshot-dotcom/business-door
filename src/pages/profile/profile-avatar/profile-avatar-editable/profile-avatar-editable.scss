@@ -1,0 +1,12 @@
+@use "../../../../sass/vars";
+
+form[name="avatarForm"] {
+  display: flex;
+  align-items: center;
+  gap: vars.$size-small;
+
+  &:last-child {
+    align-self: stretch;
+    flex-grow: 1;
+  }
+}

@@ -1,4 +1,3 @@
-import { FC } from "react";
 import { NextToNav } from "..";
 import { ResponsiveBackground } from "../../rwd";
 import { Testimonials } from "./testimonials";
@@ -13,7 +12,7 @@ import styles from "./sidebar.module.scss";
  *
  * The sidebar beautifully becomes a part of the page on smaller devices and adjusts as a sleek sidebar when it's time using `position: absolute`.
  */
-const Sidebar: FC<SidebarProps> = (props) => {
+const Sidebar = (props: SidebarProps) => {
   const { children, rwd, variant = "tidbits" } = props;
 
   const classes = `${styles.sidebar} ${props.className}`;

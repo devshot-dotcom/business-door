@@ -25,7 +25,7 @@
       // positioning
       bottom: auto;
       left: 50%;
-      translate: -50%;
+      transform: translate(-50%);
       // sizing
       width: vars.$breakpoint-mobile;
       max-height: calc(100% - var(--layout-gap) * 2);

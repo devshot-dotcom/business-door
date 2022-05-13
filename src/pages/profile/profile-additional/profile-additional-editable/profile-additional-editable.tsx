@@ -1,10 +1,13 @@
-import { AdditionalInfo, ProfileChildProps, profileConfig } from "../..";
-import { Button, Menu, TextField } from "../../../../components";
+import { AdditionalInfo, profileConfig } from "../..";
+import { Button, CloseButton, Menu, TextField } from "../../../../components";
+import { isStringValid } from "../../../../helpers/functions";
+import { EditProfileSubscriber } from "../../../edit-profile";
+import "./profile-additional-editable.scss";
 
-export const ProfileAdditionalEditable = ({
+function ProfileAdditionalEditable({
   profileState,
   dispatchProfile,
-}: ProfileChildProps) => {
+}: EditProfileSubscriber) {
   // A default value for the additional info.
   const defaultAdditionalInfo: AdditionalInfo[] = [
     {
@@ -15,8 +18,10 @@ export const ProfileAdditionalEditable = ({
 
   // Either the state gives us the additional info,
   // or we use the default value.
-  const additionalInfo: AdditionalInfo[] = profileState.additionalInfo
-    ? JSON.parse(profileState.additionalInfo)
+  const additionalInfo: AdditionalInfo[] = isStringValid(
+    profileState.additionalInfo
+  )
+    ? JSON.parse(profileState.additionalInfo!)
     : defaultAdditionalInfo;
 
   /**
@@ -24,7 +29,7 @@ export const ProfileAdditionalEditable = ({
    * @param index The number of the text field from the list.
    * @param newInfo The new value of the text field.
    */
-  const handleChange = (index: number, newInfo: AdditionalInfo) => {
+  function handleChange(index: number, newInfo: AdditionalInfo) {
     // Immutability is maintained by using a new array.
     const newAdditionalInfo = additionalInfo.slice();
 
@@ -35,16 +40,33 @@ export const ProfileAdditionalEditable = ({
       type: "updateAdditionalInfo",
       additionalInfo: JSON.stringify(newAdditionalInfo),
     });
-  };
+  }
+
+  const handleRemoval = (index: number) =>
+    dispatchProfile({
+      type: "updateAdditionalInfo",
+      additionalInfo: JSON.stringify(
+        additionalInfo.filter((_, i) => i !== index)
+      ),
+    });
 
   return (
     <Menu title="Additional Information">
       {additionalInfo.map((info, i) => {
-        return i > profileConfig.MAX_ADDITIONAL_INFOS - 1 ? null : (
-          <Menu.Item direction="column" key={i} className="v-gap-small gap-0">
+        return i >= profileConfig.MAX_ADDITIONAL_INFOS ? null : (
+          <Menu.Item
+            key={i}
+            direction="column"
+            className="additional-fieldset v-gap-small gap-0"
+          >
             <label htmlFor={`additionalInfo-${i}`} className="text-paragraph">
               New information
             </label>
+            <CloseButton
+              type="button"
+              className="additional-close"
+              onClick={() => handleRemoval(i)}
+            />
             <TextField
               as="input"
               id={`additionalInfo-${i}`}
@@ -77,18 +99,18 @@ export const ProfileAdditionalEditable = ({
           </Menu.Item>
         );
       })}
-      {/* The button appends a new additionalInfo to the list
-      if the maximum items are lesser than the allowed limit. */}
+      {/* The button appends a new additionalInfo to the list if the maximum items are lesser than the allowed limit. */}
       {additionalInfo.length < profileConfig.MAX_ADDITIONAL_INFOS && (
         <Button
           type="button"
-          variant="secondary"
+          variant="tertiary"
+          style={{ width: "100%" }}
           onClick={() => {
             dispatchProfile({
               type: "updateAdditionalInfo",
               additionalInfo: JSON.stringify([
                 ...additionalInfo,
-                defaultAdditionalInfo,
+                ...defaultAdditionalInfo,
               ]),
             });
           }}
@@ -98,4 +120,6 @@ export const ProfileAdditionalEditable = ({
       )}
     </Menu>
   );
-};
+}
+
+export default ProfileAdditionalEditable;

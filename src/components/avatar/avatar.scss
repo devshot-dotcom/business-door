@@ -1,4 +1,5 @@
 @use "../../sass/vars";
+@use "../../sass/mixins";
 
 .avatar {
   width: 5rem;
@@ -7,7 +8,12 @@
   background-color: var(--theme-color-background);
   position: relative;
 
-  img {
+  * {
+    border-radius: 50%;
+  }
+
+  img,
+  #avatarEditButton {
     width: 100%;
     height: 100%;
     object-fit: contain;
@@ -16,16 +22,38 @@
     left: 50%;
     transform: translate(-50%, -50%);
   }
-}
 
-[data-theme="dark"] .avatar-filtered img {
-  filter: invert(1);
+  #avatarEditButton {
+    display: grid;
+    place-items: center;
+    @include mixins.transition(
+      background-color vars.$transition-fastest linear
+    );
+
+    &:hover,
+    &:focus {
+      background-color: map-get(vars.$transparent, "black-75");
+
+      svg {
+        opacity: 1;
+      }
+    }
+
+    svg {
+      width: 2rem;
+      height: 2rem;
+      opacity: 0;
+      @include mixins.transition(opacity vars.$transition-fastest linear);
+    }
+  }
 }
 
 @each $key, $value in vars.$sizes {
   .avatar-#{$key} {
     width: calc($value * 3);
     height: calc($value * 3);
+    min-width: calc($value * 3);
+    min-height: calc($value * 3);
     font-size: calc($value * 3);
     border: calc($value / 6) solid;
   }

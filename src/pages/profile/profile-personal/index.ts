@@ -1,7 +1,3 @@
-export { ProfilePersonal } from "./profile-personal";
-export type { PersonalInfoProps, PersonalInfo } from "./profile-personal-types";
-export {
-  getBetterLabels,
-  getPersonalInfo,
-  openURL,
-} from "./profile-personal-utils";
+export { default } from "./profile-personal";
+export * from "./profile-personal-types";
+export * from "./profile-personal-utils";

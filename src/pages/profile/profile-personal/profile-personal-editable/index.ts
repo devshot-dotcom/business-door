@@ -1,1 +1,1 @@
-export { ProfilePersonalEditable } from "./profile-personal-editable";
+export { default } from "./profile-personal-editable";

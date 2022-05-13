@@ -1,1 +1,1 @@
-export { Reason } from "./reason";
+export { default } from "./reason";

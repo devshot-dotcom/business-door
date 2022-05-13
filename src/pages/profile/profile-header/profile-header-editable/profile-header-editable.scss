@@ -1,0 +1,20 @@
+@use "../../../../sass/vars";
+
+[data-editable="true"] {
+  .profile__intro {
+    padding: 0;
+    padding-top: calc(var(--layout-gap) * 4);
+
+    .avatar {
+      transform: translate(-50%, -90%);
+    }
+  }
+
+  #coverEditButton {
+    position: absolute;
+    top: var(--layout-gap);
+    right: var(--layout-gap);
+    width: auto;
+    z-index: vars.$z-index-nav;
+  }
+}

@@ -1,1 +1,1 @@
-export { ProfileAdditional } from "./profile-additional";
+export { default } from "./profile-additional";

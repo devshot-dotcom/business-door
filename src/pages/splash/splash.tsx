@@ -6,7 +6,7 @@ import { useApi, useToast } from "../../hooks";
 import { AuthApi } from "../../hooks/use-api";
 import styles from "./splash.module.scss";
 
-export const Splash = () => {
+function Splash() {
   const makeToast = useToast();
   const navigate = useNavigate();
   const user = SUPABASE.auth.user();
@@ -99,4 +99,6 @@ export const Splash = () => {
       </div>
     </div>
   );
-};
+}
+
+export default Splash;

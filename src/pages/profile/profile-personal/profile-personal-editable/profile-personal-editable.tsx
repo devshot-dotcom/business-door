@@ -1,11 +1,14 @@
-import { ProfileChildProps, profileConfig } from "../..";
+import { profileConfig } from "../..";
 import { Menu, TextCounter, TextField } from "../../../../components";
-import { EditProfileActions } from "../../../edit-profile";
+import {
+  EditProfileActions,
+  EditProfileSubscriber,
+} from "../../../edit-profile";
 
-export const ProfilePersonalEditable = ({
+function ProfilePersonalEditable({
   profileState,
   dispatchProfile,
-}: ProfileChildProps) => {
+}: EditProfileSubscriber) {
   type PersonalInfoField = {
     label: string;
     value?: string;
@@ -23,14 +26,14 @@ export const ProfilePersonalEditable = ({
       prop: "fullName",
     },
     {
-      label: "Profession",
+      label: "Job or Designation",
       value: profileState.profession,
       placeholder: "Enter your profession",
       action: "updateProfession",
       prop: "profession",
     },
     {
-      label: "Organization",
+      label: "Company name or type",
       value: profileState.organization,
       placeholder: "Enter your organization",
       action: "updateOrganization",
@@ -84,4 +87,6 @@ export const ProfilePersonalEditable = ({
       ))}
     </Menu>
   );
-};
+}
+
+export default ProfilePersonalEditable;

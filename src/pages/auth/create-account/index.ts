@@ -1,1 +1,1 @@
-export { CreateAccount } from "./create-account";
+export { default } from "./create-account";

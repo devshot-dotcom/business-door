@@ -74,6 +74,29 @@ export type ApiResponseHandler = {
 
 export type ApiErrorHandler = {
   error?: ApiError | null;
-  toastOptions?: ToastOptions;
+  shouldToast?: boolean;
   boolBacks?: BoolBacks;
+};
+
+/**
+ * The response received from the storage API.
+ * @author kashan-ahmad
+ * @version 1.0.0
+ */
+export type StorageApiResponse = {
+  /**
+   * The response-data.
+   *
+   * @type {null | { Key: string }} Mostly, the Key contains the name of the file being worked upon in the cloud storage.
+   */
+  data: null | {
+    Key: string;
+  };
+
+  /**
+   * The error object. Null when there ain't an error.
+   *
+   * @type {null | Error}
+   */
+  error: Error | null;
 };

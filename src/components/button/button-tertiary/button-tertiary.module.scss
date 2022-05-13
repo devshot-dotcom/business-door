@@ -1,6 +1,0 @@
-@use "../../../sass/vars";
-@use "../button-mixin.scss" as mixin;
-
-.button {
-  @include mixin.button(map-get(vars.$color-tertiary, "400"));
-}
