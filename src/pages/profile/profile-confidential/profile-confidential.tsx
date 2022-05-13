@@ -10,7 +10,7 @@ type Props = {
   dispatchProfile: Dispatch<EditProfileActions>;
 };
 
-export const ProfileConfidential = ({ dispatchProfile }: Props) => {
+function ProfileConfidential({ dispatchProfile }: Props) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [newEmail, dispatchNewEmail, isNewEmailValid] = useEmail();
   const [newEmailConfirm, dispatchNewEmailConfirm, isNewEmailConfirmValid] =
@@ -108,8 +108,6 @@ export const ProfileConfidential = ({ dispatchProfile }: Props) => {
     if (errors === 0) {
       api.changeEmail(newEmail.value, {
         onSuccess: (user: User) => {
-          console.log(user);
-
           dispatchProfile({
             type: "updateEmail",
             email: user.email,
@@ -212,4 +210,6 @@ export const ProfileConfidential = ({ dispatchProfile }: Props) => {
       </Modal>
     </>
   );
-};
+}
+
+export default ProfileConfidential;

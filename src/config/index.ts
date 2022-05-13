@@ -20,5 +20,6 @@ export {
   getAppMetaData,
   clearAppMetaData,
   getProfileRoute,
+  getAvatarName,
 } from "./user";
 export type { UserLevel, UserLevelCode, UserMetaData } from "./user";

@@ -1,75 +1,86 @@
 import * as React from "react";
-import { Link, useNavigate } from "react-router-dom";
-import { TextField, Button } from "../../../components";
-import { useInput, useAuthenticator } from "../../../hooks";
-import { routes } from "../../../config";
-import styles from "../auth.module.scss";
+import { useNavigate } from "react-router-dom";
+import { useInput, useAuthenticator, useApi, useToast } from "../../../hooks";
+import { getProfileRoute, routes } from "../../../config";
+import { ProfileApi } from "../../../hooks/use-api";
+import { User } from "@supabase/supabase-js";
+import LoginView from "./login-view";
+import { TOAST_UPTIME } from "../../../components/toast";
+import { ProfileData } from "../../profile";
 
-export const Login = () => {
+function Login() {
   const [emailState, dispatchEmail] = useInput();
   const [pswdState, dispatchPswd] = useInput();
 
+  const makeToast = useToast();
   const navigate = useNavigate();
   const authenticator = useAuthenticator();
+  const profiles = useApi("profile") as ProfileApi;
 
-  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+  /**
+   * So the user has logged in successfully,
+   * we need to see if they're logging in for
+   * the first time or not.
+   *
+   * If they are, we need to create a profile for them.
+   *
+   * To check this, we fetch their profile.
+   *
+   * If a 404 error is returned, we know that
+   * the profile simply doesn't exist.
+   *
+   * If the profile is returned, we don't do anything,
+   * and simply take the user to the page they came from.
+   *
+   * This is a bit of a hack, but it works.
+   */
+  function onSuccess(user: User) {
+    profiles.fetchById(user.id, {
+      onSuccess: () => navigate(-1),
+      onFailure: (error) => {
+        if (error?.code && error?.code === 404) {
+          // So the user doesn't have a profile,
+          // yet they're logged in.
+          //
+          // That means that either it's the first time login,
+          // or there was an error creating the profile.
+          //
+          // Otherwise there'd be a profile already.
+          // Now, we need to create a profile for them.
+          makeToast({
+            title: "Logging in for the first time?",
+            subTitle:
+              "Let's create a profile for you. This will only be visible to you, and will be used to store your data.",
+            variant: "loading",
+            upTime: TOAST_UPTIME.REMOVE_ON_PUSH,
+          });
+
+          profiles.create(user);
+        }
+      },
+    });
+  }
+
+  function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     authenticator.login({
       email: emailState.value,
       password: pswdState.value,
       boolBacks: {
-        onSuccess: () => navigate(-1),
+        onSuccess: onSuccess,
       },
     });
   }
 
   return (
-    <form onSubmit={handleSubmit} className={`${styles.form} v-gap`}>
-      <h1 className={styles.heading}>Log In</h1>
-      <TextField
-        as="input"
-        type="email"
-        state={emailState}
-        placeholder="Your Email Address"
-        title="Please enter your email address"
-        onChange={(e) =>
-          dispatchEmail({ type: "update", value: e.target.value })
-        }
-        onFocus={() => dispatchEmail({ type: "default" })}
-      />
-      <TextField
-        as="input"
-        type="password"
-        state={pswdState}
-        placeholder="Your Password"
-        title="Please enter your password"
-        onChange={(e) =>
-          dispatchPswd({ type: "update", value: e.target.value })
-        }
-        onFocus={() => dispatchPswd({ type: "default" })}
-      />
-
-      <Link to={routes.verifyAccount.PATH} className="text-link">
-        Forgot Password
-      </Link>
-
-      <Button
-        type="submit"
-        disabled={emailState.value === "" || pswdState.value === ""}
-      >
-        Log In
-      </Button>
-
-      <div className="h-gap-small">
-        <span className="text-paragraph">Don't have an account?</span>
-        <Link
-          to={routes.createAccount.PATH}
-          className="text-link"
-          title="Create an account"
-        >
-          Create
-        </Link>
-      </div>
-    </form>
+    <LoginView
+      onSubmit={onSubmit}
+      emailState={emailState}
+      dispatchEmail={dispatchEmail}
+      pswdState={pswdState}
+      dispatchPswd={dispatchPswd}
+    />
   );
-};
+}
+
+export default Login;

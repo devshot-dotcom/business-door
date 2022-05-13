@@ -1,7 +1,7 @@
 import * as React from "react";
 import {
-  EditProfileChildrenStates as States,
-  EditProfileChildrenActions as Actions,
+  EditableAvatarActions,
+  EditableAvatarState,
 } from "../../../edit-profile";
 
 /**
@@ -14,28 +14,28 @@ import {
  * @version 1.0.0
  */
 function reducer(
-  state: States.EditableAvatar,
-  action: Actions.EditableAvatar
-): States.EditableAvatar {
+  state: EditableAvatarState,
+  action: EditableAvatarActions
+): EditableAvatarState {
   return {
     SET_FILE: { ...state, file: action.file },
     OPEN_MODAL: { ...state, isModalOpen: true },
     CLOSE_MODAL: { ...state, isModalOpen: false },
-  }[action.type] as States.EditableAvatar;
+  }[action.type] as EditableAvatarState;
 }
 
 /**
  * Hook to use the state of the `EditableAvatar` component.
- * @returns {[States.EditableAvatar, React.Dispatch<Actions.EditableAvatar>]} The state and the dispatcher.
+ * @returns {[EditableAvatarState, React.Dispatch<Actions.EditableAvatar>]} The state and the dispatcher.
  *
  * @author kashan-ahmad
  * @version 1.0.0
  */
 function useCustomReducer(): [
-  States.EditableAvatar,
-  React.Dispatch<Actions.EditableAvatar>
+  EditableAvatarState,
+  React.Dispatch<EditableAvatarActions>
 ] {
-  const initialState: States.EditableAvatar = {
+  const initialState: EditableAvatarState = {
     file: undefined,
     isModalOpen: false,
   };

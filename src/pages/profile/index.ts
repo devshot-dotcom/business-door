@@ -1,17 +1,16 @@
-import { FC } from "react";
+import ProfileComponent from "./profile";
 import ProfileAvatar from "./profile-avatar";
-import { ProfileComponent } from "./profile";
-import { ProfileAdditional } from "./profile-additional";
-import { ProfileBio } from "./profile-bio";
-import { ProfileConfidential } from "./profile-confidential";
-import { ProfileCover } from "./profile-cover";
-import { ProfileHeader } from "./profile-header";
-import { ProfilePersonal } from "./profile-personal";
-import { ProfileChildren } from "./profile-types";
+import profileConfig from "./profile-config";
+import ProfileAdditional from "./profile-additional";
+import ProfileBio from "./profile-bio";
+import ProfileConfidential from "./profile-confidential";
+import ProfileCover from "./profile-cover";
+import ProfileHeader from "./profile-header";
+import ProfilePersonal from "./profile-personal";
 
 // Makes ProfileHeader and other children available
 // by the use of dot notation. Example: <Profile.Header/>
-export const Profile = Object.assign<FC, ProfileChildren>(ProfileComponent, {
+const Profile = Object.assign(ProfileComponent, {
   Header: ProfileHeader,
   Avatar: ProfileAvatar,
   Cover: ProfileCover,
@@ -21,15 +20,14 @@ export const Profile = Object.assign<FC, ProfileChildren>(ProfileComponent, {
   Confidential: ProfileConfidential,
 });
 
-export { profileReducer, trimByConfig } from "./profile-utils";
-export { profileConfig } from "./profile-config";
-export type {
-  ProfileData,
-  ProfileState,
-  ProfileActions,
-  AdditionalInfo,
-  ProfileChildren,
-} from "./profile-types";
+// Default export.
+export default Profile;
 
-/* PersonalInformation */
-export type { PersonalInfoProps, PersonalInfo } from "./profile-personal";
+// Internal modules.
+export { profileConfig };
+
+// External modules.
+export * from "./profile-utils";
+
+// Types.
+export * from "./profile-types";

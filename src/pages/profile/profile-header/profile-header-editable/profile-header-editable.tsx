@@ -1,14 +1,14 @@
+import Profile from "../..";
 import { useState } from "react";
-import { Profile } from "../..";
-import { EditProfileChildrenProps as Types } from "../../../edit-profile";
 import { Button, NextToNav } from "../../../../components";
 import { getPropsOfLevel } from "../../../../config";
+import { EditProfileSubscriber } from "../../../edit-profile";
 import "./profile-header-editable.scss";
 
 function ProfileHeaderEditable({
   profileState,
   dispatchProfile,
-}: Types.StateSubscriber) {
+}: EditProfileSubscriber) {
   const [isModalShown, setIsModalShown] = useState(false);
 
   const hideCoverModal = () => setIsModalShown(false);

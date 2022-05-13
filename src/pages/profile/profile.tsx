@@ -1,14 +1,14 @@
-import { useReducer, useEffect, FC } from "react";
-import { Outlet, useLocation, useNavigate, useParams } from "react-router-dom";
+import "./profile.scss";
+import * as React from "react";
+import { useApi } from "../../hooks";
+import { ApiError } from "../../helpers/types";
 import { ProfileData, profileReducer } from ".";
+import { ProfileApi } from "../../hooks/use-api";
 import { Footer, Loader, Sidebar } from "../../components";
 import { getProfileRoute, routes, SUPABASE } from "../../config";
-import { ApiError } from "../../helpers/types";
-import { useApi } from "../../hooks";
-import { ProfileApi } from "../../hooks/use-api";
-import "./profile.scss";
+import { Outlet, useLocation, useNavigate, useParams } from "react-router-dom";
 
-export const ProfileComponent: FC = () => {
+function Profile() {
   const navigate = useNavigate();
   const location = useLocation();
   const api = useApi("profile") as ProfileApi;
@@ -17,11 +17,11 @@ export const ProfileComponent: FC = () => {
   const { route = "" } = useParams();
 
   // Note the initial state [fetching].
-  const [profile, dispatchProfile] = useReducer(profileReducer, {
+  const [profile, dispatchProfile] = React.useReducer(profileReducer, {
     status: "fetching",
   });
 
-  useEffect(() => {
+  React.useEffect(() => {
     const user = SUPABASE.auth.user();
     const pathNames = location.pathname.split("/");
 
@@ -127,4 +127,6 @@ export const ProfileComponent: FC = () => {
       <Footer />
     </>
   );
-};
+}
+
+export default Profile;

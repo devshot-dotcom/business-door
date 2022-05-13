@@ -1,16 +1,16 @@
 import { useState } from "react";
-import { ProfileCoverModalProps } from ".";
-import { profileConfig } from "../..";
-import { Modal } from "../../../../components";
-import { backgrounds } from "./profile-cover-modal-utils";
 import "./profile-cover-modal.scss";
+import { profileConfig } from "../..";
+import { ProfileCoverModalProps } from ".";
+import { Modal } from "../../../../components";
+import backgrounds from "./profile-cover-modal-backgrounds";
 
-export const ProfileCoverModal = ({
+function ProfileCoverModal({
   cover = profileConfig.DEFAULT_COVER,
   onRequestClose,
   dispatchProfile,
   ...rest
-}: ProfileCoverModalProps) => {
+}: ProfileCoverModalProps) {
   const [selectedCover, setSelectedCover] = useState(cover);
 
   const getCover = (cover: string) =>
@@ -52,4 +52,6 @@ export const ProfileCoverModal = ({
       />
     </Modal>
   );
-};
+}
+
+export default ProfileCoverModal;

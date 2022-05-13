@@ -1,3 +1,6 @@
+import { ProfileData } from "..";
+import { IconProp } from "@fortawesome/fontawesome-svg-core";
+
 export type PersonalInfoProps = {
   data: ProfileData;
   isLogged: boolean;
@@ -8,5 +11,5 @@ export type PersonalInfo = {
   labels?: any[];
   icon: IconProp;
   href?: string;
-  rightNodes?: ReactNode;
+  rightNodes?: React.ReactNode;
 };

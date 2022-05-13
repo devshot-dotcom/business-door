@@ -1,14 +1,13 @@
 import * as React from "react";
-import { User } from "@supabase/supabase-js";
 import { Link, useNavigate } from "react-router-dom";
 import { TextField, Button } from "../../../components";
-import { routes, setAppMetaData } from "../../../config";
+import { routes } from "../../../config";
 import { useEmail, usePassword, useApi } from "../../../hooks";
 import { doPasswordsMatch } from "../../../modules";
 import { AuthApi } from "../../../hooks/use-api";
 import styles from "../auth.module.scss";
 
-export const CreateAccount = () => {
+function CreateAccount() {
   const navigate = useNavigate();
   const api = useApi("auth") as AuthApi;
   const [emailState, dispatchEmail, isEmailValid] = useEmail();
@@ -101,4 +100,6 @@ export const CreateAccount = () => {
       </div>
     </form>
   );
-};
+}
+
+export default CreateAccount;

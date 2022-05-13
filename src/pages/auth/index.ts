@@ -1,6 +1,7 @@
-export type { AuthProps } from "./auth-types";
-export { Auth } from "./auth";
-export { Login } from "./login";
-export { CreateAccount } from "./create-account";
-export { VerifyAccount } from "./verify-account";
-export { ResetPassword } from "./reset-password";
+import Login from "./login";
+import CreateAccount from "./create-account";
+import ResetPassword from "./reset-password";
+import VerifyAccount from "./verify-account";
+
+export { default } from "./auth";
+export { Login, CreateAccount, ResetPassword, VerifyAccount };

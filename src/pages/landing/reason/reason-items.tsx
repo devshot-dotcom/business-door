@@ -5,7 +5,7 @@ import {
   faTrashAlt,
 } from "@fortawesome/free-solid-svg-icons";
 
-export const reasons = [
+const reasons = [
   {
     icon: faFile,
     title: "More than paper",
@@ -31,3 +31,5 @@ export const reasons = [
       "Social media is more important to us than family (sadly) these days and what's wrong in using the same social media as a door to your business?",
   },
 ];
+
+export default reasons;

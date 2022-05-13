@@ -1,1 +1,1 @@
-export { ViewProfile } from "./view-profile";
+export { default } from "./view-profile";

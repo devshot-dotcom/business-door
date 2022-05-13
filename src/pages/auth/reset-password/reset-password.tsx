@@ -4,7 +4,7 @@ import { usePassword, useAuthenticator } from "../../../hooks";
 import { useNavigate } from "react-router-dom";
 import { doPasswordsMatch } from "../../../modules/do-passwords-match";
 
-export const ResetPassword = () => {
+function ResetPassword() {
   const [pswdState, dispatchPswd, isPswdValid] = usePassword();
   const [rePswdState, dispatchRePswd, isRePswdValid] = usePassword();
   const navigate = useNavigate();
@@ -73,4 +73,6 @@ export const ResetPassword = () => {
       </Button>
     </form>
   );
-};
+}
+
+export default ResetPassword;

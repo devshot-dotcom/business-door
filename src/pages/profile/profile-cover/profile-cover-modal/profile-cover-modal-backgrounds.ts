@@ -1,4 +1,4 @@
-export const backgrounds = [
+const backgrounds = [
   {
     fileName: "background-01.png",
     label: "Imminent Dusk",
@@ -20,3 +20,5 @@ export const backgrounds = [
     label: "Golden Ember",
   },
 ];
+
+export default backgrounds;

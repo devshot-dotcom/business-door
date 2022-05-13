@@ -4,8 +4,8 @@ import { Avatar, Button, Modal } from "../../../../components";
 import { StorageApiResponse } from "../../../../helpers/types";
 import { useApi, useToast } from "../../../../hooks";
 import { StorageApi } from "../../../../hooks/use-api";
-import { EditProfileChildrenProps as Types } from "../../../edit-profile";
-import useCustomReducer from "./profile-avatar-editable-utils";
+import { EditableAvatarProps } from "../../../edit-profile";
+import useCustomReducer from "./profile-avatar-editable-hook";
 import "./profile-avatar-editable.scss";
 
 /**
@@ -15,7 +15,7 @@ import "./profile-avatar-editable.scss";
 function ProfileAvatarEditable({
   dispatchProfile,
   ...rest
-}: Types.EditableAvatar) {
+}: EditableAvatarProps) {
   const [state, dispatch] = useCustomReducer();
   const { file, isModalOpen } = state;
 
@@ -40,10 +40,16 @@ function ProfileAvatarEditable({
     }
 
     api.uploadAvatar(file, {
-      onSuccess: () =>
+      onSuccess: (data: StorageApiResponse["data"]) => {
         dispatch({
           type: "CLOSE_MODAL",
-        }),
+        });
+
+        dispatchProfile({
+          type: "updateAvatar",
+          avatar: data?.Key.split("/")[1],
+        });
+      },
     });
   }
 

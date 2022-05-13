@@ -1,6 +1,6 @@
 import { StatusCodes, ReasonPhrases } from "http-status-codes";
 import { TOAST_UPTIME } from "../../components/toast";
-import { getProfileRoute, SUPABASE } from "../../config";
+import { getAvatarName, getProfileRoute, SUPABASE } from "../../config";
 import { BoolBacks } from "../../helpers";
 import { StorageApiResponse } from "../../helpers/types";
 import Api from "./api";
@@ -106,7 +106,7 @@ class StorageApi extends Api {
     const user = SUPABASE.auth.user();
 
     // The file name is the first segment of the user's `id` + `-avatar.png`.
-    const fileName = `${user!.id.split("-")[0]}-avatar.png`;
+    const fileName = getAvatarName(user!.id);
 
     try {
       if (isRecursive) {
@@ -128,7 +128,7 @@ class StorageApi extends Api {
       // The default way to go is to `INSERT` the file.
       this.makeToast({
         variant: "loading",
-        title: "Updating avatar...",
+        title: "Uploading avatar...",
         upTime: TOAST_UPTIME.REMOVE_ON_PUSH,
       });
 

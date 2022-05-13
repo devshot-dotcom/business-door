@@ -1,1 +1,1 @@
-export { ProfilePersonalDefault } from "./profile-personal-default";
+export { default } from "./profile-personal-default";

@@ -1,10 +1,19 @@
 import { Navigate, useOutletContext } from "react-router-dom";
-import { Profile, ProfileState } from "../profile";
+import Profile from "../profile";
+import { ProfileState } from "../profile";
 import { useEditProfileState, useEditProfileForm } from ".";
 import { NextToNav, Button } from "../../components";
 import "./edit-profile.scss";
 
-const EditProfile = () => {
+/**
+ * The edit profile page.
+ *
+ * @returns {JSX.Element}
+ *
+ * @version 1.1.0
+ * @author [kashan-ahmad](https://github.com/kashan-ahmad)
+ */
+function EditProfile(): JSX.Element {
   const form = useEditProfileForm();
   const { data } = useOutletContext<ProfileState>();
 
@@ -42,7 +51,19 @@ const EditProfile = () => {
               bio={profileState.aboutMe}
               dispatchProfile={dispatchProfile}
             />
-            <Profile.Confidential dispatchProfile={dispatchProfile} />
+            {/* 
+            // This is disabled for now.
+            // There were some issues with the API's mail service.
+            //
+            // To elaborate, the API failed to change the user's 
+            // email address after confirmation of the new one.
+            //
+            // Uncomment the line below and comment the one next
+            // to it to enable the email change feature.
+            //
+            // <Profile.Confidential dispatchProfile={dispatchProfile} /> 
+            */}
+            <Profile.Confidential />
             <Profile.Personal.Editable {...fieldsetProps} />
             <Profile.Additional.Editable {...fieldsetProps} />
           </div>
@@ -50,6 +71,6 @@ const EditProfile = () => {
       </NextToNav>
     </form>
   );
-};
+}
 
 export default EditProfile;

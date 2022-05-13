@@ -46,9 +46,6 @@ function Avatar(props: AvatarProps): JSX.Element {
       onFailure: () => setImageSrc(defaultAvatar),
     });
 
-    // For debugging only.
-    //setImageSrc(defaultAvatar);
-
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [src, file]);
 

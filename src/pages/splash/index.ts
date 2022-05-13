@@ -1,2 +1,1 @@
-export { Splash } from "./splash";
-export { Splash as default } from "./splash";
+export { default } from "./splash";

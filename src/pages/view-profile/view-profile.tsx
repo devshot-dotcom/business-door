@@ -1,10 +1,11 @@
 import { Navigate, useOutletContext } from "react-router-dom";
 import { routes, SUPABASE } from "../../config";
 import { isObjectValid } from "../../helpers";
-import { Profile, ProfileState } from "../profile";
+import Profile from "../profile";
+import { ProfileState } from "../profile";
 import { Button, NextToNav } from "../../components";
 
-export const ViewProfile = () => {
+function ViewProfile() {
   const { data } = useOutletContext<ProfileState>();
 
   if (!data) return <Navigate to="/error" />;
@@ -46,4 +47,6 @@ export const ViewProfile = () => {
       </NextToNav>
     </>
   );
-};
+}
+
+export default ViewProfile;

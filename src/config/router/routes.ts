@@ -5,7 +5,6 @@ import {
   CreateAccount,
   Error403,
   Error404,
-  Landing,
   Login,
   Profile,
   ViewProfile,
@@ -14,6 +13,7 @@ import {
   EditProfile,
 } from "../../pages";
 import { Error } from "../../pages/error";
+import Landing from "../../pages/landing";
 
 export const routes: Record<string, Route> = {
   landing: {

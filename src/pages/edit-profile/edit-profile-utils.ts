@@ -5,6 +5,7 @@ import { ProfileApi } from "../../hooks/use-api";
 import { AdditionalInfo, profileConfig, ProfileData } from "../profile";
 import { useApi } from "../../hooks";
 import { useNavigate } from "react-router-dom";
+import { isStringValid } from "../../helpers/functions";
 
 /**
  * Updates the profile attributes systematically.
@@ -59,9 +60,9 @@ export function useEditProfileForm(): { onSubmit: Function } {
 
       function getSanitizedAdditionalInfo(additionalInfo: string | undefined) {
         // Guard clause.
-        if (!additionalInfo) return undefined;
+        if (!isStringValid(additionalInfo)) return undefined;
 
-        const arr = (JSON.parse(additionalInfo) as AdditionalInfo[]).map(
+        const arr = (JSON.parse(additionalInfo!) as AdditionalInfo[]).map(
           (item, i) => {
             // Nothing is returned when the limit of items has been crossed.
             if (i >= profileConfig.MAX_ADDITIONAL_INFOS) return undefined;

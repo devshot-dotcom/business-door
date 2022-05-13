@@ -1,11 +1,5 @@
 import { UserLevelCode } from "../../config";
-import { ProfileAdditional } from "./profile-additional";
-import ProfileAvatar from "./profile-avatar";
-import { ProfileBio } from "./profile-bio";
-import { ProfileConfidential } from "./profile-confidential";
-import { ProfileCover } from "./profile-cover";
-import { ProfileHeader } from "./profile-header";
-import { ProfilePersonal } from "./profile-personal";
+import { ApiError } from "../../helpers/types";
 
 /**
  * The state of the profile component.
@@ -67,14 +61,4 @@ export type ProfileData = {
   cover?: string;
   level?: UserLevelCode;
   cards?: string;
-};
-
-export type ProfileChildren = {
-  Cover: typeof ProfileCover;
-  Header: typeof ProfileHeader;
-  Avatar: typeof ProfileAvatar;
-  Bio: typeof ProfileBio;
-  Personal: typeof ProfilePersonal;
-  Additional: typeof ProfileAdditional;
-  Confidential: typeof ProfileConfidential;
 };

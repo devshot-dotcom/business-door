@@ -1,1 +1,1 @@
-export { ProfileBioDefault } from "./profile-bio-default";
+export { default } from "./profile-bio-default";

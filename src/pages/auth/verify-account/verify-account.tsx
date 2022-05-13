@@ -4,7 +4,7 @@ import { env } from "../../../config";
 import { useEmail, useToast, useAuthenticator } from "../../../hooks";
 import styles from "../auth.module.scss";
 
-export const VerifyAccount = () => {
+function VerifyAccount() {
   const [emailState, dispatchEmail, isEmailValid] = useEmail();
 
   const makeToast = useToast();
@@ -68,4 +68,6 @@ export const VerifyAccount = () => {
       </div>
     </form>
   );
-};
+}
+
+export default VerifyAccount;

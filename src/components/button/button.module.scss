@@ -16,15 +16,12 @@
     align-self: flex-start;
   }
 
-  &:hover,
-  &:focus-within {
+  &:is(:hover, :focus-within):not(:disabled) {
     outline: 1px dotted var(--theme-color-link);
-    //background-color: scale-color($color-background, $blackness: 10%);
   }
 
   &:disabled {
     cursor: no-drop;
-    //background-color: scale-color($color-background, $lightness: 25%);
   }
 }
 

@@ -19,6 +19,22 @@ function isObjectValid(object: any): boolean {
 const isArrayValid = (arr?: any[] | null): boolean =>
   arr !== undefined && arr !== null && arr.length > 0;
 
+/**
+ * Checks if a string is considered valid or not.
+ *
+ * Tests perfomed:
+ * - Checks if the string is not undefined or null.
+ * - Checks if the string contains atleast one character.
+ *
+ * @param {string} str The string to be tested.
+ * @returns {boolean}
+ *
+ * @author kashan-ahmad
+ * @version 1.0.0
+ */
+const isStringValid = (str?: string): boolean =>
+  str !== undefined && str !== null && str.length > 0;
+
 /** Retrive the access token from window.location.hash (if it exists). */
 function isAccessToken(tokenName: string) {
   const hash = window.location.hash;
@@ -66,4 +82,5 @@ export {
   isPasswordValid,
   isString,
   hasEmptyIndex,
+  isStringValid,
 };

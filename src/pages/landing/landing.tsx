@@ -1,22 +1,21 @@
-import { Hero } from "./hero";
-import { Intro } from "./intro";
-import { Reason } from "./reason";
+import Hero from "./hero";
+import Intro from "./intro";
+import Reason from "./reason";
 import { Footer, Sidebar } from "../../components";
-import { routes } from "../../config";
 
-const Landing = () => {
+function Landing() {
   return (
     <>
       <Hero />
       <Intro />
       <Sidebar
         variant="tidbits"
-        rwd={{ bg: "default-subtle", bgOnLaptop: "default" }}
+        rwd={{ onMobile: "default-subtle", onLaptop: "default" }}
       />
       <Reason />
       <Footer />
     </>
   );
-};
+}
 
-export { Landing };
+export default Landing;

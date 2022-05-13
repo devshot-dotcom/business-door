@@ -1,12 +1,13 @@
 import { AdditionalInfo, profileConfig } from "../..";
-import { EditProfileChildrenProps as Types } from "../../../edit-profile";
 import { Button, CloseButton, Menu, TextField } from "../../../../components";
+import { isStringValid } from "../../../../helpers/functions";
+import { EditProfileSubscriber } from "../../../edit-profile";
 import "./profile-additional-editable.scss";
 
-export const ProfileAdditionalEditable = ({
+function ProfileAdditionalEditable({
   profileState,
   dispatchProfile,
-}: Types.StateSubscriber) => {
+}: EditProfileSubscriber) {
   // A default value for the additional info.
   const defaultAdditionalInfo: AdditionalInfo[] = [
     {
@@ -17,8 +18,10 @@ export const ProfileAdditionalEditable = ({
 
   // Either the state gives us the additional info,
   // or we use the default value.
-  const additionalInfo: AdditionalInfo[] = profileState.additionalInfo
-    ? JSON.parse(profileState.additionalInfo)
+  const additionalInfo: AdditionalInfo[] = isStringValid(
+    profileState.additionalInfo
+  )
+    ? JSON.parse(profileState.additionalInfo!)
     : defaultAdditionalInfo;
 
   /**
@@ -107,7 +110,7 @@ export const ProfileAdditionalEditable = ({
               type: "updateAdditionalInfo",
               additionalInfo: JSON.stringify([
                 ...additionalInfo,
-                defaultAdditionalInfo,
+                ...defaultAdditionalInfo,
               ]),
             });
           }}
@@ -117,4 +120,6 @@ export const ProfileAdditionalEditable = ({
       )}
     </Menu>
   );
-};
+}
+
+export default ProfileAdditionalEditable;
