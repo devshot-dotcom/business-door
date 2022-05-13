@@ -1,12 +1,10 @@
 import * as React from "react";
 import { useNavigate } from "react-router-dom";
 import { useInput, useAuthenticator, useApi, useToast } from "../../../hooks";
-import { getProfileRoute, routes } from "../../../config";
 import { ProfileApi } from "../../../hooks/use-api";
 import { User } from "@supabase/supabase-js";
 import LoginView from "./login-view";
 import { TOAST_UPTIME } from "../../../components/toast";
-import { ProfileData } from "../../profile";
 
 function Login() {
   const [emailState, dispatchEmail] = useInput();

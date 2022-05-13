@@ -1,5 +1,4 @@
 import { ComponentPropsWithoutRef } from "react";
-import { Button } from "..";
 import styles from "./close-button.module.scss";
 
 /**

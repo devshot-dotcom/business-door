@@ -1,4 +1,3 @@
-import { FC } from "react";
 import { NextToNav } from "..";
 import { ResponsiveBackground } from "../../rwd";
 import { Testimonials } from "./testimonials";

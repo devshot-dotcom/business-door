@@ -1,6 +1,6 @@
 import { StatusCodes, ReasonPhrases } from "http-status-codes";
 import { TOAST_UPTIME } from "../../components/toast";
-import { getAvatarName, getProfileRoute, SUPABASE } from "../../config";
+import { getAvatarName, SUPABASE } from "../../config";
 import { BoolBacks } from "../../helpers";
 import { StorageApiResponse } from "../../helpers/types";
 import Api from "./api";
