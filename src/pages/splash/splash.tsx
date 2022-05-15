@@ -57,7 +57,7 @@ function Splash() {
 
     let interval: NodeJS.Timeout;
 
-    //  TODO: Step by step guide to navigate to the next page.
+    //  Step by step guide to navigate to the next page.
     //  1. Check if the user is logged in.
     //  2. If they're not logged in, navigate to the default path.
     if (!user) {
