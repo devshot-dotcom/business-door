@@ -10,6 +10,7 @@ import { Link } from "react-router-dom";
 import { PersonalInfo, PersonalInfoProps } from ".";
 import { Icon, Badge } from "../../../components";
 import { getPropsOfLevel, routes } from "../../../config";
+import { CardData, isArrayValid, isStringValid } from "../../../helpers";
 
 /**
  * Parse and retrieve a list of personal information items, ready to be displayed.
@@ -21,6 +22,20 @@ export function getPersonalInfo({
   const { email, city, country, profession, organization, cards, level } = data;
 
   const levelProps = getPropsOfLevel(level);
+
+  // Right, the API is a hypocrite.
+  // It returns an array of cards, but
+  // it's not clear what the actual data is.
+  // If I set the data type to an array of objects,
+  // it returns a JSON string. If I set the data type
+  // as a JSON string, it returns an array of objects.
+  const cardsLength = isStringValid(cards)
+    ? JSON.parse(cards!).length
+    : // @ts-ignore
+    isArrayValid(cards as CardData[])
+    ? // @ts-ignore
+      (cards as CardData[]).length
+    : 0;
 
   return [
     {
@@ -44,12 +59,10 @@ export function getPersonalInfo({
       icon: faCreditCard,
       rightNodes: (
         <>
-          <span className="text-button text-brand">
-            {cards && cards !== "" ? JSON.parse(cards).length : 0}
-          </span>
+          <span className="text-button text-brand">{cardsLength}</span>
           {isLogged && (
             <Link
-              to={routes.editProfile.PATH}
+              to={routes.cardTemplates.PATH}
               className="menu__link"
               title="Create a new card"
             >

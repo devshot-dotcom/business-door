@@ -33,6 +33,7 @@
 }
 
 .title {
+  color: var(--theme-color-text);
   font-size: calc(vars.$size-largest / 2);
   margin-bottom: vars.$size-medium;
 }

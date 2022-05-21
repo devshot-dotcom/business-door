@@ -27,3 +27,5 @@ export type ThemeSpeeds =
   | "fast"
   | "faster"
   | "fastest";
+
+export type ThemeBackground = `bg-${ThemeColors}`;

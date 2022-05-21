@@ -6,3 +6,7 @@ if (env.database.KEY === undefined || env.database.URL === undefined) {
 }
 
 export const SUPABASE = createClient(env.database.URL, env.database.KEY);
+
+export const getBucketUrl = (bucket: string) => {
+  return `${env.database.URL}/storage/v1/object/public/${bucket}`;
+};

@@ -5,33 +5,42 @@ import khaby from "../../../../assets/gifs/khaby.gif";
 import { isStringValid } from "../../../../helpers/functions";
 import { AdditionalInfo, profileConfig } from "../..";
 
-const EmptyAdditionalInfo = () => (
+const EmptyAdditionalInfo = ({ isLogged }: { isLogged: boolean }) => (
   <div className="profile__empty">
     <img src={khaby} alt="" />
     <div className="text-paragraph text-bold">
       Nothing here.{" "}
-      <Link to={routes.editProfile.PATH} className="text-paragraph text-link">
-        Add?
-      </Link>
+      {isLogged && (
+        <Link to={routes.editProfile.PATH} className="text-paragraph text-link">
+          Add?
+        </Link>
+      )}
     </div>
   </div>
 );
 
-function ProfileAdditionalDefault({ data }: { data?: string }) {
+type Props = {
+  data?: string;
+  isLogged: boolean;
+};
+
+function ProfileAdditionalDefault({ data, isLogged }: Props) {
   if (!isStringValid(data)) {
     return (
       <Menu title="Additional Information">
-        <EmptyAdditionalInfo />
+        <EmptyAdditionalInfo isLogged={isLogged} />
       </Menu>
     );
   }
 
-  const info: AdditionalInfo[] = JSON.parse(data!);
+  //console.log(data);
+
+  let info: AdditionalInfo[] = JSON.parse(data!);
 
   return (
     <Menu title="Additional Information">
       {info.length === 0 ? (
-        <EmptyAdditionalInfo />
+        <EmptyAdditionalInfo isLogged={isLogged} />
       ) : (
         info.map((value, i) => {
           return i + 1 > profileConfig.MAX_ADDITIONAL_INFOS ? null : (

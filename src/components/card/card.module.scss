@@ -56,6 +56,10 @@ $card-size: vars.$size-medium;
     background-color: var(--theme-color-background-subtle);
   }
 
+  &.background-default-crude {
+    background-color: var(--theme-color-root);
+  }
+
   &.shadow-default {
     @include apply-shadow(map-get(vars.$box-shadows, "smaller"));
   }

@@ -1,11 +1,11 @@
 import { Button, NextToNav, ResponsiveImage } from "../../../components";
+import { Header } from "../../../components/app";
 import waveX1 from "../../../assets/vectors/abstract/wave/wave-full.svg";
 import waveX2 from "../../../assets/vectors/abstract/wave/@x2/wave-full.svg";
 import waveX3 from "../../../assets/vectors/abstract/wave/@x3/wave-full.svg";
 import semis from "../../../assets/vectors/abstract/semis.svg";
 import blocks from "../../../assets/vectors/abstract/blocks.svg";
 import styles from "./hero.module.scss";
-import { Header } from "../../../components/app";
 
 /** The hero section of the landing page. */
 const Hero = () => (

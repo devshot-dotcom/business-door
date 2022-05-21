@@ -15,6 +15,7 @@
 }
 
 .text-field {
+  color: var(--theme-color-text);
   background-color: var(--theme-color-root);
   border-radius: vars.$size-smaller;
   cursor: text;

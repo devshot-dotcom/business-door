@@ -2,7 +2,11 @@ import { ComponentPropsWithoutRef } from "react";
 import { ThemeColors, ThemeSizes, ThemeSizesCompact } from "../../config/theme";
 
 type OptionalProps = "none" | "default";
-type CardColors = ThemeColors | OptionalProps | "default-subtle";
+type CardColors =
+  | ThemeColors
+  | OptionalProps
+  | "default-subtle"
+  | "default-crude";
 
 interface CardProps extends ComponentPropsWithoutRef<"article"> {
   /**
@@ -51,6 +55,8 @@ interface CardProps extends ComponentPropsWithoutRef<"article"> {
    * - `medium` is assigned by default.
    */
   padding?: ThemeSizesCompact;
+
+  children?: React.ReactNode;
 }
 
 export { CardProps };
