@@ -11,6 +11,8 @@ import {
   ResetPassword,
   VerifyAccount,
   EditProfile,
+  CardTemplates,
+  CardNew,
 } from "../../pages";
 import { Error } from "../../pages/error";
 import Landing from "../../pages/landing";
@@ -66,6 +68,16 @@ export const routes: Record<string, Route> = {
     PATH: "/profile/edit",
     BASENAME: "edit",
     Page: EditProfile,
+  },
+  cardTemplates: {
+    PATH: "/cards/templates",
+    BASENAME: "templates",
+    Page: CardTemplates,
+  },
+  cardNew: {
+    PATH: "/cards/new",
+    BASENAME: "new",
+    Page: CardNew,
   },
   error: {
     PATH: "*",

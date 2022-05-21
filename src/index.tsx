@@ -102,6 +102,18 @@ export function Root(): JSX.Element {
                       />
                     </Route>
 
+                    {/* Card Templates */}
+                    <Route
+                      path={routes.cardTemplates.PATH}
+                      element={<routes.cardTemplates.Page />}
+                    />
+
+                    {/* Card New */}
+                    <Route
+                      path={routes.cardNew.PATH}
+                      element={<routes.cardNew.Page />}
+                    />
+
                     {/* Error */}
                     <Route
                       path={routes.error.BASENAME}

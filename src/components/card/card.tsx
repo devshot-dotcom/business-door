@@ -1,8 +1,7 @@
-import { FC } from "react";
 import { CardProps } from "./card-types";
 import styles from "./card.module.scss";
 
-const Card: FC<CardProps> = (props) => {
+const Card = (props: CardProps) => {
   const {
     focusable = false,
     outline = "none",

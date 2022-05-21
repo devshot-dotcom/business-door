@@ -20,15 +20,6 @@
     &[data-selected="true"] img {
       display: inline-block;
       outline: vars.$size-smallest solid map-get(vars.$color-valid, "400");
-
-      &::after {
-        content: "Selected";
-        padding: 1rem;
-        font-size: 0.85rem;
-        position: absolute;
-        left: 0;
-        top: 0;
-      }
     }
 
     img {

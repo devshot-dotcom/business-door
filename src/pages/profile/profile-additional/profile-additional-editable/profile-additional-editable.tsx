@@ -1,6 +1,6 @@
 import { AdditionalInfo, profileConfig } from "../..";
 import { Button, CloseButton, Menu, TextField } from "../../../../components";
-import { isStringValid } from "../../../../helpers/functions";
+import { isArrayValid, isStringValid } from "../../../../helpers";
 import { EditProfileSubscriber } from "../../../edit-profile";
 import "./profile-additional-editable.scss";
 
@@ -16,12 +16,17 @@ function ProfileAdditionalEditable({
     },
   ];
 
-  // Either the state gives us the additional info,
-  // or we use the default value.
-  const additionalInfo: AdditionalInfo[] = isStringValid(
-    profileState.additionalInfo
-  )
+  let additionalInfo: AdditionalInfo[];
+
+  // Alright, so the API is trolling us with JSON data.
+  // Sometimes it returns a JSON string,
+  // sometimes it parses the string for us.
+  additionalInfo = isStringValid(profileState.additionalInfo)
     ? JSON.parse(profileState.additionalInfo!)
+    : // @ts-ignore
+    isArrayValid(profileState.additionalInfo as AdditionalInfo[])
+    ? // @ts-ignore
+      profileState.additionalInfo
     : defaultAdditionalInfo;
 
   /**

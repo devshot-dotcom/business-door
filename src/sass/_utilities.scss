@@ -18,7 +18,7 @@
   }
 
   .bd-#{$key} {
-    border-color: map-get($value, "400");
+    border-color: map-get($value, "400") !important;
   }
 }
 
@@ -74,6 +74,10 @@
 // Typography
 .text-bold {
   font-weight: 700;
+}
+
+.text-default {
+  color: var(--theme-color-text);
 }
 
 .text-regular {

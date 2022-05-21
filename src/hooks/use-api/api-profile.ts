@@ -46,23 +46,6 @@ class ProfileApi extends Api {
     boolBacks.onSuccess?.(data[0]);
   }
 
-  /**
-   * Method that fetches a profile from the `supabase.profiles`
-   * table. Self-intuitive and self-handling in the sense that
-   * it handles all errors by itself.
-   *
-   * @param username The username to fetch a profile with.
-   * @param boolBacks The callback functions called to extend
-   * response handling functionalities.
-   *
-   * @example
-   * <pre><code>
-   * fetchByUsername('john-doe', {
-   *    onSuccess: data => // do something with data.
-   *    onFailure: error => // do something and display error.
-   * })
-   * </pre></code>
-   */
   async fetchByRoute(route: string, boolBacks: BoolBacks) {
     let { data, error } = await SUPABASE.from("profiles")
       .select()
@@ -150,13 +133,18 @@ class ProfileApi extends Api {
    * @changelog
    * 1.0.1: Changed parameter `state`'s type from `ProfileData` to `EditProfileState`.
    */
-  async update(state: EditProfileState, boolBacks: BoolBacks): Promise<void> {
+  async update(
+    state: EditProfileState,
+    boolBacks: BoolBacks,
+    shouldToast: boolean = true
+  ): Promise<void> {
     // Initialization toast.
-    this.makeToast({
-      title: "Updating profile...",
-      variant: "loading",
-      upTime: TOAST_UPTIME.REMOVE_ON_PUSH,
-    });
+    shouldToast &&
+      this.makeToast({
+        title: "Updating profile...",
+        variant: "loading",
+        upTime: TOAST_UPTIME.REMOVE_ON_PUSH,
+      });
 
     try {
       const { data, error } = await SUPABASE.from("profiles")
@@ -169,10 +157,11 @@ class ProfileApi extends Api {
       }
 
       if (isArrayValid(data)) {
-        this.makeToast({
-          title: "Profile updated successfully!",
-          variant: "valid",
-        });
+        shouldToast &&
+          this.makeToast({
+            title: "Profile updated successfully!",
+            variant: "valid",
+          });
         boolBacks?.onSuccess?.(data![0] as ProfileData);
         return;
       }

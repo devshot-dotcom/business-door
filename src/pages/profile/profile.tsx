@@ -123,6 +123,8 @@ function Profile(): JSX.Element {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [route]);
 
+  //console.log(profile.data);
+
   return (
     <>
       <div className="profile">

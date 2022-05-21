@@ -1,6 +1,5 @@
 import { Navigate, useOutletContext } from "react-router-dom";
 import { routes, SUPABASE } from "../../config";
-import { isObjectValid } from "../../helpers";
 import Profile from "../profile";
 import { ProfileState } from "../profile";
 import { Button, NextToNav } from "../../components";
@@ -10,7 +9,7 @@ function ViewProfile() {
 
   if (!data) return <Navigate to="/error" />;
 
-  const isLogged = isObjectValid(SUPABASE.auth.user());
+  const isLogged = SUPABASE.auth.user()?.id === data.id;
 
   return (
     <>
@@ -42,7 +41,10 @@ function ViewProfile() {
           {data.aboutMe && <Profile.Bio bio={data.aboutMe} />}
           <div className="profile__grid">
             <Profile.Personal isLogged={isLogged} data={data} />
-            <Profile.Additional data={data.additionalInfo} />
+            <Profile.Additional
+              data={data.additionalInfo}
+              isLogged={isLogged}
+            />
           </div>
         </div>
       </NextToNav>

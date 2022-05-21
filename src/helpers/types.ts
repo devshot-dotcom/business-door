@@ -1,3 +1,5 @@
+import * as React from "react";
+import { IconProp } from "@fortawesome/fontawesome-svg-core";
 import { Session, User } from "@supabase/supabase-js";
 import { StatusCodes } from "http-status-codes";
 import { ToastOptions } from "../components/toast";
@@ -99,4 +101,42 @@ export type StorageApiResponse = {
    * @type {null | Error}
    */
   error: Error | null;
+};
+
+/**
+ * The data received from the `supabase.cards`
+ */
+export type CardData = {
+  name: string;
+  tags?: string[];
+  fileName: string;
+  isVertical?: boolean;
+  width: number;
+  height: number;
+  fonts?: {
+    family: string;
+    source: string;
+  }[];
+  qrCodeStyles: React.CSSProperties;
+  fields: {
+    attributes?: JSX.IntrinsicElements["div"];
+    label: string;
+    text: string;
+  }[];
+  complexFields?: {
+    attributes?: JSX.IntrinsicElements["div"];
+    icon?: {
+      src: IconProp;
+      styles?: React.CSSProperties;
+    };
+    title?: {
+      text: string;
+      attributes?: JSX.IntrinsicElements["div"];
+    };
+    field: {
+      attributes?: JSX.IntrinsicElements["div"];
+      label: string;
+      text: string;
+    };
+  }[];
 };
