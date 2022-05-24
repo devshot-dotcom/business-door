@@ -1,7 +1,12 @@
 import CloseButton from "./close-button";
 import Button from "./button";
 import Avatar from "./avatar";
+import Loader from "./loader";
 
+// Internal modules.
+export { CloseButton, Button, Avatar, Loader };
+
+// External modules.
 export {
   App,
   Container,
@@ -20,9 +25,7 @@ export { Microtip } from "./microtip";
 export { Toast, ToastSandwich } from "./toast";
 export { Switch } from "./switch";
 export { ResponsiveBackground, ResponsiveImage } from "./rwd";
-export { Loader } from "./loader";
 export { Badge } from "./badge";
 export { Menu } from "./menu";
 export { Modal } from "./modal";
 export { TextCounter } from "./text-counter";
-export { CloseButton, Button, Avatar };

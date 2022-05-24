@@ -1,14 +1,12 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 import * as React from "react";
-import { faTerminal } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import QRCode from "react-qr-code";
 import { useLocation, useNavigate } from "react-router-dom";
 import {
-  Badge,
   Button,
-  Card,
-  CardTitle,
   Footer,
+  Loader,
   NextToNav,
   Sidebar,
   TextField,
@@ -16,23 +14,26 @@ import {
 import { TOAST_UPTIME } from "../../components/toast";
 import { BREAKPOINTS, routes, SUPABASE } from "../../config";
 import { getBucketUrl } from "../../config/database";
-import {
-  CardComplexField,
-  CardData,
-  CardField,
-  getRandomBackground,
-  isArrayValid,
-} from "../../helpers";
+import { CardComplexField, CardData, CardField } from "../../helpers";
 import { useApi, useToast } from "../../hooks";
 import { ProfileApi } from "../../hooks/use-api";
 import Layout from "../../modules/layout";
-import { ProfileData } from "../profile";
-import "./card-new.scss";
+import "./card-edit.scss";
 
-function CardNew(): JSX.Element {
+/**
+ * This component and the other one is fucked up mate. Better fix these soon :D
+ * @returns
+ */
+function CardEdit(): JSX.Element {
   const makeToast = useToast();
   const navigate = useNavigate();
-  const card: CardData = useLocation().state;
+  const { state } = useLocation();
+  if (!state) {
+    return <Loader.Khaby />;
+  }
+  const card: CardData = state.card;
+  const [cards, setCards] = React.useState(state.cards);
+  const api = useApi("profile") as ProfileApi;
   const [cardStyle, setCardStyle] = React.useState(calculateStyle());
   const [cardHeight, setCardHeight] = React.useState(calculateHeight());
   const [cardName, setCardName] = React.useState("");
@@ -40,7 +41,6 @@ function CardNew(): JSX.Element {
   const [qrCode, setQrCode] = React.useState("");
   const [complexFields, setComplexFields] =
     React.useState<CardComplexField[]>();
-  const api = useApi("profile") as ProfileApi;
   const user = SUPABASE.auth.user();
 
   function calculateStyle() {
@@ -69,68 +69,31 @@ function CardNew(): JSX.Element {
   function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
 
-    if (window.confirm("Are you sure you want to create this card?")) {
+    if (cards && cards.length > 0) {
+      const newCard = { ...card, name: cardName, qrCode: qrCode };
+
+      const newCards = cards.slice();
+      newCards[cards.indexOf(card)] = newCard;
+
       makeToast({
-        title: "Creating card...",
-        subTitle: "This may take a while...",
         variant: "loading",
+        title: "Updating the card...",
         upTime: TOAST_UPTIME.REMOVE_ON_PUSH,
       });
 
-      api.fetchById(user!.id, {
-        onSuccess: (profile: ProfileData) => {
+      api.updateColumnById(user!.id, "cards", newCards, {
+        onSuccess: () => {
+          setCards(newCards);
           makeToast({
-            title: "Existing cards found",
-            subTitle: "Adding the new member to the family...",
-            variant: "loading",
-            upTime: TOAST_UPTIME.REMOVE_ON_PUSH,
+            variant: "valid",
+            title: "Card updated successfully",
           });
-
-          function updateProfile(profile: ProfileData) {
-            api.update(
-              profile,
-              {
-                onSuccess: () => {
-                  makeToast({
-                    title: "Card created successfully",
-                    variant: "valid",
-                    subTitle:
-                      "Visit your cards by clicking the cards section at Personal Information > Cards on your profile.",
-                  });
-                },
-              },
-              false
-            );
-          }
-
-          const newCard = {
-            ...card,
-            name: cardName || card.name,
-            fields: fields!,
-            complexFields: complexFields!,
-            qrCode: qrCode,
-          };
-
-          // If there are existing cards.
-          if (isArrayValid(profile.cards)) {
-            updateProfile({
-              ...profile,
-              cards: [...profile.cards!, newCard],
-            });
-            return;
-          }
-
-          // If there are no cards.
-          updateProfile({
-            ...profile,
-            cards: [newCard],
-          });
+          navigate(routes.cards.PATH, { state: newCards });
         },
         onFailure: () =>
           makeToast({
-            title: "Card creation failed!",
-            subTitle: "Please retry again or contact support.",
             variant: "invalid",
+            title: "Failed to update the card",
           }),
       });
     }
@@ -193,52 +156,7 @@ function CardNew(): JSX.Element {
         }}
       >
         <div style={{ padding: "var(--layout-gap)" }} className="v-gap">
-          <Layout.Title
-            subtitle="Each template has it's own perks."
-            isUnderlined
-          >
-            Create a card
-          </Layout.Title>
-          <Card gap="small" data-theme-inverted>
-            <CardTitle src={faTerminal} size="small">
-              Selected template
-            </CardTitle>
-            <ul className="v-gap-small">
-              <li className="text-paragraph">
-                <strong className="text-paragraph text-bold">Name: </strong>
-                {card.name}
-              </li>
-              <li className="text-paragraph">
-                <strong className="text-paragraph text-bold">Tags: </strong>
-                {card.tags?.map((tag) => (
-                  <Badge className={getRandomBackground()}>{tag}</Badge>
-                ))}
-              </li>
-              <li className="text-paragraph">
-                <strong className="text-paragraph text-bold">
-                  Fonts used:{" "}
-                </strong>
-                {
-                  /* Map over the array with a comma between each iteration. */
-                  card.fonts?.map((font) => (
-                    <>
-                      <a
-                        href={font.source.split("'")[1]}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-paragraph text-link"
-                      >
-                        {font.family.split("'")}
-                      </a>
-                      {font === card.fonts?.[card.fonts.length - 1]
-                        ? null
-                        : ", "}
-                    </>
-                  ))
-                }
-              </li>
-            </ul>
-          </Card>
+          <Layout.Title isUnderlined>Edit a card</Layout.Title>
           <div
             style={{
               maxWidth: `calc(${window.innerWidth}px - 3rem)`,
@@ -385,7 +303,7 @@ function CardNew(): JSX.Element {
             </div>
             <div className="text-end">
               <Button type="submit" variant="primary">
-                Create this card
+                Confirm changes
               </Button>
             </div>
           </form>
@@ -397,4 +315,4 @@ function CardNew(): JSX.Element {
   );
 }
 
-export default CardNew;
+export default CardEdit;

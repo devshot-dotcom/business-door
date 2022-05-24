@@ -114,6 +114,34 @@ export function Root(): JSX.Element {
                       element={<routes.cardNew.Page />}
                     />
 
+                    {/* Card Edit */}
+                    <Route element={<AuthorizedRoute />}>
+                      <Route
+                        path={routes.cardEdit.PATH}
+                        element={<routes.cardEdit.Page />}
+                      />
+                    </Route>
+
+                    {/* Card Printer */}
+                    <Route
+                      path={routes.cardPrinter.PATH}
+                      element={<routes.cardPrinter.Page />}
+                    />
+
+                    {/* Card Printer Output */}
+                    <Route
+                      path={routes.cardPrinterOutput.PATH}
+                      element={<routes.cardPrinterOutput.Page />}
+                    />
+
+                    {/* Cards */}
+                    <Route element={<AuthorizedRoute />}>
+                      <Route
+                        path={routes.cards.PATH}
+                        element={<routes.cards.Page />}
+                      />
+                    </Route>
+
                     {/* Error */}
                     <Route
                       path={routes.error.BASENAME}
@@ -132,6 +160,14 @@ export function Root(): JSX.Element {
                         <Route
                           path={routes.error403.BASENAME}
                           element={<routes.error403.Page />}
+                        />
+                      </Route>
+
+                      {/* Error 400 */}
+                      <Route element={<Meta title={routes.error400.TITLE} />}>
+                        <Route
+                          path={routes.error400.BASENAME}
+                          element={<routes.error400.Page />}
                         />
                       </Route>
                     </Route>

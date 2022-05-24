@@ -10,20 +10,17 @@ import {
   Sidebar,
 } from "../../components";
 import { routes } from "../../config";
-import { getBucketUrl } from "../../config/database";
 import { CardData } from "../../helpers";
 import { useApi } from "../../hooks";
 import { CardsApi } from "../../hooks/use-api";
+import { Layout, BusinessCard } from "../../modules";
 import "./card-templates.scss";
 
 function CardTemplates() {
-  const api = useApi("cards") as CardsApi;
   const navigate = useNavigate();
+  const api = useApi("cards") as CardsApi;
   const [cards, setCards] = React.useState<CardData[]>();
-  const [isVertical, setIsVertical] = React.useState(false);
   const [selected, setSelected] = React.useState<CardData>();
-
-  const tabStyles = "border border-2 bd-link";
 
   React.useEffect(() => {
     api.getCards({
@@ -49,19 +46,9 @@ function CardTemplates() {
             style={{ padding: "var(--layout-gap)", gap: "var(--layout-gap)" }}
             className="v-gap"
           >
-            <div className="d-flex flex-column gap-1">
-              <h1 className="text-heading">Card Templates</h1>
-              <div className="text-small text-subtle">
-                Select a template to proceed.
-              </div>
-              <div
-                style={{
-                  width: "5rem",
-                  height: "2px",
-                  background: "red",
-                }}
-              />
-            </div>
+            <Layout.Title subtitle="Select a template to proceed." isUnderlined>
+              Card Templates
+            </Layout.Title>
             <Card gap="small" data-theme-inverted>
               <CardTitle src="😉" size="small">
                 Pro tip
@@ -86,71 +73,10 @@ function CardTemplates() {
                 </li>
               </ul>
             </Card>
-            <div className="hstack gap-2">
-              <Button
-                variant="tertiary"
-                onClick={() => setIsVertical(true)}
-                className={isVertical ? tabStyles : ""}
-              >
-                Vertical
-              </Button>
-              <Button
-                variant="tertiary"
-                onClick={() => setIsVertical(false)}
-                className={isVertical ? "" : tabStyles}
-              >
-                Horizontal
-              </Button>
-            </div>
-            {isVertical ? (
-              <div className="row">
-                {cards.map((card, key) =>
-                  !card.isVertical ? null : (
-                    <div
-                      key={key}
-                      className="col-12 col-sm-6 col-lg-4 text-center text-sm-start mt-5"
-                    >
-                      <h3 className="text-h3">{card.name}</h3>
-                      <button onClick={() => setSelected(card)}>
-                        <img
-                          src={`${getBucketUrl("cards")}/vertical/previews/${
-                            card.fileName
-                          }`}
-                          alt=""
-                          className={`${
-                            selected === card ? tabStyles : ""
-                          } w-100 mt-3 rounded`}
-                        />
-                      </button>
-                    </div>
-                  )
-                )}
-              </div>
-            ) : (
-              <div className="row">
-                {cards.map((card, key) =>
-                  card.isVertical ? null : (
-                    <div
-                      key={key}
-                      className="col-12 col-sm-6 text-center text-sm-start mt-5"
-                    >
-                      <h3 className="text-h3">{card.name}</h3>
-                      <button onClick={() => setSelected(card)}>
-                        <img
-                          src={`${getBucketUrl("cards")}/previews/${
-                            card.fileName
-                          }`}
-                          alt=""
-                          className={`${
-                            selected === card ? tabStyles : ""
-                          } w-100 mt-3 rounded`}
-                        />
-                      </button>
-                    </div>
-                  )
-                )}
-              </div>
-            )}
+            <BusinessCard.Grid
+              cards={cards}
+              onSelect={(card: CardData) => setSelected(card)}
+            />
             <div className="text-end">
               <Button
                 disabled={selected === undefined}

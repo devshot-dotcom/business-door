@@ -69,7 +69,7 @@ function ProfileAdditionalEditable({
             </label>
             <CloseButton
               type="button"
-              className="additional-close"
+              className="protrude-top-right"
               onClick={() => handleRemoval(i)}
             />
             <TextField

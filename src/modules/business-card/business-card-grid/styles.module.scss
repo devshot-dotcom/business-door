@@ -1,0 +1,17 @@
+@use "../../../sass/vars";
+
+.column {
+  cursor: pointer;
+
+  img {
+    box-shadow: vars.$box-shadow-smallest;
+    border: 2px solid var(--theme-color-background);
+  }
+
+  &:focus,
+  &:focus-within {
+    img {
+      border: 2px solid var(--theme-color-link);
+    }
+  }
+}

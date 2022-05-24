@@ -1,13 +1,11 @@
 import { Link } from "react-router-dom";
 import { routes } from "../../../../config";
-import { Menu } from "../../../../components";
-import khaby from "../../../../assets/gifs/khaby.gif";
+import { Loader, Menu } from "../../../../components";
 import { isStringValid } from "../../../../helpers/functions";
 import { AdditionalInfo, profileConfig } from "../..";
 
 const EmptyAdditionalInfo = ({ isLogged }: { isLogged: boolean }) => (
-  <div className="profile__empty">
-    <img src={khaby} alt="" />
+  <Loader.Khaby className="profile__empty">
     <div className="text-paragraph text-bold">
       Nothing here.{" "}
       {isLogged && (
@@ -16,7 +14,7 @@ const EmptyAdditionalInfo = ({ isLogged }: { isLogged: boolean }) => (
         </Link>
       )}
     </div>
-  </div>
+  </Loader.Khaby>
 );
 
 type Props = {

@@ -10,7 +10,7 @@ import { Link } from "react-router-dom";
 import { PersonalInfo, PersonalInfoProps } from ".";
 import { Icon, Badge } from "../../../components";
 import { getPropsOfLevel, routes } from "../../../config";
-import { CardData, isArrayValid, isStringValid } from "../../../helpers";
+import { isArrayValid } from "../../../helpers";
 
 /**
  * Parse and retrieve a list of personal information items, ready to be displayed.
@@ -29,13 +29,7 @@ export function getPersonalInfo({
   // If I set the data type to an array of objects,
   // it returns a JSON string. If I set the data type
   // as a JSON string, it returns an array of objects.
-  const cardsLength = isStringValid(cards)
-    ? JSON.parse(cards!).length
-    : // @ts-ignore
-    isArrayValid(cards as CardData[])
-    ? // @ts-ignore
-      (cards as CardData[]).length
-    : 0;
+  const cardsLength = isArrayValid(cards) ? cards!.length : 0;
 
   return [
     {

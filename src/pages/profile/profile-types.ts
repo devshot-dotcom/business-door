@@ -1,5 +1,5 @@
 import { UserLevelCode } from "../../config";
-import { ApiError } from "../../helpers/types";
+import { ApiError, CardData } from "../../helpers/types";
 
 /**
  * The state of the profile component.
@@ -60,5 +60,5 @@ export type ProfileData = {
   email?: string;
   cover?: string;
   level?: UserLevelCode;
-  cards?: string;
+  cards?: CardData[];
 };

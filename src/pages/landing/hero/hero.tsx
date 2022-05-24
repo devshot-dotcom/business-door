@@ -6,6 +6,7 @@ import waveX3 from "../../../assets/vectors/abstract/wave/@x3/wave-full.svg";
 import semis from "../../../assets/vectors/abstract/semis.svg";
 import blocks from "../../../assets/vectors/abstract/blocks.svg";
 import styles from "./hero.module.scss";
+import { routes } from "../../../config";
 
 /** The hero section of the landing page. */
 const Hero = () => (
@@ -29,7 +30,9 @@ const Hero = () => (
           <Button as="a" href="#intro">
             Learn More
           </Button>
-          <Button variant="tertiary">Get Started</Button>
+          <Button as="Link" to={routes.cardTemplates.PATH} variant="tertiary">
+            Get Started
+          </Button>
         </div>
         <ResponsiveImage
           src={semis}

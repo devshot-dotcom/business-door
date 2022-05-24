@@ -1,5 +1,5 @@
 import { Route } from ".";
-import { env } from "../env";
+import { env } from "..";
 import {
   Auth,
   CreateAccount,
@@ -13,8 +13,12 @@ import {
   EditProfile,
   CardTemplates,
   CardNew,
+  Cards,
+  CardEdit,
+  CardPrinter,
+  CardPrinterOutput,
 } from "../../pages";
-import { Error } from "../../pages/error";
+import { Error, Error400 } from "../../pages/error";
 import Landing from "../../pages/landing";
 
 export const routes: Record<string, Route> = {
@@ -79,6 +83,26 @@ export const routes: Record<string, Route> = {
     BASENAME: "new",
     Page: CardNew,
   },
+  cardEdit: {
+    PATH: "/cards/edit",
+    BASENAME: "edit",
+    Page: CardEdit,
+  },
+  cardPrinter: {
+    PATH: "/cards/printer",
+    BASENAME: "printer",
+    Page: CardPrinter,
+  },
+  cardPrinterOutput: {
+    PATH: "/cards/printer/output",
+    BASENAME: "output",
+    Page: CardPrinterOutput,
+  },
+  cards: {
+    PATH: "/cards",
+    BASENAME: "cards",
+    Page: Cards,
+  },
   error: {
     PATH: "*",
     BASENAME: "*",
@@ -95,5 +119,11 @@ export const routes: Record<string, Route> = {
     BASENAME: "*",
     TITLE: "You've come to the wrong house fool, even we don't come here.",
     Page: Error404,
+  },
+  error400: {
+    PATH: "/400",
+    BASENAME: "400",
+    TITLE: "That's what you get when you mess with the peaky blinders!",
+    Page: Error400,
   },
 };

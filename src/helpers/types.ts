@@ -103,40 +103,48 @@ export type StorageApiResponse = {
   error: Error | null;
 };
 
+export type Font = {
+  family: string;
+  source: string;
+};
+
+export type CardField = {
+  attributes?: JSX.IntrinsicElements["div"];
+  label: string;
+  text: string;
+};
+
+export type CardComplexIcon = {
+  src: IconProp;
+  styles?: React.CSSProperties;
+};
+
+export type CardComplexTitle = {
+  text: string;
+  attributes?: JSX.IntrinsicElements["div"];
+};
+
+export type CardComplexField = {
+  attributes?: JSX.IntrinsicElements["div"];
+  icon?: CardComplexIcon;
+  title?: CardComplexTitle;
+  field: CardField;
+};
+
 /**
  * The data received from the `supabase.cards`
  */
 export type CardData = {
+  id?: number;
   name: string;
   tags?: string[];
   fileName: string;
   isVertical?: boolean;
   width: number;
   height: number;
-  fonts?: {
-    family: string;
-    source: string;
-  }[];
+  fonts?: Font[];
   qrCodeStyles: React.CSSProperties;
-  fields: {
-    attributes?: JSX.IntrinsicElements["div"];
-    label: string;
-    text: string;
-  }[];
-  complexFields?: {
-    attributes?: JSX.IntrinsicElements["div"];
-    icon?: {
-      src: IconProp;
-      styles?: React.CSSProperties;
-    };
-    title?: {
-      text: string;
-      attributes?: JSX.IntrinsicElements["div"];
-    };
-    field: {
-      attributes?: JSX.IntrinsicElements["div"];
-      label: string;
-      text: string;
-    };
-  }[];
+  fields: CardField[];
+  complexFields?: CardComplexField[];
+  qrCode?: string;
 };

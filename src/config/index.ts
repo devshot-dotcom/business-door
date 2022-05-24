@@ -1,6 +1,11 @@
+import env from "./env";
+
+// Internal modules
+export { env };
+
+// External modules
 export { routes } from "./router";
 export type { Route } from "./router";
-export { env } from "./env";
 export { SUPABASE } from "./database";
 export { ToastContext, ThemeContext } from "./context";
 // Theme.

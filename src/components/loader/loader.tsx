@@ -3,7 +3,7 @@ import { faCircleNotch } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import styles from "./loader.module.scss";
 
-export const Loader = (props: ComponentPropsWithoutRef<"div">) => {
+const Loader = (props: ComponentPropsWithoutRef<"div">) => {
   const { className = "", ...rest } = props;
 
   return (
@@ -16,3 +16,5 @@ export const Loader = (props: ComponentPropsWithoutRef<"div">) => {
     </div>
   );
 };
+
+export default Loader;
