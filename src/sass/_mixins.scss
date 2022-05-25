@@ -24,6 +24,14 @@
   }
 }
 
+@mixin navbar() {
+  position: absolute;
+  z-index: vars.$z-index-nav;
+  color: var(--theme-color-text);
+  box-shadow: vars.$box-shadow-smaller;
+  background-color: var(--theme-color-background-subtle);
+}
+
 /* Animations */
 @mixin rotate-360($speed) {
   @keyframes rotate-360 {

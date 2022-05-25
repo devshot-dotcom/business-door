@@ -1,22 +1,8 @@
 @use "../../../sass/vars";
+@use "../../../sass/mixins";
 
-@mixin nav() {
-  z-index: vars.$z-index-nav;
-  position: absolute;
-  background-color: var(--theme-color-background-subtle);
-  box-shadow: vars.$box-shadow-smaller;
-}
-
-.nav-mobile {
-  @include nav();
-  height: vars.$navbar-size-mobile;
-  width: 100%;
-  bottom: 0;
-  border-top: 1px solid map-get(vars.$color-tertiary, "400");
-}
-
-.nav-desktop {
-  @include nav();
+.navbar {
+  @include mixins.navbar();
   width: vars.$navbar-size-desktop;
   height: calc(100vh - calc(var(--layout-gap) * 2));
   top: var(--layout-gap);

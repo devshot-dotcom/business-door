@@ -1,0 +1,58 @@
+@use "../../../sass/vars";
+@use "../../../sass/mixins";
+
+.navbar {
+  // Mixins
+  @include mixins.navbar();
+
+  // Layout
+  display: grid;
+  place-items: center;
+  ul {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    li {
+      flex-grow: 1;
+      display: grid;
+      align-self: stretch;
+      place-items: center;
+    }
+  }
+
+  // Styling
+  border-top: 1px solid map-get(vars.$color-tertiary, "400");
+  ul {
+    list-style: none;
+
+    li {
+      cursor: pointer;
+      color: var(--theme-color-text);
+
+      * {
+        color: inherit;
+      }
+
+      &:is(:hover, :focus-within) {
+        background-color: var(--theme-color-background);
+        outline: 1px dashed var(--theme-color-link);
+      }
+
+      &.active {
+        color: map-get(vars.$color-brand, "200");
+        background-color: var(--theme-color-background);
+      }
+    }
+  }
+
+  // Positioning
+  bottom: 0;
+
+  // Sizing
+  width: 100%;
+  height: vars.$navbar-size-mobile;
+  ul {
+    width: 100%;
+    height: 100%;
+  }
+}
