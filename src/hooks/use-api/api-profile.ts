@@ -46,23 +46,6 @@ class ProfileApi extends Api {
     boolBacks.onSuccess?.(data[0]);
   }
 
-  /**
-   * Method that fetches a profile from the `supabase.profiles`
-   * table. Self-intuitive and self-handling in the sense that
-   * it handles all errors by itself.
-   *
-   * @param username The username to fetch a profile with.
-   * @param boolBacks The callback functions called to extend
-   * response handling functionalities.
-   *
-   * @example
-   * <pre><code>
-   * fetchByUsername('john-doe', {
-   *    onSuccess: data => // do something with data.
-   *    onFailure: error => // do something and display error.
-   * })
-   * </pre></code>
-   */
   async fetchByRoute(route: string, boolBacks: BoolBacks) {
     let { data, error } = await SUPABASE.from("profiles")
       .select()
@@ -91,6 +74,29 @@ class ProfileApi extends Api {
     let { data, error } = await SUPABASE.from("profiles").select().eq("id", id);
 
     this.handleProfile(data, error, boolBacks);
+  }
+
+  /**
+   * Fetches a specific column by the `id` of the user.
+   * @param {string} id The `uuid` of the user's profile.
+   * @param {string} column The name of the column to fetch.
+   * @param {BoolBacks} boolBacks The callback functions.
+   * @param {boolean} shouldToast Whether to toast the updates or not.
+   *
+   * @version 1.0.0
+   * @author [kashan-ahmad](https://github.com/kashan-ahmad)
+   */
+  async fetchColumnById(
+    id: string,
+    column: string,
+    boolBacks: BoolBacks,
+    shouldToast?: boolean
+  ) {
+    const { data, error } = await SUPABASE.from("profiles")
+      .select(column)
+      .eq("id", id);
+
+    this.handleProfile(data, error, boolBacks, shouldToast);
   }
 
   /**
@@ -150,13 +156,18 @@ class ProfileApi extends Api {
    * @changelog
    * 1.0.1: Changed parameter `state`'s type from `ProfileData` to `EditProfileState`.
    */
-  async update(state: EditProfileState, boolBacks: BoolBacks): Promise<void> {
+  async update(
+    state: EditProfileState,
+    boolBacks: BoolBacks,
+    shouldToast: boolean = true
+  ): Promise<void> {
     // Initialization toast.
-    this.makeToast({
-      title: "Updating profile...",
-      variant: "loading",
-      upTime: TOAST_UPTIME.REMOVE_ON_PUSH,
-    });
+    shouldToast &&
+      this.makeToast({
+        title: "Updating profile...",
+        variant: "loading",
+        upTime: TOAST_UPTIME.REMOVE_ON_PUSH,
+      });
 
     try {
       const { data, error } = await SUPABASE.from("profiles")
@@ -169,10 +180,11 @@ class ProfileApi extends Api {
       }
 
       if (isArrayValid(data)) {
-        this.makeToast({
-          title: "Profile updated successfully!",
-          variant: "valid",
-        });
+        shouldToast &&
+          this.makeToast({
+            title: "Profile updated successfully!",
+            variant: "valid",
+          });
         boolBacks?.onSuccess?.(data![0] as ProfileData);
         return;
       }
@@ -182,6 +194,38 @@ class ProfileApi extends Api {
       console.error(e);
       this.handleError({ boolBacks });
     }
+  }
+
+  /**
+   * Update a column of the profile by the user's id.
+   * @param {string} id The user's id.
+   * @param {string} column The column to update.
+   * @param {string} value The value to update the column with.
+   * @param {BoolBacks} boolBacks The callback functions called to extend response handling functionalities.
+   * @param {boolean} shouldToast Whether to toast the updates or not.
+   *
+   * @version 1.0.0
+   * @author [kashan-ahmad](https://github.com/kashan-ahmad)
+   */
+  async updateColumnById(
+    id: string,
+    column: string,
+    value: any,
+    boolBacks: BoolBacks,
+    shouldToast?: boolean
+  ) {
+    shouldToast &&
+      this.makeToast({
+        title: "Updating profile...",
+        variant: "loading",
+        upTime: TOAST_UPTIME.REMOVE_ON_PUSH,
+      });
+
+    const { data: profile, error } = await SUPABASE.from("profiles")
+      .update([{ [column]: value }])
+      .eq("id", id);
+
+    this.handleProfile(profile, error, boolBacks, shouldToast);
   }
 }
 

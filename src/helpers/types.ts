@@ -1,3 +1,5 @@
+import * as React from "react";
+import { IconProp } from "@fortawesome/fontawesome-svg-core";
 import { Session, User } from "@supabase/supabase-js";
 import { StatusCodes } from "http-status-codes";
 import { ToastOptions } from "../components/toast";
@@ -99,4 +101,50 @@ export type StorageApiResponse = {
    * @type {null | Error}
    */
   error: Error | null;
+};
+
+export type Font = {
+  family: string;
+  source: string;
+};
+
+export type CardField = {
+  attributes?: JSX.IntrinsicElements["div"];
+  label: string;
+  text: string;
+};
+
+export type CardComplexIcon = {
+  src: IconProp;
+  styles?: React.CSSProperties;
+};
+
+export type CardComplexTitle = {
+  text: string;
+  attributes?: JSX.IntrinsicElements["div"];
+};
+
+export type CardComplexField = {
+  attributes?: JSX.IntrinsicElements["div"];
+  icon?: CardComplexIcon;
+  title?: CardComplexTitle;
+  field: CardField;
+};
+
+/**
+ * The data received from the `supabase.cards`
+ */
+export type CardData = {
+  id?: number;
+  name: string;
+  tags?: string[];
+  fileName: string;
+  isVertical?: boolean;
+  width: number;
+  height: number;
+  fonts?: Font[];
+  qrCodeStyles: React.CSSProperties;
+  fields: CardField[];
+  complexFields?: CardComplexField[];
+  qrCode?: string;
 };

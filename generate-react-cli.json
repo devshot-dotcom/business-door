@@ -20,16 +20,11 @@
     },
     "page": {
       "customTemplates": {
-        "component": "templates/component/TemplateName.tsx",
-        "style": "templates/component/TemplateName.scss",
-        "index": "templates/component/index.ts"
+        "component": "templates/page/TemplateName.tsx",
+        "index": "templates/page/index.tsx"
       },
       "path": "src/pages",
-      "withStyle": true,
-      "withIndex": true,
-      "withLazy": true,
-      "withStory": false,
-      "withTest": false
+      "withIndex": true
     }
   },
   "testLibrary": "None"

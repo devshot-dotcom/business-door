@@ -4,6 +4,7 @@ import { ProfileState } from "../profile";
 import { useEditProfileState, useEditProfileForm } from ".";
 import { NextToNav, Button } from "../../components";
 import "./edit-profile.scss";
+import { Layout } from "../../modules";
 
 /**
  * The edit profile page.
@@ -32,12 +33,9 @@ function EditProfile(): JSX.Element {
       <Profile.Header.Editable {...fieldsetProps} />
       <NextToNav>
         <div className="profile__data">
-          <div>
-            <h2 className="text-h2">Edit Profile</h2>
-            <div className="text-small text-subtle">
-              All fields are optional, leave empty fields to remove them.
-            </div>
-          </div>
+          <Layout.Title isUnderlined subtitle="All fields are optional.">
+            Edit Profile
+          </Layout.Title>
           <Button
             type="submit"
             variant="primary"

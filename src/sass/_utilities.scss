@@ -18,8 +18,13 @@
   }
 
   .bd-#{$key} {
-    border-color: map-get($value, "400");
+    border-color: map-get($value, "400") !important;
   }
+}
+
+// Borders
+.bd-default {
+  border-color: var(--theme-color-background) !important;
 }
 
 // Show/Hide
@@ -74,10 +79,16 @@
 // Typography
 .text-bold {
   font-weight: 700;
+  color: var(--theme-color-text);
+}
+
+.text-default {
+  color: var(--theme-color-text);
 }
 
 .text-regular {
   font-weight: 500;
+  color: var(--theme-color-text);
 }
 
 .text-subtle {
@@ -140,56 +151,10 @@
 }
 
 // Position
-.layout-absolute {
+.protrude-top-right {
+  display: inline-block;
   position: absolute;
-
-  &.top-left {
-    top: 0;
-    left: 0;
-  }
-
-  &.top-right {
-    top: 0;
-    right: 0;
-  }
-
-  &.bottom-right {
-    bottom: 0;
-    right: 0;
-  }
-
-  &.bottom-left {
-    bottom: 0;
-    left: 0;
-  }
-
-  &.center {
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-  }
-
-  &.center-left {
-    top: 50%;
-    left: 0;
-    transform: translateY(-50%);
-  }
-
-  &.center-top {
-    left: 50%;
-    top: 0;
-    transform: translateX(-50%);
-  }
-
-  &.center-right {
-    top: 50%;
-    right: 0;
-    transform: translateY(-50%);
-  }
-
-  &.center-bottom {
-    left: 50%;
-    bottom: 0;
-    transform: translateX(-50%);
-  }
+  top: 0;
+  right: 0;
+  transform: translate(0.25rem, 0.75rem);
 }

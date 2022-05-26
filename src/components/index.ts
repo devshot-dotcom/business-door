@@ -1,7 +1,13 @@
 import CloseButton from "./close-button";
 import Button from "./button";
 import Avatar from "./avatar";
+import Loader from "./loader";
+import Switch from "./switch";
 
+// Internal modules.
+export { CloseButton, Button, Avatar, Loader, Switch };
+
+// External modules.
 export {
   App,
   Container,
@@ -18,11 +24,8 @@ export { Card, CardCover, CardTitle } from "./card";
 export { TextField } from "./text-field";
 export { Microtip } from "./microtip";
 export { Toast, ToastSandwich } from "./toast";
-export { Switch } from "./switch";
 export { ResponsiveBackground, ResponsiveImage } from "./rwd";
-export { Loader } from "./loader";
 export { Badge } from "./badge";
 export { Menu } from "./menu";
 export { Modal } from "./modal";
 export { TextCounter } from "./text-counter";
-export { CloseButton, Button, Avatar };

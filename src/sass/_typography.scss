@@ -95,46 +95,46 @@ $text-variants: "h1", "h2", "h3", "pre-title", "button", "link", "title",
 }
 
 // Individual variant mixins
-@mixin h1($color: null) {
+@mixin h1($color: var(--theme-color-text)) {
   @include text-constructor("h1", $color);
 }
 
-@mixin h2($color: null) {
+@mixin h2($color: var(--theme-color-text)) {
   @include text-constructor("h2", $color);
 }
 
-@mixin h3($color: null) {
+@mixin h3($color: var(--theme-color-text)) {
   @include text-constructor("h3", $color);
 }
 
-@mixin pre-title($color: null) {
+@mixin pre-title($color: var(--theme-color-text)) {
   @include text-constructor("pre-title", $color);
 }
 
-@mixin button($color: null) {
+@mixin button($color: var(--theme-color-text)) {
   @include text-constructor("button", $color);
 }
 
-@mixin title($color: null) {
+@mixin title($color: var(--theme-color-text)) {
   @include text-constructor("title", $color);
 }
 
-@mixin sub-title($color: null) {
+@mixin sub-title($color: var(--theme-color-text)) {
   @include text-constructor("sub-title", $color);
 }
 
-@mixin paragraph($color: null) {
+@mixin paragraph($color: var(--theme-color-text)) {
   @include text-constructor("paragraph", $color);
 }
 
-@mixin small($color: null) {
+@mixin small($color: var(--theme-color-text)) {
   @include text-constructor("small", $color);
 }
 
-@mixin smaller($color: null) {
+@mixin smaller($color: var(--theme-color-text)) {
   @include text-constructor("smaller", $color);
 }
 
-@mixin smallest($color: null) {
+@mixin smallest($color: var(--theme-color-text)) {
   @include text-constructor("smallest", $color);
 }

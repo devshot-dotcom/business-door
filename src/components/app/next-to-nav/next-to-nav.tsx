@@ -1,14 +1,14 @@
-import { ComponentPropsWithoutRef, FC } from "react";
+import { ComponentPropsWithoutRef } from "react";
 import styles from "./next-to-nav.module.scss";
 
-const NextToNav: FC<ComponentPropsWithoutRef<"div">> = (props) => {
-  const { className = "", children, ...rest } = props;
+type Props = {
+  children: React.ReactNode;
+} & ComponentPropsWithoutRef<"div">;
 
-  return (
-    <div className={`${styles["next-to-nav"]} ${className}`} {...rest}>
-      {children}
-    </div>
-  );
-};
+const NextToNav = ({ className = "", children, ...rest }: Props) => (
+  <div className={`${styles["next-to-nav"]} ${className}`} {...rest}>
+    {children}
+  </div>
+);
 
 export { NextToNav };

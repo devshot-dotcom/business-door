@@ -1,16 +1,16 @@
 import { Navigate, useOutletContext } from "react-router-dom";
 import { routes, SUPABASE } from "../../config";
-import { isObjectValid } from "../../helpers";
 import Profile from "../profile";
 import { ProfileState } from "../profile";
 import { Button, NextToNav } from "../../components";
+import { Layout } from "../../modules";
 
 function ViewProfile() {
   const { data } = useOutletContext<ProfileState>();
 
   if (!data) return <Navigate to="/error" />;
 
-  const isLogged = isObjectValid(SUPABASE.auth.user());
+  const isLogged = SUPABASE.auth.user()?.id === data.id;
 
   return (
     <>
@@ -25,7 +25,7 @@ function ViewProfile() {
                 alignItems: "center",
               }}
             >
-              <h2 className="text-heading">Your Profile</h2>
+              <Layout.Title isUnderlined>Your Profile</Layout.Title>
               <Button
                 as="Link"
                 variant="primary"
@@ -37,12 +37,15 @@ function ViewProfile() {
               </Button>
             </div>
           ) : (
-            <h2 className="text-heading">User's Profile</h2>
+            <Layout.Title isUnderlined>User's Profile</Layout.Title>
           )}
           {data.aboutMe && <Profile.Bio bio={data.aboutMe} />}
           <div className="profile__grid">
             <Profile.Personal isLogged={isLogged} data={data} />
-            <Profile.Additional data={data.additionalInfo} />
+            <Profile.Additional
+              data={data.additionalInfo}
+              isLogged={isLogged}
+            />
           </div>
         </div>
       </NextToNav>

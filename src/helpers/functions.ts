@@ -1,3 +1,4 @@
+import { ThemeBackground } from "../config/theme/theme-types";
 import { PATTERNS } from "./regex";
 
 // Functions.
@@ -17,7 +18,10 @@ function isObjectValid(object: any): boolean {
  * @version 1.0.0
  */
 const isArrayValid = (arr?: any[] | null): boolean =>
-  arr !== undefined && arr !== null && arr.length > 0;
+  arr !== undefined &&
+  arr !== null &&
+  arr.constructor === Array &&
+  arr.length > 0;
 
 /**
  * Checks if a string is considered valid or not.
@@ -33,7 +37,10 @@ const isArrayValid = (arr?: any[] | null): boolean =>
  * @version 1.0.0
  */
 const isStringValid = (str?: string): boolean =>
-  str !== undefined && str !== null && str.length > 0;
+  str !== undefined &&
+  str !== null &&
+  typeof str === "string" &&
+  str.length > 0;
 
 /** Retrive the access token from window.location.hash (if it exists). */
 function isAccessToken(tokenName: string) {
@@ -74,6 +81,45 @@ function hasEmptyIndex(arr?: any[]): boolean {
   return isEmpty;
 }
 
+const getRandomIndex = (arr: any[]): number =>
+  Math.floor(Math.random() * arr.length);
+
+/**
+ * Get a random color from the list of colors.
+ * @returns {string} The random color.
+ */
+function getRandomBackground(): ThemeBackground {
+  const backgrounds = [
+    "bg-brand",
+    "bg-secondary",
+    "bg-tertiary",
+    "bg-link",
+    "bg-valid",
+    "bg-invalid",
+  ];
+
+  return backgrounds[getRandomIndex(backgrounds)] as ThemeBackground;
+}
+
+/**
+ * Copies some text to the clipboard.
+ * @param {string} text the text to be copied.
+ * @returns {boolean} true if the text was copied, false otherwise.
+ * @see https://stackoverflow.com/a/30810322/14716989
+ * @version 1.0.0
+ * @author [kashan-ahmad](https://github.com/kashan-ahmad)
+ */
+function copyText(text: string): boolean {
+  try {
+    navigator.clipboard.writeText(text);
+  } catch (error) {
+    console.error(error);
+    return false;
+  }
+
+  return true;
+}
+
 export {
   isObjectValid,
   isArrayValid,
@@ -83,4 +129,7 @@ export {
   isString,
   hasEmptyIndex,
   isStringValid,
+  getRandomIndex,
+  getRandomBackground,
+  copyText,
 };

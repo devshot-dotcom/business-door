@@ -1,8 +1,8 @@
-export const env = {
+const env = {
   app: {
     NAME: "Business Door",
     version: {
-      NAME: "1.0",
+      NAME: "Beta@1.0.0",
       CODE: 1,
     },
   },
@@ -18,3 +18,5 @@ export const env = {
     KEY: process.env.REACT_APP_DATABASE_KEY,
   },
 };
+
+export default env;

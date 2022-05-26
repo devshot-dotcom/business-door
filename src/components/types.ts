@@ -22,3 +22,6 @@ export type { ButtonProps } from "./button";
 
 // Avatar
 export type { AvatarProps } from "./avatar";
+
+// App
+export type { SidebarProps } from "./app";

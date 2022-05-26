@@ -1,0 +1,62 @@
+@use "../../../sass/vars";
+@use "../../../sass/mixins";
+
+.navbar {
+  // Mixins
+  @include mixins.navbar();
+
+  // Sizing
+  width: vars.$navbar-size-desktop;
+  height: calc(100vh - calc(var(--layout-gap) * 2));
+
+  @media (min-width: vars.$breakpoint-desktop) {
+    height: calc(100vh - var(--layout-gap) * 4);
+  }
+
+  @media (min-width: vars.$breakpoint-high-definition) {
+    height: calc(100vh - var(--layout-gap) * 6);
+  }
+
+  // Positioning
+  top: var(--layout-gap);
+  left: var(--layout-gap);
+
+  // Layout
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  ul {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: vars.$size-small;
+
+    .nav-link {
+      cursor: pointer;
+      border-radius: vars.$border-radius-small;
+      transition: all vars.$transition-fastest;
+      padding: vars.$size-smaller vars.$size-small;
+
+      &:is(:hover, :focus-within) {
+        outline: 1px dashed var(--theme-color-link);
+        background-color: var(--theme-color-background);
+      }
+
+      &.active {
+        background-color: map-get(vars.$color-brand, "200");
+        border: 1px solid map-get(vars.$color-brand, "400");
+        color: map-get(vars.$theme-light, "color-text");
+
+        * {
+          color: inherit;
+        }
+      }
+    }
+  }
+
+  // Styling
+  padding: vars.$size-small;
+  border-radius: vars.$border-radius-small;
+}

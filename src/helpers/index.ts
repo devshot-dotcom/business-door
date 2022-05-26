@@ -1,12 +1,5 @@
-export {
-  isObjectValid,
-  isAccessToken,
-  isEmailValid,
-  isPasswordValid,
-  isString,
-  hasEmptyIndex,
-} from "./functions";
+export * from "./functions";
 
-export type { DynamicModule, BoolBacks } from "./types";
+export * from "./types";
 
-export { PATTERNS } from "./regex";
+export * from "./regex";

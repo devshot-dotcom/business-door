@@ -5,7 +5,7 @@ import styles from "./error.module.scss";
 const Error403 = () => (
   <div className={styles.wrapper}>
     <div className={`${styles.content}`}>
-      <h1 className="text-heading">403</h1>
+      <h1 className={styles.heading}>403</h1>
       <div className={styles.title}>
         We've limited your freedom, restricted access!
       </div>
