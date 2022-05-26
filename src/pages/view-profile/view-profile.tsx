@@ -3,6 +3,7 @@ import { routes, SUPABASE } from "../../config";
 import Profile from "../profile";
 import { ProfileState } from "../profile";
 import { Button, NextToNav } from "../../components";
+import { Layout } from "../../modules";
 
 function ViewProfile() {
   const { data } = useOutletContext<ProfileState>();
@@ -24,7 +25,7 @@ function ViewProfile() {
                 alignItems: "center",
               }}
             >
-              <h2 className="text-heading">Your Profile</h2>
+              <Layout.Title isUnderlined>Your Profile</Layout.Title>
               <Button
                 as="Link"
                 variant="primary"
@@ -36,7 +37,7 @@ function ViewProfile() {
               </Button>
             </div>
           ) : (
-            <h2 className="text-heading">User's Profile</h2>
+            <Layout.Title isUnderlined>User's Profile</Layout.Title>
           )}
           {data.aboutMe && <Profile.Bio bio={data.aboutMe} />}
           <div className="profile__grid">

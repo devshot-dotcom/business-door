@@ -5,7 +5,6 @@ import {
   faCog,
 } from "@fortawesome/free-solid-svg-icons";
 import { IconProp } from "@fortawesome/fontawesome-svg-core";
-import { routes } from "../../config";
 
 type NavItem = {
   /**
@@ -34,22 +33,22 @@ const navItems: NavItem[] = [
   {
     text: "Home",
     icon: faHome,
-    to: routes.landing.PATH,
+    to: "/landing",
   },
   {
     text: "Cards",
     icon: faCreditCard,
-    to: routes.cards.PATH,
+    to: "/cards",
   },
   {
     text: "Profile",
     icon: faUserCircle,
-    to: routes.profile.PATH,
+    to: "/profile",
   },
   {
     text: "Settings",
     icon: faCog,
-    to: routes.settings.PATH,
+    to: "/settings",
   },
 ];
 

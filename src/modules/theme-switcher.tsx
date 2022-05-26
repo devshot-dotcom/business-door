@@ -29,12 +29,11 @@ function ThemeSwitcher({ ...attrs }: ComponentPropsWithoutRef<"span">) {
 
   return (
     <Switch
-      label="Dark Mode"
-      checked={isDarkMode}
-      checkHandler={(isDarkMode) => handleChange(isDarkMode)}
       {...attrs}
+      checked={isDarkMode}
+      onChange={(isDarkMode) => handleChange(isDarkMode)}
     />
   );
 }
 
-export { ThemeSwitcher };
+export default ThemeSwitcher;

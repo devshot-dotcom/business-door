@@ -107,6 +107,50 @@ class AuthApi extends Api {
       this.handleError({ boolBacks });
     }
   }
+
+  /**
+   * Log out the user.
+   * @param {BoolBacks} boolBacks The callbacks to use for the request.
+   * @version 1.0.0
+   * @author [kashan-ahmad](https://github.com/kashan-ahmad)
+   */
+  async logout(boolBacks?: BoolBacks, shouldToast?: boolean) {
+    shouldToast &&
+      this.makeToast({
+        variant: "loading",
+        title: "Logging out...",
+        upTime: TOAST_UPTIME.REMOVE_ON_PUSH,
+      });
+
+    const { error } = await SUPABASE.auth.signOut();
+
+    if (error) {
+      console.error(error);
+
+      // Inform the user.
+      shouldToast &&
+        this.makeToast({
+          variant: "invalid",
+          title: "Failed to log out",
+        });
+
+      // Report back.
+      boolBacks?.onFailure?.();
+
+      // Dismiss.
+      return;
+    }
+
+    // Inform the user.
+    shouldToast &&
+      this.makeToast({
+        variant: "valid",
+        title: "Successfully Logged out",
+      });
+
+    // Report back.
+    boolBacks?.onSuccess?.();
+  }
 }
 
 export default AuthApi;

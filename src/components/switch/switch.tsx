@@ -1,33 +1,34 @@
 import * as React from "react";
 import "./switch.scss";
 
-interface SwitchProps extends React.ComponentPropsWithoutRef<"span"> {
-  id?: string;
-  label: string;
+type SwitchProps = {
+  label?: string;
   checked: boolean;
-  checkHandler: (checked: boolean) => void;
-}
+  onChange: (checked: boolean) => void;
+} & Omit<React.ComponentPropsWithoutRef<"span">, "onChange">;
 
-export const Switch: React.FC<SwitchProps> = ({
+function Switch({
   id,
   label,
   checked,
-  checkHandler,
+  onChange,
   className = "",
   ...rest
-}) => {
+}: SwitchProps) {
   const switchRef = React.createRef<HTMLInputElement>();
 
   return (
     <span
+      {...rest}
       role="switch"
       aria-checked={checked}
       className={`switch ${className}`}
-      {...rest}
     >
-      <label htmlFor={id} className="pre-title">
-        {label}
-      </label>
+      {label && (
+        <label htmlFor={id} className="text-small text-uppercase">
+          {label}
+        </label>
+      )}
       <button
         className={`switch__slider ${checked ? "checked" : ""}`}
         onClick={() => switchRef.current?.click()}
@@ -35,12 +36,15 @@ export const Switch: React.FC<SwitchProps> = ({
         <span className="switch__thumb" />
       </button>
       <input
+        id={id}
         type="checkbox"
         checked={checked}
-        onChange={(event) => checkHandler(event.target.checked)}
+        onChange={(event) => onChange(event.target.checked)}
         ref={switchRef}
         hidden={true}
       />
     </span>
   );
-};
+}
+
+export default Switch;

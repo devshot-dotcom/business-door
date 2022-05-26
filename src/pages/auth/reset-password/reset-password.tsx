@@ -3,6 +3,7 @@ import { TextField, Button } from "../../../components";
 import { usePassword, useAuthenticator } from "../../../hooks";
 import { useNavigate } from "react-router-dom";
 import { doPasswordsMatch } from "../../../modules/do-passwords-match";
+import styles from "../auth.module.scss";
 
 function ResetPassword() {
   const [pswdState, dispatchPswd, isPswdValid] = usePassword();
@@ -32,10 +33,10 @@ function ResetPassword() {
   }
 
   return (
-    <form onSubmit={handleSubmit}>
+    <form onSubmit={handleSubmit} className={`${styles.form} v-gap`}>
       <div>
-        <h1 className="h3">Reset Password</h1>
-        <div className="small-text color-primary-subtle">
+        <h1 className="text-h3">Reset Password</h1>
+        <div className="text-small color-primary-subtle">
           Finally, time to get you a new one, don't forget it this time.
         </div>
       </div>

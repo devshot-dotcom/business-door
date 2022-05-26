@@ -1,3 +1,7 @@
+import useLogout from "./use-logout";
+
+export { useLogout };
+
 export { useInput } from "./use-input";
 export { useEmail } from "./use-email";
 export { usePassword } from "./use-password";

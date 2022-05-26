@@ -2,9 +2,10 @@ import CloseButton from "./close-button";
 import Button from "./button";
 import Avatar from "./avatar";
 import Loader from "./loader";
+import Switch from "./switch";
 
 // Internal modules.
-export { CloseButton, Button, Avatar, Loader };
+export { CloseButton, Button, Avatar, Loader, Switch };
 
 // External modules.
 export {
@@ -23,7 +24,6 @@ export { Card, CardCover, CardTitle } from "./card";
 export { TextField } from "./text-field";
 export { Microtip } from "./microtip";
 export { Toast, ToastSandwich } from "./toast";
-export { Switch } from "./switch";
 export { ResponsiveBackground, ResponsiveImage } from "./rwd";
 export { Badge } from "./badge";
 export { Menu } from "./menu";

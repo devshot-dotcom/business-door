@@ -36,14 +36,14 @@ const Intro = () => (
             variant="1.0"
             cover={shoppingIllustration}
             coverForDesktop={shoppingIllustrationX2}
-            caption="Set up your profile to display cool stuff about you."
+            caption="Set up your profile and display cool stuff about you."
           />
           <BlobCard
             role="gridcell"
             variant="1.1"
             cover={discussionIllustration}
             coverForDesktop={discussionIllustrationX2}
-            caption="Choose a card template from a wide variety of free and premium designs."
+            caption="Choose a card template from a wide variety of free designs."
           />
           <BlobCard
             role="gridcell"
@@ -57,7 +57,7 @@ const Intro = () => (
             variant="1.0"
             cover={qrIllustration}
             coverForDesktop={qrIllustrationX2}
-            caption="Ask the customers to scan the QR code on the card to open your profile anywhere & anytime."
+            caption="Ask your friends and business partners to scan the QR code on the card to find you anywhere & anytime."
           />
         </div>
       </article>

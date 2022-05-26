@@ -37,6 +37,7 @@ function NavbarLink({
     <li
       tabIndex={0}
       onClick={() => navigate(to)}
+      onKeyDown={(e) => (e.code === "Space" ? navigate(to) : null)}
       className={`${!match ? "" : activeClassName} ${className}`}
     >
       <Component icon={icon} text={text} />

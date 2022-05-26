@@ -7,13 +7,7 @@ function NavbarMobile() {
     <nav className={styles.navbar}>
       <ul>
         {navItems.map((item, key) => (
-          <NavbarLink
-            key={key}
-            to={item.to}
-            text={item.text}
-            icon={item.icon}
-            activeClassName={styles.active}
-          />
+          <NavbarLink key={key} {...item} activeClassName={styles.active} />
         ))}
       </ul>
     </nav>

@@ -101,6 +101,25 @@ function getRandomBackground(): ThemeBackground {
   return backgrounds[getRandomIndex(backgrounds)] as ThemeBackground;
 }
 
+/**
+ * Copies some text to the clipboard.
+ * @param {string} text the text to be copied.
+ * @returns {boolean} true if the text was copied, false otherwise.
+ * @see https://stackoverflow.com/a/30810322/14716989
+ * @version 1.0.0
+ * @author [kashan-ahmad](https://github.com/kashan-ahmad)
+ */
+function copyText(text: string): boolean {
+  try {
+    navigator.clipboard.writeText(text);
+  } catch (error) {
+    console.error(error);
+    return false;
+  }
+
+  return true;
+}
+
 export {
   isObjectValid,
   isArrayValid,
@@ -112,4 +131,5 @@ export {
   isStringValid,
   getRandomIndex,
   getRandomBackground,
+  copyText,
 };

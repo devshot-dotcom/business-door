@@ -79,6 +79,7 @@
 // Typography
 .text-bold {
   font-weight: 700;
+  color: var(--theme-color-text);
 }
 
 .text-default {
@@ -87,6 +88,7 @@
 
 .text-regular {
   font-weight: 500;
+  color: var(--theme-color-text);
 }
 
 .text-subtle {

@@ -10,8 +10,8 @@ const Error404 = () => (
       <p className="text-paragraph">
         Nobody resides here, even we didn't know of this place's existence,{" "}
         <Link
+          replace
           to={routes.landing.PATH}
-          replace={true}
           className="text-paragraph text-link"
         >
           let's go home.

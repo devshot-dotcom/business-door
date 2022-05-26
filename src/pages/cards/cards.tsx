@@ -1,3 +1,4 @@
+import { faPlusCircle } from "@fortawesome/free-solid-svg-icons";
 import * as React from "react";
 import {
   Link,
@@ -5,7 +6,7 @@ import {
   useNavigate,
   useOutletContext,
 } from "react-router-dom";
-import { Button, Loader } from "../../components";
+import { Button, Icon, Loader } from "../../components";
 import { TOAST_UPTIME } from "../../components/toast";
 import { routes } from "../../config";
 import { CardData, isArrayValid } from "../../helpers";
@@ -115,7 +116,16 @@ function Cards() {
             </Loader.Khaby>
           ) : (
             <>
-              <Layout.Title isUnderlined>Your cards</Layout.Title>
+              <div className="d-flex align-items center justify-content-between">
+                <Layout.Title isUnderlined>Your cards</Layout.Title>
+                <Link
+                  title="Add Card"
+                  className="button-blank"
+                  to={routes.cardTemplates.PATH}
+                >
+                  <Icon src={faPlusCircle} />
+                </Link>
+              </div>
               <BusinessCard.Grid.Deleteable
                 cards={cards}
                 onDelete={onDelete}

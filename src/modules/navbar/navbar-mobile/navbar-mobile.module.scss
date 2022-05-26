@@ -39,7 +39,7 @@
       }
 
       &.active {
-        color: map-get(vars.$color-brand, "200");
+        color: map-get(vars.$color-brand, "400");
         background-color: var(--theme-color-background);
       }
     }

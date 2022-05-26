@@ -1,6 +1,6 @@
 import "./profile.scss";
 import * as React from "react";
-import { useApi } from "../../hooks";
+import { useApi, useToast } from "../../hooks";
 import { ApiError } from "../../helpers/types";
 import { ProfileData, profileReducer } from ".";
 import { ProfileApi } from "../../hooks/use-api";
@@ -17,6 +17,7 @@ import { Outlet, useLocation, useNavigate, useParams } from "react-router-dom";
  * @author [kashan-ahmad](https://github.com/kashan-ahmad)
  */
 function Profile(): JSX.Element {
+  const makeToast = useToast();
   const navigate = useNavigate();
   const location = useLocation();
   const api = useApi("profile") as ProfileApi;
@@ -72,6 +73,17 @@ function Profile(): JSX.Element {
     // If the the view profile page is requested and the user is logged in but no route is provided, we redirect the user to their profile page.
     if (route === "" && user) {
       navigate(getProfileRoute(user.id));
+      return;
+    }
+
+    // If the the view profile page is requested and the user is NOT logged in but no route is provided, we request the user to log in.
+    if (route === "" && !user) {
+      makeToast({
+        variant: "invalid",
+        title: "Please log in to continue",
+      });
+
+      navigate(routes.login.PATH);
       return;
     }
 
