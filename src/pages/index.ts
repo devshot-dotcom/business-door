@@ -9,6 +9,7 @@ import CardNew from "./card-new";
 import CardEdit from "./card-edit";
 import CardPrinter from "./card-printer";
 import Cards from "./cards";
+import Settings from "./settings";
 
 // Internal modules.
 export {
@@ -23,6 +24,7 @@ export {
   CardEdit,
   CardPrinter,
   Cards,
+  Settings,
 };
 
 // External modules.

@@ -1,4 +1,4 @@
-import { Route } from ".";
+import { Route, PageName } from ".";
 import { env } from "..";
 import {
   Auth,
@@ -17,11 +17,12 @@ import {
   CardEdit,
   CardPrinter,
   CardPrinterOutput,
+  Settings,
 } from "../../pages";
 import { Error, Error400 } from "../../pages/error";
 import Landing from "../../pages/landing";
 
-export const routes: Record<string, Route> = {
+const routes: Record<PageName, Route> = {
   landing: {
     PATH: "/landing",
     BASENAME: "landing",
@@ -103,6 +104,11 @@ export const routes: Record<string, Route> = {
     BASENAME: "cards",
     Page: Cards,
   },
+  settings: {
+    PATH: "/settings",
+    BASENAME: "settings",
+    Page: Settings,
+  },
   error: {
     PATH: "*",
     BASENAME: "*",
@@ -127,3 +133,5 @@ export const routes: Record<string, Route> = {
     Page: Error400,
   },
 };
+
+export default routes;

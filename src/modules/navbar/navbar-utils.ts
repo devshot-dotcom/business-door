@@ -1,10 +1,10 @@
-import { IconProp } from "@fortawesome/fontawesome-svg-core";
 import {
   faHome,
   faCreditCard,
   faUserCircle,
   faCog,
 } from "@fortawesome/free-solid-svg-icons";
+import { IconProp } from "@fortawesome/fontawesome-svg-core";
 import { routes } from "../../config";
 
 type NavItem = {
@@ -49,7 +49,7 @@ const navItems: NavItem[] = [
   {
     text: "Settings",
     icon: faCog,
-    to: routes.error404.PATH,
+    to: routes.settings.PATH,
   },
 ];
 

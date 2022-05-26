@@ -1,5 +1,5 @@
 import * as React from "react";
-import Loader from "../../src/components/loader";
+import { Loader } from "../../src/components";
 
 const TemplateNamePage = React.lazy(() => import("./TemplateName"));
 

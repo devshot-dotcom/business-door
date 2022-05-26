@@ -142,6 +142,12 @@ export function Root(): JSX.Element {
                       />
                     </Route>
 
+                    {/* Settings */}
+                    <Route
+                      path={routes.settings.PATH}
+                      element={<routes.settings.Page />}
+                    />
+
                     {/* Error */}
                     <Route
                       path={routes.error.BASENAME}
