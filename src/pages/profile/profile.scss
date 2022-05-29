@@ -30,12 +30,21 @@
     }
   }
 
-  .profile__button {
+  @mixin profile-button {
+    width: auto;
     position: absolute;
+    margin: 0 !important;
     top: var(--layout-gap);
     right: var(--layout-gap);
-    width: auto;
-    margin: 0 !important;
     z-index: vars.$z-index-nav;
+  }
+
+  .profile__button {
+    @include profile-button();
+  }
+
+  .profile__button--2 {
+    @include profile-button();
+    top: calc(var(--layout-gap) * 2);
   }
 }

@@ -1,5 +1,4 @@
 import { Logo } from "../../../components";
-import { env } from "../../../config";
 import NavbarLink from "../navbar-link";
 import navItems from "../navbar-utils";
 import styles from "./navbar-desktop.module.scss";
@@ -23,7 +22,6 @@ function NavbarDesktop() {
       </ul>
       <ul className={styles.last}>
         <Logo size="small" />
-        <li className="text-small">{env.app.version.NAME}</li>
       </ul>
     </nav>
   );
