@@ -92,11 +92,11 @@ function CardNew(): JSX.Element {
               {
                 onSuccess: () => {
                   makeToast({
-                    title: "Card created successfully",
                     variant: "valid",
-                    subTitle:
-                      "Visit your cards by clicking the cards section at Personal Information > Cards on your profile.",
+                    title: "Card created successfully",
+                    subTitle: "Redirecting you to your cards, let's roll!",
                   });
+                  navigate(routes.cards.PATH);
                 },
               },
               false

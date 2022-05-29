@@ -9,12 +9,4 @@
       transform: translate(-50%, -90%);
     }
   }
-
-  #coverEditButton {
-    position: absolute;
-    top: var(--layout-gap);
-    right: var(--layout-gap);
-    width: auto;
-    z-index: vars.$z-index-nav;
-  }
 }

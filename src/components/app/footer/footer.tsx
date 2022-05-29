@@ -26,7 +26,10 @@ const Footer = () => {
           </Button>
         </article>
         <article className={styles.about}>
-          <Logo />
+          <div>
+            <Logo />
+            <div className="text-small text-subtle">{env.app.version.NAME}</div>
+          </div>
           <div className="text-small">
             Made with <Icon src={faHeart} size="small" color="brand" /> using
             React.

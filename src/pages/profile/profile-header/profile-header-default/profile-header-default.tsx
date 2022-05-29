@@ -23,7 +23,7 @@ function ProfileHeaderDefault({ isLogged, data }: ProfileHeaderDefaultProps) {
             size="small"
             variant="tertiary"
             onClick={() => logout()}
-            className="position-absolute w-auto top-0 end-0 mt-3 me-3"
+            className="profile__button"
           >
             Log out
           </Button>
@@ -32,7 +32,7 @@ function ProfileHeaderDefault({ isLogged, data }: ProfileHeaderDefaultProps) {
             size="small"
             variant="primary"
             onClick={() => navigate(routes.login.PATH)}
-            className="position-absolute w-auto top-0 end-0 mt-3 me-3"
+            className="profile__button"
           >
             Log in
           </Button>
@@ -55,7 +55,7 @@ function ProfileHeaderDefault({ isLogged, data }: ProfileHeaderDefaultProps) {
                   title: "Failed to share profile!",
                 });
             }}
-            className="position-absolute w-auto top-0 start-0 mt-3 ms-3"
+            className="profile__button--2"
           >
             Share
           </Button>

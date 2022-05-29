@@ -9,7 +9,7 @@ import {
   NextToNav,
   Sidebar,
 } from "../../components";
-import { routes } from "../../config";
+import { routes, SUPABASE } from "../../config";
 import { CardData } from "../../helpers";
 import { useApi } from "../../hooks";
 import { CardsApi } from "../../hooks/use-api";
@@ -21,6 +21,7 @@ function CardTemplates() {
   const api = useApi("cards") as CardsApi;
   const [cards, setCards] = React.useState<CardData[]>();
   const [selected, setSelected] = React.useState<CardData>();
+  const isLogged = !!SUPABASE.auth.user();
 
   React.useEffect(() => {
     api.getCards({
@@ -79,17 +80,17 @@ function CardTemplates() {
             />
             <div className="text-end">
               <Button
-                disabled={selected === undefined}
                 className="mt-5"
                 onClick={() =>
                   navigate(routes.cardNew.PATH, { state: selected })
                 }
+                disabled={selected === undefined || !isLogged}
               >
                 Proceed to create card
               </Button>
-              {selected === undefined && (
+              {!isLogged && (
                 <div className="text-small text-brand mt-2">
-                  Please select a template to proceed!
+                  Please log in to create a card!
                 </div>
               )}
             </div>
