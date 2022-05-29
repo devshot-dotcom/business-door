@@ -200,6 +200,7 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 ## Contact
 
 For inquiries, contact [devshot.coffee@gmail.com](mailto://devshot.coffee@gmail.com)
+
 Project Link: [https://github.com/devshot-dotcom/business-door](https://github.com/devshot-dotcom/business-door)
 
 <p align="right">(<a href="#top">back to top</a>)</p>
