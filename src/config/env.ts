@@ -2,8 +2,8 @@ const env = {
   app: {
     NAME: "Business Door",
     version: {
-      NAME: "Beta@1.0.0",
-      CODE: 1,
+      NAME: "Beta@1.0.1",
+      CODE: 2,
     },
   },
   author: {
