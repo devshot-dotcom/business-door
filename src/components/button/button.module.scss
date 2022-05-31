@@ -10,6 +10,7 @@
   @include typography.button();
   border-radius: vars.$border-radius-small;
   padding: vars.$size-small vars.$size-medium;
+  color: map-get(vars.$theme-dark, "color-text") !important;
 
   @media (min-width: vars.$breakpoint-mobile) {
     width: auto;
